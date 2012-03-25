@@ -1,0 +1,15 @@
+Ustalony na spotkaniu 23.03 przk³adowy scenariusz u¿ycia aplikacji
+
+1. Wczeœniej stworzona grupa kolegów (W,K,T,P)
+2. U¿ytkownik P tworzy wydarzenie, wpisuje nazwê "piwo 23.03" oraz wybiera z 
+   listy u¿ytkowników tych którzy brali udzia³ w wydarzeniu(K,T,P)
+3. Na nastêpnym ekranie u¿ytkownik dodaje itemy do tabelki, po naciœniêciu add 
+   uzupe³nia 4 pola - nazwa (piwo) iloœæ (3) cena (5z³) kto zap³aci³ (P).
+4. U¿tkownik zatwierdza utworzenie wydarzenia, na widoku grupy pokazuje siê nowe
+   wydarzenie, obliczona zostaje wydana suma oraz ile ka¿dy z uczestników zap³aci³.
+   
+Ustaliliœmy te¿, ¿e w widoku ka¿dej grupy jest lista jej uczesntików, posortowana po
+wysokoœci d³ugu (ci na minusie na pocz¹tku, a ci na plusie dalej) oraz, ¿e musi byæ mo¿liwa opcja
+rozliczenia siê w inny sposób ni¿ utworzenie wydarzenia (oddanie komuœ, oddanie do puli) np. aby 
+odejœæ z grupy.
+
