@@ -6,7 +6,7 @@
 
 	<description>CyberWej data layer context configuration</description>
 
-	<context:component-scan base-package="org.agh.iosr.cyberwej.data.dao" />
+	<context:component-scan base-package="org.agh.iosr.cyberwej.data.dao.implementations" />
 
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
