@@ -1,11 +1,11 @@
 package org.agh.iosr.cyberwej.data.objects;
 
-import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -15,12 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "USERS")
-public class User implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5890232638537337421L;
+public class User {
 
 	private int id;
 
@@ -34,7 +29,13 @@ public class User implements Serializable {
 
 	private String location;
 
-	private Set<GroupMember> groupMembers;
+	private Set<GroupMembership> groupMemberships;
+
+	private Set<Invitation> userInvitations;
+
+	private Set<Payback> paybacksForUser;
+
+	private Set<Payback> paybacksForOthers;
 
 	@Id
 	@Column(name = "USERID")
@@ -94,12 +95,41 @@ public class User implements Serializable {
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "USERID")
-	public Set<GroupMember> getGroupMembers() {
-		return groupMembers;
+	public Set<GroupMembership> getGroupMemberships() {
+		return groupMemberships;
 	}
 
-	public void setGroupMembers(Set<GroupMember> groupMembers) {
-		this.groupMembers = groupMembers;
+	public void setGroupMemberships(Set<GroupMembership> groupMemberships) {
+		this.groupMemberships = groupMemberships;
 	}
 
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "INVITEEID")
+	public Set<Invitation> getUserInvitations() {
+		return userInvitations;
+	}
+
+	public void setUserInvitations(Set<Invitation> userInvitations) {
+		this.userInvitations = userInvitations;
+	}
+
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "INVESTORID")
+	public Set<Payback> getPaybacksForUser() {
+		return paybacksForUser;
+	}
+
+	public void setPaybacksForUser(Set<Payback> paybacksForUser) {
+		this.paybacksForUser = paybacksForUser;
+	}
+
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "DEBTORID")
+	public Set<Payback> getPaybacksForOthers() {
+		return paybacksForOthers;
+	}
+
+	public void setPaybacksForOthers(Set<Payback> paybacksForOthers) {
+		this.paybacksForOthers = paybacksForOthers;
+	}
 }

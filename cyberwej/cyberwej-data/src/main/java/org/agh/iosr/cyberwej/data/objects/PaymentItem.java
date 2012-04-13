@@ -1,8 +1,8 @@
 package org.agh.iosr.cyberwej.data.objects;
 
-import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,13 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PAYMENTITEM")
-public class PaymentItem implements Serializable {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -7467642949671009250L;
+@Table(name = "PAYMENTITEMS")
+public class PaymentItem {
 
 	private int id;
 
@@ -53,7 +48,7 @@ public class PaymentItem implements Serializable {
 		this.product = product;
 	}
 
-	@Column(name = "COUNT", nullable=false)
+	@Column(name = "COUNT", nullable = false)
 	public int getCount() {
 		return count;
 	}
@@ -62,7 +57,7 @@ public class PaymentItem implements Serializable {
 		this.count = count;
 	}
 
-	@Column(name = "PRICE", nullable=false)
+	@Column(name = "PRICE", nullable = false)
 	public float getPrice() {
 		return price;
 	}
@@ -71,7 +66,7 @@ public class PaymentItem implements Serializable {
 		this.price = price;
 	}
 
-	@ManyToMany
+	@ManyToMany(cascade = { CascadeType.ALL })
 	public Set<User> getConsumers() {
 		return consumers;
 	}

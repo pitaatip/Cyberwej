@@ -5,30 +5,16 @@ import java.util.List;
 import org.agh.iosr.cyberwej.data.dao.interfaces.GroupDAO;
 import org.agh.iosr.cyberwej.data.objects.Group;
 import org.apache.log4j.Logger;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class GroupDAOImpl implements GroupDAO {
-
-	private HibernateTemplate hibernateTemplate;
+public class GroupDAOImpl extends DAOBase implements GroupDAO {
 
 	private static Logger logger = Logger.getLogger(GroupDAO.class);
 
-	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.hibernateTemplate = new HibernateTemplate(sessionFactory);
-	}
-
 	@Override
-	public void saveGroup(Group group) {
-		try {
-			this.hibernateTemplate.saveOrUpdate(group);
-		} catch (Exception e) {
-			logger.info("Object not saved", e);
-		}
+	public boolean saveGroup(Group group) {
+		return super.save(group);
 	}
 
 	@Override
@@ -41,4 +27,8 @@ public class GroupDAOImpl implements GroupDAO {
 		return null;
 	}
 
+	@Override
+	public void removeGroup(Group group) {
+		super.hibernateTemplate.delete(group);
+	}
 }

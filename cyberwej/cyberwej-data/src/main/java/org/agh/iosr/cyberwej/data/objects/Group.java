@@ -1,6 +1,5 @@
 package org.agh.iosr.cyberwej.data.objects;
 
-import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,22 +13,21 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="GROUPS")
-public class Group implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5297224439165603332L;
+@Table(name = "GROUPS")
+public class Group {
 
 	private int id;
-	
+
 	private String name;
-	
-	private Set<GroupMember> groupMembers;
+
+	private Set<GroupMembership> groupMembers;
+
+	private Set<Invitation> invitations;
+
+	private Set<Payment> payments;
 
 	@Id
-	@Column(name="GROUPID")
+	@Column(name = "GROUPID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
 		return id;
@@ -39,7 +37,7 @@ public class Group implements Serializable{
 		this.id = id;
 	}
 
-	@Column(name="NAME", unique=true)
+	@Column(name = "NAME", unique = true)
 	public String getName() {
 		return name;
 	}
@@ -48,14 +46,34 @@ public class Group implements Serializable{
 		this.name = name;
 	}
 
-	@OneToMany(cascade={CascadeType.ALL})
-	@JoinColumn(name="GROUPID")
-	public Set<GroupMember> getGroupMembers() {
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "GROUPID")
+	public Set<GroupMembership> getGroupMembers() {
 		return groupMembers;
 	}
 
-	public void setGroupMembers(Set<GroupMember> groupMembers) {
+	public void setGroupMembers(Set<GroupMembership> groupMembers) {
 		this.groupMembers = groupMembers;
 	}
-	
+
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "GROUPID")
+	public Set<Invitation> getInvitations() {
+		return invitations;
+	}
+
+	public void setInvitations(Set<Invitation> invitations) {
+		this.invitations = invitations;
+	}
+
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "GROUPID", nullable = false)
+	public Set<Payment> getPayments() {
+		return payments;
+	}
+
+	public void setPayments(Set<Payment> payments) {
+		this.payments = payments;
+	}
+
 }

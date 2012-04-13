@@ -1,7 +1,5 @@
 package org.agh.iosr.cyberwej.data.objects;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,13 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PRODUCT")
-public class Product implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5929884667525421049L;
+@Table(name="PRODUCTS")
+public class Product{
 
 	private int id;
 	
