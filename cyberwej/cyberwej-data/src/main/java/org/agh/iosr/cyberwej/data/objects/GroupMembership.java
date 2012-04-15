@@ -2,14 +2,17 @@ package org.agh.iosr.cyberwej.data.objects;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
+@IdClass(GroupMembershipID.class)
 @Table(name = "GROUPMEMBERSHIPS")
 public class GroupMembership implements Serializable {
 
@@ -18,13 +21,19 @@ public class GroupMembership implements Serializable {
 	 */
 	private static final long serialVersionUID = 470204746629470622L;
 
+	@Column(name = "OVERDRAW", nullable = false)
 	private float overdraw;
 
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "GROUPID", nullable = false)
 	private Group group;
 
+	@Id
+	@ManyToOne
+	@JoinColumn(name = "USERID", nullable = false)
 	private User user;
 
-	@Column(name = "OVERDRAW", nullable = false)
 	public float getOverdraw() {
 		return overdraw;
 	}
@@ -33,9 +42,6 @@ public class GroupMembership implements Serializable {
 		this.overdraw = overdraw;
 	}
 
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "GROUPID", nullable = false)
 	public Group getGroup() {
 		return group;
 	}
@@ -44,11 +50,8 @@ public class GroupMembership implements Serializable {
 		this.group = group;
 	}
 
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "USERID", nullable = false)
 	public User getUser() {
-		return user;
+		return this.user;
 	}
 
 	public void setUser(User user) {

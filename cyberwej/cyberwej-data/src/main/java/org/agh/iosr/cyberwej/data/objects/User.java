@@ -1,5 +1,6 @@
 package org.agh.iosr.cyberwej.data.objects;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -17,29 +18,41 @@ import javax.persistence.Table;
 @Table(name = "USERS")
 public class User {
 
-	private int id;
-
-	private String name;
-
-	private String surname;
-
-	private String mail;
-
-	private String login;
-
-	private String location;
-
-	private Set<GroupMembership> groupMemberships;
-
-	private Set<Invitation> userInvitations;
-
-	private Set<Payback> paybacksForUser;
-
-	private Set<Payback> paybacksForOthers;
-
 	@Id
 	@Column(name = "USERID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+
+	@Column(name = "NAME", nullable = false)
+	private String name;
+
+	@Column(name = "SURNAME", nullable = false)
+	private String surname;
+
+	@Column(name = "MAIL", nullable = false, unique = true)
+	private String mail;
+
+	@Column(name = "LOGIN", nullable = false, unique = true)
+	private String login;
+
+	@Column(name = "LOCATION")
+	private String location;
+
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "user", fetch = FetchType.LAZY)
+	private Set<GroupMembership> groupMemberships = new HashSet<GroupMembership>();
+
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "INVITEEID")
+	private Set<Invitation> userInvitations;
+
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "INVESTORID")
+	private Set<Payback> paybacksForUser;
+
+	@OneToMany(cascade = { CascadeType.ALL })
+	@JoinColumn(name = "DEBTORID")
+	private Set<Payback> paybacksForOthers;
+
 	public int getId() {
 		return id;
 	}
@@ -48,7 +61,6 @@ public class User {
 		this.id = id;
 	}
 
-	@Column(name = "NAME", nullable = false)
 	public String getName() {
 		return name;
 	}
@@ -57,7 +69,6 @@ public class User {
 		this.name = name;
 	}
 
-	@Column(name = "SURNAME", nullable = false)
 	public String getSurname() {
 		return surname;
 	}
@@ -66,7 +77,6 @@ public class User {
 		this.surname = surname;
 	}
 
-	@Column(name = "MAIL", nullable = false, unique = true)
 	public String getMail() {
 		return mail;
 	}
@@ -75,7 +85,6 @@ public class User {
 		this.mail = mail;
 	}
 
-	@Column(name = "LOGIN", nullable = false, unique = true)
 	public String getLogin() {
 		return login;
 	}
@@ -84,7 +93,6 @@ public class User {
 		this.login = login;
 	}
 
-	@Column(name = "LOCATION")
 	public String getLocation() {
 		return location;
 	}
@@ -93,8 +101,6 @@ public class User {
 		this.location = location;
 	}
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "USERID")
 	public Set<GroupMembership> getGroupMemberships() {
 		return groupMemberships;
 	}
@@ -103,8 +109,6 @@ public class User {
 		this.groupMemberships = groupMemberships;
 	}
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "INVITEEID")
 	public Set<Invitation> getUserInvitations() {
 		return userInvitations;
 	}
@@ -113,8 +117,6 @@ public class User {
 		this.userInvitations = userInvitations;
 	}
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "INVESTORID")
 	public Set<Payback> getPaybacksForUser() {
 		return paybacksForUser;
 	}
@@ -123,13 +125,15 @@ public class User {
 		this.paybacksForUser = paybacksForUser;
 	}
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "DEBTORID")
 	public Set<Payback> getPaybacksForOthers() {
 		return paybacksForOthers;
 	}
 
 	public void setPaybacksForOthers(Set<Payback> paybacksForOthers) {
 		this.paybacksForOthers = paybacksForOthers;
+	}
+
+	public void addGroupMembership(GroupMembership groupMembership) {
+		this.groupMemberships.add(groupMembership);
 	}
 }

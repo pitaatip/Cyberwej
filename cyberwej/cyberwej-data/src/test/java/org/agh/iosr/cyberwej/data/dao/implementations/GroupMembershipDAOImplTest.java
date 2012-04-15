@@ -2,20 +2,21 @@ package org.agh.iosr.cyberwej.data.dao.implementations;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertTrue;
 
 import org.agh.iosr.cyberwej.data.dao.interfaces.GroupDAO;
 import org.agh.iosr.cyberwej.data.dao.interfaces.GroupMembershipDAO;
 import org.agh.iosr.cyberwej.data.dao.interfaces.UserDAO;
 import org.agh.iosr.cyberwej.data.objects.Group;
+import org.agh.iosr.cyberwej.data.objects.GroupMembership;
 import org.agh.iosr.cyberwej.data.objects.User;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.BeforeTransaction;
 import org.springframework.transaction.annotation.Transactional;
 
 @ContextConfiguration(locations = { "TestContext.xml" })
@@ -40,7 +41,7 @@ public class GroupMembershipDAOImplTest {
 	private String mail = "jan@janowie.pl";
 	private String login = "Janek";
 
-	@Before
+	@BeforeTransaction
 	public void setUp() {
 		this.user = new User();
 		user.setSurname(this.surname);
@@ -50,8 +51,8 @@ public class GroupMembershipDAOImplTest {
 		this.userDAO.saveUser(user);
 
 		this.group = new Group();
-		group.setName(groupName);
-		this.groupDAO.saveGroup(group);
+		this.group.setName(groupName);
+		this.groupDAO.saveGroup(this.group);
 
 		this.groupMembershipDAO.addGroupMembership(group, user);
 
@@ -63,6 +64,7 @@ public class GroupMembershipDAOImplTest {
 	public void testAddGroupMembership() {
 		User retrievedUser = this.userDAO.findUserByMail(this.mail);
 		assertFalse(retrievedUser.getGroupMemberships().isEmpty());
+
 		Group retrievedGroup = this.groupDAO.getGroupByName(this.groupName);
 		assertFalse(retrievedGroup.getGroupMembers().isEmpty());
 		assertEquals(retrievedGroup.getGroupMembers(),
@@ -73,7 +75,13 @@ public class GroupMembershipDAOImplTest {
 	@Rollback(true)
 	@Test
 	public void testRemoveGroupMembership() {
-		fail("Not yet implemented");
+		User retrievedUser = this.userDAO.findUserByMail(this.mail);
+		for (GroupMembership groupMembership : retrievedUser
+				.getGroupMemberships())
+			if (groupMembership.getGroup().getName().equals(this.groupName))
+				groupMembershipDAO.removeGroupMembership(groupMembership);
+		Group retrievedGroup = this.groupDAO.getGroupByName(this.groupName);
+		assertTrue(retrievedGroup.getGroupMembers().isEmpty());
 	}
 
 }

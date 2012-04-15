@@ -1,5 +1,6 @@
 package org.agh.iosr.cyberwej.data.objects;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -20,7 +21,7 @@ public class Group {
 
 	private String name;
 
-	private Set<GroupMembership> groupMembers;
+	private Set<GroupMembership> groupMembers = new HashSet<GroupMembership>();
 
 	private Set<Invitation> invitations;
 
@@ -46,8 +47,7 @@ public class Group {
 		this.name = name;
 	}
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "GROUPID")
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "group")
 	public Set<GroupMembership> getGroupMembers() {
 		return groupMembers;
 	}
@@ -74,6 +74,10 @@ public class Group {
 
 	public void setPayments(Set<Payment> payments) {
 		this.payments = payments;
+	}
+
+	public void addGroupMembership(GroupMembership groupMembership) {
+		this.groupMembers.add(groupMembership);
 	}
 
 }

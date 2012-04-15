@@ -25,5 +25,4 @@ public abstract class DAOBase {
 			return false;
 		}
 	}
-
 }

@@ -16,6 +16,8 @@ public class GroupMembershipDAOImpl extends DAOBase implements
 		groupMembership.setGroup(group);
 		groupMembership.setUser(user);
 		groupMembership.setOverdraw(0);
+		user.addGroupMembership(groupMembership);
+		group.addGroupMembership(groupMembership);
 		return super.save(groupMembership);
 	}
 
