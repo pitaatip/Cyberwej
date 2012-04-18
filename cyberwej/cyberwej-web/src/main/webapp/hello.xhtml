@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<h:head>
+	<title>JSF 2.0 Hello World</title>
+</h:head>
+<h:body>
+	<h3>CYBERWEJ EXAMPLE</h3>
+
+	<h:form>
+	<rich:toolbar>
+		<h:commandLink value="USERS" />
+		<h:commandLink value="GROUPS" />
+		<h:commandLink value="BILLINGS" />
+	</rich:toolbar>
+
+		<rich:panel style="width:320px;">
+			<table>
+				<tr>
+					<td><h:outputText value="Imie" /></td>
+					<td><h:inputText value="#{userLogin.name}">
+							<rich:validator />
+						</h:inputText></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Nazwisko" /></td>
+					<td><h:inputText value="#{userLogin.surname}">
+							<rich:validator />
+						</h:inputText></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Login" /></td>
+					<td><h:inputText value="#{userLogin.login}">
+							<rich:validator />
+						</h:inputText></td>
+				</tr>
+				<tr>
+					<td><h:outputText value="Mail" /></td>
+					<td><h:inputText value="#{userLogin.mail}">
+							<rich:validator />
+						</h:inputText></td>
+				</tr>
+
+			</table>
+
+			<h:commandButton value="Add User" action="#{userLogin.saveNewUser}"></h:commandButton>
+		</rich:panel>
+
+
+	</h:form>
+</h:body>
+</html>

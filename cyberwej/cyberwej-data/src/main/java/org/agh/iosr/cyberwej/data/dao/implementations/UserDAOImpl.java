@@ -3,8 +3,6 @@ package org.agh.iosr.cyberwej.data.dao.implementations;
 import java.util.List;
 
 import org.agh.iosr.cyberwej.data.dao.interfaces.UserDAO;
-import org.agh.iosr.cyberwej.data.objects.Group;
-import org.agh.iosr.cyberwej.data.objects.GroupMembership;
 import org.agh.iosr.cyberwej.data.objects.User;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
