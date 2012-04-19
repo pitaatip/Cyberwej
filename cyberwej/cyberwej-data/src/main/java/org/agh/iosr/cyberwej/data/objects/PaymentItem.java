@@ -2,7 +2,6 @@ package org.agh.iosr.cyberwej.data.objects;
 
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PAYMENTITEMS")
+@Table(name = "PAYMENTITEM")
 public class PaymentItem {
 
 	private int id;
@@ -48,7 +47,7 @@ public class PaymentItem {
 		this.product = product;
 	}
 
-	@Column(name = "COUNT", nullable = false)
+	@Column(name = "ITEMSCOUNT", nullable = false)
 	public int getCount() {
 		return count;
 	}
@@ -66,7 +65,7 @@ public class PaymentItem {
 		this.price = price;
 	}
 
-	@ManyToMany(cascade = { CascadeType.ALL })
+	@ManyToMany
 	public Set<User> getConsumers() {
 		return consumers;
 	}

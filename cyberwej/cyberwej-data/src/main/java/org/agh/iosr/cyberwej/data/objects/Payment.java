@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
@@ -48,7 +49,7 @@ public class Payment {
 		this.paymentItems = paymentItems;
 	}
 
-	@Column(name = "DATE", columnDefinition = "TIMESTAMP DEFAULT NOW()")
+	@Column(name = "DATE")
 	public Date getDate() {
 		return date;
 	}
@@ -76,4 +77,9 @@ public class Payment {
 		this.participations = participations;
 	}
 
+	@PrePersist
+	public void beforePersist() {
+		if (this.date == null)
+			this.date = new Date();
+	}
 }

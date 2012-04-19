@@ -80,4 +80,9 @@ public class Group {
 		this.groupMembers.add(groupMembership);
 	}
 
+	public void addPayment(Payment payment) {
+		if (this.payments == null)
+			this.payments = new HashSet<Payment>();
+		this.payments.add(payment);
+	}
 }
