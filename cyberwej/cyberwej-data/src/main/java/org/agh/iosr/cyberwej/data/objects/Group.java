@@ -65,7 +65,7 @@ public class Group {
 		this.invitations = invitations;
 	}
 
-	@OneToMany(cascade = { CascadeType.ALL })
+	@OneToMany(cascade = { CascadeType.ALL, CascadeType.REMOVE })
 	@JoinColumn(name = "GROUPID", nullable = false)
 	public Set<Payment> getPayments() {
 		return payments;

@@ -12,7 +12,7 @@ public class PaymentDAOImpl extends DAOBase implements PaymentDAO {
 	public boolean addGroupPayment(Group group, Payment payment) {
 		group.addPayment(payment);
 		return super.save(group);
-		//return super.save(payment);
+		// return super.save(payment);
 	}
 
 	@Override

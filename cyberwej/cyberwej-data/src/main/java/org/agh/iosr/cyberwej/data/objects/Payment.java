@@ -1,6 +1,7 @@
 package org.agh.iosr.cyberwej.data.objects;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -26,7 +27,7 @@ public class Payment {
 
 	private String description;
 
-	private Set<PaymentParticipation> participations;
+	private Set<PaymentParticipation> participations = new HashSet<PaymentParticipation>();
 
 	@Id
 	@Column(name = "PAYMENTID")
@@ -67,8 +68,7 @@ public class Payment {
 		this.description = description;
 	}
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "PAYMENTID")
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "payment")
 	public Set<PaymentParticipation> getParticipations() {
 		return participations;
 	}

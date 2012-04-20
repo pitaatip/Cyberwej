@@ -1,19 +1,22 @@
 package org.agh.iosr.cyberwej.data.dao.implementations;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.agh.iosr.cyberwej.data.dao.interfaces.GroupDAO;
 import org.agh.iosr.cyberwej.data.dao.interfaces.InvitationDAO;
 import org.agh.iosr.cyberwej.data.dao.interfaces.UserDAO;
 import org.agh.iosr.cyberwej.data.objects.Group;
+import org.agh.iosr.cyberwej.data.objects.Invitation;
 import org.agh.iosr.cyberwej.data.objects.User;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.BeforeTransaction;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -81,9 +84,26 @@ public class InvitationDAOImplTest {
 				&& retrievedInvitee.getUserInvitations().isEmpty());
 	}
 
+	@Transactional
+	@Rollback(true)
 	@Test
 	public void testRemoveInvitation() {
-		fail("Not yet implemented");
+		User retrievedInvitee = userDAO.findUserByMail(inviteeMail);
+		for (Invitation invitation : retrievedInvitee.getUserInvitations())
+			this.invitationDAO.removeInvitation(invitation);
+		Group retrievedGroup = this.groupDAO.getGroupByName(this.groupName);
+		assertNotNull(retrievedGroup);
+		assertTrue(retrievedGroup.getInvitations().isEmpty());
 	}
 
+	@AfterTransaction
+	public void clean() {
+		try {
+			this.userDAO.removeUser(this.invitee);
+			this.userDAO.removeUser(this.inviter);
+			this.groupDAO.removeGroup(this.group);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
 }

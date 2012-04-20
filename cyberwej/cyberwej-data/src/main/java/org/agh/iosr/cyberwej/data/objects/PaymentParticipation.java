@@ -5,11 +5,13 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
+@IdClass(PaymentParticipationId.class)
 @Table(name = "PAYMENTPARTICIPATIONS")
 public class PaymentParticipation implements Serializable {
 
@@ -54,5 +56,4 @@ public class PaymentParticipation implements Serializable {
 	public void setAmount(float amount) {
 		this.amount = amount;
 	}
-
 }
