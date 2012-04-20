@@ -41,9 +41,8 @@ public class User {
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "user", fetch = FetchType.LAZY)
 	private Set<GroupMembership> groupMemberships = new HashSet<GroupMembership>();
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "INVITEEID")
-	private Set<Invitation> userInvitations;
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "invitee")
+	private Set<Invitation> userInvitations ;
 
 	@OneToMany(cascade = { CascadeType.ALL })
 	@JoinColumn(name = "INVESTORID")
@@ -135,5 +134,10 @@ public class User {
 
 	public void addGroupMembership(GroupMembership groupMembership) {
 		this.groupMemberships.add(groupMembership);
+	}
+
+	public void removeGroupMembership(GroupMembership groupMembership) {
+		if (this.groupMemberships != null)
+			this.groupMemberships.remove(groupMembership);
 	}
 }

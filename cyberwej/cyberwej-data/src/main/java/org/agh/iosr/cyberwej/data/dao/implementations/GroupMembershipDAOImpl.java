@@ -23,6 +23,8 @@ public class GroupMembershipDAOImpl extends DAOBase implements
 
 	@Override
 	public void removeGroupMembership(GroupMembership groupMembership) {
+		groupMembership.getUser().removeGroupMembership(groupMembership);
+		groupMembership.getGroup().removeGroupMembership(groupMembership);
 		super.hibernateTemplate.delete(groupMembership);
 	}
 

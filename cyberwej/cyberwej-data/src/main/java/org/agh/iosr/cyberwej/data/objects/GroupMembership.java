@@ -29,8 +29,8 @@ public class GroupMembership implements Serializable {
 	private Group group;
 
 	@Id
-	@ManyToOne
 	@JoinColumn(name = "USERID", nullable = false)
+	@ManyToOne
 	private User user;
 
 	public float getOverdraw() {

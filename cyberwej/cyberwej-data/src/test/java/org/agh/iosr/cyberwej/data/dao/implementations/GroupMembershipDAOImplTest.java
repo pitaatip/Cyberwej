@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.BeforeTransaction;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -84,4 +85,9 @@ public class GroupMembershipDAOImplTest {
 		assertTrue(retrievedGroup.getGroupMembers().isEmpty());
 	}
 
+	@AfterTransaction
+	public void clean() {
+		this.userDAO.removeUser(user);
+		this.groupDAO.removeGroup(group);
+	}
 }

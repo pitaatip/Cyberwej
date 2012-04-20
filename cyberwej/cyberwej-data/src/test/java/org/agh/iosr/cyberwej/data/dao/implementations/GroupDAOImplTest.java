@@ -6,12 +6,10 @@ import static org.junit.Assert.assertNull;
 
 import org.agh.iosr.cyberwej.data.dao.interfaces.GroupDAO;
 import org.agh.iosr.cyberwej.data.objects.Group;
-import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate3.LocalSessionFactoryBean;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;

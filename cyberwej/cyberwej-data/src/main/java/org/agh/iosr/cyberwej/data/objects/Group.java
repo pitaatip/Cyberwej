@@ -56,8 +56,7 @@ public class Group {
 		this.groupMembers = groupMembers;
 	}
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "GROUPID")
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "group")
 	public Set<Invitation> getInvitations() {
 		return invitations;
 	}
@@ -84,5 +83,10 @@ public class Group {
 		if (this.payments == null)
 			this.payments = new HashSet<Payment>();
 		this.payments.add(payment);
+	}
+
+	public void removeGroupMembership(GroupMembership groupMembership) {
+		if (this.groupMembers != null)
+			this.groupMembers.remove(groupMembership);
 	}
 }

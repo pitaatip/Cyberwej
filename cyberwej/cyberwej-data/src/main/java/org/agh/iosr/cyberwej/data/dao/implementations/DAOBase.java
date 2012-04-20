@@ -21,6 +21,7 @@ public abstract class DAOBase {
 			this.hibernateTemplate.saveOrUpdate(object);
 			return true;
 		} catch (Exception e) {
+			logger.warn("Object not saved " + object.getClass().getName());
 			return false;
 		}
 	}

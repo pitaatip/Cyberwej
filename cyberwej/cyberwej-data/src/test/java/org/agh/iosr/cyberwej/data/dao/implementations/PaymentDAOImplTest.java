@@ -1,8 +1,8 @@
 package org.agh.iosr.cyberwej.data.dao.implementations;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -73,10 +73,14 @@ public class PaymentDAOImplTest {
 		Set<Payment> groupPayments = this.groupDAO.getGroupByName(
 				this.groupName).getPayments();
 		assertFalse(groupPayments.isEmpty());
-		assertTrue(groupPayments.iterator().next().getId() == this.payment
+		Payment retrievedPayment = groupPayments.iterator().next();
+		assertTrue(retrievedPayment.getId() == this.payment.getId());
+		assertTrue(retrievedPayment.getPaymentItems().iterator().next().getId() == this.paymentItem
 				.getId());
-		assertTrue(groupPayments.iterator().next().getPaymentItems().iterator()
-				.next().getId() == this.paymentItem.getId());
+		assertEquals(retrievedPayment.getDate().getTime() / 1000, this.payment
+				.getDate().getTime() / 1000);
+		assertEquals(retrievedPayment.getDescription(),
+				this.payment.getDescription());
 	}
 
 	@Transactional
@@ -93,4 +97,5 @@ public class PaymentDAOImplTest {
 	public void clean() {
 		this.groupDAO.removeGroup(group);
 	}
+
 }
