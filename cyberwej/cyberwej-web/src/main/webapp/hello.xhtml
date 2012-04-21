@@ -14,43 +14,75 @@
 	<h3>CYBERWEJ EXAMPLE</h3>
 
 	<h:form>
-	<rich:toolbar>
-		<h:commandLink value="USERS" />
-		<h:commandLink value="GROUPS" />
-		<h:commandLink value="BILLINGS" />
-	</rich:toolbar>
+		<rich:toolbar>
+			<h:commandLink value="USERS" />
+			<h:commandLink value="GROUPS" />
+			<h:commandLink value="BILLINGS" />
+		</rich:toolbar>
 
-		<rich:panel style="width:320px;">
-			<table>
-				<tr>
-					<td><h:outputText value="Imie" /></td>
-					<td><h:inputText value="#{userLogin.name}">
-							<rich:validator />
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td><h:outputText value="Nazwisko" /></td>
-					<td><h:inputText value="#{userLogin.surname}">
-							<rich:validator />
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td><h:outputText value="Login" /></td>
-					<td><h:inputText value="#{userLogin.login}">
-							<rich:validator />
-						</h:inputText></td>
-				</tr>
-				<tr>
-					<td><h:outputText value="Mail" /></td>
-					<td><h:inputText value="#{userLogin.mail}">
-							<rich:validator />
-						</h:inputText></td>
-				</tr>
+		<table>
+			<tr>
+				<td><rich:panel style="width:320px;" header="Add new user">
+						<table>
+							<tr>
+								<td><h:outputText value="Imie" /></td>
+								<td><h:inputText value="#{userLogin.user.name}">
+										<rich:validator />
+									</h:inputText></td>
+							</tr>
+							<tr>
+								<td><h:outputText value="Nazwisko" /></td>
+								<td><h:inputText value="#{userLogin.user.surname}">
+										<rich:validator />
+									</h:inputText></td>
+							</tr>
+							<tr>
+								<td><h:outputText value="Login" /></td>
+								<td><h:inputText value="#{userLogin.user.login}">
+										<rich:validator />
+									</h:inputText></td>
+							</tr>
+							<tr>
+								<td><h:outputText value="Mail" /></td>
+								<td><h:inputText value="#{userLogin.user.mail}">
+										<rich:validator />
+									</h:inputText></td>
+							</tr>
 
-			</table>
+						</table>
 
-			<h:commandButton value="Add User" action="#{userLogin.saveNewUser}"></h:commandButton>
-		</rich:panel>
+						<h:commandButton value="Add User"
+							action="#{userLogin.saveNewUser}"></h:commandButton>
+					</rich:panel></td>
+				<td><rich:panel style="width:500px;" header="Existing Users">
+						<rich:dataTable value="#{userLogin.usersList}" var="user">
+							<f:facet name="header">
+								<h:outputText value="Registered users Table" />
+							</f:facet>
+							<rich:column>
+								<f:facet name="header">Name</f:facet>
+								<h:outputText value="#{user.name}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Surname</f:facet>
+								<h:outputText value="#{user.surname}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Mail Address</f:facet>
+								<h:outputText value="#{user.mail}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Login</f:facet>
+								<h:outputText value="#{user.login}" />
+							</rich:column>
+						
+						</rich:dataTable>
+
+					</rich:panel></td>
+
+
+			</tr>
+		</table>
 
 
 	</h:form>

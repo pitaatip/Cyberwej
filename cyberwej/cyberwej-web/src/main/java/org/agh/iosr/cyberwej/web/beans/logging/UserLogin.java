@@ -1,32 +1,29 @@
 package org.agh.iosr.cyberwej.web.beans.logging;
 
 
+import java.util.List;
+
 import org.agh.iosr.cyberwej.data.dao.interfaces.UserDAO;
 import org.agh.iosr.cyberwej.data.objects.User;
 
 public class UserLogin {
 	
 	private UserDAO dao;
-	private String name;
-	private String surname;
-	private String login;
-	private String mail;
-
-	public String getName() {
-		return name;
+	private User user;
+	
+	
+	
+	public List<User> getUsersList(){
+		return dao.getAllUsers();
 	}
-
-	public void setName(String name) {
-		this.name = name;
+	
+	public UserLogin(){
+		//Initialize user
+		setUser(new User());
 	}
 	
 	public void saveNewUser(){
-		User user = new User();
-		user.setName(getName());
-		user.setSurname(getSurname());
-		user.setLogin(getLogin());
-		user.setMail(getMail());
-		getDao().saveUser(user);
+		getDao().saveUser(getUser());
 	}
 	
 	public UserDAO getDao() {
@@ -37,28 +34,12 @@ public class UserLogin {
 		this.dao = dao;
 	}
 
-	public String getSurname() {
-		return surname;
+	public User getUser() {
+		return user;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getMail() {
-		return mail;
-	}
-
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 	

@@ -28,6 +28,14 @@ public class UserDAOImpl extends DAOBase implements UserDAO {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
+	public List<User> getAllUsers()
+	{
+		List<User> users = this.hibernateTemplate.find("from User user");
+		return users;
+	}
+	
+	@Override
 	public void removeUser(User user) {
 		super.hibernateTemplate.delete(user);
 	}
