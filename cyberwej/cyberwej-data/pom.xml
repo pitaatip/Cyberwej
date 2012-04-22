@@ -66,7 +66,5 @@
 			<version>2.0.0</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- <dependency> <groupId>org.springframework</groupId> <artifactId>spring-aop</artifactId> 
-			<version>${spring.framework.version}</version> </dependency> -->
 	</dependencies>
 </project>

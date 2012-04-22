@@ -70,6 +70,8 @@ public class GroupMembershipDAOImplTest {
 		assertFalse(retrievedGroup.getGroupMembers().isEmpty());
 		assertEquals(retrievedGroup.getGroupMembers(),
 				retrievedUser.getGroupMemberships());
+		for(GroupMembership groupMembership : retrievedGroup.getGroupMembers())
+			assertEquals(groupMembership.getOverdraw(), 0.0f, 0.0);
 	}
 
 	@Transactional

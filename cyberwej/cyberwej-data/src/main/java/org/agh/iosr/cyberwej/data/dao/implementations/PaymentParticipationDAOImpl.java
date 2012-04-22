@@ -1,5 +1,7 @@
 package org.agh.iosr.cyberwej.data.dao.implementations;
 
+import java.util.HashSet;
+
 import org.agh.iosr.cyberwej.data.dao.interfaces.PaymentParticipationDAO;
 import org.agh.iosr.cyberwej.data.objects.Payment;
 import org.agh.iosr.cyberwej.data.objects.PaymentParticipation;
@@ -17,14 +19,18 @@ public class PaymentParticipationDAOImpl extends DAOBase implements
 		paymentParticipation.setAmount(amount);
 		paymentParticipation.setUser(user);
 		paymentParticipation.setPayment(payment);
+		if (payment.getParticipations() == null)
+			payment.setParticipations(new HashSet<PaymentParticipation>());
 		payment.getParticipations().add(paymentParticipation);
-		return super.save(paymentParticipation);
+		return super.save(payment);
 	}
 
 	@Override
 	public void removePaymentParticipation(
 			PaymentParticipation paymentParticipation) {
-		super.hibernateTemplate.delete(paymentParticipation);
+		paymentParticipation.getPayment().getParticipations()
+				.remove(paymentParticipation);
+		super.save(paymentParticipation.getPayment());
 	}
 
 }

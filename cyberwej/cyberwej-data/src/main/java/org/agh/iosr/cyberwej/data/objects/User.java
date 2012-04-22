@@ -10,7 +10,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,7 +20,7 @@ public class User {
 	@Id
 	@Column(name = "USERID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Integer id;
 
 	@Column(name = "NAME", nullable = false)
 	private String name;
@@ -42,21 +41,19 @@ public class User {
 	private Set<GroupMembership> groupMemberships = new HashSet<GroupMembership>();
 
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "invitee")
-	private Set<Invitation> userInvitations ;
+	private Set<Invitation> userInvitations;
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "INVESTORID")
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "investor")
 	private Set<Payback> paybacksForUser;
 
-	@OneToMany(cascade = { CascadeType.ALL })
-	@JoinColumn(name = "DEBTORID")
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "debtor")
 	private Set<Payback> paybacksForOthers;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

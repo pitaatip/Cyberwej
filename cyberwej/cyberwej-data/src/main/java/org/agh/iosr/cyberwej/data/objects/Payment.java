@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Table(name = "PAYMENTS")
 public class Payment {
 
-	private int id;
+	private Integer id;
 
 	private Set<PaymentItem> paymentItems;
 
@@ -32,11 +32,11 @@ public class Payment {
 	@Id
 	@Column(name = "PAYMENTID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

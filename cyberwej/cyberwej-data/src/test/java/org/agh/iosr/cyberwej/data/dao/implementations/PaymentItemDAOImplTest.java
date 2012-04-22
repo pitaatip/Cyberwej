@@ -3,14 +3,18 @@ package org.agh.iosr.cyberwej.data.dao.implementations;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.agh.iosr.cyberwej.data.dao.interfaces.GroupDAO;
+import org.agh.iosr.cyberwej.data.dao.interfaces.PaymentDAO;
 import org.agh.iosr.cyberwej.data.dao.interfaces.PaymentItemDAO;
 import org.agh.iosr.cyberwej.data.dao.interfaces.UserDAO;
+import org.agh.iosr.cyberwej.data.objects.Group;
+import org.agh.iosr.cyberwej.data.objects.Payment;
 import org.agh.iosr.cyberwej.data.objects.PaymentItem;
 import org.agh.iosr.cyberwej.data.objects.User;
 import org.junit.Before;
@@ -32,11 +36,24 @@ public class PaymentItemDAOImplTest {
 	@Autowired
 	private UserDAO userDAO;
 
+	@Autowired
+	private PaymentDAO paymentDAO;
+
+	@Autowired
+	private GroupDAO groupDAO;
+
 	private PaymentItem paymentItem;
 	private int count = 3;
 	private float price = 2.45f;
 
 	private User user;
+
+	private Payment payment;
+	private Date date;
+	private String description = "Wyjscie na pizze";
+
+	private Group group;
+	private String groupName = "Grupa test";
 
 	@Before
 	public void setUp() {
@@ -52,38 +69,46 @@ public class PaymentItemDAOImplTest {
 		Set<User> users = new HashSet<User>();
 		users.add(user);
 		paymentItem.setConsumers(users);
-		this.paymentItemDAO.savePaymentItem(paymentItem);
+
+		this.payment = new Payment();
+		this.payment.setDate(date);
+		this.payment.setDescription(description);
+
+		this.group = new Group();
+		this.group.setName(groupName);
+
+		this.groupDAO.saveGroup(group);
+		this.paymentDAO.addGroupPayment(group, payment);
+		this.paymentItemDAO.savePaymentItem(payment, paymentItem);
 	}
 
 	@Transactional
 	@Rollback(true)
 	@Test
 	public void testSavePaymentItem() {
-		PaymentItem retrievedPaymentItem = this.paymentItemDAO
-				.loadPaymentItem(this.user.getId());
-		assertNotNull(retrievedPaymentItem);
-		assertEquals(retrievedPaymentItem.getCount(), count);
-		assertEquals(retrievedPaymentItem.getPrice(), price, 0.0);
-		assertFalse(retrievedPaymentItem.getConsumers().isEmpty());
-		assertTrue(retrievedPaymentItem.getConsumers().contains(this.user));
+		Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
+		assertFalse(retrievedGroup.getPayments().isEmpty());
+		for (Payment payment : retrievedGroup.getPayments()) {
+			assertFalse(payment.getPaymentItems().isEmpty());
+			for (PaymentItem paymentItem : payment.getPaymentItems()) {
+				assertNotNull(paymentItem);
+				assertEquals(paymentItem.getCount(), count);
+				assertEquals(paymentItem.getPrice(), price, 0.0);
+				assertFalse(paymentItem.getConsumers().isEmpty());
+				assertTrue(paymentItem.getConsumers().contains(this.user));
+			}
+		}
 	}
 
 	@Transactional
 	@Rollback(true)
 	@Test
 	public void testRemovePaymentItem() {
-		this.paymentItemDAO.removePaymentItem(paymentItem);
-		PaymentItem retrievedPaymentItem = this.paymentItemDAO
-				.loadPaymentItem(this.user.getId());
-		assertNull(retrievedPaymentItem);
-	}
-
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testLoadPaymentItem() {
-		PaymentItem retrievedPaymentItem = this.paymentItemDAO
-				.loadPaymentItem(this.user.getId());
-		assertNotNull(retrievedPaymentItem);
+		this.paymentItemDAO.removePaymentItem(payment, paymentItem);
+		Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
+		assertFalse(retrievedGroup.getPayments().isEmpty());
+		for (Payment payment : retrievedGroup.getPayments()) {
+			assertTrue(payment.getPaymentItems().isEmpty());
+		}
 	}
 }

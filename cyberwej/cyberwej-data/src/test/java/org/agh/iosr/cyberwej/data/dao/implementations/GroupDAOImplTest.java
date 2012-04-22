@@ -42,6 +42,7 @@ public class GroupDAOImplTest {
 		Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
 		assertNotNull(retrievedGroup);
 		assertEquals(retrievedGroup.getName(), this.groupName);
+		assertNotNull(retrievedGroup.getId());
 	}
 
 	@Transactional
@@ -62,4 +63,5 @@ public class GroupDAOImplTest {
 		retrievedGroup = this.groupDAO.getGroupByName(nonExistingGroupName);
 		assertNull(retrievedGroup);
 	}
+
 }

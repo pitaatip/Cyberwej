@@ -8,25 +8,25 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PRODUCTS")
-public class Product{
+@Table(name = "PRODUCTS")
+public class Product {
 
-	private int id;
-	
+	private Integer id;
+
 	private String name;
 
 	@Id
-	@Column(name="PRODUCTID")
+	@Column(name = "PRODUCTID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	@Column(name="NAME", nullable=false, unique=true)
+	@Column(name = "NAME", nullable = false, unique = true)
 	public String getName() {
 		return name;
 	}
@@ -34,6 +34,5 @@ public class Product{
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
+
 }

@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @Table(name = "GROUPS")
 public class Group {
 
-	private int id;
+	private Integer id;
 
 	private String name;
 
@@ -27,14 +27,16 @@ public class Group {
 
 	private Set<Payment> payments;
 
+	private Set<Payback> paybacks;
+
 	@Id
 	@Column(name = "GROUPID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -65,7 +67,7 @@ public class Group {
 		this.invitations = invitations;
 	}
 
-	@OneToMany(cascade = { CascadeType.ALL, CascadeType.REMOVE })
+	@OneToMany(cascade = { CascadeType.ALL})
 	@JoinColumn(name = "GROUPID", nullable = false)
 	public Set<Payment> getPayments() {
 		return payments;
@@ -89,4 +91,14 @@ public class Group {
 		if (this.groupMembers != null)
 			this.groupMembers.remove(groupMembership);
 	}
+
+	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "group")
+	public Set<Payback> getPaybacks() {
+		return paybacks;
+	}
+
+	public void setPaybacks(Set<Payback> paybacks) {
+		this.paybacks = paybacks;
+	}
+
 }
