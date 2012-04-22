@@ -15,6 +15,8 @@ public class SecondTest {
 		list.add("abc");
 		list.add("def");
 		assertEquals(2, list.size());
+		list.add("lol");
+		assertEquals(3, list.size());
 	}
 
 }
