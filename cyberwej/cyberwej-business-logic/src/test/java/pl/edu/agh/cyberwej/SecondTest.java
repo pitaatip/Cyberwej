@@ -17,6 +17,8 @@ public class SecondTest {
 		assertEquals(2, list.size());
 		list.add("lol");
 		assertEquals(3, list.size());
+		list.add("rotfl");
+		assertEquals(4, list.size());
 	}
 
 }
