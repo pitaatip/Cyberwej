@@ -12,7 +12,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import org.agh.iosr.czberwej.data.objects.id.PaybackId;
+import org.agh.iosr.cyberwej.data.objects.id.PaybackId;
 
 @Entity
 @IdClass(PaybackId.class)

@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.agh.iosr.czberwej.data.objects.id.GroupMembershipID;
+import org.agh.iosr.cyberwej.data.objects.id.GroupMembershipID;
 
 @Entity
 @IdClass(GroupMembershipID.class)
