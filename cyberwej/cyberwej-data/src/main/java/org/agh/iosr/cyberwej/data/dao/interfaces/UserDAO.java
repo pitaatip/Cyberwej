@@ -10,6 +10,6 @@ public interface UserDAO {
 	public User findUserByMail(String Mail);
 
 	public void removeUser(User user);
-	
+
 	public List<User> getAllUsers();
 }

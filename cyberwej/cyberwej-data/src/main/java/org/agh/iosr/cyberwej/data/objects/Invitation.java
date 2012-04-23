@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.agh.iosr.cyberwej.data.objects.id.InvitationId;
+
 @Entity
 @IdClass(InvitationId.class)
 @Table(name = "INVITATIONS")

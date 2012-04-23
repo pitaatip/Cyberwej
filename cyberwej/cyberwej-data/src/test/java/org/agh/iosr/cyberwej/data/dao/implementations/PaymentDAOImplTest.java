@@ -42,7 +42,7 @@ public class PaymentDAOImplTest {
 	private float price = 2.45f;
 
 	private Group group;
-	private String groupName = "Grupa testowa";
+	private String groupName = "Grupa test";
 
 	@BeforeTransaction
 	public void setUp() {
@@ -63,6 +63,7 @@ public class PaymentDAOImplTest {
 		this.payment.setDescription(description);
 		this.payment.setPaymentItems(paymentItems);
 
+		this.groupDAO.saveGroup(group);
 		this.paymentDAO.addGroupPayment(group, payment);
 	}
 
@@ -74,9 +75,9 @@ public class PaymentDAOImplTest {
 				this.groupName).getPayments();
 		assertFalse(groupPayments.isEmpty());
 		Payment retrievedPayment = groupPayments.iterator().next();
-		assertTrue(retrievedPayment.getId() == this.payment.getId());
-		assertTrue(retrievedPayment.getPaymentItems().iterator().next().getId() == this.paymentItem
-				.getId());
+		assertEquals(retrievedPayment.getId(), this.payment.getId());
+		assertEquals(retrievedPayment.getPaymentItems().iterator().next()
+				.getId(), this.paymentItem.getId());
 		assertEquals(retrievedPayment.getDate().getTime() / 1000, this.payment
 				.getDate().getTime() / 1000);
 		assertEquals(retrievedPayment.getDescription(),
@@ -87,14 +88,14 @@ public class PaymentDAOImplTest {
 	@Rollback(true)
 	@Test
 	public void testRemovePayment() {
-		this.paymentDAO.removePayment(payment);
-		Set<Payment> groupPayments = this.groupDAO.getGroupByName(
-				this.groupName).getPayments();
-		assertTrue(groupPayments.isEmpty());
+		this.paymentDAO.removePayment(this.group, this.payment);
+		Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
+		assertTrue(retrievedGroup.getPayments().isEmpty());
 	}
 
 	@AfterTransaction
 	public void clean() {
+		Group group = this.groupDAO.getGroupByName(groupName);
 		this.groupDAO.removeGroup(group);
 	}
 

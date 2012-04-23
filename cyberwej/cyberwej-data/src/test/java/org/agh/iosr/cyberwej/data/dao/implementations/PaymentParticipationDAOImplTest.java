@@ -1,10 +1,9 @@
 package org.agh.iosr.cyberwej.data.dao.implementations;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 
@@ -24,7 +23,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.BeforeTransaction;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 @ContextConfiguration(locations = { "TestContext.xml" })
@@ -92,13 +90,9 @@ public class PaymentParticipationDAOImplTest {
 			for (PaymentParticipation participation : payment
 					.getParticipations()) {
 				assertEquals(participation.getAmount(), this.amount, 0.0);
+				assertEquals(participation.getUser().getName(), this.name);
 			}
 		}
-	}
-
-	@Transactional(propagation = Propagation.NEVER)
-	public void remove(PaymentParticipation participation) {
-		this.paymentParticipationDAO.removePaymentParticipation(participation);
 	}
 
 	@Transactional
@@ -108,7 +102,8 @@ public class PaymentParticipationDAOImplTest {
 		for (Payment payment : group.getPayments()) {
 			for (PaymentParticipation participation : payment
 					.getParticipations()) {
-				remove(participation);
+				this.paymentParticipationDAO
+						.removePaymentParticipation(participation);
 			}
 		}
 		Group retrievedGroup = groupDAO.getGroupByName(groupName);
@@ -121,7 +116,8 @@ public class PaymentParticipationDAOImplTest {
 
 	@AfterTransaction
 	public void clean() {
-		this.groupDAO.removeGroup(this.group);
-		this.userDAO.removeUser(this.user);
+		Group group = this.groupDAO.getGroupByName(groupName);
+		this.groupDAO.removeGroup(group);
+		this.userDAO.removeUser(user);
 	}
 }

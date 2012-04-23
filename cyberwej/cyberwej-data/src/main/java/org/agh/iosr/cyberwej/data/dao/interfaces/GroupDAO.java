@@ -9,4 +9,5 @@ public interface GroupDAO {
 	public Group getGroupByName(String name);
 
 	public void removeGroup(Group group);
+
 }

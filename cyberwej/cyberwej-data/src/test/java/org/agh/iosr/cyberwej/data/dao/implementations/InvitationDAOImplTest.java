@@ -80,8 +80,11 @@ public class InvitationDAOImplTest {
 		assertNotNull(retrievedInvitee);
 		assertNotNull(retrievedInvitee.getUserInvitations());
 		assertNotNull(retrievedGroup.getInvitations());
-		assertFalse(retrievedGroup.getInvitations().isEmpty()
-				&& retrievedInvitee.getUserInvitations().isEmpty());
+		assertFalse(retrievedGroup.getInvitations().isEmpty());
+		assertFalse(retrievedInvitee.getUserInvitations().isEmpty());
+		for (Invitation invitation : retrievedInvitee.getUserInvitations())
+			assertTrue(invitation.getInviter().getMail()
+					.equals(this.inviterMail));
 	}
 
 	@Transactional
@@ -103,7 +106,7 @@ public class InvitationDAOImplTest {
 			this.userDAO.removeUser(this.inviter);
 			this.groupDAO.removeGroup(this.group);
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		}
 	}
 }

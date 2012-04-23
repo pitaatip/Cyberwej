@@ -34,13 +34,13 @@ public class GroupMembershipDAOImplTest {
 	private UserDAO userDAO;
 
 	private Group group;
-	private String groupName = "Pierwsza grupa";
+	private final String groupName = "Pierwsza grupa";
 
 	private User user;
-	private String name = "Jan";
-	private String surname = "Kowalski";
-	private String mail = "jan@janowie.pl";
-	private String login = "Janek";
+	private final String name = "Jan";
+	private final String surname = "Kowalski";
+	private final String mail = "jan@janowie.pl";
+	private final String login = "Janek";
 
 	@BeforeTransaction
 	public void setUp() {
@@ -70,6 +70,8 @@ public class GroupMembershipDAOImplTest {
 		assertFalse(retrievedGroup.getGroupMembers().isEmpty());
 		assertEquals(retrievedGroup.getGroupMembers(),
 				retrievedUser.getGroupMemberships());
+		for (GroupMembership groupMembership : retrievedGroup.getGroupMembers())
+			assertEquals(groupMembership.getOverdraw(), 0.0f, 0.0);
 	}
 
 	@Transactional

@@ -5,13 +5,17 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
+import org.agh.iosr.cyberwej.data.objects.id.PaybackId;
+
 @Entity
+@IdClass(PaybackId.class)
 @Table(name = "PAYBACKS")
 public class Payback implements Serializable {
 

@@ -1,8 +1,11 @@
-package org.agh.iosr.cyberwej.data.objects;
+package org.agh.iosr.cyberwej.data.objects.id;
 
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
+
+import org.agh.iosr.cyberwej.data.objects.Group;
+import org.agh.iosr.cyberwej.data.objects.User;
 
 @Embeddable
 public class GroupMembershipID implements Serializable {

@@ -9,6 +9,6 @@ public interface ProductDAO {
 	public boolean saveProduct(Product product);
 
 	public List<Product> findProductsByName(String name);
-	
+
 	public boolean removeProduct(Product product);
 }

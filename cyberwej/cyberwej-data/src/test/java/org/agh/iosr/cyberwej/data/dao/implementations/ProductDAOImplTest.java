@@ -27,6 +27,8 @@ public class ProductDAOImplTest {
 
 	private String name = "Pizza";
 
+	private String nonExistingProduct = "Ziemniaki";
+
 	@Before
 	public void setUp() {
 		this.product = new Product();
@@ -40,6 +42,7 @@ public class ProductDAOImplTest {
 	public void testSaveProduct() {
 		List<Product> products = this.productDAO.findProductsByName(this.name);
 		assertFalse(products.isEmpty());
+		assertTrue(products.contains(product));
 	}
 
 	@Transactional
@@ -50,6 +53,8 @@ public class ProductDAOImplTest {
 		List<Product> products = this.productDAO.findProductsByName(findName);
 		assertFalse(products.isEmpty());
 		assertTrue(products.get(0).getName().startsWith(findName));
+		products = this.productDAO.findProductsByName(nonExistingProduct);
+		assertTrue(products.isEmpty());
 	}
 
 	@Transactional

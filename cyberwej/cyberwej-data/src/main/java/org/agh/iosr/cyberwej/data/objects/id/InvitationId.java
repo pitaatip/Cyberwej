@@ -1,8 +1,11 @@
-package org.agh.iosr.cyberwej.data.objects;
+package org.agh.iosr.cyberwej.data.objects.id;
 
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
+
+import org.agh.iosr.cyberwej.data.objects.Group;
+import org.agh.iosr.cyberwej.data.objects.User;
 
 @Embeddable
 public class InvitationId implements Serializable {
@@ -23,7 +26,7 @@ public class InvitationId implements Serializable {
 	public void setInvitee(User invitee) {
 		this.invitee = invitee;
 	}
-	
+
 	public Group getGroup() {
 		return group;
 	}

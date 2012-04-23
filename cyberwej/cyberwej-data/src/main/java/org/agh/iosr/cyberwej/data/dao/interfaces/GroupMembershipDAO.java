@@ -7,7 +7,7 @@ import org.agh.iosr.cyberwej.data.objects.User;
 public interface GroupMembershipDAO {
 
 	public boolean addGroupMembership(Group group, User user);
-	
+
 	public void removeGroupMembership(GroupMembership groupMembership);
 
 }

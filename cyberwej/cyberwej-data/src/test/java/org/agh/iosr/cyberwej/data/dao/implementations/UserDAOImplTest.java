@@ -1,8 +1,11 @@
 package org.agh.iosr.cyberwej.data.dao.implementations;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+
+import java.util.List;
 
 import org.agh.iosr.cyberwej.data.dao.interfaces.UserDAO;
 import org.agh.iosr.cyberwej.data.objects.User;
@@ -70,5 +73,15 @@ public class UserDAOImplTest {
 		assertEquals(retrievedUser.getMail(), this.mail);
 		retrievedUser = this.userDAO.findUserByMail(nonExistingMail);
 		assertNull(retrievedUser);
+	}
+
+	@Transactional
+	@Rollback(true)
+	@Test
+	public void testGetAllUsers() {
+		List<User> users = this.userDAO.getAllUsers();
+		assertNotNull(users);
+		assertEquals(users.size(), 1);
+		assertTrue(users.contains(this.user));
 	}
 }

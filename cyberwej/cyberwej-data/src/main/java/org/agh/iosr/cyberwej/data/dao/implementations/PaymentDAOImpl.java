@@ -1,5 +1,7 @@
 package org.agh.iosr.cyberwej.data.dao.implementations;
 
+import java.util.HashSet;
+
 import org.agh.iosr.cyberwej.data.dao.interfaces.PaymentDAO;
 import org.agh.iosr.cyberwej.data.objects.Group;
 import org.agh.iosr.cyberwej.data.objects.Payment;
@@ -10,13 +12,15 @@ public class PaymentDAOImpl extends DAOBase implements PaymentDAO {
 
 	@Override
 	public boolean addGroupPayment(Group group, Payment payment) {
-		group.addPayment(payment);
+		if (group.getPayments() == null)
+			group.setPayments(new HashSet<Payment>());
+		group.getPayments().add(payment);
 		return super.save(group);
-		// return super.save(payment);
 	}
 
 	@Override
-	public void removePayment(Payment payment) {
-		super.hibernateTemplate.delete(payment);
+	public void removePayment(Group group, Payment payment) {
+		group.getPayments().remove(payment);
+		super.save(group);
 	}
 }
