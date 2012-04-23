@@ -35,4 +35,14 @@ public class UserDAOImpl extends DAOBase implements UserDAO {
 	public void removeUser(User user) {
 		super.hibernateTemplate.delete(user);
 	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public User findUserById(int id) {
+		List<User> queryResult = this.hibernateTemplate.find(
+				"from User user where user.id=?", id);
+		if (queryResult.size() > 0)
+			return queryResult.get(0);
+		return null;
+	}
 }
