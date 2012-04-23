@@ -13,11 +13,11 @@
 
 	<managed-bean>
 		<managed-bean-name>userLogin</managed-bean-name>
-		<managed-bean-class>org.agh.iosr.cyberwej.web.beans.logging.UserLogin</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-class>org.agh.iosr.cyberwej.web.beans.logging.AddUserBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
 		<managed-property>
-			<property-name>dao</property-name>
-			<value>#{dao}</value>
+			<property-name>service</property-name>
+			<value>#{service}</value>
 		</managed-property>
 	</managed-bean>
 

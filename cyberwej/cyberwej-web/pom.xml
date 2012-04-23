@@ -40,9 +40,15 @@
 		</dependency>
 
 		<dependency>
+			<artifactId>cyberwej-business-logic</artifactId>
+			<groupId>pl.edu.agh</groupId>
+			<version>${parent.version}</version>
+		</dependency>
+		
+		<dependency>
 			<artifactId>cyberwej-data</artifactId>
 			<groupId>pl.edu.agh</groupId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${parent.version}</version>
 		</dependency>
 
 		<!-- Spring dependencies -->

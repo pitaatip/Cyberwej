@@ -12,79 +12,85 @@
 </h:head>
 <h:body>
 	<h3>CYBERWEJ EXAMPLE</h3>
+	<f:view>
+		<h:form>
+			<rich:toolbar>
+				<h:commandLink value="USERS" />
+				<h:commandLink value="GROUPS" />
+				<h:commandLink value="BILLINGS" />
+			</rich:toolbar>
 
-	<h:form>
-		<rich:toolbar>
-			<h:commandLink value="USERS" />
-			<h:commandLink value="GROUPS" />
-			<h:commandLink value="BILLINGS" />
-		</rich:toolbar>
+			<table>
+				<tr>
+					<td><rich:panel style="width:320px;" header="Add new user">
+							<table>
+								<tr>
+									<td><h:outputText value="Imie" /></td>
+									<td><h:inputText value="#{userLogin.user.name}">
+											<rich:validator />
+										</h:inputText></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Nazwisko" /></td>
+									<td><h:inputText value="#{userLogin.user.surname}">
+											<rich:validator />
+										</h:inputText></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Login" /></td>
+									<td><h:inputText value="#{userLogin.user.login}">
+											<rich:validator />
+										</h:inputText></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Mail" /></td>
+									<td><h:inputText value="#{userLogin.user.mail}">
+											<rich:validator />
+										</h:inputText></td>
+								</tr>
 
-		<table>
-			<tr>
-				<td><rich:panel style="width:320px;" header="Add new user">
-						<table>
-							<tr>
-								<td><h:outputText value="Imie" /></td>
-								<td><h:inputText value="#{userLogin.user.name}">
-										<rich:validator />
-									</h:inputText></td>
-							</tr>
-							<tr>
-								<td><h:outputText value="Nazwisko" /></td>
-								<td><h:inputText value="#{userLogin.user.surname}">
-										<rich:validator />
-									</h:inputText></td>
-							</tr>
-							<tr>
-								<td><h:outputText value="Login" /></td>
-								<td><h:inputText value="#{userLogin.user.login}">
-										<rich:validator />
-									</h:inputText></td>
-							</tr>
-							<tr>
-								<td><h:outputText value="Mail" /></td>
-								<td><h:inputText value="#{userLogin.user.mail}">
-										<rich:validator />
-									</h:inputText></td>
-							</tr>
+							</table>
+								<a4j:commandButton value="Add User"
+									action="#{userLogin.saveNewUser}" render="userPanel" execute="@form" />
+						</rich:panel></td>
+					<td><rich:panel style="width:500px;" header="Existing Users" id="userPanel">
+							<rich:dataTable value="#{userLogin.usersList}" var="user">
+								<f:facet name="header">
+									<h:outputText value="Registered users Table" />
+								</f:facet>
+								<rich:column>
+									<f:facet name="header">Name</f:facet>
+									<h:outputText value="#{user.name}" />
+								</rich:column>
+								<rich:column>
+									<f:facet name="header">Surname</f:facet>
+									<h:outputText value="#{user.surname}" />
+								</rich:column>
+								<rich:column>
+									<f:facet name="header">Mail Address</f:facet>
+									<h:outputText value="#{user.mail}" />
+								</rich:column>
+								<rich:column>
+									<f:facet name="header">Login</f:facet>
+									<h:outputText value="#{user.login}" />
+								</rich:column>
+								<rich:column>
+									<f:facet name="header">Actions</f:facet>
+									<h:commandButton action="#{userLogin.remove}" value="delete">
+										<f:param name="userToDelete" value="#{user.id}" />
+									</h:commandButton>
+								</rich:column>
 
-						</table>
+							</rich:dataTable>
 
-						<h:commandButton value="Add User"
-							action="#{userLogin.saveNewUser}"></h:commandButton>
-					</rich:panel></td>
-				<td><rich:panel style="width:500px;" header="Existing Users">
-						<rich:dataTable value="#{userLogin.usersList}" var="user">
-							<f:facet name="header">
-								<h:outputText value="Registered users Table" />
-							</f:facet>
-							<rich:column>
-								<f:facet name="header">Name</f:facet>
-								<h:outputText value="#{user.name}" />
-							</rich:column>
-							<rich:column>
-								<f:facet name="header">Surname</f:facet>
-								<h:outputText value="#{user.surname}" />
-							</rich:column>
-							<rich:column>
-								<f:facet name="header">Mail Address</f:facet>
-								<h:outputText value="#{user.mail}" />
-							</rich:column>
-							<rich:column>
-								<f:facet name="header">Login</f:facet>
-								<h:outputText value="#{user.login}" />
-							</rich:column>
-						
-						</rich:dataTable>
-
-					</rich:panel></td>
+						</rich:panel></td>
 
 
-			</tr>
-		</table>
+				</tr>
+			</table>
 
 
-	</h:form>
+		</h:form>
+	</f:view>
 </h:body>
 </html>

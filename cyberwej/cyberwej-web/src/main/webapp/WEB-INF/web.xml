@@ -10,7 +10,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-		/WEB-INF/classes/app-context.xml
+		/WEB-INF/classes/app-web-context.xml
 		</param-value>
 	</context-param>
 
