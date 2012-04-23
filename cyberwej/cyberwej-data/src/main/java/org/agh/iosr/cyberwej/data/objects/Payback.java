@@ -92,4 +92,3 @@ public class Payback implements Serializable {
 			this.isAccepted = false;
 	}
 }
-

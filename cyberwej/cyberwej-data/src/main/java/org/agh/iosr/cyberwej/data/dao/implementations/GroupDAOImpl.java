@@ -4,13 +4,10 @@ import java.util.List;
 
 import org.agh.iosr.cyberwej.data.dao.interfaces.GroupDAO;
 import org.agh.iosr.cyberwej.data.objects.Group;
-import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class GroupDAOImpl extends DAOBase implements GroupDAO {
-
-	private static Logger logger = Logger.getLogger(GroupDAO.class);
 
 	@Override
 	public boolean saveGroup(Group group) {

@@ -26,7 +26,7 @@ public class InvitationId implements Serializable {
 	public void setInvitee(User invitee) {
 		this.invitee = invitee;
 	}
-	
+
 	public Group getGroup() {
 		return group;
 	}
