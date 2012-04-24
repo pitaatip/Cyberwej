@@ -17,124 +17,124 @@ import javax.persistence.Table;
 @Table(name = "USERS")
 public class User {
 
-	@Id
-	@Column(name = "USERID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+    @Id
+    @Column(name = "USERID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 
-	@Column(name = "NAME", nullable = false)
-	private String name;
+    @Column(name = "NAME", nullable = false)
+    private String name;
 
-	@Column(name = "SURNAME", nullable = false)
-	private String surname;
+    @Column(name = "SURNAME", nullable = false)
+    private String surname;
 
-	@Column(name = "MAIL", nullable = false, unique = true)
-	private String mail;
+    @Column(name = "MAIL", nullable = false, unique = true)
+    private String mail;
 
-	@Column(name = "LOGIN", nullable = false, unique = true)
-	private String login;
+    @Column(name = "LOGIN", nullable = false, unique = true)
+    private String login;
 
-	@Column(name = "LOCATION")
-	private String location;
+    @Column(name = "LOCATION")
+    private String location;
 
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "user", fetch = FetchType.LAZY)
-	private Set<GroupMembership> groupMemberships = new HashSet<GroupMembership>();
+    @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<GroupMembership> groupMemberships = new HashSet<GroupMembership>();
 
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "invitee")
-	private Set<Invitation> userInvitations = new HashSet<Invitation>();
+    @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "invitee")
+    private Set<Invitation> userInvitations = new HashSet<Invitation>();
 
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "investor")
-	private Set<Payback> paybacksForUser = new HashSet<Payback>();
+    @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "investor")
+    private Set<Payback> paybacksForUser = new HashSet<Payback>();
 
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "debtor")
-	private Set<Payback> paybacksForOthers = new HashSet<Payback>();
+    @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "debtor")
+    private Set<Payback> paybacksForOthers = new HashSet<Payback>();
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getSurname() {
-		return surname;
-	}
+    public String getSurname() {
+        return surname;
+    }
 
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-	public String getMail() {
-		return mail;
-	}
+    public String getMail() {
+        return mail;
+    }
 
-	public void setMail(String mail) {
-		this.mail = mail;
-	}
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
-	public String getLogin() {
-		return login;
-	}
+    public String getLogin() {
+        return login;
+    }
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
-	public String getLocation() {
-		return location;
-	}
+    public String getLocation() {
+        return location;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public Set<GroupMembership> getGroupMemberships() {
-		return groupMemberships;
-	}
+    public Set<GroupMembership> getGroupMemberships() {
+        return groupMemberships;
+    }
 
-	public void setGroupMemberships(Set<GroupMembership> groupMemberships) {
-		this.groupMemberships = groupMemberships;
-	}
+    public void setGroupMemberships(Set<GroupMembership> groupMemberships) {
+        this.groupMemberships = groupMemberships;
+    }
 
-	public Set<Invitation> getUserInvitations() {
-		return userInvitations;
-	}
+    public Set<Invitation> getUserInvitations() {
+        return userInvitations;
+    }
 
-	public void setUserInvitations(Set<Invitation> userInvitations) {
-		this.userInvitations = userInvitations;
-	}
+    public void setUserInvitations(Set<Invitation> userInvitations) {
+        this.userInvitations = userInvitations;
+    }
 
-	public Set<Payback> getPaybacksForUser() {
-		return paybacksForUser;
-	}
+    public Set<Payback> getPaybacksForUser() {
+        return paybacksForUser;
+    }
 
-	public void setPaybacksForUser(Set<Payback> paybacksForUser) {
-		this.paybacksForUser = paybacksForUser;
-	}
+    public void setPaybacksForUser(Set<Payback> paybacksForUser) {
+        this.paybacksForUser = paybacksForUser;
+    }
 
-	public Set<Payback> getPaybacksForOthers() {
-		return paybacksForOthers;
-	}
+    public Set<Payback> getPaybacksForOthers() {
+        return paybacksForOthers;
+    }
 
-	public void setPaybacksForOthers(Set<Payback> paybacksForOthers) {
-		this.paybacksForOthers = paybacksForOthers;
-	}
+    public void setPaybacksForOthers(Set<Payback> paybacksForOthers) {
+        this.paybacksForOthers = paybacksForOthers;
+    }
 
-	public void addGroupMembership(GroupMembership groupMembership) {
-		this.groupMemberships.add(groupMembership);
-	}
+    public void addGroupMembership(GroupMembership groupMembership) {
+        this.groupMemberships.add(groupMembership);
+    }
 
-	public void removeGroupMembership(GroupMembership groupMembership) {
-		if (this.groupMemberships != null)
-			this.groupMemberships.remove(groupMembership);
-	}
+    public void removeGroupMembership(GroupMembership groupMembership) {
+        if (this.groupMemberships != null)
+            this.groupMemberships.remove(groupMembership);
+    }
 }

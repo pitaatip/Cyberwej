@@ -16,46 +16,46 @@ import org.agh.iosr.cyberwej.data.objects.id.InvitationId;
 @Table(name = "INVITATIONS")
 public class Invitation implements Serializable {
 
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = -5602015934199476337L;
+    private static final long serialVersionUID = -5602015934199476337L;
 
-	private User inviter;
+    private User inviter;
 
-	private User invitee;
+    private User invitee;
 
-	private Group group;
+    private Group group;
 
-	@ManyToOne
-	@JoinColumn(name = "INVITERID", nullable = false)
-	public User getInviter() {
-		return inviter;
-	}
+    @ManyToOne
+    @JoinColumn(name = "INVITERID", nullable = false)
+    public User getInviter() {
+        return inviter;
+    }
 
-	public void setInviter(User inviter) {
-		this.inviter = inviter;
-	}
+    public void setInviter(User inviter) {
+        this.inviter = inviter;
+    }
 
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "INVITEEID", nullable = false)
-	public User getInvitee() {
-		return invitee;
-	}
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "INVITEEID", nullable = false)
+    public User getInvitee() {
+        return invitee;
+    }
 
-	public void setInvitee(User invitee) {
-		this.invitee = invitee;
-	}
+    public void setInvitee(User invitee) {
+        this.invitee = invitee;
+    }
 
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "GROUPID", nullable = false)
-	public Group getGroup() {
-		return group;
-	}
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "GROUPID", nullable = false)
+    public Group getGroup() {
+        return group;
+    }
 
-	public void setGroup(Group group) {
-		this.group = group;
-	}
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 }

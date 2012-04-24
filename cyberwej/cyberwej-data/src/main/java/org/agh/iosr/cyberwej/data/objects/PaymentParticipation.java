@@ -17,45 +17,45 @@ import org.agh.iosr.cyberwej.data.objects.id.PaymentParticipationId;
 @Table(name = "PAYMENTPARTICIPATIONS")
 public class PaymentParticipation implements Serializable {
 
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = -2251267927230859363L;
+    private static final long serialVersionUID = -2251267927230859363L;
 
-	private Payment payment;
+    private Payment payment;
 
-	private User user;
+    private User user;
 
-	private float amount;
+    private float amount;
 
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "PAYMENTID", nullable = false)
-	public Payment getPayment() {
-		return payment;
-	}
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "PAYMENTID", nullable = false)
+    public Payment getPayment() {
+        return payment;
+    }
 
-	public void setPayment(Payment payment) {
-		this.payment = payment;
-	}
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
 
-	@Id
-	@ManyToOne
-	@JoinColumn(name = "USERID", nullable = false)
-	public User getUser() {
-		return user;
-	}
+    @Id
+    @ManyToOne
+    @JoinColumn(name = "USERID", nullable = false)
+    public User getUser() {
+        return user;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	@Column(name = "AMOUNT", nullable = false)
-	public float getAmount() {
-		return amount;
-	}
+    @Column(name = "AMOUNT", nullable = false)
+    public float getAmount() {
+        return amount;
+    }
 
-	public void setAmount(float amount) {
-		this.amount = amount;
-	}
+    public void setAmount(float amount) {
+        this.amount = amount;
+    }
 }

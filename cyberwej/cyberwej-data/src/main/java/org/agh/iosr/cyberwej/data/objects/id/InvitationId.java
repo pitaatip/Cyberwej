@@ -10,29 +10,29 @@ import org.agh.iosr.cyberwej.data.objects.User;
 @Embeddable
 public class InvitationId implements Serializable {
 
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = -3101457842390285087L;
+    private static final long serialVersionUID = -3101457842390285087L;
 
-	private User invitee;
+    private User invitee;
 
-	private Group group;
+    private Group group;
 
-	public User getInvitee() {
-		return invitee;
-	}
+    public User getInvitee() {
+        return invitee;
+    }
 
-	public void setInvitee(User invitee) {
-		this.invitee = invitee;
-	}
+    public void setInvitee(User invitee) {
+        this.invitee = invitee;
+    }
 
-	public Group getGroup() {
-		return group;
-	}
+    public Group getGroup() {
+        return group;
+    }
 
-	public void setGroup(Group group) {
-		this.group = group;
-	}
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 
 }

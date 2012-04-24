@@ -5,8 +5,8 @@ import org.agh.iosr.cyberwej.data.objects.Payment;
 
 public interface PaymentDAO {
 
-	public boolean addGroupPayment(Group group, Payment payment);
+    public boolean addGroupPayment(Group group, Payment payment);
 
-	public void removePayment(Group group, Payment payment);
+    public void removePayment(Group group, Payment payment);
 
 }

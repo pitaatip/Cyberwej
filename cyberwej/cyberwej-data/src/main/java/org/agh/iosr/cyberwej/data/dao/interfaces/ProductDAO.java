@@ -6,9 +6,9 @@ import org.agh.iosr.cyberwej.data.objects.Product;
 
 public interface ProductDAO {
 
-	public boolean saveProduct(Product product);
+    public boolean saveProduct(Product product);
 
-	public List<Product> findProductsByName(String name);
+    public List<Product> findProductsByName(String name);
 
-	public boolean removeProduct(Product product);
+    public boolean removeProduct(Product product);
 }

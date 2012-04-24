@@ -10,29 +10,29 @@ import org.agh.iosr.cyberwej.data.objects.User;
 @Embeddable
 public class PaymentParticipationId implements Serializable {
 
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private User user;
+    private User user;
 
-	private Payment payment;
+    private Payment payment;
 
-	public User getUser() {
-		return user;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public Payment getPayment() {
-		return payment;
-	}
+    public Payment getPayment() {
+        return payment;
+    }
 
-	public void setPayment(Payment payment) {
-		this.payment = payment;
-	}
+    public void setPayment(Payment payment) {
+        this.payment = payment;
+    }
 
 }
