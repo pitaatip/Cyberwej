@@ -1,0 +1,10 @@
+W systemie zidentyfikowano aktorów:
+- User - u¿ytkownik systemu
+- Group Member - u¿ytkownik systemu bêd¹cy cz³onkiem grupy
+- Investor - cz³onek grupy z nadp³at¹
+- Debtor - cz³onek grupy z niedop³at¹.
+
+U¿ytkownicy systemu mog¹ tworzyæ konta, logowaæ siê oraz wylogowywaæ. Zalogowany u¿ytkownik mo¿e mo¿e tworzyæ nowe grupy, akceptowaæ lub odrzucaæ zaproszenia do grup oraz wyœwietlaæ listê grup, do których nale¿y.
+Ka¿dy z u¿ytkowników grup mo¿e dodaæ do nowego cz³onka grupy, ma mo¿liwoœæ usuniêcia innego cz³onka grupy, mo¿e opuœciæ grupê. Cz³onek grupy mo¿e dodawaæ now¹ op³atê do grupy oraz uzupe³niaæ jej pozycje. Dodawanie nowych pozycji do op³aty mo¿liwe bêdzie równie¿ po utworzeniu op³aty. U¿ytkownik mo¿e równie¿ wyœwietlaæ szczegó³owe informacje o grupach, do których nale¿y.
+Osoba z niedop³at¹ mo¿e uregulowaæ swoje d³ugi, a nastêpnie wybraæ opcjê powiadomienia o zwrocie pieniêdzy.
+U¿ytkownik z nadp³at¹ po otrzymaniu powiadomienia od systemu o zwrocie mo¿e zatwierdziæ lub odrzuciæ informacjê.
