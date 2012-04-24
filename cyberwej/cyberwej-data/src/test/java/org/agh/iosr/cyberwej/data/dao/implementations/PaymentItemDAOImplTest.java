@@ -30,85 +30,85 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class PaymentItemDAOImplTest {
 
-	@Autowired
-	private PaymentItemDAO paymentItemDAO;
+    @Autowired
+    private PaymentItemDAO paymentItemDAO;
 
-	@Autowired
-	private UserDAO userDAO;
+    @Autowired
+    private UserDAO userDAO;
 
-	@Autowired
-	private PaymentDAO paymentDAO;
+    @Autowired
+    private PaymentDAO paymentDAO;
 
-	@Autowired
-	private GroupDAO groupDAO;
+    @Autowired
+    private GroupDAO groupDAO;
 
-	private PaymentItem paymentItem;
-	private int count = 3;
-	private float price = 2.45f;
+    private PaymentItem paymentItem;
+    private int count = 3;
+    private float price = 2.45f;
 
-	private User user;
+    private User user;
 
-	private Payment payment;
-	private Date date;
-	private String description = "Wyjscie na pizze";
+    private Payment payment;
+    private Date date;
+    private String description = "Wyjscie na pizze";
 
-	private Group group;
-	private String groupName = "Grupa test";
+    private Group group;
+    private String groupName = "Grupa test";
 
-	@Before
-	public void setUp() {
-		paymentItem = new PaymentItem();
-		paymentItem.setPrice(price);
-		paymentItem.setCount(count);
-		user = new User();
-		user.setName("Wojtek");
-		user.setSurname("Wojtkowski");
-		user.setLogin("Woj");
-		user.setMail("wojtek@wojtkowie.pl");
-		this.userDAO.saveUser(user);
-		Set<User> users = new HashSet<User>();
-		users.add(user);
-		paymentItem.setConsumers(users);
+    @Before
+    public void setUp() {
+        paymentItem = new PaymentItem();
+        paymentItem.setPrice(price);
+        paymentItem.setCount(count);
+        user = new User();
+        user.setName("Wojtek");
+        user.setSurname("Wojtkowski");
+        user.setLogin("Woj");
+        user.setMail("wojtek@wojtkowie.pl");
+        this.userDAO.saveUser(user);
+        Set<User> users = new HashSet<User>();
+        users.add(user);
+        paymentItem.setConsumers(users);
 
-		this.payment = new Payment();
-		this.payment.setDate(date);
-		this.payment.setDescription(description);
+        this.payment = new Payment();
+        this.payment.setDate(date);
+        this.payment.setDescription(description);
 
-		this.group = new Group();
-		this.group.setName(groupName);
+        this.group = new Group();
+        this.group.setName(groupName);
 
-		this.groupDAO.saveGroup(group);
-		this.paymentDAO.addGroupPayment(group, payment);
-		this.paymentItemDAO.savePaymentItem(payment, paymentItem);
-	}
+        this.groupDAO.saveGroup(group);
+        this.paymentDAO.addGroupPayment(group, payment);
+        this.paymentItemDAO.savePaymentItem(payment, paymentItem);
+    }
 
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testSavePaymentItem() {
-		Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
-		assertFalse(retrievedGroup.getPayments().isEmpty());
-		for (Payment payment : retrievedGroup.getPayments()) {
-			assertFalse(payment.getPaymentItems().isEmpty());
-			for (PaymentItem paymentItem : payment.getPaymentItems()) {
-				assertNotNull(paymentItem);
-				assertEquals(paymentItem.getCount(), count);
-				assertEquals(paymentItem.getPrice(), price, 0.0);
-				assertFalse(paymentItem.getConsumers().isEmpty());
-				assertTrue(paymentItem.getConsumers().contains(this.user));
-			}
-		}
-	}
+    @Transactional
+    @Rollback(true)
+    @Test
+    public void testSavePaymentItem() {
+        Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
+        assertFalse(retrievedGroup.getPayments().isEmpty());
+        for (Payment payment : retrievedGroup.getPayments()) {
+            assertFalse(payment.getPaymentItems().isEmpty());
+            for (PaymentItem paymentItem : payment.getPaymentItems()) {
+                assertNotNull(paymentItem);
+                assertEquals(paymentItem.getCount(), count);
+                assertEquals(paymentItem.getPrice(), price, 0.0);
+                assertFalse(paymentItem.getConsumers().isEmpty());
+                assertTrue(paymentItem.getConsumers().contains(this.user));
+            }
+        }
+    }
 
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testRemovePaymentItem() {
-		this.paymentItemDAO.removePaymentItem(payment, paymentItem);
-		Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
-		assertFalse(retrievedGroup.getPayments().isEmpty());
-		for (Payment payment : retrievedGroup.getPayments()) {
-			assertTrue(payment.getPaymentItems().isEmpty());
-		}
-	}
+    @Transactional
+    @Rollback(true)
+    @Test
+    public void testRemovePaymentItem() {
+        this.paymentItemDAO.removePaymentItem(payment, paymentItem);
+        Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
+        assertFalse(retrievedGroup.getPayments().isEmpty());
+        for (Payment payment : retrievedGroup.getPayments()) {
+            assertTrue(payment.getPaymentItems().isEmpty());
+        }
+    }
 }

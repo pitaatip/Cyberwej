@@ -8,25 +8,25 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class PaymentParticipationDAOImpl extends DAOBase implements
-		PaymentParticipationDAO {
+        PaymentParticipationDAO {
 
-	@Override
-	public boolean addPaymentParticipation(Payment payment, User user,
-			float amount) {
-		PaymentParticipation paymentParticipation = new PaymentParticipation();
-		paymentParticipation.setAmount(amount);
-		paymentParticipation.setUser(user);
-		paymentParticipation.setPayment(payment);
-		payment.getParticipations().add(paymentParticipation);
-		return super.save(payment);
-	}
+    @Override
+    public boolean addPaymentParticipation(Payment payment, User user,
+            float amount) {
+        PaymentParticipation paymentParticipation = new PaymentParticipation();
+        paymentParticipation.setAmount(amount);
+        paymentParticipation.setUser(user);
+        paymentParticipation.setPayment(payment);
+        payment.getParticipations().add(paymentParticipation);
+        return super.save(payment);
+    }
 
-	@Override
-	public void removePaymentParticipation(
-			PaymentParticipation paymentParticipation) {
-		paymentParticipation.getPayment().getParticipations()
-				.remove(paymentParticipation);
-		super.save(paymentParticipation.getPayment());
-	}
+    @Override
+    public void removePaymentParticipation(
+            PaymentParticipation paymentParticipation) {
+        paymentParticipation.getPayment().getParticipations()
+                .remove(paymentParticipation);
+        super.save(paymentParticipation.getPayment());
+    }
 
 }

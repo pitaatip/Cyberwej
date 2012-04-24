@@ -17,62 +17,62 @@ import javax.persistence.Table;
 @Table(name = "PAYMENTITEM")
 public class PaymentItem {
 
-	private Integer id;
+    private Integer id;
 
-	private Product product;
+    private Product product;
 
-	private int count;
+    private int count;
 
-	private float price;
+    private float price;
 
-	private Set<User> consumers = new HashSet<User>();
+    private Set<User> consumers = new HashSet<User>();
 
-	@Id
-	@Column(name = "ITEMID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Integer getId() {
-		return id;
-	}
+    @Id
+    @Column(name = "ITEMID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	@ManyToOne
-	@JoinColumn(name = "PRODUCTID")
-	public Product getProduct() {
-		return product;
-	}
+    @ManyToOne
+    @JoinColumn(name = "PRODUCTID")
+    public Product getProduct() {
+        return product;
+    }
 
-	public void setProduct(Product product) {
-		this.product = product;
-	}
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
-	@Column(name = "ITEMSCOUNT", nullable = false)
-	public int getCount() {
-		return count;
-	}
+    @Column(name = "ITEMSCOUNT", nullable = false)
+    public int getCount() {
+        return count;
+    }
 
-	public void setCount(int count) {
-		this.count = count;
-	}
+    public void setCount(int count) {
+        this.count = count;
+    }
 
-	@Column(name = "PRICE", nullable = false)
-	public float getPrice() {
-		return price;
-	}
+    @Column(name = "PRICE", nullable = false)
+    public float getPrice() {
+        return price;
+    }
 
-	public void setPrice(float price) {
-		this.price = price;
-	}
+    public void setPrice(float price) {
+        this.price = price;
+    }
 
-	@ManyToMany
-	public Set<User> getConsumers() {
-		return consumers;
-	}
+    @ManyToMany
+    public Set<User> getConsumers() {
+        return consumers;
+    }
 
-	public void setConsumers(Set<User> consumers) {
-		this.consumers = consumers;
-	}
+    public void setConsumers(Set<User> consumers) {
+        this.consumers = consumers;
+    }
 
 }

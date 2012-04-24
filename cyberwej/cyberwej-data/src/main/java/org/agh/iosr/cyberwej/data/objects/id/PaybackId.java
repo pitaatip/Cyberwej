@@ -10,39 +10,39 @@ import org.agh.iosr.cyberwej.data.objects.User;
 @Embeddable
 public class PaybackId implements Serializable {
 
-	/**
+    /**
 	 * 
 	 */
-	private static final long serialVersionUID = -1738543827890081132L;
+    private static final long serialVersionUID = -1738543827890081132L;
 
-	private Group group;
+    private Group group;
 
-	private User debtor;
+    private User debtor;
 
-	private User investor;
+    private User investor;
 
-	public Group getGroup() {
-		return group;
-	}
+    public Group getGroup() {
+        return group;
+    }
 
-	public void setGroup(Group group) {
-		this.group = group;
-	}
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 
-	public User getDebtor() {
-		return debtor;
-	}
+    public User getDebtor() {
+        return debtor;
+    }
 
-	public void setDebtor(User debtor) {
-		this.debtor = debtor;
-	}
+    public void setDebtor(User debtor) {
+        this.debtor = debtor;
+    }
 
-	public User getInvestor() {
-		return investor;
-	}
+    public User getInvestor() {
+        return investor;
+    }
 
-	public void setInvestor(User investor) {
-		this.investor = investor;
-	}
+    public void setInvestor(User investor) {
+        this.investor = investor;
+    }
 
 }
