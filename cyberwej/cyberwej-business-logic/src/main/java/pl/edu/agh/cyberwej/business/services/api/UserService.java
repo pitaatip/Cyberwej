@@ -13,10 +13,25 @@ import org.agh.iosr.cyberwej.data.objects.User;
  */
 public interface UserService {
 
-	public List<User> getAllUsers();
+    /**
+     * Get all users from database
+     * 
+     * @return list of users
+     */
+    public List<User> getAllUsers();
 
-	public void saveUser(User user);
+    /**
+     * Saves user to database
+     * 
+     * @param user
+     */
+    public void saveUser(User user);
 
-	public void removeUser(String id);
+    /**
+     * Remove user from database
+     * 
+     * @param id
+     */
+    public void removeUser(String id);
 
 }

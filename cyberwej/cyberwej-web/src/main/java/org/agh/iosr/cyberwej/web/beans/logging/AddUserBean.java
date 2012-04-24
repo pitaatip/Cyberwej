@@ -13,46 +13,61 @@ import pl.edu.agh.cyberwej.business.services.api.UserService;
  * 
  */
 public class AddUserBean extends BaseBean {
-	private static final Logger log = Logger.getLogger(AddUserBean.class);
+    private static final Logger log = Logger.getLogger(AddUserBean.class);
 
-	private UserService service;
-	private User user;
+    private UserService service;
+    private User user;
 
-	public AddUserBean() {
-		// Initialize user
-		setUser(new User());
-	}
+    public AddUserBean() {
+        // Initialize user
+        setUser(new User());
+    }
 
-	public String remove() {
-		String userToDeleteId = getParameter("userToDelete");
-		service.removeUser(userToDeleteId);
-		return null;
+    /**
+     * Remove user from database
+     * 
+     * @return
+     */
+    public String remove() {
+        String userToDeleteId = getParameter("userToDelete");
+        service.removeUser(userToDeleteId);
+        return null;
 
-	}
+    }
 
-	public List<User> getUsersList() {
-		return service.getAllUsers();
-	}
+    /**
+     * Get all users from databse
+     * 
+     * @return
+     */
+    public List<User> getUsersList() {
+        return service.getAllUsers();
+    }
 
-	public String saveNewUser() {
-		service.saveUser(user);
-		return null;
-	}
+    /**
+     * Save user in database
+     * 
+     * @return
+     */
+    public String saveNewUser() {
+        service.saveUser(user);
+        return null;
+    }
 
-	public User getUser() {
-		return user;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
-	public UserService getService() {
-		return service;
-	}
+    public UserService getService() {
+        return service;
+    }
 
-	public void setService(UserService service) {
-		this.service = service;
-	}
+    public void setService(UserService service) {
+        this.service = service;
+    }
 
 }

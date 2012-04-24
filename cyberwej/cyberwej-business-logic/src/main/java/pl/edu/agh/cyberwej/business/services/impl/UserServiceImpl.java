@@ -19,33 +19,33 @@ import pl.edu.agh.cyberwej.business.services.api.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Autowired
-	private UserDAO dao;
+    @Autowired
+    private UserDAO dao;
 
-	@Override
-	public List<User> getAllUsers() {
-		return dao.getAllUsers();
-	}
+    @Override
+    public List<User> getAllUsers() {
+        return dao.getAllUsers();
+    }
 
-	@Override
-	public void saveUser(User user) {
-		dao.saveUser(user);
-	}
+    @Override
+    public void saveUser(User user) {
+        dao.saveUser(user);
+    }
 
-	@Override
-	public void removeUser(String userToDeleteId) {
-		Integer id = Integer.parseInt(userToDeleteId);
-		User delUser = dao.findUserById(id);
-		dao.removeUser(delUser);
+    @Override
+    public void removeUser(String userToDeleteId) {
+        Integer id = Integer.parseInt(userToDeleteId);
+        User delUser = dao.findUserById(id);
+        dao.removeUser(delUser);
 
-	}
+    }
 
-	public UserDAO getDao() {
-		return dao;
-	}
+    public UserDAO getDao() {
+        return dao;
+    }
 
-	public void setDao(UserDAO dao) {
-		this.dao = dao;
-	}
+    public void setDao(UserDAO dao) {
+        this.dao = dao;
+    }
 
 }

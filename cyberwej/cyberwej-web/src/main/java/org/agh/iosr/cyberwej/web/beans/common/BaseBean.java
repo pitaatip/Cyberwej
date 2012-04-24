@@ -14,12 +14,16 @@ import javax.faces.context.FacesContext;
  */
 public abstract class BaseBean {
 
-	private final ExternalContext context = FacesContext.getCurrentInstance()
-			.getExternalContext();
+    private final ExternalContext context = FacesContext.getCurrentInstance()
+            .getExternalContext();
 
-	public String getParameter(String paramName) {
-		Map<String, String> params = context.getRequestParameterMap();
-		return params.get(paramName);
-	}
+    /**
+     * @param paramName
+     * @return returns parametr from faces context
+     */
+    public String getParameter(String paramName) {
+        Map<String, String> params = context.getRequestParameterMap();
+        return params.get(paramName);
+    }
 
 }
