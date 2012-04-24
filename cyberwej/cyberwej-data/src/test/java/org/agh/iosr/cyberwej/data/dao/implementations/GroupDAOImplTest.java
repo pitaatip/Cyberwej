@@ -19,49 +19,49 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class GroupDAOImplTest {
 
-	@Autowired
-	private GroupDAO groupDAO;
+    @Autowired
+    private GroupDAO groupDAO;
 
-	private Group group;
+    private Group group;
 
-	private String groupName = "Pierwsza grupa";
+    private String groupName = "Pierwsza grupa";
 
-	private String nonExistingGroupName = "Nie ma takiej grupy";
+    private String nonExistingGroupName = "Nie ma takiej grupy";
 
-	@Before
-	public void setUp() {
-		this.group = new Group();
-		group.setName(groupName);
-		this.groupDAO.saveGroup(group);
-	}
+    @Before
+    public void setUp() {
+        this.group = new Group();
+        group.setName(groupName);
+        this.groupDAO.saveGroup(group);
+    }
 
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testSaveGroup() {
-		Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
-		assertNotNull(retrievedGroup);
-		assertEquals(retrievedGroup.getName(), this.groupName);
-		assertNotNull(retrievedGroup.getId());
-	}
+    @Transactional
+    @Rollback(true)
+    @Test
+    public void testSaveGroup() {
+        Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
+        assertNotNull(retrievedGroup);
+        assertEquals(retrievedGroup.getName(), this.groupName);
+        assertNotNull(retrievedGroup.getId());
+    }
 
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testRemoveGroup() {
-		this.groupDAO.removeGroup(group);
-		Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
-		assertNull(retrievedGroup);
-	}
+    @Transactional
+    @Rollback(true)
+    @Test
+    public void testRemoveGroup() {
+        this.groupDAO.removeGroup(group);
+        Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
+        assertNull(retrievedGroup);
+    }
 
-	@Transactional
-	@Rollback(true)
-	@Test
-	public void testGetGroupByName() {
-		Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
-		assertNotNull(retrievedGroup);
-		retrievedGroup = this.groupDAO.getGroupByName(nonExistingGroupName);
-		assertNull(retrievedGroup);
-	}
+    @Transactional
+    @Rollback(true)
+    @Test
+    public void testGetGroupByName() {
+        Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
+        assertNotNull(retrievedGroup);
+        retrievedGroup = this.groupDAO.getGroupByName(nonExistingGroupName);
+        assertNull(retrievedGroup);
+    }
 
 }

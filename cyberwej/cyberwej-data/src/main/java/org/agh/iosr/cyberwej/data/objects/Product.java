@@ -11,28 +11,28 @@ import javax.persistence.Table;
 @Table(name = "PRODUCTS")
 public class Product {
 
-	private Integer id;
+    private Integer id;
 
-	private String name;
+    private String name;
 
-	@Id
-	@Column(name = "PRODUCTID")
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Integer getId() {
-		return id;
-	}
+    @Id
+    @Column(name = "PRODUCTID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	@Column(name = "NAME", nullable = false, unique = true)
-	public String getName() {
-		return name;
-	}
+    @Column(name = "NAME", nullable = false, unique = true)
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }

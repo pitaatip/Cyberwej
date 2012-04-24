@@ -8,24 +8,24 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class GroupMembershipDAOImpl extends DAOBase implements
-		GroupMembershipDAO {
+        GroupMembershipDAO {
 
-	@Override
-	public boolean addGroupMembership(Group group, User user) {
-		GroupMembership groupMembership = new GroupMembership();
-		groupMembership.setGroup(group);
-		groupMembership.setUser(user);
-		groupMembership.setOverdraw(0);
-		user.addGroupMembership(groupMembership);
-		group.getGroupMembers().add(groupMembership);
-		return super.save(groupMembership);
-	}
+    @Override
+    public boolean addGroupMembership(Group group, User user) {
+        GroupMembership groupMembership = new GroupMembership();
+        groupMembership.setGroup(group);
+        groupMembership.setUser(user);
+        groupMembership.setOverdraw(0);
+        user.addGroupMembership(groupMembership);
+        group.getGroupMembers().add(groupMembership);
+        return super.save(groupMembership);
+    }
 
-	@Override
-	public void removeGroupMembership(GroupMembership groupMembership) {
-		groupMembership.getUser().removeGroupMembership(groupMembership);
-		groupMembership.getGroup().getGroupMembers().remove(groupMembership);
-		super.hibernateTemplate.delete(groupMembership);
-	}
+    @Override
+    public void removeGroupMembership(GroupMembership groupMembership) {
+        groupMembership.getUser().removeGroupMembership(groupMembership);
+        groupMembership.getGroup().getGroupMembers().remove(groupMembership);
+        super.hibernateTemplate.delete(groupMembership);
+    }
 
 }

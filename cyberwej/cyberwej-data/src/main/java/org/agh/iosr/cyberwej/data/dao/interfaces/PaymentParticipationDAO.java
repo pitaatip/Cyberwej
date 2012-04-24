@@ -6,9 +6,9 @@ import org.agh.iosr.cyberwej.data.objects.User;
 
 public interface PaymentParticipationDAO {
 
-	public boolean addPaymentParticipation(Payment payment, User user,
-			float amount);
+    public boolean addPaymentParticipation(Payment payment, User user,
+            float amount);
 
-	public void removePaymentParticipation(
-			PaymentParticipation paymentParticipation);
+    public void removePaymentParticipation(
+            PaymentParticipation paymentParticipation);
 }
