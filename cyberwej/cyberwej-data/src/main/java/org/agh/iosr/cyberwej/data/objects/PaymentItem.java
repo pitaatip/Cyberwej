@@ -1,5 +1,6 @@
 package org.agh.iosr.cyberwej.data.objects;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -24,7 +25,7 @@ public class PaymentItem {
 
 	private float price;
 
-	private Set<User> consumers;
+	private Set<User> consumers = new HashSet<User>();
 
 	@Id
 	@Column(name = "ITEMID")

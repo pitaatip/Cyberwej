@@ -1,7 +1,5 @@
 package org.agh.iosr.cyberwej.data.dao.implementations;
 
-import java.util.HashSet;
-
 import org.agh.iosr.cyberwej.data.dao.interfaces.PaybackDAO;
 import org.agh.iosr.cyberwej.data.objects.Group;
 import org.agh.iosr.cyberwej.data.objects.Payback;
@@ -20,12 +18,6 @@ public class PaybackDAOImpl extends DAOBase implements PaybackDAO {
 		payback.setDebtor(debtor);
 		payback.setGroup(group);
 		payback.setInvestor(investor);
-		if (investor.getPaybacksForUser() == null)
-			investor.setPaybacksForUser(new HashSet<Payback>());
-		if (debtor.getPaybacksForOthers() == null)
-			debtor.setPaybacksForOthers(new HashSet<Payback>());
-		if (group.getPaybacks() == null)
-			group.setPaybacks(new HashSet<Payback>());
 		investor.getPaybacksForUser().add(payback);
 		debtor.getPaybacksForOthers().add(payback);
 		group.getPaybacks().add(payback);

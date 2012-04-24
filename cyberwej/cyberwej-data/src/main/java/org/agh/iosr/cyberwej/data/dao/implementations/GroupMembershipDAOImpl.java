@@ -17,14 +17,14 @@ public class GroupMembershipDAOImpl extends DAOBase implements
 		groupMembership.setUser(user);
 		groupMembership.setOverdraw(0);
 		user.addGroupMembership(groupMembership);
-		group.addGroupMembership(groupMembership);
+		group.getGroupMembers().add(groupMembership);
 		return super.save(groupMembership);
 	}
 
 	@Override
 	public void removeGroupMembership(GroupMembership groupMembership) {
 		groupMembership.getUser().removeGroupMembership(groupMembership);
-		groupMembership.getGroup().removeGroupMembership(groupMembership);
+		groupMembership.getGroup().getGroupMembers().remove(groupMembership);
 		super.hibernateTemplate.delete(groupMembership);
 	}
 

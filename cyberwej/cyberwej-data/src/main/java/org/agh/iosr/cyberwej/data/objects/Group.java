@@ -23,11 +23,11 @@ public class Group {
 
 	private Set<GroupMembership> groupMembers = new HashSet<GroupMembership>();
 
-	private Set<Invitation> invitations;
+	private Set<Invitation> invitations = new HashSet<Invitation>();
 
-	private Set<Payment> payments;
+	private Set<Payment> payments = new HashSet<Payment>();
 
-	private Set<Payback> paybacks;
+	private Set<Payback> paybacks = new HashSet<Payback>();
 
 	@Id
 	@Column(name = "GROUPID")
@@ -75,15 +75,6 @@ public class Group {
 
 	public void setPayments(Set<Payment> payments) {
 		this.payments = payments;
-	}
-
-	public void addGroupMembership(GroupMembership groupMembership) {
-		this.groupMembers.add(groupMembership);
-	}
-
-	public void removeGroupMembership(GroupMembership groupMembership) {
-		if (this.groupMembers != null)
-			this.groupMembers.remove(groupMembership);
 	}
 
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "group")

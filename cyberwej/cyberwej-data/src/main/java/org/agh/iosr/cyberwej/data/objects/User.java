@@ -41,13 +41,13 @@ public class User {
 	private Set<GroupMembership> groupMemberships = new HashSet<GroupMembership>();
 
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "invitee")
-	private Set<Invitation> userInvitations;
+	private Set<Invitation> userInvitations = new HashSet<Invitation>();
 
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "investor")
-	private Set<Payback> paybacksForUser;
+	private Set<Payback> paybacksForUser = new HashSet<Payback>();
 
 	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "debtor")
-	private Set<Payback> paybacksForOthers;
+	private Set<Payback> paybacksForOthers = new HashSet<Payback>();
 
 	public Integer getId() {
 		return id;

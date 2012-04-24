@@ -1,7 +1,5 @@
 package org.agh.iosr.cyberwej.data.dao.implementations;
 
-import java.util.HashSet;
-
 import org.agh.iosr.cyberwej.data.dao.interfaces.InvitationDAO;
 import org.agh.iosr.cyberwej.data.objects.Group;
 import org.agh.iosr.cyberwej.data.objects.Invitation;
@@ -17,10 +15,6 @@ public class InvitationDAOImpl extends DAOBase implements InvitationDAO {
 		invitation.setGroup(group);
 		invitation.setInvitee(invitee);
 		invitation.setInviter(inviter);
-		if (invitee.getUserInvitations() == null)
-			invitee.setUserInvitations(new HashSet<Invitation>());
-		if (group.getInvitations() == null)
-			group.setInvitations(new HashSet<Invitation>());
 		invitee.getUserInvitations().add(invitation);
 		group.getInvitations().add(invitation);
 		return super.save(invitation);

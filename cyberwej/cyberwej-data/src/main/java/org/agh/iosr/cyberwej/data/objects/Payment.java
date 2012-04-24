@@ -21,7 +21,7 @@ public class Payment {
 
 	private Integer id;
 
-	private Set<PaymentItem> paymentItems;
+	private Set<PaymentItem> paymentItems = new HashSet<PaymentItem>();
 
 	private Date date;
 
