@@ -1,8 +1,9 @@
 package org.agh.iosr.cyberwej.data.dao.interfaces;
 
 import org.agh.iosr.cyberwej.data.objects.Group;
+import org.agh.iosr.cyberwej.data.objects.Payment;
 
-public interface GroupDAO {
+public interface GroupDAO extends IDAO<Group> {
 
     public boolean saveGroup(Group group);
 
@@ -10,4 +11,7 @@ public interface GroupDAO {
 
     public void removeGroup(Group group);
 
+    public boolean addGroupPayment(Group group, Payment payment);
+
+    public void removeGroupPayment(Group group, Payment payment);
 }

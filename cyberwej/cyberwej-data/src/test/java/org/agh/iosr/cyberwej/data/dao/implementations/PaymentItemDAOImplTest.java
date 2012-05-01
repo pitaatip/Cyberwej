@@ -3,7 +3,6 @@ package org.agh.iosr.cyberwej.data.dao.implementations;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -43,72 +42,80 @@ public class PaymentItemDAOImplTest {
     private GroupDAO groupDAO;
 
     private PaymentItem paymentItem;
-    private int count = 3;
-    private float price = 2.45f;
+    private final int count = 3;
+    private final float price = 2.45f;
 
     private User user;
 
     private Payment payment;
     private Date date;
-    private String description = "Wyjscie na pizze";
+    private final String description = "Wyjscie na pizze";
 
     private Group group;
-    private String groupName = "Grupa test";
+    private final String groupName = "Grupa test";
+
+    private final int newCount = 10;
+    private final float newPrice = 3.20f;
 
     @Before
     public void setUp() {
-        paymentItem = new PaymentItem();
-        paymentItem.setPrice(price);
-        paymentItem.setCount(count);
-        user = new User();
-        user.setName("Wojtek");
-        user.setSurname("Wojtkowski");
-        user.setLogin("Woj");
-        user.setMail("wojtek@wojtkowie.pl");
-        this.userDAO.saveUser(user);
+        this.paymentItem = new PaymentItem();
+        this.paymentItem.setPrice(this.price);
+        this.paymentItem.setCount(this.count);
+        this.user = new User();
+        this.user.setName("Wojtek");
+        this.user.setSurname("Wojtkowski");
+        this.user.setLogin("Wojtecyek");
+        this.user.setMail("wojtek2@wojtkowie.pl");
+        this.userDAO.saveUser(this.user);
         Set<User> users = new HashSet<User>();
-        users.add(user);
-        paymentItem.setConsumers(users);
+        users.add(this.user);
+        this.paymentItem.setConsumers(users);
 
         this.payment = new Payment();
-        this.payment.setDate(date);
-        this.payment.setDescription(description);
+        this.payment.setDate(this.date);
+        this.payment.setDescription(this.description);
 
         this.group = new Group();
-        this.group.setName(groupName);
+        this.group.setName(this.groupName);
 
-        this.groupDAO.saveGroup(group);
-        this.paymentDAO.addGroupPayment(group, payment);
-        this.paymentItemDAO.savePaymentItem(payment, paymentItem);
+        this.groupDAO.saveGroup(this.group);
+        this.groupDAO.addGroupPayment(this.group, this.payment);
+        this.paymentDAO.savePaymentItem(this.payment, this.paymentItem);
     }
 
     @Transactional
     @Rollback(true)
     @Test
-    public void testSavePaymentItem() {
-        Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
+    public void testSave() {
+        Group retrievedGroup = this.groupDAO.getGroupByName(this.groupName);
+        assertNotNull(retrievedGroup);
+        assertNotNull(retrievedGroup.getPayments());
         assertFalse(retrievedGroup.getPayments().isEmpty());
         for (Payment payment : retrievedGroup.getPayments()) {
+            assertNotNull(payment);
+            assertNotNull(payment.getPaymentItems());
             assertFalse(payment.getPaymentItems().isEmpty());
             for (PaymentItem paymentItem : payment.getPaymentItems()) {
-                assertNotNull(paymentItem);
-                assertEquals(paymentItem.getCount(), count);
-                assertEquals(paymentItem.getPrice(), price, 0.0);
-                assertFalse(paymentItem.getConsumers().isEmpty());
-                assertTrue(paymentItem.getConsumers().contains(this.user));
+                assertEquals(paymentItem.getCount(), this.count);
+                assertEquals(paymentItem.getPrice(), this.price, 0.0f);
             }
         }
-    }
-
-    @Transactional
-    @Rollback(true)
-    @Test
-    public void testRemovePaymentItem() {
-        this.paymentItemDAO.removePaymentItem(payment, paymentItem);
-        Group retrievedGroup = this.groupDAO.getGroupByName(groupName);
+        this.paymentItem.setPrice(this.newPrice);
+        this.paymentItem.setCount(this.newCount);
+        this.paymentItemDAO.save(this.paymentItem);
+        retrievedGroup = this.groupDAO.getGroupByName(this.groupName);
+        assertNotNull(retrievedGroup);
+        assertNotNull(retrievedGroup.getPayments());
         assertFalse(retrievedGroup.getPayments().isEmpty());
         for (Payment payment : retrievedGroup.getPayments()) {
-            assertTrue(payment.getPaymentItems().isEmpty());
+            assertNotNull(payment);
+            assertNotNull(payment.getPaymentItems());
+            assertFalse(payment.getPaymentItems().isEmpty());
+            for (PaymentItem paymentItem : payment.getPaymentItems()) {
+                assertEquals(paymentItem.getCount(), this.newCount);
+                assertEquals(paymentItem.getPrice(), this.newPrice, 0.0f);
+            }
         }
     }
 }

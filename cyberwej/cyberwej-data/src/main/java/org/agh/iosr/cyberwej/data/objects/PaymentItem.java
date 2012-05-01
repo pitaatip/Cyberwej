@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PAYMENTITEM")
+@Table(name = "PAYMENTITEMS")
 public class PaymentItem {
 
     private Integer id;
@@ -31,7 +31,7 @@ public class PaymentItem {
     @Column(name = "ITEMID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -41,7 +41,7 @@ public class PaymentItem {
     @ManyToOne
     @JoinColumn(name = "PRODUCTID")
     public Product getProduct() {
-        return product;
+        return this.product;
     }
 
     public void setProduct(Product product) {
@@ -50,7 +50,7 @@ public class PaymentItem {
 
     @Column(name = "ITEMSCOUNT", nullable = false)
     public int getCount() {
-        return count;
+        return this.count;
     }
 
     public void setCount(int count) {
@@ -59,7 +59,7 @@ public class PaymentItem {
 
     @Column(name = "PRICE", nullable = false)
     public float getPrice() {
-        return price;
+        return this.price;
     }
 
     public void setPrice(float price) {
@@ -68,7 +68,7 @@ public class PaymentItem {
 
     @ManyToMany
     public Set<User> getConsumers() {
-        return consumers;
+        return this.consumers;
     }
 
     public void setConsumers(Set<User> consumers) {

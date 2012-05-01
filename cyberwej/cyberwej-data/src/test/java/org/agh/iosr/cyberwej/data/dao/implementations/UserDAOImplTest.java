@@ -1,9 +1,10 @@
 package org.agh.iosr.cyberwej.data.dao.implementations;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -26,33 +27,33 @@ public class UserDAOImplTest {
     private UserDAO userDAO;
 
     private User user;
-    private String name = "Jan";
-    private String surname = "Kowalski";
-    private String mail = "jan@janowie.pl";
-    private String login = "Janek";
+    private final String name = "Jan";
+    private final String surname = "Kowalski";
+    private final String mail = "jan@janowie.pl";
+    private final String login = "Janek";
 
-    private String nonExistingMail = "non@existing.mail";
+    private final String nonExistingMail = "non@existing.mail";
 
     @Before
     public void setUp() {
         this.user = new User();
-        user.setSurname(this.surname);
-        user.setName(this.name);
-        user.setLogin(this.login);
-        user.setMail(this.mail);
-        this.userDAO.saveUser(user);
+        this.user.setSurname(this.surname);
+        this.user.setName(this.name);
+        this.user.setLogin(this.login);
+        this.user.setMail(this.mail);
+        this.userDAO.saveUser(this.user);
     }
 
     @Transactional
     @Rollback(true)
     @Test
     public void testSaveUser() {
-        User retrievedUser = this.userDAO.findUserByMail(user.getMail());
+        User retrievedUser = this.userDAO.findUserByMail(this.user.getMail());
         assertNotNull(retrievedUser);
-        assertEquals(user.getName(), retrievedUser.getName());
-        assertEquals(user.getSurname(), retrievedUser.getSurname());
-        assertEquals(user.getLogin(), retrievedUser.getLogin());
-        assertEquals(user.getLocation(), retrievedUser.getLocation());
+        assertEquals(this.user.getName(), retrievedUser.getName());
+        assertEquals(this.user.getSurname(), retrievedUser.getSurname());
+        assertEquals(this.user.getLogin(), retrievedUser.getLogin());
+        assertEquals(this.user.getLocation(), retrievedUser.getLocation());
     }
 
     @Transactional
@@ -60,7 +61,7 @@ public class UserDAOImplTest {
     @Test
     public void testRemoveUser() {
         this.userDAO.removeUser(this.user);
-        User retrievedUser = this.userDAO.findUserByMail(user.getMail());
+        User retrievedUser = this.userDAO.findUserByMail(this.user.getMail());
         assertNull(retrievedUser);
     }
 
@@ -71,7 +72,7 @@ public class UserDAOImplTest {
         User retrievedUser = this.userDAO.findUserByMail(this.mail);
         assertNotNull(retrievedUser);
         assertEquals(retrievedUser.getMail(), this.mail);
-        retrievedUser = this.userDAO.findUserByMail(nonExistingMail);
+        retrievedUser = this.userDAO.findUserByMail(this.nonExistingMail);
         assertNull(retrievedUser);
     }
 
@@ -81,7 +82,7 @@ public class UserDAOImplTest {
     public void testGetAllUsers() {
         List<User> users = this.userDAO.getAllUsers();
         assertNotNull(users);
-        assertEquals(users.size(), 1);
+        assertFalse(users.isEmpty());
         assertTrue(users.contains(this.user));
     }
 }

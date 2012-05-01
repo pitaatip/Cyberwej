@@ -3,7 +3,6 @@ package org.agh.iosr.cyberwej.data.dao.implementations;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 
@@ -42,82 +41,80 @@ public class PaymentParticipationDAOImplTest {
     private GroupDAO groupDAO;
 
     private Group group;
-    private String groupName = "Pierwsza grupa";
+    private final String groupName = "Pierwsza grupa";
 
     private User user;
-    private String name = "Marek";
-    private String surname = "Markowski";
-    private String mail = "marek@markowie.pl";
-    private String login = "Marek";
+    private final String name = "Marek";
+    private final String surname = "Markowski";
+    private final String mail = "marek@markowie.pl";
+    private final String login = "Marek";
 
     private Payment payment;
     private Date date;
-    private String description = "Wyjscie na 2 pizze";
+    private final String description = "Wyjscie na 2 pizze";
 
-    private float amount = 3.45f;
+    private final float amount = 3.45f;
+
+    private final float newAmount = 2.50f;
 
     @BeforeTransaction
     public void setUp() {
         this.user = new User();
-        user.setSurname(this.surname);
-        user.setName(this.name);
-        user.setLogin(this.login);
-        user.setMail(this.mail);
+        this.user.setSurname(this.surname);
+        this.user.setName(this.name);
+        this.user.setLogin(this.login);
+        this.user.setMail(this.mail);
 
         this.payment = new Payment();
-        this.payment.setDate(date);
-        this.payment.setDescription(description);
+        this.payment.setDate(this.date);
+        this.payment.setDescription(this.description);
 
         this.group = new Group();
-        group.setName(groupName);
+        this.group.setName(this.groupName);
 
-        this.userDAO.saveUser(user);
-        this.groupDAO.saveGroup(group);
-        this.paymentDAO.addGroupPayment(group, payment);
-        this.paymentParticipationDAO.addPaymentParticipation(payment, user,
-                amount);
+        this.userDAO.saveUser(this.user);
+        this.groupDAO.saveGroup(this.group);
+        this.groupDAO.addGroupPayment(this.group, this.payment);
+        this.paymentDAO.addPaymentParticipation(this.payment, this.user,
+                this.amount);
     }
 
-    @Transactional
-    @Rollback(false)
     @Test
-    public void testAddPaymentParticipation() {
-        Group retrievedGroup = groupDAO.getGroupByName(groupName);
+    @Transactional
+    @Rollback(true)
+    public void testSave() {
+        Group retrievedGroup = this.groupDAO.getGroupByName(this.groupName);
         assertNotNull(retrievedGroup);
+        assertNotNull(retrievedGroup.getPayments());
         assertFalse(retrievedGroup.getPayments().isEmpty());
         for (Payment payment : retrievedGroup.getPayments()) {
             assertFalse(payment.getParticipations().isEmpty());
-            for (PaymentParticipation participation : payment
+            for (PaymentParticipation paymentParticipation : payment
                     .getParticipations()) {
-                assertEquals(participation.getAmount(), this.amount, 0.0);
-                assertEquals(participation.getUser().getName(), this.name);
+                assertEquals(paymentParticipation.getAmount(), this.amount,
+                        0.0f);
+                paymentParticipation.setAmount(this.newAmount);
+                this.paymentParticipationDAO.save(paymentParticipation);
             }
         }
-    }
-
-    @Transactional
-    @Rollback(true)
-    @Test
-    public void testRemovePaymentParticipation() {
-        for (Payment payment : group.getPayments()) {
-            for (PaymentParticipation participation : payment
-                    .getParticipations()) {
-                this.paymentParticipationDAO
-                        .removePaymentParticipation(participation);
-            }
-        }
-        Group retrievedGroup = groupDAO.getGroupByName(groupName);
+        retrievedGroup = this.groupDAO.getGroupByName(this.groupName);
         assertNotNull(retrievedGroup);
+        assertNotNull(retrievedGroup.getPayments());
         assertFalse(retrievedGroup.getPayments().isEmpty());
         for (Payment payment : retrievedGroup.getPayments()) {
-            assertTrue(payment.getParticipations().isEmpty());
+            assertFalse(payment.getParticipations().isEmpty());
+            for (PaymentParticipation paymentParticipation : payment
+                    .getParticipations())
+                assertEquals(paymentParticipation.getAmount(), this.newAmount,
+                        0.0f);
         }
+
     }
 
     @AfterTransaction
     public void clean() {
-        Group group = this.groupDAO.getGroupByName(groupName);
+        Group group = this.groupDAO.getGroupByName(this.groupName);
         this.groupDAO.removeGroup(group);
-        this.userDAO.removeUser(user);
+        this.userDAO.removeUser(this.user);
     }
 }

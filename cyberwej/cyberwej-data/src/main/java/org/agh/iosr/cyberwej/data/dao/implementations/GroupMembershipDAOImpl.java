@@ -7,7 +7,7 @@ import org.agh.iosr.cyberwej.data.objects.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class GroupMembershipDAOImpl extends DAOBase implements
+public class GroupMembershipDAOImpl extends DAOBase<GroupMembership> implements
         GroupMembershipDAO {
 
     @Override

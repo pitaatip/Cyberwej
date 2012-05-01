@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.agh.iosr.cyberwej.data.objects.Product;
 
-public interface ProductDAO {
+public interface ProductDAO extends IDAO<Product> {
 
     public boolean saveProduct(Product product);
 

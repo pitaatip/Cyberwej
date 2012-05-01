@@ -7,7 +7,7 @@ import org.agh.iosr.cyberwej.data.objects.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class UserDAOImpl extends DAOBase implements UserDAO {
+public class UserDAOImpl extends DAOBase<User> implements UserDAO {
 
     @Override
     public boolean saveUser(User user) {

@@ -4,7 +4,7 @@ import org.agh.iosr.cyberwej.data.objects.Group;
 import org.agh.iosr.cyberwej.data.objects.Payback;
 import org.agh.iosr.cyberwej.data.objects.User;
 
-public interface PaybackDAO {
+public interface PaybackDAO extends IDAO<Payback> {
 
     public boolean addPayback(User debtor, User investor, Group group,
             float amount);

@@ -1,11 +1,12 @@
 package org.agh.iosr.cyberwej.data.dao.implementations;
 
+import org.agh.iosr.cyberwej.data.dao.interfaces.IDAO;
 import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
-public abstract class DAOBase {
+public abstract class DAOBase<ENTITY> implements IDAO<ENTITY> {
 
     protected HibernateTemplate hibernateTemplate;
 
@@ -16,12 +17,13 @@ public abstract class DAOBase {
         this.hibernateTemplate = new HibernateTemplate(sessionFactory);
     }
 
-    protected boolean save(Object object) {
+    @Override
+    public boolean save(ENTITY entity) {
         try {
-            this.hibernateTemplate.saveOrUpdate(object);
+            this.hibernateTemplate.saveOrUpdate(entity);
             return true;
         } catch (Exception e) {
-            logger.warn("Object not saved " + object.getClass().getName());
+            logger.warn("Object not saved " + entity.getClass().getName());
             return false;
         }
     }

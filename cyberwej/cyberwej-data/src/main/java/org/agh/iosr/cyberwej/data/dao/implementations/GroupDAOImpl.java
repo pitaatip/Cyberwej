@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.agh.iosr.cyberwej.data.dao.interfaces.GroupDAO;
 import org.agh.iosr.cyberwej.data.objects.Group;
+import org.agh.iosr.cyberwej.data.objects.Payment;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class GroupDAOImpl extends DAOBase implements GroupDAO {
+public class GroupDAOImpl extends DAOBase<Group> implements GroupDAO {
 
     @Override
     public boolean saveGroup(Group group) {
@@ -28,4 +29,17 @@ public class GroupDAOImpl extends DAOBase implements GroupDAO {
     public void removeGroup(Group group) {
         super.hibernateTemplate.delete(group);
     }
+
+    @Override
+    public boolean addGroupPayment(Group group, Payment payment) {
+        group.getPayments().add(payment);
+        return super.save(group);
+    }
+
+    @Override
+    public void removeGroupPayment(Group group, Payment payment) {
+        group.getPayments().remove(payment);
+        super.save(group);
+    }
+
 }

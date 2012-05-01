@@ -7,7 +7,7 @@ import org.agh.iosr.cyberwej.data.objects.Product;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ProductDAOImpl extends DAOBase implements ProductDAO {
+public class ProductDAOImpl extends DAOBase<Product> implements ProductDAO {
 
     @Override
     public boolean saveProduct(Product product) {

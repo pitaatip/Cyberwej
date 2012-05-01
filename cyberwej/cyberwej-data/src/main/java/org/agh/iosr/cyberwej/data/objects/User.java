@@ -40,17 +40,17 @@ public class User {
     @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "user", fetch = FetchType.LAZY)
     private Set<GroupMembership> groupMemberships = new HashSet<GroupMembership>();
 
-    @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "invitee")
+    @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "receiver")
     private Set<Invitation> userInvitations = new HashSet<Invitation>();
 
-    @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "investor")
+    @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "receiver")
     private Set<Payback> paybacksForUser = new HashSet<Payback>();
 
-    @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "debtor")
+    @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "sender")
     private Set<Payback> paybacksForOthers = new HashSet<Payback>();
 
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -58,7 +58,7 @@ public class User {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -66,7 +66,7 @@ public class User {
     }
 
     public String getSurname() {
-        return surname;
+        return this.surname;
     }
 
     public void setSurname(String surname) {
@@ -74,7 +74,7 @@ public class User {
     }
 
     public String getMail() {
-        return mail;
+        return this.mail;
     }
 
     public void setMail(String mail) {
@@ -82,7 +82,7 @@ public class User {
     }
 
     public String getLogin() {
-        return login;
+        return this.login;
     }
 
     public void setLogin(String login) {
@@ -90,7 +90,7 @@ public class User {
     }
 
     public String getLocation() {
-        return location;
+        return this.location;
     }
 
     public void setLocation(String location) {
@@ -98,7 +98,7 @@ public class User {
     }
 
     public Set<GroupMembership> getGroupMemberships() {
-        return groupMemberships;
+        return this.groupMemberships;
     }
 
     public void setGroupMemberships(Set<GroupMembership> groupMemberships) {
@@ -106,7 +106,7 @@ public class User {
     }
 
     public Set<Invitation> getUserInvitations() {
-        return userInvitations;
+        return this.userInvitations;
     }
 
     public void setUserInvitations(Set<Invitation> userInvitations) {
@@ -114,7 +114,7 @@ public class User {
     }
 
     public Set<Payback> getPaybacksForUser() {
-        return paybacksForUser;
+        return this.paybacksForUser;
     }
 
     public void setPaybacksForUser(Set<Payback> paybacksForUser) {
@@ -122,7 +122,7 @@ public class User {
     }
 
     public Set<Payback> getPaybacksForOthers() {
-        return paybacksForOthers;
+        return this.paybacksForOthers;
     }
 
     public void setPaybacksForOthers(Set<Payback> paybacksForOthers) {

@@ -7,7 +7,7 @@ import org.agh.iosr.cyberwej.data.objects.User;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PaybackDAOImpl extends DAOBase implements PaybackDAO {
+public class PaybackDAOImpl extends DAOBase<Payback> implements PaybackDAO {
 
     @Override
     public boolean addPayback(User debtor, User investor, Group group,
@@ -15,9 +15,9 @@ public class PaybackDAOImpl extends DAOBase implements PaybackDAO {
         Payback payback = new Payback();
         payback.setAccepted(false);
         payback.setAmount(amount);
-        payback.setDebtor(debtor);
+        payback.setSender(debtor);
         payback.setGroup(group);
-        payback.setInvestor(investor);
+        payback.setReceiver(investor);
         investor.getPaybacksForUser().add(payback);
         debtor.getPaybacksForOthers().add(payback);
         group.getPaybacks().add(payback);
@@ -26,8 +26,8 @@ public class PaybackDAOImpl extends DAOBase implements PaybackDAO {
 
     @Override
     public void removePayback(Payback payback) {
-        payback.getDebtor().getPaybacksForOthers().remove(payback);
-        payback.getInvestor().getPaybacksForUser().remove(payback);
+        payback.getSender().getPaybacksForOthers().remove(payback);
+        payback.getReceiver().getPaybacksForUser().remove(payback);
         payback.getGroup().getPaybacks().remove(payback);
         super.hibernateTemplate.delete(payback);
     }
