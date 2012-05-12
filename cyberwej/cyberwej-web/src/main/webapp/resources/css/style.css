@@ -1,0 +1,376 @@
+/*
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 3.0 License
+
+Name       : Reinstated
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20120326
+*/
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: underline;
+	color: #222;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+body {
+	font-size: 11.5pt;
+	line-height: 1.75em;
+	color: #888;
+	background: #b2bdc1;
+	background-image:url("header.png.xhtml?ln=images");
+	background-repeat:no-repeat;
+	background-position:40px 20px;
+	letter-spacing: -0.02em;
+}
+
+body,input {
+	font-family: Arial, sans-serif;
+}
+
+br.clearfix {
+	clear: both;
+}
+
+h1,h2,h3,h4 {
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 1.75em;
+}
+
+h2,h3,h4 {
+	color: #222;
+	font-family: Oswald, sans-serif;
+	margin-bottom: 1em;
+}
+
+h3 {
+	font-size: 1.5em;
+}
+
+h4 {
+	font-size: 1em;
+}
+
+img.alignleft {
+	margin: 5px 20px 20px 0;
+	float: left;
+}
+
+img.aligntop {
+	margin: 5px 0 20px 0;
+}
+
+p {
+	margin-bottom: 1.5em;
+}
+
+ul {
+	margin-bottom: 1.5em;
+}
+
+ul h4 {
+	margin-bottom: 0.35em;
+}
+
+#content {
+	width: 745px;
+	padding: 0;
+	float: left;
+}
+
+#footer {
+	text-align: center;
+	padding: 40px 0 100px 0;
+	font-size: 0.9em;
+}
+
+#footer a {
+	color: #555;
+}
+
+#header {
+	color: #FFF;
+	position: relative;
+	height: 80px;
+	background: #447289 url("bg4.jpg.xhtml?ln=images") ;
+	width: 910px;
+	padding: 35px;
+}
+
+#logo {
+	position: absolute;
+	top: 60px;
+}
+
+#logo a {
+	color: #FFF;
+	text-decoration: none;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.8);
+}
+
+#logo h1 {
+	font-size: 3em;
+	font-family: Oswald, sans-serif;
+}
+#subtitle h1 {
+	color: #FFF;
+	text-decoration: none;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.8);
+	position: relative;
+	top: 20px;
+	left: 50px;
+	font-size: 2em;
+	font-family: Oswald, sans-serif;
+}
+
+#menu {
+	
+	line-height: 60px;
+	font-family: Oswald, sans-serif;
+	padding: 0 35px 0 35px;
+	width: 910px;
+	height: 60px;
+	font-size: 1.2em;
+	background: #447289;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.8);
+}
+
+#menu #greetings {
+	position: relative;
+	bottom: 70px;
+	left: 775px;
+	line-height: 20px;
+	font-family: Oswald, sans-serif;
+	padding: 10px 15px 0 35px;
+	width: 110px;
+	height: 30px;
+	font-size: 0.8em;
+	background: #447289;
+	text-shadow: 0 1px 1px rgba(0,0,0,0.8);
+}
+
+#menu {
+	text-transform: uppercase;
+	letter-spacing: -1px;
+	color: #FFF;
+}
+
+#menu a {
+	color: #FFF;
+	text-decoration: none;
+}
+
+#menu ul {
+	list-style: none;
+}
+
+#menu ul li {
+	padding: 0 20px 0 20px;
+	height: 60px;
+	display: inline-block;
+}
+
+#menu ul li.first {
+	padding-left: 0;
+}
+
+#menu ul li.active {
+	background: #336177;
+}
+
+#menu .arrow {
+	display: inline-block;
+	margin: 0 0 0 0.5em;
+	position: relative;
+	width: 0;
+	height: 0;
+	top: -3px;
+	border-left: 6px solid transparent;
+	border-right: 6px solid transparent;
+	border-top: 7px solid #254656;
+}
+
+#page {
+	color: #656565;
+	padding: 60px 35px 25px 35px;
+	margin: 0;
+	width: 1060px;
+	position: relative;
+}
+
+#page strong {
+	color: #222;
+}
+
+#page .section-list {
+	list-style: none;
+	padding-left: 0;
+}
+
+#page .section-list li {
+	padding: 20px 0 20px 0;
+	clear: both;
+}
+
+#page ul {
+	list-style: none;
+}
+
+#page ul li {
+	padding: 10px 0 10px 0;
+	border-top: dotted 1px #CCC;
+}
+
+#page ul li.first {
+	padding-top: 0;
+	border-top: 0;
+}
+
+.box {
+	margin: 0 0 30px 0;
+	overflow: hidden;
+}
+
+#col1 {
+	float: left;
+	width: 310px;
+	overflow: hidden;
+}
+
+#col2 {
+	width: 310px;
+	overflow: hidden;
+	margin: 0 0 0 340px;
+}
+
+#search {
+	position: absolute;
+	top: 58px;
+	right: 35px;
+}
+
+#search input.form-text {
+	padding: 8px 42px 8px 12px;
+	width: 175px;
+	border: 0;
+	background: #294C5D url("search.gif.xhtml?ln=images") top right no-repeat;
+	border-top: solid 1px #1F3C49;
+	color: #D3DDE2;
+}
+
+#sidebar {
+	font-size: 9pt;
+	width: 135px;
+	margin: 0 0 0 775px;
+	padding: 0;
+}
+
+#splash {
+	height: 180px;
+	position: relative;
+	width: 980px;
+	background: #FFF;
+	overflow: hidden;
+}
+
+#wrapper {
+	width: 980px;
+	position: relative;
+	background: #fff;
+	margin: 80px auto 0 auto;
+}
+
+.dropotron {
+	min-width: 200px;
+	padding: 20px 15px 20px 15px;
+	background: #346176 url("bg4.jpg.xhtml?ln=images") top left no-repeat;
+	list-style: none;
+	line-height: 2.75em;
+}
+
+.dropotron li {
+	text-shadow: 0 1px 1px rgba(0,0,0,0.8);
+	color: #D3DDE2;
+	position: relative;
+	border-top: dotted 1px #4f798e;
+	padding: 0 20px 0 20px;
+}
+
+.dropotron li:hover {
+	background: #294C5D;
+}
+
+.dropotron li:hover .arrow {
+	border-left-color: #153646;
+}
+
+.dropotron li.first {
+	border-top: 0;
+}
+
+.dropotron li.last {
+	border-bottom: 0;
+}
+
+.dropotron li a {
+	color: #E3EAED;
+	text-decoration: none;
+}
+
+.dropotron .arrow {
+	display: inline-block;
+	margin: 0 0 0 0.5em;
+	position: absolute;
+	right: 15px;
+	top: 15px;
+	width: 0;
+	height: 0;
+	border-top: 6px solid transparent;
+	border-bottom: 6px solid transparent;
+	border-left: 7px solid #254656;
+}
+
+
+#cyber-table
+{
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	background: #fff;
+	margin: 45px;
+	width: 480px;
+	border-collapse: collapse;
+	text-align: left;
+}
+#cyber-table th
+{
+	font-size: 14px;
+	font-weight: normal;
+	color: #039;
+	padding: 10px 8px;
+	border-bottom: 2px solid #6678b1;
+}
+#cyber-table td
+{
+	border-bottom: 1px solid #ccc;
+	color: #669;
+	padding: 6px 8px;
+}
+#cyber-table tbody tr:hover td
+{
+	color: #009;
+}

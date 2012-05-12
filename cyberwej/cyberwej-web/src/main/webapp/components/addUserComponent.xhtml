@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"   
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
-
-<h:head>
-	<title>JSF 2.0 Hello World</title>
-</h:head>
-<h:body>
-	<h3>CYBERWEJ EXAMPLE</h3>
-	<f:view>
+    <body>
+	    <ui:composition>
+ 
 		<h:form>
-			<rich:toolbar>
-				<h:commandLink value="USERS" />
-				<h:commandLink value="GROUPS" />
-				<h:commandLink value="BILLINGS" />
-			</rich:toolbar>
-
-			<table>
-				<tr>
-					<td><rich:panel style="width:320px;" header="Add new user">
+					<rich:panel style="width:320px;" header="Add new user">
+						<div id="cyber-table">
 							<table>
 								<tr>
 									<td><h:outputText value="Imie" /></td>
@@ -50,10 +40,12 @@
 								</tr>
 
 							</table>
+							</div>
 								<a4j:commandButton value="Add User"
 									action="#{userLogin.saveNewUser}" render="userPanel" execute="@form" />
-						</rich:panel></td>
-					<td><rich:panel style="width:500px;" header="Existing Users" id="userPanel">
+						</rich:panel>
+					<rich:panel style="width:500px;" header="Existing Users" id="userPanel">
+							<div id="cyber-table">
 							<rich:dataTable value="#{userLogin.usersList}" var="user">
 								<f:facet name="header">
 									<h:outputText value="Registered users Table" />
@@ -82,15 +74,10 @@
 								</rich:column>
 
 							</rich:dataTable>
-
-						</rich:panel></td>
-
-
-				</tr>
-			</table>
-
-
+						</div>
+						</rich:panel>
 		</h:form>
-	</f:view>
-</h:body>
+		
+	    </ui:composition>
+    </body>
 </html>

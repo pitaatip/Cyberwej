@@ -21,6 +21,7 @@ public class AddUserBean extends BaseBean {
     public AddUserBean() {
         // Initialize user
         setUser(new User());
+        log.info("initialize user");
     }
 
     /**
@@ -31,8 +32,8 @@ public class AddUserBean extends BaseBean {
     public String remove() {
         String userToDeleteId = getParameter("userToDelete");
         service.removeUser(userToDeleteId);
+        log.info("user removed");
         return null;
-
     }
 
     /**

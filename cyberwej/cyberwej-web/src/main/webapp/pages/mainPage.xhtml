@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<h:head>
+	<title>Cyberwej Main Page</title>
+</h:head>
+<h:body>
+<f:view>
+	   	<ui:composition template="../template.xhtml" >
+    		<ui:define name="page">
+    			 		<h1>
+				 		Cyberwej main page.
+				 		</h1>
+ 		
+ 						Here is example of dynamic table, in which adding users is coducted.
+    			<ui:include src="../components/addUserComponent.xhtml" />
+    				<div id="col1">Jezeli chcemy mozemy dodac tu cos</div>
+					<div id="col2">w dwoch osobnych kolumnach. Nie wiem czy z tego skorzystamy.</div>
+    		</ui:define>
+ 
+    	</ui:composition>
+ </f:view>
+</h:body>
+</html>

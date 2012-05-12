@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<h:head>
+	<link href="http://fonts.googleapis.com/css?family=Oswald"
+		rel="stylesheet" type="text/css" />
+	<h:outputStylesheet name="style.css" library="css" />
+	<ui:insert name="title">
+		<title>Cyberwej - Main Page</title>
+	</ui:insert>
+</h:head>
+
+<h:body>
+	<h:outputScript library="javascript" name="jquery-1.7.1.min.js" />
+	<h:outputScript library="javascript" name="jquery.dropotron-1.0.js" />
+	<h:outputScript library="javascript" name="init.js" />
+	<f:view>
+		<div id="wrapper">
+			<div id="header">
+				<div id="logo">
+					<h1>
+						<a href="#">cyberwej</a>
+					</h1>
+					<div id="subtitle">
+						<h1>Do your billings cyber way!</h1>
+					</div>
+				</div>
+			</div>
+			<h:form>
+
+				<div id="page">
+					<div id="content">
+						<div class="box">
+							<!--  The main page content is replaced by another pages by defining this insert -->
+							<table id="cyber-table">
+								<tr>
+									<td><h:outputText value="Login: " /></td>
+									<td><h:inputText defaultLabel="click to enter your login"
+											value="#{loggingBean.sessionContextBean.userLogin}" /></td>
+								</tr>
+								<tr>
+									<td><h:outputText value="Password:" /></td>
+									<td><h:inputText
+											defaultLabel="click to enter your password" /></td>
+								</tr>
+								<tr>
+									<td><h:commandButton value="next" action="main" /></td>
+								</tr>
+							</table>
+						</div>
+
+						<br class="clearfix" />
+					</div>
+					<br class="clearfix" />
+				</div>
+			</h:form>
+		</div>
+		<div id="footer">Created by Krzysztof Wilaszek, Tomasz Wojcik
+			and Piotr Lesniak</div>
+
+
+	</f:view>
+
+</h:body>
+</html>

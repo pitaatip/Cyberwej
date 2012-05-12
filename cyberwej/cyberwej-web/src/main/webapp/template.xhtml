@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<h:head>
+	<link href="http://fonts.googleapis.com/css?family=Oswald"
+		rel="stylesheet" type="text/css" />
+	<h:outputStylesheet name="style.css" library="css" />
+	<ui:insert name="title">
+		<title>Cyberwej - Main Page</title>
+	</ui:insert>
+</h:head>
+
+<h:body>
+	<h:outputScript library="javascript" name="jquery-1.7.1.min.js" />
+	<h:outputScript library="javascript" name="jquery.dropotron-1.0.js" />
+	<h:outputScript library="javascript" name="init.js" />
+	<f:view>
+		<div id="wrapper">
+			<div id="header">
+				<div id="logo">
+					<h1>
+						<a href="#">cyberwej</a>
+					</h1>
+					<div id="subtitle">
+						<h1>Do your billings cyber way!</h1>
+					</div>
+				</div>
+				<div id="search">
+					<form action="" method="post">
+						<div>
+							<input class="form-text" name="search" size="32" maxlength="64" />
+						</div>
+					</form>
+				</div>
+			</div>
+			<h:form>
+				<div id="menu">
+
+					<ul>
+						<li><h:commandLink value="Add group" action="add_group" /></li>
+						<li>Register <span class="arrow"></span>
+							<ul>
+								<li class="first"><h:commandLink value="New Payment"
+										action="register_payment" /></li>
+								<li><h:commandLink value="New Payback"
+										action="register_payback" /></li>
+							</ul>
+						</li>
+						<li><h:commandLink value="Main Page" action="main" /></li>
+					</ul>
+					<div id="greetings">
+						<h:outputText value="#{templateBean.greetings}" />
+					</div>
+
+					<br class="clearfix" />
+				</div>
+				<h:commandLink value="Logout" action="#{templateBean.logout}"  style="position: relative; left: 900px; "/>
+			</h:form>
+
+			<div id="page">
+				<div id="content">
+					<div class="box">
+						<!--  The main page content is replaced by another pages by defining this insert -->
+						<ui:insert name="page">
+							<ui:include src="pages/mainPage.xhtml" />
+						</ui:insert>
+					</div>
+
+					<br class="clearfix" />
+				</div>
+				<div id="sidebar">
+					<div class="box">
+						<ui:insert name="sidebar">
+							<ui:include src="components/notificationListComponent.xhtml" />
+						</ui:insert>
+					</div>
+				</div>
+				<br class="clearfix" />
+			</div>
+		</div>
+		<div id="footer">Created by Krzysztof Wilaszek, Tomasz Wojcik
+			and Piotr Lesniak</div>
+
+
+	</f:view>
+</h:body>
+</html>

@@ -18,7 +18,24 @@
 	<packaging>war</packaging>
 	<name>cyberwej-web</name>
 	<url>http://maven.apache.org</url>
-
+	<build>
+    <plugins>
+	<plugin>
+  <groupId>org.zeroturnaround</groupId>
+  <artifactId>jrebel-maven-plugin</artifactId>
+  <executions>
+    <execution>
+      <id>generate-rebel-xml</id>
+      <phase>process-resources</phase>
+      <goals>
+        <goal>generate</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+</plugins>
+		<finalName>cyberwej-web</finalName>
+	</build>
 
 	<dependencyManagement>
 		<dependencies>
@@ -115,8 +132,5 @@
 		</dependency>
 
 	</dependencies>
-	<build>
-		<finalName>cyberwej-web</finalName>
-	</build>
 
 </project>
