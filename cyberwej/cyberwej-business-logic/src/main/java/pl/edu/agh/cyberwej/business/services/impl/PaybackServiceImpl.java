@@ -28,6 +28,7 @@ public class PaybackServiceImpl implements PaybackService {
 
     @Override
     public boolean acceptPayback(Payback payback, boolean isAccepted) {
+        // TODO update groupMembership state
         payback.setAccepted(isAccepted);
         return this.paybackDAO.updatePayback(payback);
     }

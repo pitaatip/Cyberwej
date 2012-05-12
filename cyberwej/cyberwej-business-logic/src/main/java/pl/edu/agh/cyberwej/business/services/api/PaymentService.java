@@ -5,6 +5,11 @@ import java.util.Map;
 import org.agh.iosr.cyberwej.data.objects.Payment;
 import org.agh.iosr.cyberwej.data.objects.User;
 
+/**
+ * 
+ * @author Krzysztof
+ * 
+ */
 public interface PaymentService {
 
     public float getPaymentCost(Payment payment);

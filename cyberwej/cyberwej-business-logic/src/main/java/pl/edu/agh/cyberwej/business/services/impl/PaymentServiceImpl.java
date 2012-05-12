@@ -14,6 +14,11 @@ import org.springframework.stereotype.Service;
 
 import pl.edu.agh.cyberwej.business.services.api.PaymentService;
 
+/**
+ * 
+ * @author Krzysztof
+ * 
+ */
 @Service
 public class PaymentServiceImpl implements PaymentService {
 
