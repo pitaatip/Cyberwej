@@ -4,10 +4,8 @@
 package pl.edu.agh.cyberwej.business.services.impl;
 
 import java.util.List;
-import java.util.Map;
 
 import org.agh.iosr.cyberwej.data.dao.interfaces.UserDAO;
-import org.agh.iosr.cyberwej.data.objects.Payment;
 import org.agh.iosr.cyberwej.data.objects.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -50,9 +48,4 @@ public class UserServiceImpl implements UserService {
         this.dao = dao;
     }
 
-    @Override
-    public Map<Payment, Float> getLastPayments(int count, User user) {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }
