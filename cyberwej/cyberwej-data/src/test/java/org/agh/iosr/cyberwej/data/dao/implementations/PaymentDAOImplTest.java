@@ -3,10 +3,12 @@ package org.agh.iosr.cyberwej.data.dao.implementations;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 import org.agh.iosr.cyberwej.data.dao.interfaces.GroupDAO;
 import org.agh.iosr.cyberwej.data.dao.interfaces.PaymentDAO;
@@ -43,9 +45,17 @@ public class PaymentDAOImplTest {
     private Date date;
     private final String description = "Wyjscie na pizze";
 
+    private Payment payment2;
+    private Date date2;
+    private final String description2 = "Zakup kaloryfera";
+
     private PaymentItem paymentItem;
     private final int count = 3;
     private final float price = 2.45f;
+
+    private PaymentItem paymentItem2;
+    private final int count2 = 4;
+    private final float price2 = 4.04f;
 
     private User user;
     private final String userMail = "w@wojtkowie.pl";
@@ -54,6 +64,8 @@ public class PaymentDAOImplTest {
     private final String groupName = "Grupa testowa";
 
     private final float amount = 12.5f;
+
+    private final float amount2 = 15.60f;
 
     @BeforeTransaction
     public void setUp() {
@@ -154,6 +166,69 @@ public class PaymentDAOImplTest {
         for (Payment payment : retrievedGroup.getPayments()) {
             assertTrue(payment.getParticipations().isEmpty());
         }
+    }
+
+    @Transactional
+    @Rollback(true)
+    @Test
+    public void testGetLastParticipatedPayments() {
+        this.payment2 = new Payment();
+        this.date2 = new Date();
+        this.payment2.setDate(this.date2);
+        this.payment2.setDescription(this.description2);
+        this.groupDAO.addGroupPayment(this.group, this.payment2);
+
+        this.paymentDAO.addPaymentParticipation(this.payment, this.user,
+                this.amount);
+        this.paymentDAO.addPaymentParticipation(this.payment2, this.user,
+                this.amount2);
+        List<Payment> payments = this.paymentDAO.getLastParticipatedPayments(1,
+                this.user);
+        assertNotNull(payments);
+        assertEquals(payments.size(), 1);
+        assertEquals(payments.get(0).getDate(), this.date2);
+        payments = this.paymentDAO.getLastParticipatedPayments(2, this.user);
+        assertNotNull(payments);
+        assertEquals(payments.size(), 2);
+        assertEquals(payments.get(0).getDate(), this.date2);
+        assertEquals(payments.get(1).getDate(), this.date);
+        assertNull(this.paymentDAO.getLastParticipatedPayments(500, null));
+        assertTrue(this.paymentDAO.getLastParticipatedPayments(0, this.user)
+                .isEmpty());
+    }
+
+    @Transactional
+    @Rollback(true)
+    @Test
+    public void testGetLastConsumedPayments() {
+        assertNull(this.paymentDAO.getLastParticipatedPayments(500, null));
+        assertTrue(this.paymentDAO.getLastParticipatedPayments(0, this.user)
+                .isEmpty());
+
+        this.payment2 = new Payment();
+        this.date2 = new Date();
+        this.payment2.setDate(this.date2);
+        this.payment2.setDescription(this.description2);
+        this.groupDAO.addGroupPayment(this.group, this.payment2);
+
+        this.paymentItem2 = new PaymentItem();
+        this.paymentItem2.setCount(this.count2);
+        this.paymentItem2.setPrice(this.price2);
+        this.paymentItem2.getConsumers().add(this.user);
+        this.paymentDAO.savePaymentItem(this.payment2, this.paymentItem2);
+
+        List<Payment> payments = this.paymentDAO.getLastConsumedPayments(1,
+                this.user);
+        assertNotNull(payments);
+        assertEquals(payments.size(), 1);
+        assertEquals(payments.get(0).getDate(), this.date2);
+
+        payments = this.paymentDAO.getLastConsumedPayments(2, this.user);
+        assertNotNull(payments);
+        assertEquals(payments.size(), 2);
+        assertEquals(payments.get(0).getDate(), this.date2);
+        assertEquals(payments.get(1).getDate(), this.date);
+
     }
 
     @AfterTransaction

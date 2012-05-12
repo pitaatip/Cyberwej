@@ -1,5 +1,7 @@
 package org.agh.iosr.cyberwej.data.dao.interfaces;
 
+import java.util.List;
+
 import org.agh.iosr.cyberwej.data.objects.Payment;
 import org.agh.iosr.cyberwej.data.objects.PaymentItem;
 import org.agh.iosr.cyberwej.data.objects.PaymentParticipation;
@@ -17,4 +19,7 @@ public interface PaymentDAO extends IDAO<Payment> {
     public void removePaymentParticipation(
             PaymentParticipation paymentParticipation);
 
+    public List<Payment> getLastParticipatedPayments(int count, User user);
+
+    public List<Payment> getLastConsumedPayments(int count, User user);
 }
