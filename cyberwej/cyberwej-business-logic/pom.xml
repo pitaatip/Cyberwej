@@ -11,6 +11,25 @@
 	<properties>
 		<spring.framework.version>3.0.6.RELEASE</spring.framework.version>
 	</properties>
+	
+		<build>
+    <plugins>
+	<plugin>
+  <groupId>org.zeroturnaround</groupId>
+  <artifactId>jrebel-maven-plugin</artifactId>
+  <executions>
+    <execution>
+      <id>generate-rebel-xml</id>
+      <phase>process-resources</phase>
+      <goals>
+        <goal>generate</goal>
+      </goals>
+    </execution>
+  </executions>
+</plugin>
+</plugins>
+	</build>
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
