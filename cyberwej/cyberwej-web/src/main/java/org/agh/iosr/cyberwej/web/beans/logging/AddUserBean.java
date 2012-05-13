@@ -9,8 +9,7 @@ import org.apache.log4j.Logger;
 import pl.edu.agh.cyberwej.business.services.api.UserService;
 
 /**
- * @author pita This is managed bean used on example hello view.
- * 
+ * @author pita This is managed bean used on addUserComponent.xhtml.
  */
 public class AddUserBean extends BaseBean {
     private static final Logger log = Logger.getLogger(AddUserBean.class);
@@ -25,8 +24,7 @@ public class AddUserBean extends BaseBean {
     }
 
     /**
-     * Remove user from database
-     * 
+     * Remove user from database.
      * @return
      */
     public String remove() {
@@ -37,8 +35,7 @@ public class AddUserBean extends BaseBean {
     }
 
     /**
-     * Get all users from databse
-     * 
+     * Get all users from databse.
      * @return
      */
     public List<User> getUsersList() {
@@ -46,8 +43,7 @@ public class AddUserBean extends BaseBean {
     }
 
     /**
-     * Save user in database
-     * 
+     * Save user in database.
      * @return
      */
     public String saveNewUser() {

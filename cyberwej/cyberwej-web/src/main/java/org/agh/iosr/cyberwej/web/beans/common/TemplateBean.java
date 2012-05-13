@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.agh.iosr.cyberwej.web.beans.common;
 
 import javax.faces.bean.ManagedBean;
@@ -12,7 +9,6 @@ import org.apache.log4j.Logger;
 
 /**
  * @author Pita
- * 
  */
 @ManagedBean
 @RequestScoped
@@ -32,11 +28,12 @@ public class TemplateBean {
 
     public String getGreetings() {
         log.debug("Getting user login name.");
-        String retVal = sessionContextBean.getUserLogin() != null ? "Hello, " + sessionContextBean.getUserLogin() + " !" : "";
+        String retVal = sessionContextBean.getUserLogin() != null ? "Hello, "
+                + sessionContextBean.getUserLogin() + " !" : "";
         return retVal;
     }
-    
-    public String logout(){
+
+    public String logout() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         facesContext.getExternalContext().getSessionMap().clear();
         return "logging";

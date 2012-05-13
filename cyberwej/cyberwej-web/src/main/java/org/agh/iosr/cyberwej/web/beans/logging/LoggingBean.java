@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.agh.iosr.cyberwej.web.beans.logging;
 
 import javax.faces.bean.ManagedBean;
@@ -10,13 +7,11 @@ import javax.faces.bean.RequestScoped;
 import org.agh.iosr.cyberwej.web.beans.common.SessionContextBean;
 
 /**
- * @author Pita
- *
+ * @author Pita This is request bean used on loggingPage.jspx
  */
 @ManagedBean
 @RequestScoped
 public class LoggingBean {
-    
     @ManagedProperty("#{sessionContextBean}")
     private SessionContextBean sessionContextBean;
 
@@ -27,6 +22,5 @@ public class LoggingBean {
     public void setSessionContextBean(SessionContextBean sessionContextBean) {
         this.sessionContextBean = sessionContextBean;
     }
-    
 
 }

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package org.agh.iosr.cyberwej.web.beans.common;
 
 import javax.faces.bean.ManagedBean;
@@ -8,7 +5,7 @@ import javax.faces.bean.SessionScoped;
 
 /**
  * @author Pita
- *
+ * This is session scoped bean, which is used to store data specific for each session.
  */
 
 @ManagedBean

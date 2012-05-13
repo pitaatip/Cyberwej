@@ -8,14 +8,12 @@ import javax.faces.context.FacesContext;
 /**
  * This bean has common methods for all other jsf beans. Each bean should
  * inherit from this bean.
- * 
  * @author pita
  * 
  */
 public abstract class BaseBean {
 
-    private final ExternalContext context = FacesContext.getCurrentInstance()
-            .getExternalContext();
+    private final ExternalContext context = FacesContext.getCurrentInstance().getExternalContext();
 
     /**
      * @param paramName
