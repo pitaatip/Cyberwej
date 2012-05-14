@@ -4,15 +4,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.agh.iosr.cyberwej.data.dao.interfaces.PaymentDAO;
-import org.agh.iosr.cyberwej.data.objects.Payment;
-import org.agh.iosr.cyberwej.data.objects.PaymentItem;
-import org.agh.iosr.cyberwej.data.objects.PaymentParticipation;
-import org.agh.iosr.cyberwej.data.objects.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.edu.agh.cyberwej.business.services.api.PaymentService;
+import pl.edu.agh.cyberwej.data.dao.interfaces.PaymentDAO;
+import pl.edu.agh.cyberwej.data.objects.Payment;
+import pl.edu.agh.cyberwej.data.objects.PaymentItem;
+import pl.edu.agh.cyberwej.data.objects.PaymentParticipation;
+import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
  * 

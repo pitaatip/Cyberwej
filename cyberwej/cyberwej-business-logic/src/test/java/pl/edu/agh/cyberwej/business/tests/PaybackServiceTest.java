@@ -6,10 +6,6 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.agh.iosr.cyberwej.data.dao.interfaces.PaybackDAO;
-import org.agh.iosr.cyberwej.data.objects.Group;
-import org.agh.iosr.cyberwej.data.objects.Payback;
-import org.agh.iosr.cyberwej.data.objects.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,6 +14,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import pl.edu.agh.cyberwej.business.services.impl.PaybackServiceImpl;
+import pl.edu.agh.cyberwej.data.dao.interfaces.PaybackDAO;
+import pl.edu.agh.cyberwej.data.objects.Group;
+import pl.edu.agh.cyberwej.data.objects.Payback;
+import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
  * 

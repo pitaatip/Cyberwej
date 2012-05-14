@@ -1,13 +1,13 @@
 package pl.edu.agh.cyberwej.business.services.impl;
 
-import org.agh.iosr.cyberwej.data.dao.interfaces.InvitationDAO;
-import org.agh.iosr.cyberwej.data.objects.Group;
-import org.agh.iosr.cyberwej.data.objects.Invitation;
-import org.agh.iosr.cyberwej.data.objects.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.edu.agh.cyberwej.business.services.api.InvitationService;
+import pl.edu.agh.cyberwej.data.dao.interfaces.InvitationDAO;
+import pl.edu.agh.cyberwej.data.objects.Group;
+import pl.edu.agh.cyberwej.data.objects.Invitation;
+import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
  * 

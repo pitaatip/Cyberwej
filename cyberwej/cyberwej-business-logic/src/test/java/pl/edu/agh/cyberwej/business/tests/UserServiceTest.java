@@ -11,8 +11,6 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.agh.iosr.cyberwej.data.dao.interfaces.UserDAO;
-import org.agh.iosr.cyberwej.data.objects.User;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +19,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import pl.edu.agh.cyberwej.business.services.impl.UserServiceImpl;
+import pl.edu.agh.cyberwej.data.dao.interfaces.UserDAO;
+import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
  * @author pita
@@ -63,7 +63,7 @@ public class UserServiceTest {
 
     /**
      * Test method for
-     * {@link pl.edu.agh.cyberwej.business.services.impl.UserServiceImpl#saveUser(org.agh.iosr.cyberwej.data.objects.User)}
+     * {@link pl.edu.agh.cyberwej.business.services.impl.UserServiceImpl#saveUser(pl.edu.agh.cyberwej.data.objects.User)}
      * .
      */
     @Test(expected = Throwable.class)

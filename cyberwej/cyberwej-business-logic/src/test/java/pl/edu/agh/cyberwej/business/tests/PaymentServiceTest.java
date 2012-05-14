@@ -13,11 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.agh.iosr.cyberwej.data.dao.interfaces.PaymentDAO;
-import org.agh.iosr.cyberwej.data.objects.Payment;
-import org.agh.iosr.cyberwej.data.objects.PaymentItem;
-import org.agh.iosr.cyberwej.data.objects.PaymentParticipation;
-import org.agh.iosr.cyberwej.data.objects.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +21,11 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import pl.edu.agh.cyberwej.business.services.impl.PaymentServiceImpl;
+import pl.edu.agh.cyberwej.data.dao.interfaces.PaymentDAO;
+import pl.edu.agh.cyberwej.data.objects.Payment;
+import pl.edu.agh.cyberwej.data.objects.PaymentItem;
+import pl.edu.agh.cyberwej.data.objects.PaymentParticipation;
+import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
  * 

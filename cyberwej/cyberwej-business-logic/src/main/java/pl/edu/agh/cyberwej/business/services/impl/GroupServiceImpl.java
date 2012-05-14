@@ -1,11 +1,11 @@
 package pl.edu.agh.cyberwej.business.services.impl;
 
-import org.agh.iosr.cyberwej.data.dao.interfaces.GroupDAO;
-import org.agh.iosr.cyberwej.data.objects.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.edu.agh.cyberwej.business.services.api.GroupService;
+import pl.edu.agh.cyberwej.data.dao.interfaces.GroupDAO;
+import pl.edu.agh.cyberwej.data.objects.Group;
 
 /**
  * 

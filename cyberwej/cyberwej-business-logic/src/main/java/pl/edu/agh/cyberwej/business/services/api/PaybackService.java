@@ -1,8 +1,8 @@
 package pl.edu.agh.cyberwej.business.services.api;
 
-import org.agh.iosr.cyberwej.data.objects.Group;
-import org.agh.iosr.cyberwej.data.objects.Payback;
-import org.agh.iosr.cyberwej.data.objects.User;
+import pl.edu.agh.cyberwej.data.objects.Group;
+import pl.edu.agh.cyberwej.data.objects.Payback;
+import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
  * 

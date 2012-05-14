@@ -5,15 +5,15 @@
 
 <hibernate-configuration>
 	<session-factory>
-		<mapping class="org.agh.iosr.cyberwej.data.objects.User" />
-		<mapping class="org.agh.iosr.cyberwej.data.objects.GroupMembership" />
-		<mapping class="org.agh.iosr.cyberwej.data.objects.Group" />
-		<mapping class="org.agh.iosr.cyberwej.data.objects.Product" />
-		<mapping class="org.agh.iosr.cyberwej.data.objects.PaymentItem" />
-		<mapping class="org.agh.iosr.cyberwej.data.objects.Payment" />
-		<mapping class="org.agh.iosr.cyberwej.data.objects.Invitation" />
-		<mapping class="org.agh.iosr.cyberwej.data.objects.Payback" />
-		<mapping class="org.agh.iosr.cyberwej.data.objects.PaymentParticipation" />
+		<mapping class="pl.edu.agh.cyberwej.data.objects.User" />
+		<mapping class="pl.edu.agh.cyberwej.data.objects.GroupMembership" />
+		<mapping class="pl.edu.agh.cyberwej.data.objects.Group" />
+		<mapping class="pl.edu.agh.cyberwej.data.objects.Product" />
+		<mapping class="pl.edu.agh.cyberwej.data.objects.PaymentItem" />
+		<mapping class="pl.edu.agh.cyberwej.data.objects.Payment" />
+		<mapping class="pl.edu.agh.cyberwej.data.objects.Invitation" />
+		<mapping class="pl.edu.agh.cyberwej.data.objects.Payback" />
+		<mapping class="pl.edu.agh.cyberwej.data.objects.PaymentParticipation" />
 
 	</session-factory>
 </hibernate-configuration>

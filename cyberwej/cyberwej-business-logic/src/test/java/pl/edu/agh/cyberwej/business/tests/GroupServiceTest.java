@@ -3,8 +3,6 @@ package pl.edu.agh.cyberwej.business.tests;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import org.agh.iosr.cyberwej.data.dao.interfaces.GroupDAO;
-import org.agh.iosr.cyberwej.data.objects.Group;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import pl.edu.agh.cyberwej.business.services.impl.GroupServiceImpl;
+import pl.edu.agh.cyberwej.data.dao.interfaces.GroupDAO;
+import pl.edu.agh.cyberwej.data.objects.Group;
 
 /**
  * 

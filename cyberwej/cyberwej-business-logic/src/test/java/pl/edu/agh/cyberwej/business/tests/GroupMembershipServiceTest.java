@@ -7,10 +7,6 @@ import static org.mockito.Mockito.only;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.agh.iosr.cyberwej.data.dao.interfaces.GroupMembershipDAO;
-import org.agh.iosr.cyberwej.data.objects.Group;
-import org.agh.iosr.cyberwej.data.objects.GroupMembership;
-import org.agh.iosr.cyberwej.data.objects.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +15,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import pl.edu.agh.cyberwej.business.services.impl.GroupMembershipServiceImpl;
+import pl.edu.agh.cyberwej.data.dao.interfaces.GroupMembershipDAO;
+import pl.edu.agh.cyberwej.data.objects.Group;
+import pl.edu.agh.cyberwej.data.objects.GroupMembership;
+import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
  * 

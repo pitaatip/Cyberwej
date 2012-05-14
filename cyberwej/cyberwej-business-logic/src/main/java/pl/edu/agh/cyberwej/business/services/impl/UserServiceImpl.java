@@ -5,12 +5,12 @@ package pl.edu.agh.cyberwej.business.services.impl;
 
 import java.util.List;
 
-import org.agh.iosr.cyberwej.data.dao.interfaces.UserDAO;
-import org.agh.iosr.cyberwej.data.objects.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import pl.edu.agh.cyberwej.business.services.api.UserService;
+import pl.edu.agh.cyberwej.data.dao.interfaces.UserDAO;
+import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
  * @author pita

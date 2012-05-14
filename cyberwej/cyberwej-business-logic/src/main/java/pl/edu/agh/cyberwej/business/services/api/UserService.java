@@ -5,7 +5,7 @@ package pl.edu.agh.cyberwej.business.services.api;
 
 import java.util.List;
 
-import org.agh.iosr.cyberwej.data.objects.User;
+import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
  * @author pita

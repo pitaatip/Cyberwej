@@ -11,7 +11,7 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<context:component-scan
-		base-package="org.agh.iosr.cyberwej.data.dao.implementations" />
+		base-package="pl.edu.agh.cyberwej.data.dao.implementations" />
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">

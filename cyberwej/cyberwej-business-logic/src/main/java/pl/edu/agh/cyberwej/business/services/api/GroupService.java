@@ -1,6 +1,6 @@
 package pl.edu.agh.cyberwej.business.services.api;
 
-import org.agh.iosr.cyberwej.data.objects.Group;
+import pl.edu.agh.cyberwej.data.objects.Group;
 
 /**
  * 

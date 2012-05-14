@@ -13,7 +13,7 @@
 
 	<managed-bean>
 		<managed-bean-name>userLogin</managed-bean-name>
-		<managed-bean-class>org.agh.iosr.cyberwej.web.beans.logging.AddUserBean</managed-bean-class>
+		<managed-bean-class>pl.edu.agh.cyberwej.web.beans.logging.AddUserBean</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 		<managed-property>
 			<property-name>service</property-name>

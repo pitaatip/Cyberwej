@@ -2,8 +2,8 @@ package pl.edu.agh.cyberwej.business.services.api;
 
 import java.util.Map;
 
-import org.agh.iosr.cyberwej.data.objects.Payment;
-import org.agh.iosr.cyberwej.data.objects.User;
+import pl.edu.agh.cyberwej.data.objects.Payment;
+import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
  * 
