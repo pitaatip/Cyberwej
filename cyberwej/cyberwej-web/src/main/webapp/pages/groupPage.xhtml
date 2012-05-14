@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<h:head>
+	<title>Group Page</title>
+</h:head>
+<h:body>
+	<f:view>
+		<ui:composition template="../template.xhtml">
+			<ui:define name="title">
+				<title>Cyberwej - Group Page</title>
+			</ui:define>
+			<ui:define name="page">
+				<div id="col1">
+					<ui:include src="../components/groupInfoComponent.xhtml" />
+				</div>
+				<div id="col2">
+					<ui:include src="../components/groupMembersComponent.xhtml" />
+				</div>
+				<ui:include src="../components/groupPaymentsComponent.xhtml" />
+			</ui:define>
+
+		</ui:composition>
+	</f:view>
+</h:body>
+</html>
