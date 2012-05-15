@@ -12,19 +12,22 @@
 	<title>User Page</title>
 </h:head>
 <h:body>
-<f:view>
-	   	<ui:composition template="../template.xhtml" >
-	   		<ui:define name="title">
+	<f:view>
+		<ui:composition template="../template.xhtml">
+			<ui:define name="title">
 				<title>Cyberwej - User Page</title>
 			</ui:define>
-    		<ui:define name="page">
-    			 		<h1>
-				 		User Page.
-				 		</h1>
- 						
-    		</ui:define>
- 
-    	</ui:composition>
- </f:view>
+			<ui:define name="page">
+				<h2>User</h2>
+				<div id="col1">
+					<ui:include src="../components/userInfoComponent.xhtml" />
+				</div>
+				<div id="col2">
+					<ui:include src="../components/groupsListComponent.xhtml" />
+				</div>
+			</ui:define>
+
+		</ui:composition>
+	</f:view>
 </h:body>
 </html>
