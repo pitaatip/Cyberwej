@@ -8,9 +8,10 @@
 
 	<description>CyberWej business layer context configuration</description>
 	
-	<import resource="classpath:/META-INF/spring/app-data-context.xml"/> 
+<!-- 	<import resource="classpath:/META-INF/spring/app-data-context.xml"/> 
+ -->    <import resource="classpath:/META-INF/spring/app-business-context.xml"/> 
 	
-	<context:component-scan
+<!-- 	<context:component-scan
 		base-package="pl.edu.agh.cyberwej.business" />
-
+ -->
 </beans>

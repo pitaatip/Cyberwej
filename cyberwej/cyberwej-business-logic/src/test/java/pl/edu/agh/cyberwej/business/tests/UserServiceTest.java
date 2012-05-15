@@ -18,7 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import pl.edu.agh.cyberwej.business.services.impl.UserServiceImpl;
+import pl.edu.agh.cyberwej.business.services.api.UserService;
 import pl.edu.agh.cyberwej.data.dao.interfaces.UserDAO;
 import pl.edu.agh.cyberwej.data.objects.User;
 
@@ -38,7 +38,7 @@ public class UserServiceTest {
     }
 
     @Autowired
-    UserServiceImpl service;
+    UserService service;
 
     /**
      * Test method for

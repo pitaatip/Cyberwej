@@ -4,4 +4,5 @@ public interface IDAO<ENTITY> {
 
     public boolean save(ENTITY entity);
 
+    public ENTITY getById(int id);
 }

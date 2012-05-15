@@ -6,11 +6,12 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
-	<description>CyberWej business layer context configuration</description>
-	
-	<import resource="classpath:/META-INF/spring/app-data-context.xml"/> 
-	
-	<context:component-scan
-		base-package="pl.edu.agh.cyberwej.business.services.impl" />
+	<description>CyberWej business layer context configuration
+	</description>
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+	<import resource="classpath:/META-INF/spring/app-data-context.xml" />
+	<context:component-scan base-package="pl.edu.agh.cyberwej.business.services.impl" />
 
 </beans>

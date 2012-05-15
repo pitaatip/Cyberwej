@@ -7,7 +7,7 @@
 
 
 	<application>
-	<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 	</application>
 
 
@@ -21,29 +21,33 @@
 		</managed-property>
 	</managed-bean>
 
-	 <navigation-rule>
-	<navigation-case>
-		<from-outcome>main</from-outcome>
-		<to-view-id>pages/mainPage.xhtml</to-view-id>
-	</navigation-case>
-	
-	<navigation-case>
-		<from-outcome>add_group</from-outcome>
-		<to-view-id>pages/addGroupPage.xhtml</to-view-id>
-	</navigation-case>
-	<navigation-case>
-		<from-outcome>register_payment</from-outcome>
-		<to-view-id>pages/registerPaymentPage.xhtml</to-view-id>
-	</navigation-case>
-	<navigation-case>
-		<from-outcome>register_payback</from-outcome>
-		<to-view-id>pages/registerPaybackPage.xhtml</to-view-id>
-	</navigation-case>
-	<navigation-case>
-		<from-outcome>logging</from-outcome>
-		<to-view-id>pages/loggingPage.xhtml</to-view-id>
-	</navigation-case>
-	
-	
-    </navigation-rule>	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>main</from-outcome>
+			<to-view-id>pages/mainPage.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>add_group</from-outcome>
+			<to-view-id>pages/addGroupPage.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>register_payment</from-outcome>
+			<to-view-id>pages/registerPaymentPage.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>register_payback</from-outcome>
+			<to-view-id>pages/registerPaybackPage.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>logging</from-outcome>
+			<to-view-id>pages/loggingPage.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>userPage</from-outcome>
+			<to-view-id>pages/userPage.xhtml</to-view-id>
+		</navigation-case>
+
+
+	</navigation-rule>
 </faces-config>

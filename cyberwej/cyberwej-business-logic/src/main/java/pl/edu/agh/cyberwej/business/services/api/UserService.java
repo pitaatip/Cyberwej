@@ -5,6 +5,8 @@ package pl.edu.agh.cyberwej.business.services.api;
 
 import java.util.List;
 
+import pl.edu.agh.cyberwej.data.dao.interfaces.UserDAO;
+import pl.edu.agh.cyberwej.data.objects.GroupMembership;
 import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
@@ -34,4 +36,9 @@ public interface UserService {
      */
     public void removeUser(String id);
 
+    public User getUserById(int id);
+
+    public List<GroupMembership> getUserGroupMemberships(User user);
+
+    public void setDao(UserDAO dao);
 }

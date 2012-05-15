@@ -86,4 +86,13 @@ public class UserDAOImplTest {
         assertFalse(users.isEmpty());
         assertTrue(users.contains(this.user));
     }
+
+    @Transactional
+    @Rollback(true)
+    @Test
+    public void testGetById() {
+        User retrievedUser = this.userDAO.getById(this.user.getId());
+        assertNotNull(retrievedUser);
+        assertEquals(retrievedUser.getLogin(), this.user.getLogin());
+    }
 }

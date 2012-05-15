@@ -1,83 +1,87 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
-    <body>
-	    <ui:composition>
- 
+<body>
+	<ui:composition>
+
 		<h:form>
-					<rich:panel style="width:320px;" header="Add new user">
-						<div id="cyber-table">
-							<table>
-								<tr>
-									<td><h:outputText value="Imie" /></td>
-									<td><h:inputText value="#{userLogin.user.name}">
-											<rich:validator />
-										</h:inputText></td>
-								</tr>
-								<tr>
-									<td><h:outputText value="Nazwisko" /></td>
-									<td><h:inputText value="#{userLogin.user.surname}">
-											<rich:validator />
-										</h:inputText></td>
-								</tr>
-								<tr>
-									<td><h:outputText value="Login" /></td>
-									<td><h:inputText value="#{userLogin.user.login}">
-											<rich:validator />
-										</h:inputText></td>
-								</tr>
-								<tr>
-									<td><h:outputText value="Mail" /></td>
-									<td><h:inputText value="#{userLogin.user.mail}">
-											<rich:validator />
-										</h:inputText></td>
-								</tr>
+			<rich:panel style="width:320px;" header="Add new user">
+				<div id="cyber-table">
+					<table>
+						<tr>
+							<td><h:outputText value="Imie" /></td>
+							<td><h:inputText value="#{userLogin.user.name}">
+									<rich:validator />
+								</h:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Nazwisko" /></td>
+							<td><h:inputText value="#{userLogin.user.surname}">
+									<rich:validator />
+								</h:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Login" /></td>
+							<td><h:inputText value="#{userLogin.user.login}">
+									<rich:validator />
+								</h:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Mail" /></td>
+							<td><h:inputText value="#{userLogin.user.mail}">
+									<rich:validator />
+								</h:inputText></td>
+						</tr>
 
-							</table>
-							</div>
-								<a4j:commandButton value="Add User"
-									action="#{userLogin.saveNewUser}" render="userPanel" execute="@form" />
-						</rich:panel>
-					<rich:panel style="width:500px;" header="Existing Users" id="userPanel">
-							<div id="cyber-table">
-							<rich:dataTable value="#{userLogin.usersList}" var="user">
-								<f:facet name="header">
-									<h:outputText value="Registered users Table" />
-								</f:facet>
-								<rich:column>
-									<f:facet name="header">Name</f:facet>
-									<h:outputText value="#{user.name}" />
-								</rich:column>
-								<rich:column>
-									<f:facet name="header">Surname</f:facet>
-									<h:outputText value="#{user.surname}" />
-								</rich:column>
-								<rich:column>
-									<f:facet name="header">Mail Address</f:facet>
-									<h:outputText value="#{user.mail}" />
-								</rich:column>
-								<rich:column>
-									<f:facet name="header">Login</f:facet>
-									<h:outputText value="#{user.login}" />
-								</rich:column>
-								<rich:column>
-									<f:facet name="header">Actions</f:facet>
-									<h:commandButton action="#{userLogin.remove}" value="delete">
-										<f:param name="userToDelete" value="#{user.id}" />
-									</h:commandButton>
-								</rich:column>
+					</table>
+				</div>
+				<a4j:commandButton value="Add User"
+					action="#{userLogin.saveNewUser}" render="userPanel"
+					execute="@form" />
+			</rich:panel>
+			<rich:panel style="width:500px;" header="Existing Users"
+				id="userPanel">
+				<div id="cyber-table">
+					<rich:dataTable value="#{userLogin.usersList}" var="user">
+						<f:facet name="header">
+							<h:outputText value="Registered users Table" />
+						</f:facet>
+						<rich:column>
+							<f:facet name="header">Name</f:facet>
+							<h:outputText value="#{user.name}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Surname</f:facet>
+							<h:outputText value="#{user.surname}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Mail Address</f:facet>
+							<h:outputText value="#{user.mail}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Login</f:facet>
+							<h:commandLink action="userPage" value="#{user.login}">
+								<f:param name="userToShow" value="#{user.id}" />
+							</h:commandLink>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Actions</f:facet>
+							<h:commandButton action="#{userLogin.remove}" value="delete">
+								<f:param name="userToDelete" value="#{user.id}" />
+							</h:commandButton>
+						</rich:column>
 
-							</rich:dataTable>
-						</div>
-						</rich:panel>
+					</rich:dataTable>
+				</div>
+			</rich:panel>
 		</h:form>
-		
-	    </ui:composition>
-    </body>
+
+	</ui:composition>
+</body>
 </html>

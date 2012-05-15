@@ -2,38 +2,40 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:f="http://java.sun.com/jsf/core"
-    xmlns:ui="http://java.sun.com/jsf/facelets"
-    xmlns:h="http://java.sun.com/jsf/html"
-    xmlns:rich="http://richfaces.org/rich"
-    xmlns:a4j="http://richfaces.org/a4j">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
 <body>
-    <ui:composition>
+	<ui:composition>
 
-        <h:form>
-            <rich:panel style="width:600px;">
-                <div id="cyber-table">
-                    <rich:dataTable>
-                        <f:facet name="header">
-                            <h:outputText value="Groups" />
-                        </f:facet>
-                        <rich:column>
-                            <f:facet name="header">Name</f:facet>
-                        </rich:column>
-                        <rich:column>
-                            <f:facet name="header">Users</f:facet>
-                        </rich:column>
-                        <rich:column>
-                            <f:facet name="header">Payments</f:facet>
-                        </rich:column>
-                        <rich:column>
-                            <f:facet name="header">Created on</f:facet>
-                        </rich:column>
-                    </rich:dataTable>
-                </div>
-            </rich:panel>
-        </h:form>
+		<h:form>
+			<rich:panel style="width:600px;">
+				<div id="cyber-table">
+					<rich:dataTable
+						value="#{userInformationBean.groupMemberships}" var="groupMembership">
+						<f:facet name="header">
+							<h:outputText value="Groups" />
+						</f:facet>
+						<rich:column>
+							<f:facet name="header">Name</f:facet>
+							<h:outputText value="#{groupMembership.group.name}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Users</f:facet>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Payments</f:facet>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Created on</f:facet>
+						</rich:column>
+					</rich:dataTable>
+				</div>
+			</rich:panel>
+		</h:form>
 
-    </ui:composition>
+	</ui:composition>
 </body>
 </html>
