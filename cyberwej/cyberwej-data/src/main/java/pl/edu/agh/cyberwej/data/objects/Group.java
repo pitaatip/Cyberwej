@@ -33,7 +33,7 @@ public class Group {
     @Column(name = "GROUPID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -42,7 +42,7 @@ public class Group {
 
     @Column(name = "NAME", unique = true)
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -51,7 +51,7 @@ public class Group {
 
     @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "group")
     public Set<GroupMembership> getGroupMembers() {
-        return groupMembers;
+        return this.groupMembers;
     }
 
     public void setGroupMembers(Set<GroupMembership> groupMembers) {
@@ -60,7 +60,7 @@ public class Group {
 
     @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "group")
     public Set<Invitation> getInvitations() {
-        return invitations;
+        return this.invitations;
     }
 
     public void setInvitations(Set<Invitation> invitations) {
@@ -70,7 +70,7 @@ public class Group {
     @OneToMany(cascade = { CascadeType.ALL })
     @JoinColumn(name = "GROUPID", nullable = false)
     public Set<Payment> getPayments() {
-        return payments;
+        return this.payments;
     }
 
     public void setPayments(Set<Payment> payments) {
@@ -79,7 +79,7 @@ public class Group {
 
     @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "group")
     public Set<Payback> getPaybacks() {
-        return paybacks;
+        return this.paybacks;
     }
 
     public void setPaybacks(Set<Payback> paybacks) {
