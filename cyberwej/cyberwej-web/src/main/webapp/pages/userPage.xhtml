@@ -18,7 +18,11 @@
 				<title>Cyberwej - User Page</title>
 			</ui:define>
 			<ui:define name="page">
-				<h2>User</h2>
+				<h2>
+					User
+					<br/>
+					<h:outputText value="#{userInformationBean.user.name}" />
+				</h2>
 				<div id="col1">
 					<ui:include src="../components/userInfoComponent.xhtml" />
 				</div>
