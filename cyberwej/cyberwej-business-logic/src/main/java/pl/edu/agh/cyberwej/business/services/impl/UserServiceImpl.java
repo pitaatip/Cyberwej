@@ -63,15 +63,6 @@ public class UserServiceImpl implements UserService {
         user = this.dao.getById(user.getId());
         return new LinkedList<GroupMembership>(user.getGroupMemberships());
     }
-    
-    @Transactional(readOnly = true)
-    @Override
-    public User getUserByLogin(String login) {
-        User user = this.dao.findUserByLogin(login);
-        return user;
-    }
-    
-    
 
     @Override
     public User getUserByLogin(String login) {

@@ -50,8 +50,7 @@ public class LoggedUserBean {
 
     @PostConstruct
     public void init() {
-        this.user = this.userService.getUserByLogin(this.sessionContextBean
-                .getUserLogin());
+        this.user = this.sessionContextBean.getLoggedUser();
         this.latestPaymentsMap = this.paymentService.getLastPayments(
                 this.count, this.user);
     }
