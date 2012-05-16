@@ -46,14 +46,15 @@ public class UserDAOImpl extends DAOBase<User> implements UserDAO {
             return queryResult.get(0);
         return null;
     }
-
+    
     @Override
+    @SuppressWarnings("unchecked")
     public User findUserByLogin(String login) {
-        @SuppressWarnings("unchecked")
         List<User> queryResult = this.hibernateTemplate.find(
                 "from User user where user.login=?", login);
-        if (queryResult != null && queryResult.size() > 0)
+        if (queryResult.size() > 0)
             return queryResult.get(0);
         return null;
     }
+    
 }

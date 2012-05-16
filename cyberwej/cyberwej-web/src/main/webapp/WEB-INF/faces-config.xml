@@ -20,6 +20,28 @@
 			<value>#{service}</value>
 		</managed-property>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>loggingBean</managed-bean-name>
+		<managed-bean-class>pl.edu.agh.cyberwej.web.beans.logging.LoggingBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>service</property-name>
+			<value>#{service}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>sessionContextBean</property-name>
+			<value>#{sessionContextBean}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>createUserBean</managed-bean-name>
+		<managed-bean-class>pl.edu.agh.cyberwej.web.beans.logging.CreateUserBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>service</property-name>
+			<value>#{service}</value>
+		</managed-property>
+	</managed-bean>
 
 	<navigation-rule>
 		<navigation-case>
@@ -47,6 +69,15 @@
 			<from-outcome>userPage</from-outcome>
 			<to-view-id>pages/userPage.xhtml</to-view-id>
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>createUser</from-outcome>
+			<to-view-id>pages/createUserPage.xhtml</to-view-id>
+		</navigation-case>
+				<navigation-case>
+			<from-outcome>addGroupSummary</from-outcome>
+			<to-view-id>pages/addGroupSummaryPage.xhtml</to-view-id>
+		</navigation-case>
+
 
 
 	</navigation-rule>

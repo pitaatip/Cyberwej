@@ -15,21 +15,17 @@
 	<f:view>
 		<ui:composition template="../template.xhtml">
 			<ui:define name="title">
-				<title>Cyberwej - Add group</title>
+				<title>Cyberwej - Add group summary</title>
 			</ui:define>
 
 			<ui:define name="page">
-				<h1>Add Group Page</h1>
+				<h1>Summary of add Group</h1>
 
 				<h:form>
 					<table id="cyber-table">
 						<tr>
 							<td><h:outputText value="Group Name: " /></td>
-							<td><h:inputText value="#{addGroupBean.group.name}" /></td>
-						</tr>
-						<tr>
-							<td><h:commandButton value="next"
-									action="#{addGroupBean.next}" /></td>
+							<td><h:outputText value="#{addGroupBean.group.name}" /></td>
 						</tr>
 					</table>
 				</h:form>
