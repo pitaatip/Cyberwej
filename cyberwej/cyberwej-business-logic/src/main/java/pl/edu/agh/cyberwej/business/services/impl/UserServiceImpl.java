@@ -64,4 +64,8 @@ public class UserServiceImpl implements UserService {
         return new LinkedList<GroupMembership>(user.getGroupMemberships());
     }
 
+    @Override
+    public User getUserByLogin(String login) {
+        return this.dao.findUserByLogin(login);
+    }
 }

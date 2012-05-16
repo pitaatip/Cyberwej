@@ -2,6 +2,7 @@ package pl.edu.agh.cyberwej.business.services.api;
 
 import java.util.Map;
 
+import pl.edu.agh.cyberwej.data.dao.interfaces.PaymentDAO;
 import pl.edu.agh.cyberwej.data.objects.Payment;
 import pl.edu.agh.cyberwej.data.objects.User;
 
@@ -27,4 +28,6 @@ public interface PaymentService {
     public Map<Payment, Float> getLastPayments(int count, User user);
 
     public float getUserStatusInPayment(Payment payment, User user);
+
+    public void setPaymentDAO(PaymentDAO paymentDAO);
 }

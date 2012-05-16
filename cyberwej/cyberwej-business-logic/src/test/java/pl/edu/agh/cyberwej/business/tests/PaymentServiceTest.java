@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import pl.edu.agh.cyberwej.business.services.impl.PaymentServiceImpl;
+import pl.edu.agh.cyberwej.business.services.api.PaymentService;
 import pl.edu.agh.cyberwej.data.dao.interfaces.PaymentDAO;
 import pl.edu.agh.cyberwej.data.objects.Payment;
 import pl.edu.agh.cyberwej.data.objects.PaymentItem;
@@ -38,7 +38,7 @@ import pl.edu.agh.cyberwej.data.objects.User;
 public class PaymentServiceTest {
 
     @Autowired
-    private PaymentServiceImpl paymentService;
+    private PaymentService paymentService;
 
     private Payment paymentMock;
 

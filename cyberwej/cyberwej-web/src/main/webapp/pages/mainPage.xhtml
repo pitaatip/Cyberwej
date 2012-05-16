@@ -12,20 +12,23 @@
 	<title>Cyberwej Main Page</title>
 </h:head>
 <h:body>
-<f:view>
-	   	<ui:composition template="../template.xhtml" >
-    		<ui:define name="page">
-    			 		<h1>
-				 		Cyberwej - main page.
-				 		</h1>
- 		
+	<f:view>
+		<ui:composition template="../template.xhtml">
+			<ui:define name="page">
+				<h2>Cyberwej - main page.</h2>
+<!--  		
  						Here is example of dynamic table, in which adding users is coducted.
     			<ui:include src="../components/addUserComponent.xhtml" />
-    				<div id="col1">Jezeli chcemy mozemy dodac tu cos</div>
-					<div id="col2">w dwoch osobnych kolumnach. Nie wiem czy z tego skorzystamy.</div>
-    		</ui:define>
- 
-    	</ui:composition>
- </f:view>
+ -->
+                <ui:include src="../components/loggedUserGroupsComponent.xhtml" />
+                <ui:include src="../components/loggedUserPaymentsComponent.xhtml" />
+                
+				<div id="col1">Jezeli chcemy mozemy dodac tu cos</div>
+				<div id="col2">w dwoch osobnych kolumnach. Nie wiem czy z tego
+					skorzystamy.</div>
+			</ui:define>
+
+		</ui:composition>
+	</f:view>
 </h:body>
 </html>

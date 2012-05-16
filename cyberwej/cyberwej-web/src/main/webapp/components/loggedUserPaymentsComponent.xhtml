@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+<body>
+	<ui:composition>
+
+		<h:form>
+			<rich:panel style="width:320px;">
+				<div id="cyber-table">
+					<rich:dataTable value="#{loggedUserBean.payments}" var="payment">
+						<f:facet name="header">
+							<h:outputText value="Your latest payments" />
+						</f:facet>
+						<rich:column>
+							<f:facet name="header">Name</f:facet>
+							<h:outputText value="#{payment.description}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Registered on</f:facet>
+							<h:outputText value="#{payment.date}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">You spent</f:facet>
+							<h:outputText
+								style="color:#{(loggedUserBean.latestPaymentsMap[payment] > 0)  ? 'Green' : 'Red'}"
+								value="#{loggedUserBean.latestPaymentsMap[payment]}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Group</f:facet>
+						</rich:column>
+					</rich:dataTable>
+				</div>
+			</rich:panel>
+		</h:form>
+
+	</ui:composition>
+</body>
+</html>

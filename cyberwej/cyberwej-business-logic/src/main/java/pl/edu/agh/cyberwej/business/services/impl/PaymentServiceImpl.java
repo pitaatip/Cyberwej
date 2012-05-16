@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import pl.edu.agh.cyberwej.business.services.api.PaymentService;
 import pl.edu.agh.cyberwej.data.dao.interfaces.PaymentDAO;
@@ -19,7 +21,7 @@ import pl.edu.agh.cyberwej.data.objects.User;
  * @author Krzysztof
  * 
  */
-@Service
+@Service(value = "paymentService")
 public class PaymentServiceImpl implements PaymentService {
 
     @Autowired
@@ -33,6 +35,7 @@ public class PaymentServiceImpl implements PaymentService {
         return result;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public Map<Payment, Float> getLastPayments(int count, User user) {
         List<Payment> consumedPayments = this.paymentDAO
@@ -60,6 +63,7 @@ public class PaymentServiceImpl implements PaymentService {
         return result;
     }
 
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     @Override
     public float getUserStatusInPayment(Payment payment, User user) {
         float result = 0.0f;

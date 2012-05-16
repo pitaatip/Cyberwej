@@ -95,4 +95,10 @@ public class UserDAOImplTest {
         assertNotNull(retrievedUser);
         assertEquals(retrievedUser.getLogin(), this.user.getLogin());
     }
+
+    public void testFindUserByLogin() {
+        User retrievedUser = this.userDAO.findUserByLogin(this.login);
+        assertNotNull(retrievedUser);
+        assertEquals(retrievedUser.getLogin(), this.user.getLogin());
+    }
 }

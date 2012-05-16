@@ -11,6 +11,8 @@ public interface UserDAO extends IDAO<User> {
 
     public User findUserById(int id);
 
+    public User findUserByLogin(String login);
+
     public void removeUser(User user);
 
     public List<User> getAllUsers();
