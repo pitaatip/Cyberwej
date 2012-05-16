@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<h:body>
+	<f:view>
+		<ui:composition template="../templateLoggedout.xhtml">
+			<ui:define name="title">
+				<title>Cyberwej - Create your account</title>
+			</ui:define>
+
+			<ui:define name="page">
+				<h:form>
+						<h1>
+				 		Cyberwej - main page.
+				 		</h1>
+					Enter information about yourself
+					<table id="cyber-table">
+						<tr>
+							<td><h:outputText value="Login: " /></td>
+							<td><h:inputText value="#{createUserBean.user.login}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Password: " /></td>
+							<td><h:inputSecret  /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Name: " /></td>
+							<td><h:inputText value="#{createUserBean.user.name}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Surname: " /></td>
+							<td><h:inputText value="#{createUserBean.user.surname}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Mail address: " /></td>
+							<td><h:inputText value="#{createUserBean.user.mail}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Address: " /></td>
+							<td><h:inputText value="#{createUserBean.user.location}" /></td>
+						</tr>
+
+						<tr>
+							<td><h:commandButton value="Save" action="#{createUserBean.saveNewUser}" /></td>
+						</tr>
+					</table>
+ 				</h:form>
+			</ui:define>
+
+		</ui:composition>
+	</f:view>
+</h:body>
+</html>

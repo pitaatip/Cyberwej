@@ -9,64 +9,42 @@
 	xmlns:a4j="http://richfaces.org/a4j">
 
 <h:head>
-	<link href="http://fonts.googleapis.com/css?family=Oswald"
-		rel="stylesheet" type="text/css" />
-	<h:outputStylesheet name="style.css" library="css" />
-	<ui:insert name="title">
-		<title>Cyberwej - Main Page</title>
-	</ui:insert>
+	<title>Log in</title>
 </h:head>
-
 <h:body>
-	<h:outputScript library="javascript" name="jquery-1.7.1.min.js" />
-	<h:outputScript library="javascript" name="jquery.dropotron-1.0.js" />
-	<h:outputScript library="javascript" name="init.js" />
 	<f:view>
-		<div id="wrapper">
-			<div id="header">
-				<div id="logo">
-					<h1>
-						<a href="#">cyberwej</a>
-					</h1>
-					<div id="subtitle">
-						<h1>Do your billings cyber way!</h1>
-					</div>
-				</div>
-			</div>
-			<h:form>
+		<ui:composition template="../templateLoggedout.xhtml">
+			<ui:define name="title">
+				<title>Cyberwej - Log in</title>
+			</ui:define>
 
-				<div id="page">
-					<div id="content">
-						<div class="box">
-							<!--  The main page content is replaced by another pages by defining this insert -->
-							<table id="cyber-table">
-								<tr>
-									<td><h:outputText value="Login: " /></td>
-									<td><h:inputText defaultLabel="click to enter your login"
-											value="#{loggingBean.sessionContextBean.userLogin}" /></td>
-								</tr>
-								<tr>
-									<td><h:outputText value="Password:" /></td>
-									<td><h:inputText
-											defaultLabel="click to enter your password" /></td>
-								</tr>
-								<tr>
-									<td><h:commandButton value="next" action="main" /></td>
-								</tr>
-							</table>
-						</div>
+			<ui:define name="page">
+				<a4j:outputPanel id="errors">
+					<h:outputText value="User loign does not exist in system!"
+						rendered="#{loggingBean.loginErrors}" style="color: red;" />
+				</a4j:outputPanel>
+				<h:form>
+					<table id="cyber-table">
+						<tr>
+							<td><h:outputText value="Login: " /></td>
+							<td><h:inputText defaultLabel="click to enter your login"
+									value="#{loggingBean.userLogin}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Password:" /></td>
+							<td><h:inputSecret defaultLabel="click to enter your password" /></td>
+						</tr>
+						<tr>
+							<td><h:commandButton value="next"
+									action="#{loggingBean.logIn}"  /></td>
+						</tr>
+					</table>
+						If you are not registered, please <h:commandLink
+						action="createUser" value="sign up!" />.	
+ 			</h:form>
+			</ui:define>
 
-						<br class="clearfix" />
-					</div>
-					<br class="clearfix" />
-				</div>
-			</h:form>
-		</div>
-		<div id="footer">Created by Krzysztof Wilaszek, Tomasz Wojcik
-			and Piotr Lesniak</div>
-
-
+		</ui:composition>
 	</f:view>
-
 </h:body>
 </html>

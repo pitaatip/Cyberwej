@@ -41,4 +41,6 @@ public interface UserService {
     public List<GroupMembership> getUserGroupMemberships(User user);
 
     public void setDao(UserDAO dao);
+    
+    public User getUserByLogin(String login);
 }

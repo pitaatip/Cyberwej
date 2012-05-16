@@ -17,7 +17,7 @@ public class TemplateBean {
 
     @ManagedProperty("#{sessionContextBean}")
     private SessionContextBean sessionContextBean;
-
+    
     public SessionContextBean getSessionContextBean() {
         return sessionContextBean;
     }
@@ -28,8 +28,8 @@ public class TemplateBean {
 
     public String getGreetings() {
         log.debug("Getting user login name.");
-        String retVal = sessionContextBean.getUserLogin() != null ? "Hello, "
-                + sessionContextBean.getUserLogin() + " !" : "";
+        String retVal = sessionContextBean.getLoggedUser() != null ? "Hello, "
+                + sessionContextBean.getLoggedUser().getLogin() + " !" : "";
         return retVal;
     }
 
