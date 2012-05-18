@@ -70,10 +70,15 @@
 			<to-view-id>pages/userPage.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>groupPage</from-outcome>
+			<to-view-id>pages/groupPage.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
 			<from-outcome>createUser</from-outcome>
 			<to-view-id>pages/createUserPage.xhtml</to-view-id>
 		</navigation-case>
-				<navigation-case>
+		<navigation-case>
 			<from-outcome>addGroupSummary</from-outcome>
 			<to-view-id>pages/addGroupSummaryPage.xhtml</to-view-id>
 		</navigation-case>

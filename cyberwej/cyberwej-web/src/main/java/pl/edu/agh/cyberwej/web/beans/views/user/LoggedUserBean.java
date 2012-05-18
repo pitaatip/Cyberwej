@@ -25,6 +25,8 @@ import pl.edu.agh.cyberwej.web.beans.common.SessionContextBean;
 @RequestScoped
 public class LoggedUserBean {
 
+    private static final String SELECTEDGROUP = "selectedGroup";
+
     @ManagedProperty(value = "#{service}")
     private UserService userService;
 
@@ -107,4 +109,7 @@ public class LoggedUserBean {
         return this.latestPaymentsMap;
     }
 
+    public String selectGroup() {
+        return "groupPage";
+    }
 }

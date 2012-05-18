@@ -12,7 +12,7 @@ import pl.edu.agh.cyberwej.data.objects.Group;
  * @author Krzysztof
  * 
  */
-@Service
+@Service(value = "groupService")
 public class GroupServiceImpl implements GroupService {
 
     @Autowired

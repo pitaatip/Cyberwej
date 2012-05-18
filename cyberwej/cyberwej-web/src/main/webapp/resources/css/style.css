@@ -8,7 +8,6 @@ Description: A two-column, fixed-width design with dark color scheme.
 Version    : 1.0
 Released   : 20120326
 */
-
 * {
 	padding: 0;
 	margin: 0;
@@ -28,9 +27,9 @@ body {
 	line-height: 1.75em;
 	color: #888;
 	background: #b2bdc1;
-	background-image:url("header.png.xhtml?ln=images");
-	background-repeat:no-repeat;
-	background-position:40px 20px;
+	background-image: url("header.png.xhtml?ln=images");
+	background-repeat: no-repeat;
+	background-position: 40px 20px;
 	letter-spacing: -0.02em;
 }
 
@@ -107,7 +106,7 @@ ul h4 {
 	color: #FFF;
 	position: relative;
 	height: 80px;
-	background: #447289 url("bg4.jpg.xhtml?ln=images") ;
+	background: #447289 url("bg4.jpg.xhtml?ln=images");
 	width: 910px;
 	padding: 35px;
 }
@@ -120,17 +119,18 @@ ul h4 {
 #logo a {
 	color: #FFF;
 	text-decoration: none;
-	text-shadow: 0 1px 1px rgba(0,0,0,0.8);
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
 }
 
 #logo h1 {
 	font-size: 3em;
 	font-family: Oswald, sans-serif;
 }
+
 #subtitle h1 {
 	color: #FFF;
 	text-decoration: none;
-	text-shadow: 0 1px 1px rgba(0,0,0,0.8);
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
 	position: relative;
 	top: 20px;
 	left: 50px;
@@ -139,7 +139,6 @@ ul h4 {
 }
 
 #menu {
-	
 	line-height: 60px;
 	font-family: Oswald, sans-serif;
 	padding: 0 35px 0 35px;
@@ -147,7 +146,7 @@ ul h4 {
 	height: 60px;
 	font-size: 1.2em;
 	background: #447289;
-	text-shadow: 0 1px 1px rgba(0,0,0,0.8);
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
 }
 
 #menu #greetings {
@@ -161,7 +160,7 @@ ul h4 {
 	height: 30px;
 	font-size: 0.8em;
 	background: #447289;
-	text-shadow: 0 1px 1px rgba(0,0,0,0.8);
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
 }
 
 #menu {
@@ -268,7 +267,8 @@ ul h4 {
 	padding: 8px 42px 8px 12px;
 	width: 175px;
 	border: 0;
-	background: #294C5D url("search.gif.xhtml?ln=images") top right no-repeat;
+	background: #294C5D url("search.gif.xhtml?ln=images") top right
+		no-repeat;
 	border-top: solid 1px #1F3C49;
 	color: #D3DDE2;
 }
@@ -304,7 +304,7 @@ ul h4 {
 }
 
 .dropotron li {
-	text-shadow: 0 1px 1px rgba(0,0,0,0.8);
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
 	color: #D3DDE2;
 	position: relative;
 	border-top: dotted 1px #4f798e;
@@ -345,9 +345,7 @@ ul h4 {
 	border-left: 7px solid #254656;
 }
 
-
-#cyber-table
-{
+#cyber-table {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	font-size: 12px;
 	background: #fff;
@@ -356,21 +354,31 @@ ul h4 {
 	border-collapse: collapse;
 	text-align: left;
 }
-#cyber-table th
-{
+
+#cyber-table th {
 	font-size: 14px;
 	font-weight: normal;
 	color: #039;
 	padding: 10px 8px;
 	border-bottom: 2px solid #6678b1;
 }
-#cyber-table td
-{
+
+#cyber-table td {
 	border-bottom: 1px solid #ccc;
 	color: #669;
 	padding: 6px 8px;
 }
-#cyber-table tbody tr:hover td
-{
+
+#cyber-table tbody tr:hover td {
+	color: #009;
+}
+
+#cyber-table a {
+	text-decoration: none;
+	color: #669;
+}
+
+#cyber-table a:hover {
+	text-decoration: underline;
 	color: #009;
 }

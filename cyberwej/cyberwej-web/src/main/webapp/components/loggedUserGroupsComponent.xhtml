@@ -11,21 +11,27 @@
 	<ui:composition>
 
 		<h:form>
-			<rich:panel style="width:320px;">
+			<rich:panel style="width:420px;">
 				<div id="cyber-table">
 					<rich:dataTable value="#{loggedUserBean.groupMemberships}"
 						var="groupMembership">
+
 						<f:facet name="header">
 							<h:outputText value="Your groups" />
 						</f:facet>
 						<rich:column>
 							<f:facet name="header">Group name</f:facet>
-							<h:outputText value="#{groupMembership.group.name}" />
+							<h:commandLink value="#{groupMembership.group.name}"
+								action="#{loggedUserBean.selectGroup}">
+								<f:param name="selectedGroup"
+									value="#{groupMembership.group.id}" />
+							</h:commandLink>
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Your status</f:facet>
-							<h:outputText style="color:#{(groupMembership.overdraw > 0)  ? 'Green' : 'Red'}"
-								value="#{groupMembership.overdraw}"/>
+							<h:outputText
+								style="color:#{(groupMembership.overdraw > 0)  ? 'Green' : 'Red'}"
+								value="#{groupMembership.overdraw}" />
 						</rich:column>
 					</rich:dataTable>
 				</div>
