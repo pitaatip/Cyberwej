@@ -108,8 +108,4 @@ public class LoggedUserBean {
     public Map<Payment, Float> getLatestPaymentsMap() {
         return this.latestPaymentsMap;
     }
-
-    public String selectGroup() {
-        return "groupPage";
-    }
 }

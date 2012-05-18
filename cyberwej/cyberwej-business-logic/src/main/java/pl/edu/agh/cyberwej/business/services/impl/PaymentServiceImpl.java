@@ -28,6 +28,7 @@ public class PaymentServiceImpl implements PaymentService {
     private PaymentDAO paymentDAO;
 
     @Override
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public float getPaymentCost(Payment payment) {
         float result = 0.0f;
         for (PaymentItem paymentItem : payment.getPaymentItems())
@@ -82,6 +83,7 @@ public class PaymentServiceImpl implements PaymentService {
         return result;
     }
 
+    @Override
     public void setPaymentDAO(PaymentDAO paymentDAO) {
         this.paymentDAO = paymentDAO;
     }

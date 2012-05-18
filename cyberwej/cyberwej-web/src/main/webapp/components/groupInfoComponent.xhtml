@@ -6,7 +6,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich"
-	xmlns:a4j="http://richfaces.org/a4j">
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 <body>
 	<ui:composition>
 
@@ -20,6 +21,8 @@
 						</tr>
 						<tr>
 							<td><h:outputText value="Users" /></td>
+							<td><h:outputText
+									value="#{fn:length(groupInformationBean.group.groupMembers)}" /></td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Creation date" /></td>

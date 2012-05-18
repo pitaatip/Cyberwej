@@ -13,20 +13,26 @@
 		<h:form>
 			<rich:panel style="width:400px;">
 				<div id="cyber-table">
-					<rich:dataTable>
+					<rich:dataTable value="#{groupInformationBean.groupMembers}"
+						var="groupMembership">
 						<f:facet name="header">
 							<h:outputText value="Group members" />
 						</f:facet>
 						<rich:column>
 							<f:facet name="header">Login</f:facet>
-							<!-- 							<h:outputText value="#{user.name}" />
- -->
+							<h:outputText value="#{groupMembership.user.login}" />
+
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Joined on</f:facet>
+							<!-- 							<h:outputText value="#{groupMembership.user}" />
+ -->
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Payment status</f:facet>
+							<h:outputText
+								style="color:#{(groupMembership.overdraw > 0)  ? 'Green' : 'Red'}"
+								value="#{groupMembership.overdraw}" />
 						</rich:column>
 					</rich:dataTable>
 				</div>

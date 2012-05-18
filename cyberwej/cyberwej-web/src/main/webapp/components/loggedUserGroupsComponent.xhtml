@@ -22,7 +22,7 @@
 						<rich:column>
 							<f:facet name="header">Group name</f:facet>
 							<h:commandLink value="#{groupMembership.group.name}"
-								action="#{loggedUserBean.selectGroup}">
+								action="groupPage">
 								<f:param name="selectedGroup"
 									value="#{groupMembership.group.id}" />
 							</h:commandLink>

@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import pl.edu.agh.cyberwej.business.services.impl.GroupServiceImpl;
+import pl.edu.agh.cyberwej.business.services.api.GroupService;
 import pl.edu.agh.cyberwej.data.dao.interfaces.GroupDAO;
 import pl.edu.agh.cyberwej.data.objects.Group;
 
@@ -24,7 +24,7 @@ import pl.edu.agh.cyberwej.data.objects.Group;
 public class GroupServiceTest {
 
     @Autowired
-    private GroupServiceImpl groupService;
+    private GroupService groupService;
 
     private GroupDAO groupDAOMock;
     private Group groupMock;

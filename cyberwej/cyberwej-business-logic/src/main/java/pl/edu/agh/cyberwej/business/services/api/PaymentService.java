@@ -30,4 +30,5 @@ public interface PaymentService {
     public float getUserStatusInPayment(Payment payment, User user);
 
     public void setPaymentDAO(PaymentDAO paymentDAO);
+
 }
