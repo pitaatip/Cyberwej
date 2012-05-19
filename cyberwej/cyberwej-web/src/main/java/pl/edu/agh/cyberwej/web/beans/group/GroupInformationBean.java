@@ -1,5 +1,6 @@
 package pl.edu.agh.cyberwej.web.beans.group;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -33,15 +34,19 @@ public class GroupInformationBean extends BaseBean {
     @ManagedProperty(value = "#{paymentService}")
     private PaymentService paymentService;
 
-    private Group group;
+    private Group group = new Group();
 
-    private Map<Payment, Float> groupPayments;
+    private Map<Payment, Float> groupPayments = new HashMap<Payment, Float>();
 
     @PostConstruct
     public void init() {
-        int id = Integer.parseInt(super.getParameter(SELECTEDGROUP));
-        this.group = this.groupService.getGroupWithMembersAndPayments(id);
-        this.groupPayments = this.paymentService.getGroupPayments(this.group);
+        String idString = super.getParameter(SELECTEDGROUP);
+        if (idString != null) {
+            int id = Integer.parseInt(idString);
+            this.group = this.groupService.getGroupWithMembersAndPayments(id);
+            this.groupPayments = this.paymentService
+                    .getGroupPayments(this.group);
+        }
     }
 
     /**

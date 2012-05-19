@@ -20,14 +20,15 @@
 						</f:facet>
 						<rich:column>
 							<f:facet name="header">Name</f:facet>
-							<h:outputText value="#{payment.description}" />
+							<h:commandLink value="#{payment.description}"
+								action="payment_page" />
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Registered on</f:facet>
 							<h:outputText value="#{payment.date}" />
 						</rich:column>
 						<rich:column>
-							<f:facet name="header">Money  spent</f:facet>
+							<f:facet name="header">Money spent</f:facet>
 							<h:outputText
 								value="#{groupInformationBean.groupPayments[payment]}" />
 						</rich:column>

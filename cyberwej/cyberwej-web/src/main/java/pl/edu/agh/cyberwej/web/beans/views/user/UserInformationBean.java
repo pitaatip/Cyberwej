@@ -23,12 +23,14 @@ public class UserInformationBean extends BaseBean {
 
     private User user = new User();
 
+    private static String USERTOSHOW = "userToShow";
+
     @ManagedProperty(value = "#{service}")
     private UserService userService;
 
     @PostConstruct
     public void construct() {
-        String userId = getParameter("userToShow");
+        String userId = getParameter(USERTOSHOW);
         this.user = this.userService.getUserById(Integer.parseInt(userId));
     }
 
