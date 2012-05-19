@@ -75,12 +75,16 @@
 			<to-view-id>pages/loggingPage.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
-			<from-outcome>userPage</from-outcome>
+			<from-outcome>user_page</from-outcome>
 			<to-view-id>pages/userPage.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>groupPage</from-outcome>
 			<to-view-id>pages/groupPage.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>payment_page</from-outcome>
+			<to-view-id>pages/paymentPage.xhtml</to-view-id>
 		</navigation-case>
 
 		<navigation-case>

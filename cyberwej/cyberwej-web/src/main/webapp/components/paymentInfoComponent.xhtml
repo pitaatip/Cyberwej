@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+<body>
+	<ui:composition>
+
+		<h:form>
+			<rich:panel style="width:220px;" header="Payment informations">
+				<div id="cyber-table">
+					<table>
+						<tr>
+							<td><h:outputText value="Payment name:" /></td>
+							<td><h:outputText
+									value="#{paymentInformationBean.payment.description}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Group:" /></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Money spent:" /></td>
+							<td><h:outputText
+									value="#{paymentInformationBean.paymentCost}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Creation date:" /></td>
+							<td><h:outputText
+									value="#{paymentInformationBean.payment.date}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Items:" /></td>
+							<td><h:outputText
+									value="#{fn:length(paymentInformationBean.payment.paymentItems)}" /></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Users involved:" /></td>
+							<td><h:outputText
+									value="#{paymentInformationBean.involvedUsersCount}" /></td>
+						</tr>
+
+					</table>
+				</div>
+			</rich:panel>
+		</h:form>
+
+	</ui:composition>
+</body>
+</html>
