@@ -3,6 +3,7 @@ package pl.edu.agh.cyberwej.business.services.api;
 import java.util.Map;
 
 import pl.edu.agh.cyberwej.data.dao.interfaces.PaymentDAO;
+import pl.edu.agh.cyberwej.data.objects.Group;
 import pl.edu.agh.cyberwej.data.objects.Payment;
 import pl.edu.agh.cyberwej.data.objects.User;
 
@@ -30,5 +31,7 @@ public interface PaymentService {
     public float getUserStatusInPayment(Payment payment, User user);
 
     public void setPaymentDAO(PaymentDAO paymentDAO);
+
+    public Map<Payment, Float> getGroupPayments(Group group);
 
 }

@@ -19,6 +19,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import pl.edu.agh.cyberwej.business.services.api.PaymentService;
 import pl.edu.agh.cyberwej.data.dao.interfaces.PaymentDAO;
@@ -70,6 +71,7 @@ public class PaymentServiceTest {
     }
 
     @Test
+    @Transactional
     public void testGetPaymentCost() {
         assertEquals(this.paymentService.getPaymentCost(this.paymentMock),
                 this.count * this.price + this.count2 * this.price2, 0.0f);

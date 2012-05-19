@@ -14,7 +14,7 @@ public interface GroupService {
 
     public Group getGroupById(int id);
 
-    public Group getGroupWithMembers(int id);
+    public Group getGroupWithMembersAndPayments(int id);
 
     public void setGroupDAO(GroupDAO groupDAO);
 }

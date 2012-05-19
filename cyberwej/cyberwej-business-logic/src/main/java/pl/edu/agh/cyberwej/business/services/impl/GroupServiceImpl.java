@@ -11,6 +11,7 @@ import pl.edu.agh.cyberwej.business.services.api.GroupService;
 import pl.edu.agh.cyberwej.data.dao.interfaces.GroupDAO;
 import pl.edu.agh.cyberwej.data.objects.Group;
 import pl.edu.agh.cyberwej.data.objects.GroupMembership;
+import pl.edu.agh.cyberwej.data.objects.Payment;
 
 /**
  * 
@@ -45,11 +46,11 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     @Transactional(readOnly = true)
-    public Group getGroupWithMembers(int id) {
+    public Group getGroupWithMembersAndPayments(int id) {
         Group group = getGroupById(id);
         group.setGroupMembers(new HashSet<GroupMembership>(group
                 .getGroupMembers()));
-
+        group.setPayments(new HashSet<Payment>(group.getPayments()));
         return group;
     }
 }

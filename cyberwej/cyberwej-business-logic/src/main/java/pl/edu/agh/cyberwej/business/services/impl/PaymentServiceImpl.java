@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pl.edu.agh.cyberwej.business.services.api.PaymentService;
 import pl.edu.agh.cyberwej.data.dao.interfaces.PaymentDAO;
+import pl.edu.agh.cyberwej.data.objects.Group;
 import pl.edu.agh.cyberwej.data.objects.Payment;
 import pl.edu.agh.cyberwej.data.objects.PaymentItem;
 import pl.edu.agh.cyberwej.data.objects.PaymentParticipation;
@@ -28,7 +29,7 @@ public class PaymentServiceImpl implements PaymentService {
     private PaymentDAO paymentDAO;
 
     @Override
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    @Transactional(readOnly = true, propagation = Propagation.MANDATORY)
     public float getPaymentCost(Payment payment) {
         float result = 0.0f;
         for (PaymentItem paymentItem : payment.getPaymentItems())
@@ -86,5 +87,15 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public void setPaymentDAO(PaymentDAO paymentDAO) {
         this.paymentDAO = paymentDAO;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Map<Payment, Float> getGroupPayments(Group group) {
+        Map<Payment, Float> result = new HashMap<Payment, Float>();
+        for (Payment payment : group.getPayments())
+            result.put(payment,
+                    getPaymentCost(this.paymentDAO.getById(payment.getId())));
+        return result;
     }
 }
