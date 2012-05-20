@@ -14,13 +14,13 @@
 		<module>cyberwej-web</module>
 	</modules>
 	<properties>
-		
+
 		<targetJdk>1.6</targetJdk>
 	</properties>
 	<build>
 		<pluginManagement>
 			<plugins>
-				
+
 				<plugin>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>2.3.2</version>
@@ -79,6 +79,12 @@
 				<groupId>org.slf4j</groupId>
 				<artifactId>slf4j-log4j12</artifactId>
 				<version>1.6.4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hsqldb</groupId>
+				<artifactId>hsqldb</artifactId>
+				<version>2.0.0</version>
+				<scope>test</scope>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
