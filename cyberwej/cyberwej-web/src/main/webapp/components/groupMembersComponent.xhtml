@@ -20,7 +20,9 @@
 						</f:facet>
 						<rich:column>
 							<f:facet name="header">Login</f:facet>
-							<h:commandLink value="#{groupMembership.user.login}" action="user_page"/>
+							<h:link outcome="user_page" value="#{groupMembership.user.login}">
+								<f:param name="userToShow" value="#{groupMembership.user.id}" />
+							</h:link>
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Joined on</f:facet>

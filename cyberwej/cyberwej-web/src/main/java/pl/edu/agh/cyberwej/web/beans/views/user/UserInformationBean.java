@@ -8,7 +8,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import pl.edu.agh.cyberwej.business.services.api.UserService;
-import pl.edu.agh.cyberwej.data.objects.GroupMembership;
+import pl.edu.agh.cyberwej.common.objects.service.GroupInformation;
 import pl.edu.agh.cyberwej.data.objects.User;
 import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
 
@@ -56,7 +56,7 @@ public class UserInformationBean extends BaseBean {
         return this.user;
     }
 
-    public List<GroupMembership> getGroupMemberships() {
-        return this.userService.getUserGroupMemberships(this.user);
+    public List<GroupInformation> getGroupMemberships() {
+        return this.userService.getUserGroupsInformation(this.user);
     }
 }

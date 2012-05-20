@@ -6,9 +6,8 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich"
-	xmlns:a4j="http://richfaces.org/a4j"
-	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
-	
+	xmlns:a4j="http://richfaces.org/a4j">
+
 <body>
 	<ui:composition>
 
@@ -26,10 +25,11 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Users</f:facet>
-<!-- 							<h:outputText value="#{fn:length(groupMembership.group.groupMembers)}" />
- -->						</rich:column>
+							<h:outputText value="#{groupMembership.membersCount}" />
+						</rich:column>
 						<rich:column>
 							<f:facet name="header">Payments</f:facet>
+							<h:outputText value="#{groupMembership.paymentsCount}" />
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Created on</f:facet>
