@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.edu.agh.cyberwej.business.services.api.GroupService;
 import pl.edu.agh.cyberwej.business.services.api.PaymentService;
 import pl.edu.agh.cyberwej.common.objects.service.ParticipantInformation;
+import pl.edu.agh.cyberwej.common.objects.service.PaymentInformation;
 import pl.edu.agh.cyberwej.data.dao.interfaces.GroupDAO;
 import pl.edu.agh.cyberwej.data.dao.interfaces.PaymentDAO;
 import pl.edu.agh.cyberwej.data.dao.interfaces.ProductDAO;
@@ -59,9 +60,10 @@ public class PaymentServiceImpl implements PaymentService {
     @Transactional(readOnly = true)
     @Override
     public Map<Payment, Float> getLastPayments(int count, User user) {
-        List<Payment> consumedPayments = this.paymentDAO.getLastConsumedPayments(count, user);
-        List<Payment> participatedPayments = this.paymentDAO.getLastParticipatedPayments(count,
-                user);
+        List<Payment> consumedPayments = this.paymentDAO
+                .getLastConsumedPayments(count, user);
+        List<Payment> participatedPayments = this.paymentDAO
+                .getLastParticipatedPayments(count, user);
         // consumedPayments and participatedPayments are sorted by payment.date
         // descending
         int index = 0; // index in consumedPayments list
@@ -69,7 +71,8 @@ public class PaymentServiceImpl implements PaymentService {
             if (!consumedPayments.contains(participatedPayment)) {
                 int i = index;
                 while (i < consumedPayments.size()
-                        && participatedPayment.getDate().before(consumedPayments.get(i).getDate()))
+                        && participatedPayment.getDate().before(
+                                consumedPayments.get(i).getDate()))
                     i++;
                 index = i;
                 consumedPayments.add(i, participatedPayment);
@@ -113,8 +116,9 @@ public class PaymentServiceImpl implements PaymentService {
         Payment payment = new Payment();
         payment.setDescription(description);
         payment.setDate(new Date());
-        Group initializedGroup = groupService.getGroupWithMembersAndPayments(group.getId());
-        groupDAO.addGroupPayment(initializedGroup, payment);
+        Group initializedGroup = this.groupService
+                .getGroupWithMembersAndPayments(group.getId());
+        this.groupDAO.addGroupPayment(initializedGroup, payment);
 
         addParticipatorsWichPayedNothing(items, participators);
         for (PaymentParticipation paymentParticipation : participators) {
@@ -123,45 +127,53 @@ public class PaymentServiceImpl implements PaymentService {
 
         // save products first
         for (PaymentItem item : items) {
-            Product findProductByName = productDAO.findProductByName(item.getProduct().getName());
+            Product findProductByName = this.productDAO.findProductByName(item
+                    .getProduct().getName());
             if (findProductByName != null) {
                 item.setProduct(findProductByName);
             } else {
-                productDAO.save(item.getProduct());
+                this.productDAO.save(item.getProduct());
             }
         }
         payment.setParticipations(participators);
         payment.setPaymentItems(items);
-        paymentDAO.save(payment);
-        
-        //actualize group members overdraw
+        this.paymentDAO.save(payment);
+
+        // actualize group members overdraw
         Map<User, Float> overdrawMap = getOverdrawMap(items, participators);
         for (PaymentParticipation paymentParticipation : participators) {
             for (GroupMembership member : initializedGroup.getGroupMembers()) {
-                if(member.getUser().getId().equals(paymentParticipation.getUser().getId())){
-                    //count difference between eaten and payed
-                    member.setOverdraw(member.getOverdraw() - overdrawMap.get(paymentParticipation.getUser()));
+                if (member.getUser().getId()
+                        .equals(paymentParticipation.getUser().getId())) {
+                    // count difference between eaten and payed
+                    member.setOverdraw(member.getOverdraw()
+                            - overdrawMap.get(paymentParticipation.getUser()));
                 }
             }
         }
-        groupDAO.saveGroup(initializedGroup);
-        
+        this.groupDAO.saveGroup(initializedGroup);
+
         return true;
     }
 
     private Map<User, Float> getOverdrawMap(Set<PaymentItem> items,
             Set<PaymentParticipation> participators) {
-        Map<User,Float> overdrawMap = new HashMap<User, Float>();
+        Map<User, Float> overdrawMap = new HashMap<User, Float>();
         for (PaymentParticipation paymentParticipation : participators) {
-            overdrawMap.put(paymentParticipation.getUser(), -1 *paymentParticipation.getAmount());
+            overdrawMap.put(paymentParticipation.getUser(), -1
+                    * paymentParticipation.getAmount());
             for (PaymentItem item : items) {
                 final Set<User> consumers = item.getConsumers();
-                
-                boolean contains = UserIsConsumer(paymentParticipation, consumers);
-                
-                if(contains){
-                    final float itemCost = (item.getCount()*item.getPrice())/consumers.size();
-                    overdrawMap.put(paymentParticipation.getUser(), overdrawMap.get(paymentParticipation.getUser()) + itemCost);
+
+                boolean contains = UserIsConsumer(paymentParticipation,
+                        consumers);
+
+                if (contains) {
+                    final float itemCost = (item.getCount() * item.getPrice())
+                            / consumers.size();
+                    overdrawMap.put(paymentParticipation.getUser(),
+                            overdrawMap.get(paymentParticipation.getUser())
+                                    + itemCost);
                 }
             }
         }
@@ -171,7 +183,7 @@ public class PaymentServiceImpl implements PaymentService {
     private boolean UserIsConsumer(PaymentParticipation paymentParticipation,
             final Set<User> consumers) {
         for (User user : consumers) {
-            if(user.getId().equals(paymentParticipation.getUser().getId()))
+            if (user.getId().equals(paymentParticipation.getUser().getId()))
                 return true;
         }
         return false;
@@ -205,7 +217,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     public GroupService getGroupService() {
-        return groupService;
+        return this.groupService;
     }
 
     public void setGroupService(GroupService groupService) {
@@ -213,7 +225,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     public ProductDAO getProductDAO() {
-        return productDAO;
+        return this.productDAO;
     }
 
     public void setProductDAO(ProductDAO productDAO) {
@@ -222,11 +234,17 @@ public class PaymentServiceImpl implements PaymentService {
 
     @Override
     @Transactional(readOnly = true)
-    public Map<Payment, Float> getGroupPayments(Group group) {
-        Map<Payment, Float> result = new HashMap<Payment, Float>();
-        for (Payment payment : group.getPayments())
-            result.put(payment,
-                    getPaymentCost(this.paymentDAO.getById(payment.getId())));
+    public List<PaymentInformation> getGroupPayments(Group group) {
+        List<PaymentInformation> result = new LinkedList<PaymentInformation>();
+        for (Payment payment : group.getPayments()) {
+            payment = this.paymentDAO.getById(payment.getId());
+            PaymentInformation paymentInformation = new PaymentInformation();
+            paymentInformation.setPayment(payment);
+            paymentInformation.setAmount(getPaymentCost(payment));
+            paymentInformation
+                    .setParticipantsCount(getInvolvedUsersCount(payment));
+            result.add(paymentInformation);
+        }
         return result;
     }
 
