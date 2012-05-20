@@ -11,13 +11,10 @@
 	<ui:composition>
 
 		<h:form>
-			<rich:panel style="width:400px;">
+			<rich:panel style="width:360px;" header="Group members">
 				<div id="cyber-table">
 					<rich:dataTable value="#{groupInformationBean.groupMembers}"
 						var="groupMembership">
-						<f:facet name="header">
-							<h:outputText value="Group members" />
-						</f:facet>
 						<rich:column>
 							<f:facet name="header">Login</f:facet>
 							<h:link outcome="user_page" value="#{groupMembership.user.login}">

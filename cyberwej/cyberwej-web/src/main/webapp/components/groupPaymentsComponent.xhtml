@@ -11,13 +11,10 @@
 	<ui:composition>
 
 		<h:form>
-			<rich:panel style="width:700px;">
+			<rich:panel style="width:700px;" header="Group payments">
 				<div id="cyber-table">
 					<rich:dataTable value="#{groupInformationBean.groupPayments}"
 						var="paymentInformation">
-						<f:facet name="header">
-							<h:outputText value="Group payments" />
-						</f:facet>
 						<rich:column>
 							<f:facet name="header">Name</f:facet>
 							<h:link value="#{paymentInformation.payment.description}"
