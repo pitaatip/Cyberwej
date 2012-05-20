@@ -73,8 +73,11 @@ public class PaymentInformationBean extends BaseBean {
         return this.paymentService.getInvolvedUsersCount(this.payment);
     }
 
-    public List<PaymentItem> getPaymentItems() {
-        return new LinkedList<PaymentItem>(this.payment.getPaymentItems());
+    public List<PaymentItemWrapper> getPaymentItems() {
+        List<PaymentItemWrapper> paymentItems = new LinkedList<PaymentItemWrapper>();
+        for (PaymentItem paymentItem : this.payment.getPaymentItems())
+            paymentItems.add(new PaymentItemWrapper(paymentItem));
+        return paymentItems;
     }
 
     /**
