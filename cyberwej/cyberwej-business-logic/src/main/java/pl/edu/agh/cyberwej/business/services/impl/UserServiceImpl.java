@@ -68,4 +68,9 @@ public class UserServiceImpl implements UserService {
     public User getUserByLogin(String login) {
         return this.dao.findUserByLogin(login);
     }
+    
+    @Override
+    public List<User> findUserByCriteria(String login, String name, String surname, String location) {
+        return this.dao.findUserByCriteria(login, name, surname, location);
+    }
 }

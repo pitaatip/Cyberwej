@@ -1,7 +1,9 @@
 package pl.edu.agh.cyberwej.web.beans.group;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -9,8 +11,10 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
 import pl.edu.agh.cyberwej.business.services.api.GroupService;
+import pl.edu.agh.cyberwej.business.services.api.PaymentService;
 import pl.edu.agh.cyberwej.data.objects.Group;
 import pl.edu.agh.cyberwej.data.objects.GroupMembership;
+import pl.edu.agh.cyberwej.data.objects.Payment;
 import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
 
 /**
@@ -27,12 +31,22 @@ public class GroupInformationBean extends BaseBean {
     @ManagedProperty(value = "#{groupService}")
     private GroupService groupService;
 
-    private Group group;
+    @ManagedProperty(value = "#{paymentService}")
+    private PaymentService paymentService;
+
+    private Group group = new Group();
+
+    private Map<Payment, Float> groupPayments = new HashMap<Payment, Float>();
 
     @PostConstruct
     public void init() {
-        int id = Integer.parseInt(super.getParameter(SELECTEDGROUP));
-        this.group = this.groupService.getGroupWithMembers(id);
+        String idString = super.getParameter(SELECTEDGROUP);
+        if (idString != null) {
+            int id = Integer.parseInt(idString);
+            this.group = this.groupService.getGroupWithMembersAndPayments(id);
+            this.groupPayments = this.paymentService
+                    .getGroupPayments(this.group);
+        }
     }
 
     /**
@@ -59,5 +73,31 @@ public class GroupInformationBean extends BaseBean {
 
     public List<GroupMembership> getGroupMembers() {
         return new LinkedList<GroupMembership>(this.group.getGroupMembers());
+    }
+
+    /**
+     * @return the paymentService
+     */
+    public PaymentService getPaymentService() {
+        return this.paymentService;
+    }
+
+    /**
+     * @param paymentService
+     *            the paymentService to set
+     */
+    public void setPaymentService(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
+
+    /**
+     * @return the groupPayments
+     */
+    public Map<Payment, Float> getGroupPayments() {
+        return this.groupPayments;
+    }
+
+    public List<Payment> getGroupPaymentsList() {
+        return new LinkedList<Payment>(this.groupPayments.keySet());
     }
 }

@@ -43,4 +43,6 @@ public interface UserService {
     public void setDao(UserDAO dao);
 
     public User getUserByLogin(String login);
+    
+    public List<User> findUserByCriteria(String login, String name, String surname, String location);
 }

@@ -3,6 +3,7 @@ package pl.edu.agh.cyberwej.business.services.impl;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pl.edu.agh.cyberwej.business.services.api.GroupService;
 import pl.edu.agh.cyberwej.business.services.api.PaymentService;
+import pl.edu.agh.cyberwej.common.objects.service.ParticipantInformation;
 import pl.edu.agh.cyberwej.data.dao.interfaces.GroupDAO;
 import pl.edu.agh.cyberwej.data.dao.interfaces.PaymentDAO;
 import pl.edu.agh.cyberwej.data.dao.interfaces.ProductDAO;
@@ -46,7 +48,7 @@ public class PaymentServiceImpl implements PaymentService {
     private GroupService groupService;
 
     @Override
-    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public float getPaymentCost(Payment payment) {
         float result = 0.0f;
         for (PaymentItem paymentItem : payment.getPaymentItems())
@@ -111,7 +113,7 @@ public class PaymentServiceImpl implements PaymentService {
         Payment payment = new Payment();
         payment.setDescription(description);
         payment.setDate(new Date());
-        Group initializedGroup = groupService.getGroupWithMembers(group.getId());
+        Group initializedGroup = groupService.getGroupWithMembersAndPayments(group.getId());
         groupDAO.addGroupPayment(initializedGroup, payment);
 
         addParticipatorsWichPayedNothing(items, participators);
@@ -216,5 +218,84 @@ public class PaymentServiceImpl implements PaymentService {
 
     public void setProductDAO(ProductDAO productDAO) {
         this.productDAO = productDAO;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Map<Payment, Float> getGroupPayments(Group group) {
+        Map<Payment, Float> result = new HashMap<Payment, Float>();
+        for (Payment payment : group.getPayments())
+            result.put(payment,
+                    getPaymentCost(this.paymentDAO.getById(payment.getId())));
+        return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Payment getPaymentWithDependencies(int id) {
+        Payment payment = this.paymentDAO.getById(id);
+        if (payment != null) {
+            payment.setPaymentItems(new HashSet<PaymentItem>(payment
+                    .getPaymentItems()));
+            payment.setParticipations(new HashSet<PaymentParticipation>(payment
+                    .getParticipations()));
+            for (PaymentItem paymentItem : payment.getPaymentItems())
+                paymentItem.setConsumers(new HashSet<User>(paymentItem
+                        .getConsumers()));
+        }
+        return payment;
+    }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public int getInvolvedUsersCount(Payment payment) {
+        return getInvolvedUsers(payment).size();
+    }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public Set<User> getInvolvedUsers(Payment payment) {
+        Set<User> involvedUsers = new HashSet<User>();
+        for (PaymentItem paymentItem : payment.getPaymentItems())
+            for (User user : paymentItem.getConsumers())
+                involvedUsers.add(user);
+        for (PaymentParticipation paymentParticipation : payment
+                .getParticipations())
+            involvedUsers.add(paymentParticipation.getUser());
+        return involvedUsers;
+    }
+
+    @Override
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    public List<ParticipantInformation> getParticipants(Payment payment) {
+        Map<User, ParticipantInformation> participationsMap = new HashMap<User, ParticipantInformation>();
+        for (PaymentParticipation paymentParticipation : payment
+                .getParticipations()) {
+            ParticipantInformation participantInformation = new ParticipantInformation();
+            participantInformation.setUser(paymentParticipation.getUser());
+            participantInformation.setAmount(paymentParticipation.getAmount());
+            participantInformation.setStatus(paymentParticipation.getAmount());
+            participationsMap.put(paymentParticipation.getUser(),
+                    participantInformation);
+        }
+        ParticipantInformation participantInformation;
+        for (PaymentItem paymentItem : payment.getPaymentItems())
+            for (User consumer : paymentItem.getConsumers()) {
+                if (participationsMap.containsKey(consumer))
+                    participantInformation = participationsMap.get(consumer);
+                else {
+                    participantInformation = new ParticipantInformation();
+                    participationsMap.put(consumer, participantInformation);
+                    participantInformation.setUser(consumer);
+                }
+                participantInformation.incrementConsumedItemsCount();
+                participantInformation.setStatus(participantInformation
+                        .getStatus()
+                        - paymentItem.getCount()
+                        * paymentItem.getPrice()
+                        / paymentItem.getConsumers().size());
+            }
+        return new LinkedList<ParticipantInformation>(
+                participationsMap.values());
     }
 }

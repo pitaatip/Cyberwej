@@ -11,27 +11,35 @@
 	<ui:composition>
 
 		<h:form>
-			<rich:panel style="width:400px;">
+			<rich:panel style="width:500px;">
 				<div id="cyber-table">
-					<rich:dataTable value="#{groupInformationBean.groupMembers}"
-						var="groupMembership">
+					<rich:dataTable
+						value="#{paymentInformationBean.participantInformations}"
+						var="participant">
 						<f:facet name="header">
-							<h:outputText value="Group members" />
+							<h:outputText value="Participators" />
 						</f:facet>
 						<rich:column>
 							<f:facet name="header">Login</f:facet>
-							<h:commandLink value="#{groupMembership.user.login}" action="user_page"/>
+							<h:commandLink action="user_page"
+								value="#{participant.user.login}">
+								<f:param name="userToShow" value="#{participant.user.id}"></f:param>
+							</h:commandLink>
 						</rich:column>
 						<rich:column>
-							<f:facet name="header">Joined on</f:facet>
-							<!-- 							<h:outputText value="#{groupMembership.user}" />
- -->
+							<f:facet name="header">Items consumed</f:facet>
+							<h:outputText value="#{participant.consumedItemsCount}" />
+
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Payed</f:facet>
+							<h:outputText value="#{participant.amount}" />
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Payment status</f:facet>
 							<h:outputText
-								style="color:#{(groupMembership.overdraw > 0)  ? 'Green' : 'Red'}"
-								value="#{groupMembership.overdraw}" />
+								style="color:#{(participant.status > 0)  ? 'Green' : 'Red'}"
+								value="#{participant.status}" />
 						</rich:column>
 					</rich:dataTable>
 				</div>

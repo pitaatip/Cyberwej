@@ -1,8 +1,10 @@
 package pl.edu.agh.cyberwej.business.services.api;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import pl.edu.agh.cyberwej.common.objects.service.ParticipantInformation;
 import pl.edu.agh.cyberwej.data.dao.interfaces.PaymentDAO;
 import pl.edu.agh.cyberwej.data.objects.Group;
 import pl.edu.agh.cyberwej.data.objects.Payment;
@@ -37,4 +39,13 @@ public interface PaymentService {
 
     public void setPaymentDAO(PaymentDAO paymentDAO);
 
+    public Map<Payment, Float> getGroupPayments(Group group);
+
+    public Payment getPaymentWithDependencies(int id);
+
+    public int getInvolvedUsersCount(Payment payment);
+
+    public Set<User> getInvolvedUsers(Payment payment);
+
+    public List<ParticipantInformation> getParticipants(Payment payment);
 }

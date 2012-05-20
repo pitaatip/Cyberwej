@@ -7,30 +7,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
+<body>
+	<ui:composition>
 
-<h:head>
-	<title>Add Group</title>
-</h:head>
-<h:body>
-	<f:view>
-		<ui:composition template="../template.xhtml">
-			<ui:define name="title">
-				<title>Cyberwej - Add group</title>
-			</ui:define>
-
-			<ui:define name="page">
-				<h1>Add Group Page</h1>
-				<h:form>
-			        <h:panelGrid columns="3">
-			            <h:outputText value="Name:" />
-			            <h:inputText value="#{addGroupBean.groupName}" />
-			            
-			        </h:panelGrid>
-					<a4j:outputPanel ajaxRendered="true">
-						<rich:list value="#{addGroupBean.users}" id="userList" var="user" type="ordered">
-					        <h:outputText value="#{user.login}" />
-					    </rich:list>
-					</a4j:outputPanel>
+		<h:form>
 			<rich:panel style="width:320px;" header="Search for user">
 				<div id="cyber-table">
 					<table>
@@ -94,17 +74,14 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Add to group</f:facet>
-							<a4j:commandButton render="userList" value="Add" execute="@form">
-								<a4j:param value="#{user.id}" assignTo="#{addGroupBean.newUserId}"  />
-							</a4j:commandButton>
+							<h:commandButton action="#{addGroupBean.addUser}" value="Add">
+								<f:param name="user" value="#{user}" />
+							</h:commandButton>
 						</rich:column>
 					</rich:dataTable>
 			</rich:panel>
-			<h:commandButton value="Add group" action="#{addGroupBean.next}" />
 		</h:form>
-		</ui:define>
 
-		</ui:composition>
-	</f:view>
-</h:body>
+	</ui:composition>
+</body>
 </html>
