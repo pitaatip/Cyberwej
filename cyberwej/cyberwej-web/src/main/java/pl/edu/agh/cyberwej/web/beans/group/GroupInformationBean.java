@@ -100,4 +100,8 @@ public class GroupInformationBean extends BaseBean {
     public List<Payment> getGroupPaymentsList() {
         return new LinkedList<Payment>(this.groupPayments.keySet());
     }
+
+    public String userPage() {
+        return "user_page";
+    }
 }

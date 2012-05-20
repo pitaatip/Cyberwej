@@ -97,4 +97,5 @@ public class GroupServiceImpl implements GroupService {
         group.setPayments(new HashSet<Payment>(group.getPayments()));
         return group;
     }
+    
 }

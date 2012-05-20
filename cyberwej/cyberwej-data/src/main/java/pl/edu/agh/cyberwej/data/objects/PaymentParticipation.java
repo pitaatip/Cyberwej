@@ -17,9 +17,6 @@ import pl.edu.agh.cyberwej.data.objects.id.PaymentParticipationId;
 @Table(name = "PAYMENTPARTICIPATIONS")
 public class PaymentParticipation implements Serializable {
 
-    /**
-	 * 
-	 */
     private static final long serialVersionUID = -2251267927230859363L;
 
     private Payment payment;
