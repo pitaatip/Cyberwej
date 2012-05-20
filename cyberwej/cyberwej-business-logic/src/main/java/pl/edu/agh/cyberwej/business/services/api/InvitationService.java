@@ -18,4 +18,6 @@ public interface InvitationService {
     public void acceptInvitation(Invitation invitation, boolean isAccepted);
     
     public List<Invitation> getInviationsForUser(User invite);
+    
+    public void acceptInvitationById(int invitationId, boolean isAccepted);
 }

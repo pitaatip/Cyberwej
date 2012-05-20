@@ -40,8 +40,14 @@ public class InvitationServiceImpl implements InvitationService {
         } //else - delete invitation or what?
     }
     
+    @Override
     public List<Invitation> getInviationsForUser(User invite) {
         return invitationDAO.getInviationsForUser(invite);
     }
 
+    @Transactional
+    @Override
+    public void acceptInvitationById(int invitationId, boolean isAccepted) {
+        acceptInvitation(invitationDAO.getById(invitationId), isAccepted);
+    }
 }
