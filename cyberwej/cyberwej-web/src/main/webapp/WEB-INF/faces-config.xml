@@ -51,6 +51,23 @@
 			<value>#{service}</value>
 		</managed-property>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>addGroupBean</managed-bean-name>
+		<managed-bean-class>pl.edu.agh.cyberwej.web.beans.group.AddGroupBean</managed-bean-class>
+		<managed-bean-scope>view</managed-bean-scope>
+		<managed-property>
+			<property-name>userService</property-name>
+			<value>#{service}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>groupService</property-name>
+			<value>#{groupService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>sessionContextBean</property-name>
+			<value>#{sessionContextBean}</value>
+		</managed-property>
+	</managed-bean>
 
 	<navigation-rule>
 		<navigation-case>
@@ -65,6 +82,10 @@
 		<navigation-case>
 			<from-outcome>register_payment</from-outcome>
 			<to-view-id>pages/registerPaymentPage.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>registerPayment_secondStep</from-outcome>
+			<to-view-id>pages/registerPaymentStep2Page.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-outcome>register_payback</from-outcome>
@@ -85,6 +106,14 @@
 		<navigation-case>
 			<from-outcome>payment_page</from-outcome>
 			<to-view-id>pages/paymentPage.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>registerPaymentPageStep3</from-outcome>
+			<to-view-id>pages/registerPaymentStep3Page.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>registerPaymentSummary</from-outcome>
+			<to-view-id>pages/registerPaymentSummaryPage.xhtml</to-view-id>
 		</navigation-case>
 
 		<navigation-case>

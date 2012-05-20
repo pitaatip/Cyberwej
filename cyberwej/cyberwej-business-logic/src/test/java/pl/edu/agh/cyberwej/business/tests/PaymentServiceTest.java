@@ -211,6 +211,8 @@ public class PaymentServiceTest {
         lastPayments = this.paymentService.getLastPayments(count, user1Mock);
         assertFalse(lastPayments.isEmpty());
         assertEquals(lastPayments.size(), consumedPayments.size());
-
     }
+    
+    
+    
 }

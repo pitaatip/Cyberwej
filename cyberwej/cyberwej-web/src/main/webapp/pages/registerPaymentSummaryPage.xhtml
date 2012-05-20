@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<h:head>
+	<title>Register Payment</title>
+</h:head>
+<h:body>
+	<f:view>
+		<ui:composition template="../template.xhtml">
+			<ui:define name="title">
+				<title>Cyberwej - Register payment</title>
+			</ui:define>
+			<ui:define name="page">
+				<h1>Register Payment</h1>
+				<br />
+
+				<h:form>
+					<rich:panel header="Summary">
+						<table id="cyber-table">
+							<tr>
+								<td><h:outputText value="Payment Name: " /></td>
+								<td><h:outputText
+										value="#{registerPaymentSummaryBean.paymentName}" /></td>
+							</tr>
+							<tr>
+								<td><h:outputText value="Group: " /></td>
+								<td><h:outputText
+										value="#{registerPaymentSummaryBean.group.name}" /></td>
+							</tr>
+						</table>
+						<br />
+						<rich:dataTable value="#{registerPaymentStep2Bean.itemsList}"
+							var="item" rowKeyVar="itemNum">
+							<f:facet name="header">
+								<h:outputText value="Added items" />
+							</f:facet>
+							<rich:column>
+								<f:facet name="header">Product</f:facet>
+								<h:outputText value="#{item.product.name}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Price</f:facet>
+								<h:outputText value="#{item.price}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Amount</f:facet>
+								<h:outputText value="#{item.count}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Consumers</f:facet>
+								<h:outputText value="#{item.consumers}">
+									<f:converter converterId="pl.cyberwej.setConverter" />
+								</h:outputText>
+							</rich:column>
+						</rich:dataTable>
+						<br />
+						<rich:dataTable
+							value="#{registerPaymentStep3Bean.paymentParticipators}"
+							var="payer" rowKeyVar="itemNum">
+							<f:facet name="header">
+								<h:outputText value="Added payers" />
+							</f:facet>
+							<rich:column>
+								<f:facet name="header">User</f:facet>
+								<h:outputText value="#{payer.user.login}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Amount of money payed</f:facet>
+								<h:outputText value="#{payer.amount}" />
+							</rich:column>
+						</rich:dataTable>
+
+
+					</rich:panel>
+					<h:commandButton value="Register Payment"
+						action="#{registerPaymentSummaryBean.registerPayment}" />
+				</h:form>
+			</ui:define>
+
+		</ui:composition>
+	</f:view>
+</h:body>
+</html>

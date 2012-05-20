@@ -14,4 +14,6 @@ public interface GroupDAO extends IDAO<Group> {
     public boolean addGroupPayment(Group group, Payment payment);
 
     public void removeGroupPayment(Group group, Payment payment);
+    
+    
 }

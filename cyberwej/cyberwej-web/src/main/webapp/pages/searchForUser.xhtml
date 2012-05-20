@@ -33,7 +33,7 @@
 								</h:inputText></td>
 						</tr>
 						<tr>
-							<td><h:outputText value="Mail" /></td>
+							<td><h:outputText value="Location" /></td>
 							<td><h:inputText value="#{searchForUserBean.location}">
 									<rich:validator />
 								</h:inputText></td>
@@ -71,6 +71,12 @@
 						<rich:column>
 							<f:facet name="header">Address</f:facet>
 							<h:outputText value="#{user.location}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Add to group</f:facet>
+							<h:commandButton action="#{addGroupBean.addUser}" value="Add">
+								<f:param name="user" value="#{user}" />
+							</h:commandButton>
 						</rich:column>
 					</rich:dataTable>
 			</rich:panel>

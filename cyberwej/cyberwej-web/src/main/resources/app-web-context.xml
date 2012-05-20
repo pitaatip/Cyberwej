@@ -7,5 +7,8 @@
  	<import resource="classpath:/META-INF/spring/app-business-context.xml"/> 
  
  	<bean id="service" class="pl.edu.agh.cyberwej.business.services.impl.UserServiceImpl" />
+ 	<bean id="groupService" class="pl.edu.agh.cyberwej.business.services.impl.GroupServiceImpl" />
+ 	<bean id="paymentService" class="pl.edu.agh.cyberwej.business.services.impl.PaymentServiceImpl" />
 
+	<!-- <bean id="groupService" class="pl.edu.agh.cyberwej.business.services.impl.GroupServiceImpl" /> -->
 </beans>
