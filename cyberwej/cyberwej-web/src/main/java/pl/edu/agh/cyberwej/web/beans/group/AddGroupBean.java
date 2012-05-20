@@ -7,14 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
 import pl.edu.agh.cyberwej.business.services.api.GroupService;
 import pl.edu.agh.cyberwej.business.services.api.UserService;
 import pl.edu.agh.cyberwej.data.objects.Group;
 import pl.edu.agh.cyberwej.data.objects.User;
 import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
+import pl.edu.agh.cyberwej.web.beans.common.SessionContextBean;
 
 /**
  * @author Pita
@@ -25,11 +24,21 @@ public class AddGroupBean extends BaseBean {
     private static final String GROUP2ADD = "group2add";
     private Group group = new Group();
     private List<User> users = new ArrayList<User>();
+    private List<Integer> usersIds = new ArrayList<Integer>();
     private String groupName;
     private int newUserId;
     private UserService userService;
     private GroupService groupService;
+    private SessionContextBean sessionContextBean;
     
+    public SessionContextBean getSessionContextBean() {
+        return sessionContextBean;
+    }
+
+    public void setSessionContextBean(SessionContextBean sessionContextBean) {
+        this.sessionContextBean = sessionContextBean;
+    }
+
     public GroupService getGroupService() {
         return groupService;
     }
@@ -47,15 +56,14 @@ public class AddGroupBean extends BaseBean {
     }
 
     public String next() {
-        
-        getMap4Stuff().put(GROUP2ADD, getGroup());
+        group = new Group();
+        group.setName(groupName);
+        groupService.saveGroupWithItsMembersIds(group, usersIds);
+        sessionContextBean.getMap4Stuff().put(GROUP2ADD, getGroup());
         return "addGroupSummary";
     }
     
     public Group getGroup() {
-        if (group == null) {
-            group = (Group) getMap4Stuff().get(GROUP2ADD);
-        }
         return group;
     }
     
@@ -79,6 +87,7 @@ public class AddGroupBean extends BaseBean {
     public void setNewUserId(int userId) {
         this.newUserId = userId;
         users.add(userService.getUserById(userId));
+        usersIds.add(userId);
     }
     
     public int getNewUser() {
