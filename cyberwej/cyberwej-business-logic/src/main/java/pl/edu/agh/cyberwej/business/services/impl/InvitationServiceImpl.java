@@ -1,5 +1,7 @@
 package pl.edu.agh.cyberwej.business.services.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ import pl.edu.agh.cyberwej.data.objects.User;
  * @author Krzysztof
  * 
  */
-@Service
+@Service(value="invitationService")
 public class InvitationServiceImpl implements InvitationService {
 
     @Autowired
@@ -28,6 +30,10 @@ public class InvitationServiceImpl implements InvitationService {
     @Override
     public void acceptInvitation(Invitation invitation, boolean isAccepted) {
         // TODO add groupMembership
+    }
+    
+    public List<Invitation> getInviationsForUser(User invite) {
+        return invitationDAO.getInviationsForUser(invite);
     }
 
 }
