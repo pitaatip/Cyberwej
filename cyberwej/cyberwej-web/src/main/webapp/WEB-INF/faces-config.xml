@@ -68,6 +68,19 @@
 			<value>#{sessionContextBean}</value>
 		</managed-property>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>notificationBean</managed-bean-name>
+		<managed-bean-class>pl.edu.agh.cyberwej.web.beans.views.user.NotificationBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>invitationService</property-name>
+			<value>#{invitationService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>sessionContextBean</property-name>
+			<value>#{sessionContextBean}</value>
+		</managed-property>
+	</managed-bean>
 
 	<navigation-rule>
 		<navigation-case>

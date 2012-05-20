@@ -12,12 +12,18 @@
 
 		<h:form>
 			<h3>Notifications</h3>
-			<ul class="list">
-				<li class="first"><a href="#">User 1 invite you to group
-						group1</a></li>
-				<li class="last"><a href="#">User asdasd registered payback
-						to you</a></li>
-			</ul>
+			<h:dataTable value="#{notificationBean.invitations}" var="invitation">
+				<h:column>
+					<h:outputText value="#{invitation.sentTime}" />
+					<br/>
+					<h:outputText value="#{invitation.sender.login} invites you to the group '#{invitation.group.name}'" />
+				</h:column>
+				<h:column>
+					<h:commandButton image="/resources/images/accept_24.png" action="#{notificationBean.acceptInvitation}">
+						<f:param name="invitationId" value="#{invitation.id}"/>
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
 		</h:form>
 
 	</ui:composition>
