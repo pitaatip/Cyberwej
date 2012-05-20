@@ -11,13 +11,10 @@
 	<ui:composition>
 
 		<h:form>
-			<rich:panel style="width:500px;">
+			<rich:panel style="width:350px;" header="Participators">
 				<rich:dataTable
 					value="#{paymentInformationBean.participantInformations}"
 					var="participant">
-					<f:facet name="header">
-						<h:outputText value="Participators" />
-					</f:facet>
 					<rich:column>
 						<f:facet name="header">Login</f:facet>
 						<h:link outcome="user_page"
