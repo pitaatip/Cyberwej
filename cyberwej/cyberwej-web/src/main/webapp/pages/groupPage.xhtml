@@ -18,13 +18,15 @@
 				<title>Cyberwej - Group Page</title>
 			</ui:define>
 			<ui:define name="page">
-				<div id="col1">
+				<div id="col1" style="position: relative; top: -60px;">
 					<ui:include src="../components/groupInfoComponent.xhtml" />
 				</div>
 				<div id="col2">
 					<ui:include src="../components/groupMembersComponent.xhtml" />
 				</div>
+				<div id="group-payments">
 				<ui:include src="../components/groupPaymentsComponent.xhtml" />
+				</div>
 			</ui:define>
 
 		</ui:composition>

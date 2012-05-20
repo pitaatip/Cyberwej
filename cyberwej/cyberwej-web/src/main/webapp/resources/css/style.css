@@ -247,14 +247,26 @@ ul h4 {
 
 #col1 {
 	float: left;
-	width: 330px;
+	width: 360px;
 	overflow: hidden;
 }
 
 #col2 {
-	width: 390px;
+	width: 360px;
 	overflow: hidden;
-	margin: 0 0 0 330px;
+	margin: 0 0 0 360px;
+}
+
+#group-payments{
+	float:left;
+	margin:1px;
+}
+
+#item-payments{
+	margin-left: auto;
+	margin-right: auto;
+	width:80%;
+	
 }
 
 #search {
@@ -345,6 +357,11 @@ ul h4 {
 	border-left: 7px solid #254656;
 }
 
+
+#cyber-info-table{
+	font-size: 14px;
+	
+}
 #cyber-table {
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	font-size: 12px;

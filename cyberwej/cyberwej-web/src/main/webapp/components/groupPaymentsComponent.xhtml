@@ -11,8 +11,8 @@
 	<ui:composition>
 
 		<h:form>
-			<rich:panel style="width:700px;" header="Group payments">
-				<div id="cyber-table">
+			
+				<rich:panel header="Group payments">
 					<rich:dataTable value="#{groupInformationBean.groupPayments}"
 						var="paymentInformation">
 						<rich:column>
@@ -36,8 +36,7 @@
 							<h:outputText value="#{paymentInformation.participantsCount}" />
 						</rich:column>
 					</rich:dataTable>
-				</div>
-			</rich:panel>
+				</rich:panel>
 		</h:form>
 
 	</ui:composition>

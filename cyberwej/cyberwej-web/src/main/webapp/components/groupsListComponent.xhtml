@@ -12,8 +12,7 @@
 	<ui:composition>
 
 		<h:form>
-			<rich:panel style="width:390px;" header="Groups">
-				<div id="cyber-table">
+			<rich:panel  header="Groups">
 					<rich:dataTable value="#{userInformationBean.groupMemberships}"
 						var="groupMembership">
 						<rich:column>
@@ -36,7 +35,6 @@
 							<h:outputText value="#{groupMembership.group.creationDate}" />
 						</rich:column>
 					</rich:dataTable>
-				</div>
 			</rich:panel>
 		</h:form>
 

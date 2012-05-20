@@ -12,7 +12,8 @@
 	<ui:composition>
 
 		<h:form>
-			<rich:panel style="width:500px;" header="Items">
+			<div id="item-payments">
+			<rich:panel  header="Items">
 				<rich:dataTable value="#{paymentInformationBean.paymentItems}"
 					var="paymentItem">
 					<rich:column>
@@ -37,6 +38,7 @@
 
 				</rich:dataTable>
 			</rich:panel>
+				</div>
 		</h:form>
 
 	</ui:composition>

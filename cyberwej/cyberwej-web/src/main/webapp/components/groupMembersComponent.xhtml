@@ -11,8 +11,7 @@
 	<ui:composition>
 
 		<h:form>
-			<rich:panel style="width:360px;" header="Group members">
-				<div id="cyber-table">
+			<rich:panel  header="Group members">
 					<rich:dataTable value="#{groupInformationBean.groupMembers}"
 						var="groupMembership">
 						<rich:column>
@@ -33,7 +32,6 @@
 								value="#{groupMembership.overdraw}" />
 						</rich:column>
 					</rich:dataTable>
-				</div>
 			</rich:panel>
 		</h:form>
 

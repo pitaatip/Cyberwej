@@ -22,13 +22,15 @@
 					Payment:<br />
 					<h:outputText value="#{paymentInformationBean.payment.description}" />
 				</h2>
-				<div id="col1">
-					<ui:include src="../components/paymentInfoComponent.xhtml" />
-				</div>
-				<div id="col2">
-					<ui:include src="../components/paymentParticipantsComponent.xhtml" />
-				</div>
-				<ui:include src="../components/paymentItemsListComponent.xhtml" />
+						<div id="col1" style="position: relative; top: -50px;">
+							<ui:include src="../components/paymentInfoComponent.xhtml" />
+							<ui:include src="../components/paymentItemsListComponent.xhtml" />
+						</div>
+						<div id="col2">
+							<ui:include
+								src="../components/paymentParticipantsComponent.xhtml" />
+							<br /> <br /> <br />
+						</div>
 			</ui:define>
 
 		</ui:composition>

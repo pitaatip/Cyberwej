@@ -42,8 +42,7 @@ public class GroupInformationBean extends BaseBean {
         if (idString != null) {
             int id = Integer.parseInt(idString);
             this.group = this.groupService.getGroupWithMembersAndPayments(id);
-            this.groupPayments = this.paymentService
-                    .getGroupPayments(this.group);
+            this.groupPayments = this.paymentService.getGroupPayments(this.group);
         }
     }
 
