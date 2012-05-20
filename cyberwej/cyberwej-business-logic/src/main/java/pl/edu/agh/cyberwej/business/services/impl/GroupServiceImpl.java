@@ -61,13 +61,13 @@ public class GroupServiceImpl implements GroupService {
     
     @Override
     @Transactional
-    public boolean saveGroupWithItsMembersIds(Group group, Collection<Integer> membersIds, User owner) {
+    public boolean saveGroupWithItsMembersIds(Group group, Collection<Integer> membersIds, int ownerId) {
         List<User> members = new ArrayList<User>();
         for(int memberId : membersIds) {
             members.add(userService.getUserById(memberId));
             //What if null?
         }
-        return saveGroupWithItsMembers(group, members, owner);
+        return saveGroupWithItsMembers(group, members, userService.getUserById(ownerId));
     }
     
     @Override

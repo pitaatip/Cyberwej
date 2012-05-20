@@ -29,7 +29,7 @@ public class AddGroupBean extends BaseBean {
     private List<User> users = new ArrayList<User>();
     private Set<Integer> usersIdsSet = new HashSet<Integer>();
     private String groupName;
-    private User loggedUser;
+    private int loggedUserId;
     private int newUserId;
     private int userToBeRemovedId;
 
@@ -64,7 +64,7 @@ public class AddGroupBean extends BaseBean {
     public String next() {
         group = new Group();
         group.setName(groupName);
-        groupService.saveGroupWithItsMembersIds(group, usersIdsSet, loggedUser);
+        groupService.saveGroupWithItsMembersIds(group, usersIdsSet, loggedUserId);
         //sessionContextBean.getMap4Stuff().put(GROUP2ADD, getGroup());
         //return "addGroupSummary";
         return "main";
@@ -109,9 +109,9 @@ public class AddGroupBean extends BaseBean {
 
     @PostConstruct
     public void addLoggedUser() {
-        loggedUser = sessionContextBean.getLoggedUser();
-        users.add(loggedUser);
-        usersIdsSet.add(loggedUser.getId());
+        loggedUserId = sessionContextBean.getLoggedUser().getId();
+        users.add(sessionContextBean.getLoggedUser());
+        usersIdsSet.add(loggedUserId);
     }
 
 
@@ -126,7 +126,7 @@ public class AddGroupBean extends BaseBean {
     }
     
     private void removeUserById(int userId) {
-        if(loggedUser.getId() == userId) {
+        if(loggedUserId == userId) {
             return;
         }
         usersIdsSet.remove(userId);
