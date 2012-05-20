@@ -31,8 +31,78 @@
 					        <h:outputText value="#{user.login}" />
 					    </rich:list>
 					</a4j:outputPanel>
-					<h:link target="_blank" outcome="searchForUser" value="add iuser"/>
 			    </h:form>
+			    <h:form>
+			<rich:panel style="width:320px;" header="Search for user">
+				<div id="cyber-table">
+					<table>
+						<tr>
+							<td><h:outputText value="Login" /></td>
+							<td><h:inputText value="#{searchForUserBean.login}">
+									<rich:validator />
+								</h:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Name" /></td>
+							<td><h:inputText value="#{searchForUserBean.name}">
+									<rich:validator />
+								</h:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Surname" /></td>
+							<td><h:inputText value="#{searchForUserBean.surname}">
+									<rich:validator />
+								</h:inputText></td>
+						</tr>
+						<tr>
+							<td><h:outputText value="Location" /></td>
+							<td><h:inputText value="#{searchForUserBean.location}">
+									<rich:validator />
+								</h:inputText></td>
+						</tr>
+
+					</table>
+				</div>
+				<a4j:commandButton value="Search" render="userPanel"
+					execute="@form" />
+			</rich:panel>
+			<rich:panel style="width:500px;" header="Existing Users"
+				id="userPanel">
+					<rich:dataTable value="#{searchForUserBean.usersList}" var="user">
+						<f:facet name="header">
+							<h:outputText value="Registered users Table" />
+						</f:facet>
+						<rich:column>
+							<f:facet name="header">Login</f:facet>
+							<h:commandLink action="userPage" value="#{user.login}">
+								<f:param name="userToShow" value="#{user.id}" />
+							</h:commandLink>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Name</f:facet>
+							<h:outputText value="#{user.name}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Surname</f:facet>
+							<h:outputText value="#{user.surname}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Mail Address</f:facet>
+							<h:outputText value="#{user.mail}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Address</f:facet>
+							<h:outputText value="#{user.location}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Add to group</f:facet>
+							<a4j:commandButton render="userList" value="Add">
+								<a4j:param value="#{user}" assignTo="#{addGroupBean.newUser}"  />
+							</a4j:commandButton>
+						</rich:column>
+					</rich:dataTable>
+			</rich:panel>
+		</h:form>
 			</ui:define>
 
 		</ui:composition>

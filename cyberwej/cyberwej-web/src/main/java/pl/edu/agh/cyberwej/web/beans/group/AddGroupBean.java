@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 import pl.edu.agh.cyberwej.data.objects.Group;
 import pl.edu.agh.cyberwej.data.objects.User;
@@ -20,12 +20,13 @@ import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
  */
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class AddGroupBean extends BaseBean {
     private static final String GROUP2ADD = "group2add";
     private Group group = new Group();
     private List<User> users = new ArrayList<User>();
     private String groupName;
+    private User newUser;
     
     public String next() {
         getMap4Stuff().put(GROUP2ADD, getGroup());
@@ -51,8 +52,18 @@ public class AddGroupBean extends BaseBean {
         this.groupName = groupName;
     }
     
-    public void addUser(User user) {
+    public String addUser(User user) {
         users.add(user);
+        return "";
+    }
+    
+    public void setNewUser(User user) {
+        this.newUser = user;
+        users.add(user);
+    }
+    
+    public User getNewUser() {
+        return newUser;
     }
 
     @PostConstruct
