@@ -30,7 +30,7 @@ public class RegisterPaymentStep3Bean extends BaseBean {
     private String amount;
     private String selectedPayer;
 
-    @ManagedProperty(value = "#{service}")
+    @ManagedProperty(value = "#{userService}")
     private UserService userService;
 
     @ManagedProperty("#{sessionContextBean}")
