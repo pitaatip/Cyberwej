@@ -5,6 +5,7 @@ import java.util.Map;
 import java.util.Set;
 
 import pl.edu.agh.cyberwej.common.objects.service.ParticipantInformation;
+import pl.edu.agh.cyberwej.common.objects.service.PaymentInformation;
 import pl.edu.agh.cyberwej.data.dao.interfaces.PaymentDAO;
 import pl.edu.agh.cyberwej.data.objects.Group;
 import pl.edu.agh.cyberwej.data.objects.Payment;
@@ -34,12 +35,13 @@ public interface PaymentService {
     public Map<Payment, Float> getLastPayments(int count, User user);
 
     public float getUserStatusInPayment(Payment payment, User user);
-    
-    public boolean registerPayment(Group group, Set<PaymentItem> items, Set<PaymentParticipation> participators, String description);
+
+    public boolean registerPayment(Group group, Set<PaymentItem> items,
+            Set<PaymentParticipation> participators, String description);
 
     public void setPaymentDAO(PaymentDAO paymentDAO);
 
-    public Map<Payment, Float> getGroupPayments(Group group);
+    public List<PaymentInformation> getGroupPayments(Group group);
 
     public Payment getPaymentWithDependencies(int id);
 

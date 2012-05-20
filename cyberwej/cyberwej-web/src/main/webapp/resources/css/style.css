@@ -247,14 +247,14 @@ ul h4 {
 
 #col1 {
 	float: left;
-	width: 310px;
+	width: 330px;
 	overflow: hidden;
 }
 
 #col2 {
 	width: 390px;
 	overflow: hidden;
-	margin: 0 0 0 340px;
+	margin: 0 0 0 330px;
 }
 
 #search {

@@ -1,9 +1,7 @@
 package pl.edu.agh.cyberwej.web.beans.group;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -12,9 +10,9 @@ import javax.faces.bean.RequestScoped;
 
 import pl.edu.agh.cyberwej.business.services.api.GroupService;
 import pl.edu.agh.cyberwej.business.services.api.PaymentService;
+import pl.edu.agh.cyberwej.common.objects.service.PaymentInformation;
 import pl.edu.agh.cyberwej.data.objects.Group;
 import pl.edu.agh.cyberwej.data.objects.GroupMembership;
-import pl.edu.agh.cyberwej.data.objects.Payment;
 import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
 
 /**
@@ -36,7 +34,7 @@ public class GroupInformationBean extends BaseBean {
 
     private Group group = new Group();
 
-    private Map<Payment, Float> groupPayments = new HashMap<Payment, Float>();
+    private List<PaymentInformation> groupPayments = new LinkedList<PaymentInformation>();
 
     @PostConstruct
     public void init() {
@@ -90,18 +88,14 @@ public class GroupInformationBean extends BaseBean {
         this.paymentService = paymentService;
     }
 
+    public String userPage() {
+        return "user_page";
+    }
+
     /**
      * @return the groupPayments
      */
-    public Map<Payment, Float> getGroupPayments() {
+    public List<PaymentInformation> getGroupPayments() {
         return this.groupPayments;
-    }
-
-    public List<Payment> getGroupPaymentsList() {
-        return new LinkedList<Payment>(this.groupPayments.keySet());
-    }
-
-    public String userPage() {
-        return "user_page";
     }
 }

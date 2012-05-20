@@ -12,12 +12,9 @@
 	<ui:composition>
 
 		<h:form>
-			<rich:panel style="width:400px;">
+			<rich:panel style="width:500px;" header="Items">
 				<rich:dataTable value="#{paymentInformationBean.paymentItems}"
 					var="paymentItem">
-					<f:facet name="header">
-						<h:outputText value="Items" />
-					</f:facet>
 					<rich:column>
 						<f:facet name="header">Porduct</f:facet>
 						<h:outputText value="#{paymentItem.product.name}" />

@@ -11,30 +11,29 @@
 	<ui:composition>
 
 		<h:form>
-			<rich:panel style="width:700px;">
+			<rich:panel style="width:700px;" header="Group payments">
 				<div id="cyber-table">
-					<rich:dataTable value="#{groupInformationBean.groupPaymentsList}"
-						var="payment">
-						<f:facet name="header">
-							<h:outputText value="Group payments" />
-						</f:facet>
+					<rich:dataTable value="#{groupInformationBean.groupPayments}"
+						var="paymentInformation">
 						<rich:column>
 							<f:facet name="header">Name</f:facet>
-							<h:link value="#{payment.description}" outcome="payment_page">
-								<f:param name="selectedPayment" value="#{payment.id}" />
+							<h:link value="#{paymentInformation.payment.description}"
+								outcome="payment_page">
+								<f:param name="selectedPayment"
+									value="#{paymentInformation.payment.id}" />
 							</h:link>
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Registered on</f:facet>
-							<h:outputText value="#{payment.date}" />
+							<h:outputText value="#{paymentInformation.payment.date}" />
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Money spent</f:facet>
-							<h:outputText
-								value="#{groupInformationBean.groupPayments[payment]}" />
+							<h:outputText value="#{paymentInformation.amount}" />
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Users involved</f:facet>
+							<h:outputText value="#{paymentInformation.participantsCount}" />
 						</rich:column>
 					</rich:dataTable>
 				</div>
