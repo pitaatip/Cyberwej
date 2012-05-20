@@ -15,9 +15,9 @@ public interface GroupService {
 
     public boolean saveGroup(Group group);
     
-    public boolean saveGroupWithItsMembers(Group group, Collection<User> members);
+    public boolean saveGroupWithItsMembers(Group group, Collection<User> members, User owner);
     
-    public boolean saveGroupWithItsMembersIds(Group group, Collection<Integer> membersIds);
+    public boolean saveGroupWithItsMembersIds(Group group, Collection<Integer> membersIds, int ownerId);
 
     public Group getGroupById(int id);
 

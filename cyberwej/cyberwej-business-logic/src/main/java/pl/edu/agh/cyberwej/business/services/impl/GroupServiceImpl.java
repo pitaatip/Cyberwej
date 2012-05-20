@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pl.edu.agh.cyberwej.business.services.api.GroupMembershipService;
 import pl.edu.agh.cyberwej.business.services.api.GroupService;
+import pl.edu.agh.cyberwej.business.services.api.InvitationService;
 import pl.edu.agh.cyberwej.business.services.api.UserService;
 import pl.edu.agh.cyberwej.data.dao.interfaces.GroupDAO;
 import pl.edu.agh.cyberwej.data.objects.Group;
@@ -28,6 +29,9 @@ public class GroupServiceImpl implements GroupService {
     @Autowired
     private GroupDAO groupDAO;
     
+    @Autowired
+    private InvitationService invitationService;
+    
     private GroupMembershipService groupMembershipService;
     
     private UserService userService;
@@ -39,28 +43,31 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     @Transactional
-    public boolean saveGroupWithItsMembers(Group group, Collection<User> members) {
+    public boolean saveGroupWithItsMembers(Group group, Collection<User> members, User owner) {
         if(groupDAO.getGroupByName(group.getName()) != null) {
             return false;
         }
         if(!groupDAO.saveGroup(group)) {
             return false;
         }
+        groupMembershipService.addGroupMember(group, owner);
         for(User user : members) {
-            groupMembershipService.addGroupMember(group, user);
+            if(user.getId() != owner.getId()) {
+                invitationService.inviteUser(owner, user, group);
+            }
         }
         return true;
     }
     
     @Override
     @Transactional
-    public boolean saveGroupWithItsMembersIds(Group group, Collection<Integer> membersIds) {
+    public boolean saveGroupWithItsMembersIds(Group group, Collection<Integer> membersIds, int ownerId) {
         List<User> members = new ArrayList<User>();
         for(int memberId : membersIds) {
             members.add(userService.getUserById(memberId));
             //What if null?
         }
-        return saveGroupWithItsMembers(group, members);
+        return saveGroupWithItsMembers(group, members, userService.getUserById(ownerId));
     }
     
     @Override
