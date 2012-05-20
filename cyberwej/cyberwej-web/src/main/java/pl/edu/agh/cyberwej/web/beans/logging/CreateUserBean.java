@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import pl.edu.agh.cyberwej.business.services.api.UserService;
 import pl.edu.agh.cyberwej.data.objects.User;
 import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
+import pl.edu.agh.cyberwej.web.beans.common.CryptoUtil;
 
 /**
  * @author pita This is managed bean used on addUserComponent.xhtml.
@@ -14,7 +15,8 @@ public class CreateUserBean extends BaseBean {
 
     private UserService service;
     private User user;
-
+    private String password;
+    
     public CreateUserBean() {
         // Initialize user
         setUser(new User());
@@ -27,6 +29,11 @@ public class CreateUserBean extends BaseBean {
      * @return
      */
     public String saveNewUser() {
+        try {
+            user.setPassword(CryptoUtil.encrypt(getPassword()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         service.saveUser(user);
         return "logging";
     }
@@ -45,6 +52,16 @@ public class CreateUserBean extends BaseBean {
 
     public void setService(UserService service) {
         this.service = service;
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

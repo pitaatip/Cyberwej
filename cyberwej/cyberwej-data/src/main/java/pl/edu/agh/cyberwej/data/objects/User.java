@@ -43,6 +43,9 @@ public class User {
 
     @Column(name = "BIRTHDAY")
     private Date birthday;
+    
+    @Column(name = "PASSWORD")
+    private String password;
 
     @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "user", fetch = FetchType.LAZY)
     private Set<GroupMembership> groupMemberships = new HashSet<GroupMembership>();
@@ -173,5 +176,13 @@ public class User {
      */
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

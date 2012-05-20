@@ -21,7 +21,9 @@
 			<ui:define name="page">
 				<a4j:outputPanel id="errors">
 					<h:outputText value="User loign does not exist in system!"
-						rendered="#{loggingBean.loginErrors}" style="color: red;" />
+						rendered="#{loggingBean.nonExistError}" style="color: red;" />
+					<h:outputText value="Password is incorrect!"
+						rendered="#{loggingBean.wrongPasswordError}" style="color: red;" />
 				</a4j:outputPanel>
 				<h:form>
 					<table id="cyber-table">
@@ -32,7 +34,7 @@
 						</tr>
 						<tr>
 							<td><h:outputText value="Password:" /></td>
-							<td><h:inputSecret defaultLabel="click to enter your password" /></td>
+							<td><h:inputSecret defaultLabel="click to enter your password" value="#{loggingBean.password}"/></td>
 						</tr>
 						<tr>
 							<td><h:commandButton value="next"

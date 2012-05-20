@@ -39,7 +39,7 @@
 		<managed-bean-scope>request</managed-bean-scope>
 		<managed-property>
 			<property-name>service</property-name>
-			<value>#{service}</value>
+			<value>#{userService}</value>
 		</managed-property>
 	</managed-bean>
 	<managed-bean>
