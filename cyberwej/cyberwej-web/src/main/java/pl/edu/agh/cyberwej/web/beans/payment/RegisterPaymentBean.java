@@ -38,7 +38,7 @@ public class RegisterPaymentBean extends BaseBean {
     private GroupService groupService;
     
     public List<GroupMembership> getGroupMemberships() {
-        return getUserService().getUserGroupMemberships(getUser());
+        return getUserService().getGroupMemberships(getUser());
     }
 
     public String next() {

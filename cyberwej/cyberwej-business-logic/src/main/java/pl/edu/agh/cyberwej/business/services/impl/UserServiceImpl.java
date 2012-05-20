@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import pl.edu.agh.cyberwej.business.services.api.UserService;
+import pl.edu.agh.cyberwej.common.objects.service.GroupInformation;
 import pl.edu.agh.cyberwej.data.dao.interfaces.UserDAO;
+import pl.edu.agh.cyberwej.data.objects.Group;
 import pl.edu.agh.cyberwej.data.objects.GroupMembership;
 import pl.edu.agh.cyberwej.data.objects.User;
 
@@ -19,7 +21,6 @@ import pl.edu.agh.cyberwej.data.objects.User;
  * @author pita
  * 
  */
-@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -57,20 +58,39 @@ public class UserServiceImpl implements UserService {
         return this.dao.getById(id);
     }
 
-    @Transactional(readOnly = true)
-    @Override
-    public List<GroupMembership> getUserGroupMemberships(User user) {
-        user = this.dao.getById(user.getId());
-        return new LinkedList<GroupMembership>(user.getGroupMemberships());
-    }
-
     @Override
     public User getUserByLogin(String login) {
         return this.dao.findUserByLogin(login);
     }
-    
+
     @Override
-    public List<User> findUserByCriteria(String login, String name, String surname, String location) {
+    public List<User> findUserByCriteria(String login, String name,
+            String surname, String location) {
         return this.dao.findUserByCriteria(login, name, surname, location);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<GroupInformation> getUserGroupsInformation(User user) {
+        user = this.dao.getById(user.getId());
+        List<GroupInformation> groupInformations = new LinkedList<GroupInformation>();
+        for (GroupMembership groupMembership : user.getGroupMemberships()) {
+            GroupInformation groupInformation = new GroupInformation();
+            Group group = groupMembership.getGroup();
+            groupInformation.setGroup(group);
+            groupInformation.setMembersCount(group.getGroupMembers().size());
+            groupInformation.setPaymentsCount(group.getPayments().size());
+            groupInformations.add(groupInformation);
+        }
+
+        return groupInformations;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<GroupMembership> getGroupMemberships(User user) {
+        User retrievedUser = this.dao.getById(user.getId());
+        return new LinkedList<GroupMembership>(
+                retrievedUser.getGroupMemberships());
     }
 }

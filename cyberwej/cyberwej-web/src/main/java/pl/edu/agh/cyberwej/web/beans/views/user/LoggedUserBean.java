@@ -82,7 +82,7 @@ public class LoggedUserBean {
     }
 
     public List<GroupMembership> getGroupMemberships() {
-        return this.userService.getUserGroupMemberships(this.user);
+        return this.userService.getGroupMemberships(this.user);
     }
 
     /**

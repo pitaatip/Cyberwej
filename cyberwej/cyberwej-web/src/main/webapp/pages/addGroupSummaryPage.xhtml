@@ -19,15 +19,12 @@
 			</ui:define>
 
 			<ui:define name="page">
-				<h1>Summary of add Group</h1>
+				<h1>Summary of added Group</h1>
 
 				<h:form>
-					<table id="cyber-table">
-						<tr>
-							<td><h:outputText value="Group Name: " /></td>
-							<td><h:outputText value="#{addGroupBean.group.name}" /></td>
-						</tr>
-					</table>
+					<h:outputText value="Group Name: #{addGroupBean.group.name}" />
+					<h:dataTable value="#{addGroupBean.group.users}">
+					</h:dataTable>
 				</h:form>
 			</ui:define>
 

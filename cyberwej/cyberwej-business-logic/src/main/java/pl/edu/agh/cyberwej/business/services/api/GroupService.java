@@ -1,6 +1,6 @@
 package pl.edu.agh.cyberwej.business.services.api;
 
-import java.util.List;
+import java.util.Collection;
 
 import pl.edu.agh.cyberwej.data.dao.interfaces.GroupDAO;
 import pl.edu.agh.cyberwej.data.objects.Group;
@@ -15,9 +15,9 @@ public interface GroupService {
 
     public boolean saveGroup(Group group);
     
-    public boolean saveGroupWithItsMembers(Group group, List<User> members);
+    public boolean saveGroupWithItsMembers(Group group, Collection<User> members);
     
-    public boolean saveGroupWithItsMembersIds(Group group, List<Integer> membersIds);
+    public boolean saveGroupWithItsMembersIds(Group group, Collection<Integer> membersIds);
 
     public Group getGroupById(int id);
 
