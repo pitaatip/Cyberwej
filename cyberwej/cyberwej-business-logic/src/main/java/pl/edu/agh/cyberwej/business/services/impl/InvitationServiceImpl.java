@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import pl.edu.agh.cyberwej.business.services.api.GroupMembershipService;
 import pl.edu.agh.cyberwej.business.services.api.InvitationService;
 import pl.edu.agh.cyberwej.data.dao.interfaces.InvitationDAO;
 import pl.edu.agh.cyberwej.data.objects.Group;
@@ -21,6 +23,9 @@ public class InvitationServiceImpl implements InvitationService {
 
     @Autowired
     private InvitationDAO invitationDAO;
+    
+    @Autowired
+    private GroupMembershipService groupMembershipService;
 
     @Override
     public boolean inviteUser(User inviter, User invitee, Group group) {
@@ -28,8 +33,11 @@ public class InvitationServiceImpl implements InvitationService {
     }
 
     @Override
+    @Transactional
     public void acceptInvitation(Invitation invitation, boolean isAccepted) {
-        // TODO add groupMembership
+        if(isAccepted) {
+            groupMembershipService.addGroupMember(invitation.getGroup(), invitation.getReceiver());
+        } //else - delete invitation or what?
     }
     
     public List<Invitation> getInviationsForUser(User invite) {

@@ -64,7 +64,7 @@ public class AddGroupBean extends BaseBean {
     public String next() {
         group = new Group();
         group.setName(groupName);
-        groupService.saveGroupWithItsMembersIds(group, usersIdsSet);
+        groupService.saveGroupWithItsMembersIds(group, usersIdsSet, loggedUser);
         //sessionContextBean.getMap4Stuff().put(GROUP2ADD, getGroup());
         //return "addGroupSummary";
         return "main";
