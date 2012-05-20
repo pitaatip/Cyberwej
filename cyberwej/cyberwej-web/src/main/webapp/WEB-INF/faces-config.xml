@@ -58,6 +58,10 @@
 			<to-view-id>pages/registerPaymentPage.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>registerPayment_secondStep</from-outcome>
+			<to-view-id>pages/registerPaymentStep2Page.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>register_payback</from-outcome>
 			<to-view-id>pages/registerPaybackPage.xhtml</to-view-id>
 		</navigation-case>
@@ -72,6 +76,14 @@
 		<navigation-case>
 			<from-outcome>groupPage</from-outcome>
 			<to-view-id>pages/groupPage.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>registerPaymentPageStep3</from-outcome>
+			<to-view-id>pages/registerPaymentStep3Page.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>registerPaymentSummary</from-outcome>
+			<to-view-id>pages/registerPaymentSummaryPage.xhtml</to-view-id>
 		</navigation-case>
 
 		<navigation-case>

@@ -19,8 +19,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import pl.edu.agh.cyberwej.data.dao.interfaces.GroupDAO;
+import pl.edu.agh.cyberwej.data.dao.interfaces.GroupMembershipDAO;
+import pl.edu.agh.cyberwej.data.dao.interfaces.UserDAO;
 import pl.edu.agh.cyberwej.data.objects.Group;
+import pl.edu.agh.cyberwej.data.objects.GroupMembership;
 import pl.edu.agh.cyberwej.data.objects.Payment;
+import pl.edu.agh.cyberwej.data.objects.User;
 
 @ContextConfiguration(locations = { "TestContext.xml" })
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,6 +33,12 @@ public class GroupDAOImplTest {
     @Autowired
     private GroupDAO groupDAO;
 
+    @Autowired 
+    private UserDAO userDAO;
+    
+    @Autowired
+    private GroupMembershipDAO grMemDao;
+    
     private Group group;
 
     private final String groupName = "Pierwsza grupa";
@@ -39,6 +49,7 @@ public class GroupDAOImplTest {
     private Date date;
     private final String description = "Wyjscie na pizze";
 
+    
     @Before
     public void setUp() {
         this.date = new Date();
@@ -113,6 +124,26 @@ public class GroupDAOImplTest {
         this.groupDAO.removeGroupPayment(this.group, this.payment);
         Group retrievedGroup = this.groupDAO.getGroupByName(this.groupName);
         assertTrue(retrievedGroup.getPayments().isEmpty());
+    }
+
+
+    public UserDAO getUserDAO() {
+        return userDAO;
+    }
+
+
+    public void setUserDAO(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
+
+    public GroupMembershipDAO getGrMemDao() {
+        return grMemDao;
+    }
+
+
+    public void setGrMemDao(GroupMembershipDAO grMemDao) {
+        this.grMemDao = grMemDao;
     }
 
 }

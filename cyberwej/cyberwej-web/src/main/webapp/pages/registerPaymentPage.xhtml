@@ -19,10 +19,33 @@
 			</ui:define>
 			<ui:define name="page">
 				<h1>Register Payment</h1>
-				 		
-				 		In this page , it will be possible to Register new payment.
- 		
-    		</ui:define>
+				<br />
+
+				<h:form>
+					<rich:panel header="Step1">
+						<table id="cyber-table">
+							<tr>
+								<td><h:outputText value="Enter payment name: " /></td>
+								<td><h:inputText value="#{registerPaymentBean.paymentName}" /></td>
+							</tr>
+							<tr>
+								<td><h:outputText value="Choose group: " /></td>
+								<td><rich:select defaultLabel="select group"
+										enableManualInput="true"
+										value="#{registerPaymentBean.selectedGroup}">
+										<f:selectItems value="#{registerPaymentBean.userGroup}"
+											var="group" itemLabel="#{group.name}" itemValue="#{group.id}" />
+									</rich:select></td>
+							</tr>
+							<tr>
+								<td><h:commandButton value="Next"
+										action="#{registerPaymentBean.next}" /></td>
+							</tr>
+						</table>
+
+					</rich:panel>
+				</h:form>
+			</ui:define>
 
 		</ui:composition>
 	</f:view>

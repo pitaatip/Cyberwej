@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<h:head>
+	<title>Register Payment</title>
+</h:head>
+<h:body>
+	<f:view>
+		<ui:composition template="../template.xhtml">
+			<ui:define name="title">
+				<title>Cyberwej - Register payment</title>
+			</ui:define>
+			<ui:define name="page">
+				<h1>Register Payment</h1>
+				<br />
+
+				<h:form>
+					<rich:panel header="Step3">
+						<table id="cyber-table">
+							<tr>
+								<td><h:outputText value="Payer: " /></td>
+								<td><rich:select defaultLabel="select group"
+										enableManualInput="true"
+										value="#{registerPaymentStep3Bean.selectedPayer}">
+										<f:selectItems value="#{registerPaymentStep3Bean.groupMemberships}"
+											var="groupMem" itemLabel="#{groupMem.user.login}" itemValue="#{groupMem.user.id}" />
+									</rich:select></td>
+							</tr>
+							<tr>
+								<td><h:outputText value="Amount of money payed: " /></td>
+								<td><h:inputText value="#{registerPaymentStep3Bean.amount}" /></td>
+							</tr>
+							<tr>
+								<td><h:commandButton value="Add Payer"
+										action="#{registerPaymentStep3Bean.addPayer}" /></td>
+							</tr>
+						</table>
+						<br />
+						<rich:dataTable value="#{registerPaymentStep3Bean.paymentParticipators}"
+							var="payer" rowKeyVar="itemNum">
+							<f:facet name="header">
+								<h:outputText value="Added payers" />
+							</f:facet>
+							<rich:column>
+								<f:facet name="header">User</f:facet>
+								<h:outputText value="#{payer.user.login}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Amount of money payed</f:facet>
+								<h:outputText value="#{payer.amount}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Actions</f:facet>
+								<h:commandButton
+									action="#{registerPaymentStep3Bean.removePayer}" value="Delete">
+									<f:param name="itemToDelete" value="#{itemNum}" />
+								</h:commandButton>
+							</rich:column>
+
+						</rich:dataTable>
+
+
+					</rich:panel>
+					<h:commandButton value="next"
+						action="#{registerPaymentStep3Bean.next}" />
+				</h:form>
+			</ui:define>
+
+		</ui:composition>
+	</f:view>
+</h:body>
+</html>
