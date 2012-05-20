@@ -19,18 +19,45 @@
 			</ui:define>
 
 			<ui:define name="page">
-				<h1>Add Group Page</h1>
+				<h1>Add Group</h1>
 				<h:form>
-			        <h:panelGrid columns="3">
-			            <h:outputText value="Name:" />
+			        <h:panelGrid columns="2">
+			            <h:outputText value="Group name:" />
 			            <h:inputText value="#{addGroupBean.groupName}" />
-			            
 			        </h:panelGrid>
-					<a4j:outputPanel ajaxRendered="true">
-						<rich:list value="#{addGroupBean.users}" id="userList" var="user" type="ordered">
-					        <h:outputText value="#{user.login}" />
-					    </rich:list>
-					</a4j:outputPanel>
+			        <rich:panel style="width:500px;" header="Group members" id="groupMembers">
+						<rich:dataTable value="#{addGroupBean.users}" var="user">
+							<f:facet name="header">
+								<h:outputText value="Registered users Table" />
+							</f:facet>
+							<rich:column>
+								<f:facet name="header">Login</f:facet>
+								<h:commandLink action="userPage" value="#{user.login}">
+									<f:param name="userToShow" value="#{user.id}" />
+								</h:commandLink>
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Name</f:facet>
+								<h:outputText value="#{user.name}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Surname</f:facet>
+								<h:outputText value="#{user.surname}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Location</f:facet>
+								<h:outputText value="#{user.location}" />
+							</rich:column>
+							<rich:column>
+								<f:facet name="header">Remove</f:facet>
+								<a4j:commandButton render="groupMembers" value="Remove" execute="@form">
+									<a4j:param value="#{user.id}" assignTo="#{addGroupBean.userToBeRemovedId}"/>
+								</a4j:commandButton>
+							</rich:column>
+						</rich:dataTable>
+				</rich:panel>
+			        
+					
 			<rich:panel style="width:320px;" header="Search for user">
 				<div id="cyber-table">
 					<table>
@@ -85,16 +112,12 @@
 							<h:outputText value="#{user.surname}" />
 						</rich:column>
 						<rich:column>
-							<f:facet name="header">Mail Address</f:facet>
-							<h:outputText value="#{user.mail}" />
-						</rich:column>
-						<rich:column>
-							<f:facet name="header">Address</f:facet>
+							<f:facet name="header">Location</f:facet>
 							<h:outputText value="#{user.location}" />
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Add to group</f:facet>
-							<a4j:commandButton render="userList" value="Add" execute="@form">
+							<a4j:commandButton render="groupMembers" value="Add" execute="@form">
 								<a4j:param value="#{user.id}" assignTo="#{addGroupBean.newUserId}"  />
 							</a4j:commandButton>
 						</rich:column>

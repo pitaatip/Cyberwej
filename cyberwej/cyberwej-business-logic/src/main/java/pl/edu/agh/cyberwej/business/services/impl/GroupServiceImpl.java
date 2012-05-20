@@ -1,12 +1,11 @@
 package pl.edu.agh.cyberwej.business.services.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -40,7 +39,7 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     @Transactional
-    public boolean saveGroupWithItsMembers(Group group, List<User> members) {
+    public boolean saveGroupWithItsMembers(Group group, Collection<User> members) {
         if(groupDAO.getGroupByName(group.getName()) != null) {
             return false;
         }
@@ -55,7 +54,7 @@ public class GroupServiceImpl implements GroupService {
     
     @Override
     @Transactional
-    public boolean saveGroupWithItsMembersIds(Group group, List<Integer> membersIds) {
+    public boolean saveGroupWithItsMembersIds(Group group, Collection<Integer> membersIds) {
         List<User> members = new ArrayList<User>();
         for(int memberId : membersIds) {
             members.add(userService.getUserById(memberId));
