@@ -25,7 +25,7 @@ public class UserInformationBean extends BaseBean {
 
     private static String USERTOSHOW = "userToShow";
 
-    @ManagedProperty(value = "#{service}")
+    @ManagedProperty(value = "#{userService}")
     private UserService userService;
 
     @PostConstruct

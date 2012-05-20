@@ -44,7 +44,7 @@ public class RegisterPaymentStep2Bean extends BaseBean {
     @ManagedProperty("#{sessionContextBean}")
     private SessionContextBean sessionContextBean;
 
-    @ManagedProperty(value = "#{service}")
+    @ManagedProperty(value = "#{userService}")
     private UserService userService;
 
     @ManagedProperty(value = "#{groupService}")

@@ -17,7 +17,7 @@
 		<managed-bean-scope>request</managed-bean-scope>
 		<managed-property>
 			<property-name>service</property-name>
-			<value>#{service}</value>
+			<value>#{userService}</value>
 		</managed-property>
 	</managed-bean>
 	<managed-bean>
@@ -26,7 +26,7 @@
 		<managed-bean-scope>request</managed-bean-scope>
 		<managed-property>
 			<property-name>service</property-name>
-			<value>#{service}</value>
+			<value>#{userService}</value>
 		</managed-property>
 		<managed-property>
 			<property-name>sessionContextBean</property-name>
@@ -39,7 +39,7 @@
 		<managed-bean-scope>request</managed-bean-scope>
 		<managed-property>
 			<property-name>service</property-name>
-			<value>#{service}</value>
+			<value>#{userService}</value>
 		</managed-property>
 	</managed-bean>
 	<managed-bean>
@@ -48,7 +48,7 @@
 		<managed-bean-scope>request</managed-bean-scope>
 		<managed-property>
 			<property-name>service</property-name>
-			<value>#{service}</value>
+			<value>#{userService}</value>
 		</managed-property>
 	</managed-bean>
 	<managed-bean>
@@ -57,7 +57,7 @@
 		<managed-bean-scope>view</managed-bean-scope>
 		<managed-property>
 			<property-name>userService</property-name>
-			<value>#{service}</value>
+			<value>#{userService}</value>
 		</managed-property>
 		<managed-property>
 			<property-name>groupService</property-name>

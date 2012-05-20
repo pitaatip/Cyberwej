@@ -29,7 +29,7 @@ public class LoggedUserBean {
 
     private static final String SELECTEDGROUP = "selectedGroup";
 
-    @ManagedProperty(value = "#{service}")
+    @ManagedProperty(value = "#{userService}")
     private UserService userService;
 
     @ManagedProperty("#{sessionContextBean}")
