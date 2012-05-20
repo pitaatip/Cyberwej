@@ -1,5 +1,6 @@
 package pl.edu.agh.cyberwej.data.dao.implementations;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -19,6 +20,7 @@ public class InvitationDAOImpl extends DAOBase<Invitation> implements
         invitation.setGroup(group);
         invitation.setReceiver(invitee);
         invitation.setSender(inviter);
+        invitation.setSentTime(new Date());
         invitee.getUserInvitations().add(invitation);
         group.getInvitations().add(invitation);
         return super.save(invitation);

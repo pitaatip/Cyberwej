@@ -1,5 +1,7 @@
 package pl.edu.agh.cyberwej.data.objects;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +23,8 @@ public class Message {
     protected User sender;
 
     protected User receiver;
+    
+    private Date sentTime;
 
     @Id
     @Column(name = "MESSAGEID")
@@ -63,4 +67,12 @@ public class Message {
         this.receiver = receiver;
     }
 
+    public Date getSentTime() {
+        return sentTime;
+    }
+
+    @Column(name = "SENTTIME", nullable = false)
+    public void setSentTime(Date sentTime) {
+        this.sentTime = sentTime;
+    }
 }

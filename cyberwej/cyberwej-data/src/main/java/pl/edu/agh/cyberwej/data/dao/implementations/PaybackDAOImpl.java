@@ -1,5 +1,7 @@
 package pl.edu.agh.cyberwej.data.dao.implementations;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Repository;
 
 import pl.edu.agh.cyberwej.data.dao.interfaces.PaybackDAO;
@@ -19,6 +21,7 @@ public class PaybackDAOImpl extends DAOBase<Payback> implements PaybackDAO {
         payback.setSender(debtor);
         payback.setGroup(group);
         payback.setReceiver(investor);
+        payback.setSentTime(new Date());
         investor.getPaybacksForUser().add(payback);
         debtor.getPaybacksForOthers().add(payback);
         group.getPaybacks().add(payback);
