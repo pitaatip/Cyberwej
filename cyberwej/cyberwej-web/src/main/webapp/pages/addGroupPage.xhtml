@@ -31,8 +31,6 @@
 					        <h:outputText value="#{user.login}" />
 					    </rich:list>
 					</a4j:outputPanel>
-			    </h:form>
-			    <h:form>
 			<rich:panel style="width:320px;" header="Search for user">
 				<div id="cyber-table">
 					<table>
@@ -96,14 +94,14 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Add to group</f:facet>
-							<a4j:commandButton render="userList" value="Add">
-								<a4j:param value="#{user}" assignTo="#{addGroupBean.newUser}"  />
+							<a4j:commandButton render="userList" value="Add" execute="@form">
+								<a4j:param value="#{user.id}" assignTo="#{addGroupBean.newUserId}"  />
 							</a4j:commandButton>
 						</rich:column>
 					</rich:dataTable>
 			</rich:panel>
 		</h:form>
-			</ui:define>
+		</ui:define>
 
 		</ui:composition>
 	</f:view>

@@ -10,6 +10,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import pl.edu.agh.cyberwej.business.services.api.GroupService;
+import pl.edu.agh.cyberwej.business.services.api.UserService;
 import pl.edu.agh.cyberwej.data.objects.Group;
 import pl.edu.agh.cyberwej.data.objects.User;
 import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
@@ -19,15 +21,23 @@ import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
  * 
  */
 
-@ManagedBean
-@SessionScoped
 public class AddGroupBean extends BaseBean {
     private static final String GROUP2ADD = "group2add";
     private Group group = new Group();
     private List<User> users = new ArrayList<User>();
     private String groupName;
-    private User newUser;
+    private int newUserId;
+    //private GroupService groupService;
+    private UserService userService;
     
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
     public String next() {
         getMap4Stuff().put(GROUP2ADD, getGroup());
         return "addGroupSummary";
@@ -57,13 +67,13 @@ public class AddGroupBean extends BaseBean {
         return "";
     }
     
-    public void setNewUser(User user) {
-        this.newUser = user;
-        users.add(user);
+    public void setNewUserId(int userId) {
+        this.newUserId = userId;
+        users.add(userService.getUserById(userId));
     }
     
-    public User getNewUser() {
-        return newUser;
+    public int getNewUser() {
+        return newUserId;
     }
 
     @PostConstruct

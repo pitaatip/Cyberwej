@@ -51,6 +51,15 @@
 			<value>#{service}</value>
 		</managed-property>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>addGroupBean</managed-bean-name>
+		<managed-bean-class>pl.edu.agh.cyberwej.web.beans.group.AddGroupBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>userService</property-name>
+			<value>#{service}</value>
+		</managed-property>
+	</managed-bean>
 
 	<navigation-rule>
 		<navigation-case>
