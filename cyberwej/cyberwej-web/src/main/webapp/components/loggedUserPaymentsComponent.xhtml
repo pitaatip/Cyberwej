@@ -15,8 +15,7 @@
 				<rich:dataTable value="#{loggedUserBean.payments}" var="payment">
 					<rich:column>
 						<f:facet name="header">Name</f:facet>
-						<h:link value="#{payment.description}"
-							outcome="payment_page">
+						<h:link value="#{payment.description}" outcome="payment_page">
 							<f:param name="selectedPayment" value="#{payment.id}" />
 						</h:link>
 					</rich:column>
@@ -32,6 +31,7 @@
 					</rich:column>
 					<rich:column>
 						<f:facet name="header">Group</f:facet>
+						<h:outputText value="#{payment.group.name}" />
 					</rich:column>
 				</rich:dataTable>
 			</rich:panel>

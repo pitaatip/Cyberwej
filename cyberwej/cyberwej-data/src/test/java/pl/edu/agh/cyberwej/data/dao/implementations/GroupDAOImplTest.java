@@ -109,6 +109,7 @@ public class GroupDAOImplTest {
                 this.payment.getDate().getTime() / 1000);
         assertEquals(retrievedPayment.getDescription(),
                 this.payment.getDescription());
+        assertEquals(retrievedPayment.getGroup().getName(), this.groupName);
     }
 
     @Transactional

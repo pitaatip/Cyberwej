@@ -12,7 +12,7 @@
 	<ui:composition>
 
 		<h:form>
-				<div id="cyber-table">
+			<div id="cyber-table">
 				<div id="cyber-info-table">
 					<table>
 						<tr>
@@ -22,7 +22,8 @@
 						</tr>
 						<tr>
 							<td><h:outputText value="Group:" /></td>
-							<td></td>
+							<td><h:outputText
+									value="#{paymentInformationBean.payment.group.name}" /></td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Money spent:" /></td>
@@ -46,8 +47,8 @@
 						</tr>
 
 					</table>
-					</div>
 				</div>
+			</div>
 		</h:form>
 
 	</ui:composition>

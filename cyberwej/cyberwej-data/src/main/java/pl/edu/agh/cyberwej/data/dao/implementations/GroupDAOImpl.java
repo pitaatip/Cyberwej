@@ -36,6 +36,7 @@ public class GroupDAOImpl extends DAOBase<Group> implements GroupDAO {
     @Override
     public boolean addGroupPayment(Group group, Payment payment) {
         group.getPayments().add(payment);
+        payment.setGroup(group);
         return super.save(group);
     }
 

@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -70,8 +69,7 @@ public class Group {
         this.invitations = invitations;
     }
 
-    @OneToMany(cascade = { CascadeType.ALL })
-    @JoinColumn(name = "GROUPID", nullable = false)
+    @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "group")
     public Set<Payment> getPayments() {
         return this.payments;
     }

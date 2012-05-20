@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
@@ -27,13 +28,15 @@ public class Payment {
 
     private String description;
 
+    private Group group;
+
     private Set<PaymentParticipation> participations = new HashSet<PaymentParticipation>();
 
     @Id
     @Column(name = "PAYMENTID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(Integer id) {
@@ -43,7 +46,7 @@ public class Payment {
     @OneToMany(cascade = { CascadeType.ALL })
     @JoinColumn(name = "PAYMENTID")
     public Set<PaymentItem> getPaymentItems() {
-        return paymentItems;
+        return this.paymentItems;
     }
 
     public void setPaymentItems(Set<PaymentItem> paymentItems) {
@@ -52,7 +55,7 @@ public class Payment {
 
     @Column(name = "DATE")
     public Date getDate() {
-        return date;
+        return this.date;
     }
 
     public void setDate(Date date) {
@@ -61,7 +64,7 @@ public class Payment {
 
     @Column(name = "DESCRIPTION")
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
@@ -70,7 +73,7 @@ public class Payment {
 
     @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "payment")
     public Set<PaymentParticipation> getParticipations() {
-        return participations;
+        return this.participations;
     }
 
     public void setParticipations(Set<PaymentParticipation> participations) {
@@ -81,5 +84,22 @@ public class Payment {
     public void beforePersist() {
         if (this.date == null)
             this.date = new Date();
+    }
+
+    /**
+     * @return the group
+     */
+    @ManyToOne
+    @JoinColumn(name = "GROUPID", nullable = false)
+    public Group getGroup() {
+        return this.group;
+    }
+
+    /**
+     * @param group
+     *            the group to set
+     */
+    public void setGroup(Group group) {
+        this.group = group;
     }
 }
