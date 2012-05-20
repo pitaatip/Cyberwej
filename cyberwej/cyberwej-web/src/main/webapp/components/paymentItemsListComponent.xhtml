@@ -33,8 +33,9 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Consumers</f:facet>
-							<ui:repeat items="${paymentItem.consumers}" var="consumer">
-								<h:outputText value="${consumer.login}" />
+							<ui:repeat value="${paymentItem.consumersList}" var="consumer">
+								<h:outputText value="#{consumer.login}" />
+								<br/>
 							</ui:repeat>
 						</rich:column>
 
