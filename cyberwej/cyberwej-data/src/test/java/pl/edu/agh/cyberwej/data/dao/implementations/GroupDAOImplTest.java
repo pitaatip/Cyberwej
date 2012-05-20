@@ -68,7 +68,8 @@ public class GroupDAOImplTest {
         assertNotNull(retrievedGroup);
         assertEquals(retrievedGroup.getName(), this.groupName);
         assertNotNull(retrievedGroup.getId());
-        assertTrue(retrievedGroup.getCreationDate().before(new Date()));
+        Date creationDate = retrievedGroup.getCreationDate();
+        assertFalse(creationDate.after(new Date()));
     }
 
     @Transactional
