@@ -54,10 +54,14 @@
 	<managed-bean>
 		<managed-bean-name>addGroupBean</managed-bean-name>
 		<managed-bean-class>pl.edu.agh.cyberwej.web.beans.group.AddGroupBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 		<managed-property>
 			<property-name>userService</property-name>
 			<value>#{service}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>groupService</property-name>
+			<value>#{groupService}</value>
 		</managed-property>
 	</managed-bean>
 

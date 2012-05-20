@@ -27,9 +27,17 @@ public class AddGroupBean extends BaseBean {
     private List<User> users = new ArrayList<User>();
     private String groupName;
     private int newUserId;
-    //private GroupService groupService;
     private UserService userService;
+    private GroupService groupService;
     
+    public GroupService getGroupService() {
+        return groupService;
+    }
+
+    public void setGroupService(GroupService groupService) {
+        this.groupService = groupService;
+    }
+
     public UserService getUserService() {
         return userService;
     }
@@ -39,6 +47,7 @@ public class AddGroupBean extends BaseBean {
     }
 
     public String next() {
+        
         getMap4Stuff().put(GROUP2ADD, getGroup());
         return "addGroupSummary";
     }

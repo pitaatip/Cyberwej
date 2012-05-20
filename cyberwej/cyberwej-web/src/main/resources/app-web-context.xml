@@ -8,4 +8,5 @@
  
  	<bean id="service" class="pl.edu.agh.cyberwej.business.services.impl.UserServiceImpl" />
 
+	<bean id="groupService" class="pl.edu.agh.cyberwej.business.services.impl.GroupServiceImpl" />
 </beans>

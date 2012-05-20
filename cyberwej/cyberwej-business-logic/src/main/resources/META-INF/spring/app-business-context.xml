@@ -14,4 +14,12 @@
 	<import resource="classpath:/META-INF/spring/app-data-context.xml" />
 	<context:component-scan base-package="pl.edu.agh.cyberwej.business.services.impl" />
 
+	<bean id="userService" class="pl.edu.agh.cyberwej.business.services.impl.GroupServiceImpl"/>
+	
+	<bean id="groupMembershipService" class="pl.edu.agh.cyberwej.business.services.impl.GroupMembershipServiceImpl"/>
+
+	<bean id="groupService" class="pl.edu.agh.cyberwej.business.services.impl.GroupServiceImpl">
+		<property name="groupMembershipService" ref="groupMembershipService"/>
+		<property name="userService" ref="userService"/>
+	</bean>
 </beans>

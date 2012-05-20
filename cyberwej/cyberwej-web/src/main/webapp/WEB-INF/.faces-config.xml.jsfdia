@@ -21,23 +21,23 @@
    <PROCESS-ITEM-OUTPUT ID="logging::pages#loggingPage.xhtml"
     NAME="output4" PATH="pages/loggingPage.xhtml"
     TARGET="rules:pages#loggingPage.xhtml" TITLE="logging" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="userPage::pages#userPage.xhtml"
+   <PROCESS-ITEM-OUTPUT ID="user_page::pages#userPage.xhtml"
     NAME="output5" PATH="pages/userPage.xhtml"
-    TARGET="rules:pages#userPage.xhtml" TITLE="userPage" model-entity="JSFProcessItemOutput"/>
+    TARGET="rules:pages#userPage.xhtml" TITLE="user_page" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="groupPage::pages#groupPage.xhtml"
     NAME="output6" PATH="pages/groupPage.xhtml"
     TARGET="rules:pages#groupPage.xhtml" TITLE="groupPage" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="payment_page::pages#paymentPage.xhtml"
+    NAME="output7" PATH="pages/paymentPage.xhtml"
+    TARGET="rules:pages#paymentPage.xhtml" TITLE="payment_page" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="createUser::pages#createUserPage.xhtml"
-    NAME="output7" PATH="pages/createUserPage.xhtml"
+    NAME="output8" PATH="pages/createUserPage.xhtml"
     TARGET="rules:pages#createUserPage.xhtml" TITLE="createUser" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="addGroupSummary::pages#addGroupSummaryPage.xhtml" NAME="output8"
+    ID="addGroupSummary::pages#addGroupSummaryPage.xhtml" NAME="output9"
     PATH="pages/addGroupSummaryPage.xhtml"
     TARGET="rules:pages#addGroupSummaryPage.xhtml"
     TITLE="addGroupSummary" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="searchForUser::pages#searchForUser.xhtml"
-    NAME="output9" PATH="pages/searchForUser.xhtml"
-    TARGET="rules:pages#searchForUser.xhtml" TITLE="searchForUser" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:pages#mainPage.xhtml"
@@ -60,4 +60,6 @@
   PATH="pages/addGroupPage.xhtml" SHAPE="304,401,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:pages#searchForUser.xhtml"
   PATH="pages/searchForUser.xhtml" SHAPE="304,433,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#paymentPage.xhtml"
+  PATH="pages/paymentPage.xhtml" SHAPE="304,433,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
