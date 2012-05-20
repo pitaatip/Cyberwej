@@ -57,7 +57,7 @@ public class RegisterPaymentStep2Bean extends BaseBean {
     }
 
     public Map<String, Integer> getGroupMemberships() {
-        Group groupWithMembers = getGroupService().getGroupWithMembers(getGroup().getId());
+        Group groupWithMembers = getGroupService().getGroupWithMembersAndPayments(getGroup().getId());
         Map<String, Integer> map = new HashMap<String, Integer>();
         Set<GroupMembership> groupMembers = groupWithMembers.getGroupMembers();
         for (GroupMembership groupMembership : groupMembers) {

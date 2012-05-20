@@ -21,7 +21,6 @@ import pl.edu.agh.cyberwej.data.objects.User;
  * @author pita
  * 
  */
-@Service
 public class UserServiceImpl implements UserService {
 
     @Autowired

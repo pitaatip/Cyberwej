@@ -40,7 +40,7 @@ public class RegisterPaymentStep3Bean extends BaseBean {
     private GroupService groupService;
 
     public List<GroupMembership> getGroupMemberships() {
-        Group groupWithMembers = getGroupService().getGroupWithMembers(getGroup().getId());
+        Group groupWithMembers = getGroupService().getGroupWithMembersAndPayments(getGroup().getId());
         return new LinkedList<GroupMembership>(groupWithMembers.getGroupMembers());
     }
 
