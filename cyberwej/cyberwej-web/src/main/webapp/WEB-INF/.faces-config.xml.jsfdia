@@ -40,9 +40,11 @@
     NAME="output9" PATH="pages/registerPaymentStep3Page.xhtml"
     TARGET="rules:pages#registerPaymentStep3Page.xhtml"
     TITLE="registerPaymentPageStep3" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="createUser::pages#createUserPage.xhtml"
-    NAME="output10" PATH="pages/createUserPage.xhtml"
-    TARGET="rules:pages#createUserPage.xhtml" TITLE="createUser" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="registerPaymentSummary::pages#registerPaymentSummaryPage.xhtml"
+    NAME="output10" PATH="pages/registerPaymentSummaryPage.xhtml"
+    TARGET="rules:pages#registerPaymentSummaryPage.xhtml"
+    TITLE="registerPaymentSummary" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="addGroupSummary::pages#addGroupSummaryPage.xhtml"
     NAME="output11" PATH="pages/addGroupSummaryPage.xhtml"
