@@ -15,10 +15,10 @@
 				<rich:dataTable value="#{loggedUserBean.payments}" var="payment">
 					<rich:column>
 						<f:facet name="header">Name</f:facet>
-						<h:commandLink value="#{payment.description}"
-							action="payment_page">
+						<h:link value="#{payment.description}"
+							outcome="payment_page">
 							<f:param name="selectedPayment" value="#{payment.id}" />
-						</h:commandLink>
+						</h:link>
 					</rich:column>
 					<rich:column>
 						<f:facet name="header">Registered on</f:facet>

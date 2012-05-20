@@ -13,34 +13,32 @@
 
 		<h:form>
 			<rich:panel style="width:400px;">
-				<div id="cyber-table">
-					<rich:dataTable value="#{paymentInformationBean.paymentItems}"
-						var="paymentItem">
-						<f:facet name="header">
-							<h:outputText value="Items" />
-						</f:facet>
-						<rich:column>
-							<f:facet name="header">Porduct</f:facet>
-							<h:outputText value="#{paymentItem.product.name}" />
-						</rich:column>
-						<rich:column>
-							<f:facet name="header">Price</f:facet>
-							<h:outputText value="#{paymentItem.price}" />
-						</rich:column>
-						<rich:column>
-							<f:facet name="header">Amount</f:facet>
-							<h:outputText value="#{paymentItem.count}" />
-						</rich:column>
-						<rich:column>
-							<f:facet name="header">Consumers</f:facet>
-							<ui:repeat value="${paymentItem.consumersList}" var="consumer">
-								<h:outputText value="#{consumer.login}" />
-								<br/>
-							</ui:repeat>
-						</rich:column>
+				<rich:dataTable value="#{paymentInformationBean.paymentItems}"
+					var="paymentItem">
+					<f:facet name="header">
+						<h:outputText value="Items" />
+					</f:facet>
+					<rich:column>
+						<f:facet name="header">Porduct</f:facet>
+						<h:outputText value="#{paymentItem.product.name}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Price</f:facet>
+						<h:outputText value="#{paymentItem.price}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Amount</f:facet>
+						<h:outputText value="#{paymentItem.count}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Consumers</f:facet>
+						<ui:repeat value="${paymentItem.consumersList}" var="consumer">
+							<h:outputText value="#{consumer.login}" />
+							<br />
+						</ui:repeat>
+					</rich:column>
 
-					</rich:dataTable>
-				</div>
+				</rich:dataTable>
 			</rich:panel>
 		</h:form>
 

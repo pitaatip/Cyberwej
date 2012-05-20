@@ -12,37 +12,35 @@
 
 		<h:form>
 			<rich:panel style="width:500px;">
-				<div id="cyber-table">
-					<rich:dataTable
-						value="#{paymentInformationBean.participantInformations}"
-						var="participant">
-						<f:facet name="header">
-							<h:outputText value="Participators" />
-						</f:facet>
-						<rich:column>
-							<f:facet name="header">Login</f:facet>
-							<h:commandLink action="user_page"
-								value="#{participant.user.login}">
-								<f:param name="userToShow" value="#{participant.user.id}"></f:param>
-							</h:commandLink>
-						</rich:column>
-						<rich:column>
-							<f:facet name="header">Items consumed</f:facet>
-							<h:outputText value="#{participant.consumedItemsCount}" />
+				<rich:dataTable
+					value="#{paymentInformationBean.participantInformations}"
+					var="participant">
+					<f:facet name="header">
+						<h:outputText value="Participators" />
+					</f:facet>
+					<rich:column>
+						<f:facet name="header">Login</f:facet>
+						<h:commandLink action="user_page"
+							value="#{participant.user.login}">
+							<f:param name="userToShow" value="#{participant.user.id}"></f:param>
+						</h:commandLink>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Items consumed</f:facet>
+						<h:outputText value="#{participant.consumedItemsCount}" />
 
-						</rich:column>
-						<rich:column>
-							<f:facet name="header">Payed</f:facet>
-							<h:outputText value="#{participant.amount}" />
-						</rich:column>
-						<rich:column>
-							<f:facet name="header">Payment status</f:facet>
-							<h:outputText
-								style="color:#{(participant.status > 0)  ? 'Green' : 'Red'}"
-								value="#{participant.status}" />
-						</rich:column>
-					</rich:dataTable>
-				</div>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Payed</f:facet>
+						<h:outputText value="#{participant.amount}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Payment status</f:facet>
+						<h:outputText
+							style="color:#{(participant.status > 0)  ? 'Green' : 'Red'}"
+							value="#{participant.status}" />
+					</rich:column>
+				</rich:dataTable>
 			</rich:panel>
 		</h:form>
 
