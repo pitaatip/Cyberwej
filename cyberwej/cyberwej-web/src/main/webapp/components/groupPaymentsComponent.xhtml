@@ -20,8 +20,9 @@
 						</f:facet>
 						<rich:column>
 							<f:facet name="header">Name</f:facet>
-							<h:commandLink value="#{payment.description}"
-								action="payment_page" />
+							<h:link value="#{payment.description}" outcome="payment_page">
+								<f:param name="selectedPayment" value="#{payment.id}" />
+							</h:link>
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Registered on</f:facet>
