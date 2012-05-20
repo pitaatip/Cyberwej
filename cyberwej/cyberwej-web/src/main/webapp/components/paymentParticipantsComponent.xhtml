@@ -20,10 +20,10 @@
 					</f:facet>
 					<rich:column>
 						<f:facet name="header">Login</f:facet>
-						<h:commandLink action="user_page"
+						<h:link outcome="user_page"
 							value="#{participant.user.login}">
 							<f:param name="userToShow" value="#{participant.user.id}"></f:param>
-						</h:commandLink>
+						</h:link>
 					</rich:column>
 					<rich:column>
 						<f:facet name="header">Items consumed</f:facet>

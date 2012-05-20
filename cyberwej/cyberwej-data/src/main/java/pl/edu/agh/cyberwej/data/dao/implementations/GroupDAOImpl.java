@@ -1,5 +1,6 @@
 package pl.edu.agh.cyberwej.data.dao.implementations;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
@@ -13,6 +14,7 @@ public class GroupDAOImpl extends DAOBase<Group> implements GroupDAO {
 
     @Override
     public boolean saveGroup(Group group) {
+        group.setCreationDate(new Date());
         return super.save(group);
     }
 

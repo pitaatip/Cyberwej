@@ -1,6 +1,7 @@
 package pl.edu.agh.cyberwej.data.objects;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,6 +23,9 @@ public class GroupMembership implements Serializable {
 	 */
     private static final long serialVersionUID = 470204746629470622L;
 
+    @Column(name = "JOINDATE", nullable = false)
+    private Date joinDate;
+
     @Column(name = "OVERDRAW", nullable = false)
     private float overdraw;
 
@@ -36,7 +40,7 @@ public class GroupMembership implements Serializable {
     private User user;
 
     public float getOverdraw() {
-        return overdraw;
+        return this.overdraw;
     }
 
     public void setOverdraw(float overdraw) {
@@ -44,7 +48,7 @@ public class GroupMembership implements Serializable {
     }
 
     public Group getGroup() {
-        return group;
+        return this.group;
     }
 
     public void setGroup(Group group) {
@@ -57,5 +61,20 @@ public class GroupMembership implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    /**
+     * @return the joinDate
+     */
+    public Date getJoinDate() {
+        return this.joinDate;
+    }
+
+    /**
+     * @param joinDate
+     *            the joinDate to set
+     */
+    public void setJoinDate(Date joinDate) {
+        this.joinDate = joinDate;
     }
 }

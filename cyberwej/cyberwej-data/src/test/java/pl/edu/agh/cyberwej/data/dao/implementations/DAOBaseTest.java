@@ -3,6 +3,8 @@ package pl.edu.agh.cyberwej.data.dao.implementations;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Date;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +14,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.edu.agh.cyberwej.data.dao.implementations.GroupDAOImpl;
 import pl.edu.agh.cyberwej.data.objects.Group;
 
 @ContextConfiguration(locations = { "TestContext.xml" })
@@ -23,12 +24,13 @@ public class DAOBaseTest {
     private GroupDAOImpl dao;
 
     private Group group;
-    private final String groupName = "Pierwsza grupa";
+    private final String groupName = "Czwarta grupa";
 
     @Before
     public void setUp() {
         this.group = new Group();
-        group.setName(groupName);
+        this.group.setCreationDate(new Date());
+        this.group.setName(this.groupName);
     }
 
     @Transactional

@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Date;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,17 +48,17 @@ public class GroupMembershipDAOImplTest {
     @BeforeTransaction
     public void setUp() {
         this.user = new User();
-        user.setSurname(this.surname);
-        user.setName(this.name);
-        user.setLogin(this.login);
-        user.setMail(this.mail);
-        this.userDAO.saveUser(user);
+        this.user.setSurname(this.surname);
+        this.user.setName(this.name);
+        this.user.setLogin(this.login);
+        this.user.setMail(this.mail);
+        this.userDAO.saveUser(this.user);
 
         this.group = new Group();
-        this.group.setName(groupName);
+        this.group.setName(this.groupName);
         this.groupDAO.saveGroup(this.group);
 
-        this.groupMembershipDAO.addGroupMembership(group, user);
+        this.groupMembershipDAO.addGroupMembership(this.group, this.user);
 
     }
 
@@ -71,8 +73,10 @@ public class GroupMembershipDAOImplTest {
         assertFalse(retrievedGroup.getGroupMembers().isEmpty());
         assertEquals(retrievedGroup.getGroupMembers(),
                 retrievedUser.getGroupMemberships());
-        for (GroupMembership groupMembership : retrievedGroup.getGroupMembers())
+        for (GroupMembership groupMembership : retrievedGroup.getGroupMembers()) {
             assertEquals(groupMembership.getOverdraw(), 0.0f, 0.0);
+            assertTrue(groupMembership.getJoinDate().before(new Date()));
+        }
     }
 
     @Transactional
@@ -83,14 +87,14 @@ public class GroupMembershipDAOImplTest {
         for (GroupMembership groupMembership : retrievedUser
                 .getGroupMemberships())
             if (groupMembership.getGroup().getName().equals(this.groupName))
-                groupMembershipDAO.removeGroupMembership(groupMembership);
+                this.groupMembershipDAO.removeGroupMembership(groupMembership);
         Group retrievedGroup = this.groupDAO.getGroupByName(this.groupName);
         assertTrue(retrievedGroup.getGroupMembers().isEmpty());
     }
 
     @AfterTransaction
     public void clean() {
-        this.userDAO.removeUser(user);
-        this.groupDAO.removeGroup(group);
+        this.userDAO.removeUser(this.user);
+        this.groupDAO.removeGroup(this.group);
     }
 }

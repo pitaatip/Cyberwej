@@ -1,5 +1,6 @@
 package pl.edu.agh.cyberwej.data.objects;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,6 +37,12 @@ public class User {
 
     @Column(name = "LOCATION")
     private String location;
+
+    @Column(name = "PHONENUMBER")
+    private String phoneNumber;
+
+    @Column(name = "BIRTHDAY")
+    private Date birthday;
 
     @OneToMany(cascade = { CascadeType.ALL }, mappedBy = "user", fetch = FetchType.LAZY)
     private Set<GroupMembership> groupMemberships = new HashSet<GroupMembership>();
@@ -136,5 +143,35 @@ public class User {
     public void removeGroupMembership(GroupMembership groupMembership) {
         if (this.groupMemberships != null)
             this.groupMemberships.remove(groupMembership);
+    }
+
+    /**
+     * @return the phoneNumber
+     */
+    public String getPhoneNumber() {
+        return this.phoneNumber;
+    }
+
+    /**
+     * @param phoneNumber
+     *            the phoneNumber to set
+     */
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    /**
+     * @return the birthday
+     */
+    public Date getBirthday() {
+        return this.birthday;
+    }
+
+    /**
+     * @param birthday
+     *            the birthday to set
+     */
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 }

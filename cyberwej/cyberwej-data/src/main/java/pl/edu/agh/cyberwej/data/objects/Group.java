@@ -1,5 +1,6 @@
 package pl.edu.agh.cyberwej.data.objects;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,6 +21,8 @@ public class Group {
     private Integer id;
 
     private String name;
+
+    private Date creationDate;
 
     private Set<GroupMembership> groupMembers = new HashSet<GroupMembership>();
 
@@ -84,6 +87,22 @@ public class Group {
 
     public void setPaybacks(Set<Payback> paybacks) {
         this.paybacks = paybacks;
+    }
+
+    /**
+     * @return the creationDate
+     */
+    @Column(name = "CREATIONDATE", nullable = false)
+    public Date getCreationDate() {
+        return this.creationDate;
+    }
+
+    /**
+     * @param creationDate
+     *            the creationDate to set
+     */
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
 }

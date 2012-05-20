@@ -1,5 +1,7 @@
 package pl.edu.agh.cyberwej.data.dao.implementations;
 
+import java.util.Date;
+
 import org.springframework.stereotype.Repository;
 
 import pl.edu.agh.cyberwej.data.dao.interfaces.GroupMembershipDAO;
@@ -19,6 +21,7 @@ public class GroupMembershipDAOImpl extends DAOBase<GroupMembership> implements
         groupMembership.setOverdraw(0);
         user.addGroupMembership(groupMembership);
         group.getGroupMembers().add(groupMembership);
+        groupMembership.setJoinDate(new Date());
         return super.save(groupMembership);
     }
 

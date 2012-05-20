@@ -21,7 +21,10 @@
 						</f:facet>
 						<rich:column>
 							<f:facet name="header">Name</f:facet>
-							<h:outputText value="#{groupMembership.group.name}" />
+							<h:link value="#{groupMembership.group.name}" outcome="groupPage">
+								<f:param name="selectedGroup"
+									value="#{groupMembership.group.id}" />
+							</h:link>
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Users</f:facet>
@@ -33,6 +36,7 @@
 						</rich:column>
 						<rich:column>
 							<f:facet name="header">Created on</f:facet>
+							<h:outputText value="#{groupMembership.group.creationDate}" />
 						</rich:column>
 					</rich:dataTable>
 				</div>

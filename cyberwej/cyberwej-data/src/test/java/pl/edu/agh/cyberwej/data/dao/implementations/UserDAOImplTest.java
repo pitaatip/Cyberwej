@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -33,6 +34,9 @@ public class UserDAOImplTest {
     private final String mail = "jan@janowie.pl";
     private final String login = "Janek";
 
+    private final String phoneNumber = "12121212";
+    private final Date birthday = new Date();
+
     private final String nonExistingMail = "non@existing.mail";
 
     @Before
@@ -42,6 +46,8 @@ public class UserDAOImplTest {
         this.user.setName(this.name);
         this.user.setLogin(this.login);
         this.user.setMail(this.mail);
+        this.user.setBirthday(this.birthday);
+        this.user.setPhoneNumber(this.phoneNumber);
         this.userDAO.saveUser(this.user);
     }
 
@@ -55,6 +61,8 @@ public class UserDAOImplTest {
         assertEquals(this.user.getSurname(), retrievedUser.getSurname());
         assertEquals(this.user.getLogin(), retrievedUser.getLogin());
         assertEquals(this.user.getLocation(), retrievedUser.getLocation());
+        assertEquals(retrievedUser.getBirthday(), this.birthday);
+        assertEquals(retrievedUser.getPhoneNumber(), this.phoneNumber);
     }
 
     @Transactional
