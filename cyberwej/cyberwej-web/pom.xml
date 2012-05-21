@@ -6,11 +6,10 @@
 	<parent>
 		<artifactId>cyberwej</artifactId>
 		<groupId>pl.edu.agh</groupId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 	<groupId>pl.edu.agh</groupId>
 	<artifactId>cyberwej-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<spring.framework.version>3.0.6.RELEASE</spring.framework.version>
 		<org.richfaces.bom.version>4.0.0.20110209-M6</org.richfaces.bom.version>
