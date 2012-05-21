@@ -11,6 +11,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -25,6 +27,8 @@ public class Message {
     protected User receiver;
     
     private Date sentTime;
+    
+    private Boolean isAccepted;
 
     @Id
     @Column(name = "MESSAGEID")
@@ -74,5 +78,21 @@ public class Message {
     @Column(name = "SENTTIME", nullable = false)
     public void setSentTime(Date sentTime) {
         this.sentTime = sentTime;
+    }
+    
+    @Column(name = "ISACCEPTED", nullable = false)
+    public Boolean isAccepted() {
+        return this.isAccepted;
+    }
+
+    public void setAccepted(Boolean isAccepted) {
+        this.isAccepted = isAccepted;
+    }
+    
+    @PreUpdate
+    @PrePersist
+    public void beforePersist() {
+        if (this.isAccepted == null)
+            this.isAccepted = false;
     }
 }
