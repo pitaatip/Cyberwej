@@ -18,7 +18,7 @@
 				<title>Cyberwej - Register payment</title>
 			</ui:define>
 			<ui:define name="page">
-				<h1>Register Payment</h1>
+				<h2>Register Payment</h2>
 				<br />
 
 				<h:form>
@@ -36,7 +36,7 @@
 							</tr>
 						</table>
 						<br />
-						<rich:dataTable value="#{registerPaymentStep2Bean.itemsList}"
+						<rich:dataTable value="#{registerPaymentSummaryBean.items}"
 							var="item" rowKeyVar="itemNum">
 							<f:facet name="header">
 								<h:outputText value="Added items" />
@@ -62,7 +62,7 @@
 						</rich:dataTable>
 						<br />
 						<rich:dataTable
-							value="#{registerPaymentStep3Bean.paymentParticipators}"
+							value="#{registerPaymentSummaryBean.paymentParticipators}"
 							var="payer" rowKeyVar="itemNum">
 							<f:facet name="header">
 								<h:outputText value="Added payers" />

@@ -6,6 +6,7 @@ package pl.edu.agh.cyberwej.web.beans.payment;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
@@ -27,6 +28,14 @@ import pl.edu.agh.cyberwej.web.beans.common.SessionContextBean;
 public class RegisterPaymentBean extends BaseBean {
     private String paymentName;
     private String selectedGroup;
+
+    @PostConstruct
+    public void cleanMap() {
+        getMap4Stuff().put("SelectedGroup", null);
+        getMap4Stuff().put("PaymentName", null);
+        getMap4Stuff().put("ItemsList", null);
+        getMap4Stuff().put("paymentParticipators", null);
+    }
 
     @ManagedProperty("#{sessionContextBean}")
     private SessionContextBean sessionContextBean;
