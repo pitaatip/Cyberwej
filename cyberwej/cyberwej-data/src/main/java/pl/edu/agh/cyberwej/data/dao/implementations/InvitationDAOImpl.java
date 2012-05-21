@@ -21,9 +21,16 @@ public class InvitationDAOImpl extends DAOBase<Invitation> implements
         invitation.setReceiver(invitee);
         invitation.setSender(inviter);
         invitation.setSentTime(new Date());
+        invitation.setAccepted(false);
         invitee.getUserInvitations().add(invitation);
         group.getInvitations().add(invitation);
         return super.save(invitation);
+    }
+    
+    @Override
+    public void acceptInvitation(Invitation invitation) {
+        invitation.setAccepted(true);
+        super.save(invitation);
     }
 
     @Override
@@ -35,9 +42,13 @@ public class InvitationDAOImpl extends DAOBase<Invitation> implements
     
     @Override
     @SuppressWarnings("unchecked")
-    public List<Invitation> getInviationsForUser(User invite) {
-        List<Invitation> invitations = (List<Invitation>) this.hibernateTemplate.find(
-                "from Invitation invitation where invitation.receiver=?", invite);
+    public List<Invitation> getInviationsForUser(User invite, boolean onlyUnaccepted) {
+        String query = "from Invitation invitation where invitation.receiver=?";
+        if(onlyUnaccepted) {
+            query = query + " and invitation.accepted = false";
+        }
+        List<Invitation> invitations = (List<Invitation>) this.hibernateTemplate.find(query
+                , invite);
         return invitations;
     }
 

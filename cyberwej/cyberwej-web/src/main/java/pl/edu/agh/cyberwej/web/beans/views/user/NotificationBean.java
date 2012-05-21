@@ -54,7 +54,7 @@ public class NotificationBean extends BaseBean {
     @PostConstruct
     public void init() {
         this.loggedUser = sessionContextBean.getLoggedUser();
-        this.invitations = invitationService.getInviationsForUser(loggedUser);
+        this.invitations = invitationService.getInviationsForUser(loggedUser, true);
     }
     
     public String acceptInvitation() {

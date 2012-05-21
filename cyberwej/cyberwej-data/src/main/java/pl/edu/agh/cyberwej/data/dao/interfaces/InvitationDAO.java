@@ -12,6 +12,8 @@ public interface InvitationDAO extends IDAO<Invitation> {
 
     public void removeInvitation(Invitation invitation);
     
-    public List<Invitation> getInviationsForUser(User invite);
+    public void acceptInvitation(Invitation invitation);
+    
+    public List<Invitation> getInviationsForUser(User invite, boolean onlyUnaccepted);
 
 }

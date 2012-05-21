@@ -37,12 +37,13 @@ public class InvitationServiceImpl implements InvitationService {
     public void acceptInvitation(Invitation invitation, boolean isAccepted) {
         if(isAccepted) {
             groupMembershipService.addGroupMember(invitation.getGroup(), invitation.getReceiver());
+            invitationDAO.acceptInvitation(invitation);
         } //else - delete invitation or what?
     }
     
     @Override
-    public List<Invitation> getInviationsForUser(User invite) {
-        return invitationDAO.getInviationsForUser(invite);
+    public List<Invitation> getInviationsForUser(User invite, boolean onlyUnaccepted) {
+        return invitationDAO.getInviationsForUser(invite, onlyUnaccepted);
     }
 
     @Transactional

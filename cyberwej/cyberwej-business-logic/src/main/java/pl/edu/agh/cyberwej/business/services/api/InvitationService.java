@@ -17,7 +17,7 @@ public interface InvitationService {
 
     public void acceptInvitation(Invitation invitation, boolean isAccepted);
     
-    public List<Invitation> getInviationsForUser(User invite);
+    public List<Invitation> getInviationsForUser(User invite, boolean onlyUnaccepted);
     
     public void acceptInvitationById(int invitationId, boolean isAccepted);
 }
