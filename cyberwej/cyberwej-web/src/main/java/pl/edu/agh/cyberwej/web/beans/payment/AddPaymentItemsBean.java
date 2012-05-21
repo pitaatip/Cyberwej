@@ -3,6 +3,7 @@
  */
 package pl.edu.agh.cyberwej.web.beans.payment;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -14,11 +15,14 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import pl.edu.agh.cyberwej.business.services.api.GroupService;
+import pl.edu.agh.cyberwej.business.services.api.PaymentService;
 import pl.edu.agh.cyberwej.business.services.api.UserService;
 import pl.edu.agh.cyberwej.data.objects.Group;
 import pl.edu.agh.cyberwej.data.objects.GroupMembership;
+import pl.edu.agh.cyberwej.data.objects.Payment;
 import pl.edu.agh.cyberwej.data.objects.PaymentItem;
 import pl.edu.agh.cyberwej.data.objects.Product;
 import pl.edu.agh.cyberwej.data.objects.User;
@@ -31,7 +35,7 @@ import pl.edu.agh.cyberwej.web.beans.common.SessionContextBean;
  */
 @ManagedBean
 @RequestScoped
-public class RegisterPaymentStep2Bean extends BaseBean {
+public class AddPaymentItemsBean extends BaseBean {
     private User user;
     private Group group;
     private String[] selectedGroupMemberships;
@@ -50,6 +54,9 @@ public class RegisterPaymentStep2Bean extends BaseBean {
     @ManagedProperty(value = "#{groupService}")
     private GroupService groupService;
 
+    @ManagedProperty(value = "#{paymentService}")
+    private PaymentService paymentService;
+
     @PostConstruct
     public void init() {
         setUser(getSessionContextBean().getLoggedUser());
@@ -57,11 +64,13 @@ public class RegisterPaymentStep2Bean extends BaseBean {
     }
 
     public Map<String, Integer> getGroupMemberships() {
-        Group groupWithMembers = getGroupService().getGroupWithMembersAndPayments(getGroup().getId());
+        Group groupWithMembers = getGroupService()
+                .getGroupWithMembersAndPayments(getGroup().getId());
         Map<String, Integer> map = new HashMap<String, Integer>();
         Set<GroupMembership> groupMembers = groupWithMembers.getGroupMembers();
         for (GroupMembership groupMembership : groupMembers) {
-            map.put(groupMembership.getUser().getLogin(), groupMembership.getUser().getId());
+            map.put(groupMembership.getUser().getLogin(), groupMembership
+                    .getUser().getId());
         }
         return map;
     }
@@ -76,14 +85,15 @@ public class RegisterPaymentStep2Bean extends BaseBean {
 
     public String addItem() {
         PaymentItem item = new PaymentItem();
-        item.setCount(Integer.parseInt(amount));
-        item.setPrice(Float.parseFloat(price));
+        item.setCount(Integer.parseInt(this.amount));
+        item.setPrice(Float.parseFloat(this.price));
         Product product2 = new Product();
-        product2.setName(product);
+        product2.setName(this.product);
         item.setProduct(product2);
         Set<User> consumers = new HashSet<User>();
-        for (String userId : selectedGroupMemberships) {
-            User userById = userService.getUserById(Integer.parseInt(userId));
+        for (String userId : this.selectedGroupMemberships) {
+            User userById = this.userService.getUserById(Integer
+                    .parseInt(userId));
             consumers.add(userById);
         }
         item.setConsumers(consumers);
@@ -92,7 +102,25 @@ public class RegisterPaymentStep2Bean extends BaseBean {
     }
 
     public String next() {
-        return "registerPaymentPageStep3";
+        if (getMap4Stuff().get("ActionType").equals(ActionType.STEP)) {
+            return "registerPaymentPageStep3";
+        } else {
+            Payment payment = (Payment) getMap4Stuff().get("Payment");
+            this.paymentService.addPaymentItems(payment, getItemsList());
+            try {
+                FacesContext
+                        .getCurrentInstance()
+                        .getExternalContext()
+                        .redirect(
+                                "paymentPage.jsf?selectedPayment="
+                                        + payment.getId());
+                return null;
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return "payment_page_redirect";
+        }
     }
 
     public String removeItem() {
@@ -101,9 +129,8 @@ public class RegisterPaymentStep2Bean extends BaseBean {
         return null;
     }
 
-
     public SessionContextBean getSessionContextBean() {
-        return sessionContextBean;
+        return this.sessionContextBean;
     }
 
     public void setSessionContextBean(SessionContextBean sessionContextBean) {
@@ -111,7 +138,7 @@ public class RegisterPaymentStep2Bean extends BaseBean {
     }
 
     public User getUser() {
-        return user;
+        return this.user;
     }
 
     public void setUser(User user) {
@@ -119,7 +146,7 @@ public class RegisterPaymentStep2Bean extends BaseBean {
     }
 
     public Group getSelectedGroup() {
-        return selectedGroup;
+        return this.selectedGroup;
     }
 
     public void setSelectedGroup(Group selectedGroup) {
@@ -127,7 +154,7 @@ public class RegisterPaymentStep2Bean extends BaseBean {
     }
 
     public Map<String, Object> getUserGroup() {
-        return userGroup;
+        return this.userGroup;
     }
 
     public void setUserGroup(Map<String, Object> userGroup) {
@@ -135,7 +162,7 @@ public class RegisterPaymentStep2Bean extends BaseBean {
     }
 
     public UserService getUserService() {
-        return userService;
+        return this.userService;
     }
 
     public void setUserService(UserService userService) {
@@ -143,7 +170,7 @@ public class RegisterPaymentStep2Bean extends BaseBean {
     }
 
     public GroupService getGroupService() {
-        return groupService;
+        return this.groupService;
     }
 
     public void setGroupService(GroupService groupService) {
@@ -151,7 +178,7 @@ public class RegisterPaymentStep2Bean extends BaseBean {
     }
 
     public Group getGroup() {
-        return group;
+        return this.group;
     }
 
     public void setGroup(Group group) {
@@ -159,7 +186,7 @@ public class RegisterPaymentStep2Bean extends BaseBean {
     }
 
     public String[] getSelectedGroupMemberships() {
-        return selectedGroupMemberships;
+        return this.selectedGroupMemberships;
     }
 
     public void setSelectedGroupMemberships(String[] selectedGroupMemberships) {
@@ -167,7 +194,7 @@ public class RegisterPaymentStep2Bean extends BaseBean {
     }
 
     public String getAmount() {
-        return amount;
+        return this.amount;
     }
 
     public void setAmount(String amount) {
@@ -175,7 +202,7 @@ public class RegisterPaymentStep2Bean extends BaseBean {
     }
 
     public String getProduct() {
-        return product;
+        return this.product;
     }
 
     public void setProduct(String product) {
@@ -183,11 +210,29 @@ public class RegisterPaymentStep2Bean extends BaseBean {
     }
 
     public String getPrice() {
-        return price;
+        return this.price;
     }
 
     public void setPrice(String price) {
         this.price = price;
     }
 
+    public String getHeader() {
+        return getMap4Stuff().get("ActionType").toString();
+    }
+
+    /**
+     * @return the paymentService
+     */
+    public PaymentService getPaymentService() {
+        return this.paymentService;
+    }
+
+    /**
+     * @param paymentService
+     *            the paymentService to set
+     */
+    public void setPaymentService(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
 }

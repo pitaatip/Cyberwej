@@ -50,4 +50,6 @@ public interface PaymentService {
     public Set<User> getInvolvedUsers(Payment payment);
 
     public List<ParticipantInformation> getParticipants(Payment payment);
+
+    public void addPaymentItems(Payment payment, List<PaymentItem> paymentItems);
 }

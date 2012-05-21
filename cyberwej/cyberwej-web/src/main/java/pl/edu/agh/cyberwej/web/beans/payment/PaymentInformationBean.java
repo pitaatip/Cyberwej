@@ -87,4 +87,11 @@ public class PaymentInformationBean extends BaseBean {
         return this.participantInformations;
     }
 
+    public String getAddPaymentItems() {
+        getMap4Stuff().put("SelectedGroup", this.payment.getGroup());
+        getMap4Stuff().put("Payment", this.payment);
+        getMap4Stuff().put("ActionType", ActionType.ADDPAYMENTITEMS);
+        return "add_payment_items";
+    }
+
 }

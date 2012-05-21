@@ -51,6 +51,11 @@
 								<li><h:link value="New Payback" outcome="register_payback" /></li>
 							</ul>
 						</li>
+						<li><h:link value="My informations" outcome="user_page"
+								style="font-size=40px;">
+								<f:param name="userToShow"
+									value="#{sessionContextBean.loggedUser.id}" />
+							</h:link></li>
 						<li><h:link value="Main Page" outcome="main"
 								style="font-size=40px;" /></li>
 					</ul>

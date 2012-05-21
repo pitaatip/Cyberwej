@@ -13,32 +13,35 @@
 
 		<h:form>
 			<div id="item-payments">
-			<rich:panel  header="Items">
-				<rich:dataTable value="#{paymentInformationBean.paymentItems}"
-					var="paymentItem">
-					<rich:column>
-						<f:facet name="header">Porduct</f:facet>
-						<h:outputText value="#{paymentItem.product.name}" />
-					</rich:column>
-					<rich:column>
-						<f:facet name="header">Price</f:facet>
-						<h:outputText value="#{paymentItem.price}" />
-					</rich:column>
-					<rich:column>
-						<f:facet name="header">Amount</f:facet>
-						<h:outputText value="#{paymentItem.count}" />
-					</rich:column>
-					<rich:column>
-						<f:facet name="header">Consumers</f:facet>
-						<ui:repeat value="${paymentItem.consumersList}" var="consumer">
-							<h:outputText value="#{consumer.login}" />
-							<br />
-						</ui:repeat>
-					</rich:column>
+				<rich:panel header="Items">
+					<rich:dataTable value="#{paymentInformationBean.paymentItems}"
+						var="paymentItem">
+						<rich:column>
+							<f:facet name="header">Porduct</f:facet>
+							<h:outputText value="#{paymentItem.product.name}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Price</f:facet>
+							<h:outputText value="#{paymentItem.price}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Amount</f:facet>
+							<h:outputText value="#{paymentItem.count}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Consumers</f:facet>
+							<ui:repeat value="${paymentItem.consumersList}" var="consumer">
+								<h:outputText value="#{consumer.login}" />
+								<br />
+							</ui:repeat>
+						</rich:column>
 
-				</rich:dataTable>
-			</rich:panel>
-				</div>
+					</rich:dataTable>
+					<h:link outcome="#{paymentInformationBean.addPaymentItems}">
+						<h:graphicImage value="../resources/images/plus.jpg" />
+					</h:link>
+				</rich:panel>
+			</div>
 		</h:form>
 
 	</ui:composition>

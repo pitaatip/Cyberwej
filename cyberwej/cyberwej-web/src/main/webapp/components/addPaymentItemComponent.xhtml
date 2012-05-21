@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<body>
+	<ui:composition>
+		<h:form>
+			<rich:panel header="#{addPaymentItemsBean.header}">
+				<table id="cyber-table">
+					<tr>
+						<td><h:outputText value="Product: " /></td>
+						<td><h:inputText value="#{addPaymentItemsBean.product}" /></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Price: " /></td>
+						<td><h:inputText value="#{addPaymentItemsBean.price}" /></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Amount: " /></td>
+						<td><h:inputText value="#{addPaymentItemsBean.amount}" /></td>
+					</tr>
+					<tr>
+						<td><h:outputText value="Choose item consumers: " /></td>
+						<td><h:selectManyCheckbox
+								value="#{addPaymentItemsBean.selectedGroupMemberships}"
+								layout="pageDirection">
+								<f:selectItems value="#{addPaymentItemsBean.groupMemberships}" />
+							</h:selectManyCheckbox></td>
+					</tr>
+					<tr>
+						<td><h:commandButton value="Add Item"
+								action="#{addPaymentItemsBean.addItem}" /></td>
+					</tr>
+				</table>
+				<br />
+				<rich:dataTable value="#{addPaymentItemsBean.itemsList}" var="item"
+					rowKeyVar="itemNum">
+					<f:facet name="header">
+						<h:outputText value="Added items" />
+					</f:facet>
+					<rich:column>
+						<f:facet name="header">Product</f:facet>
+						<h:outputText value="#{item.product.name}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Price</f:facet>
+						<h:outputText value="#{item.price}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Amount</f:facet>
+						<h:outputText value="#{item.count}" />
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Consumers</f:facet>
+						<h:outputText value="#{item.consumers}">
+							<f:converter converterId="pl.cyberwej.setConverter" />
+						</h:outputText>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Actions</f:facet>
+						<h:commandButton action="#{addPaymentItemsBean.removeItem}"
+							value="Delete">
+							<f:param name="itemToDelete" value="#{itemNum}" />
+						</h:commandButton>
+					</rich:column>
+
+				</rich:dataTable>
+
+
+			</rich:panel>
+			<h:commandButton value="next" action="#{addPaymentItemsBean.next}" />
+		</h:form>
+
+	</ui:composition>
+</body>
+</html>
