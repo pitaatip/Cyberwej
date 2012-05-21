@@ -124,6 +124,11 @@
 			<to-view-id>pages/paymentPage.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>payment_page_redirect</from-outcome>
+			<to-view-id>pages/paymentPage.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>registerPaymentPageStep3</from-outcome>
 			<to-view-id>pages/registerPaymentStep3Page.xhtml</to-view-id>
 			<redirect />
@@ -144,9 +149,14 @@
 		</navigation-case>
 
 		<navigation-case>
+			<from-outcome>add_payment_items</from-outcome>
+			<to-view-id>pages/addPaymentItemsPage.xhtml</to-view-id>
+			<!-- <redirect /> -->
+		</navigation-case>
+
+		<navigation-case>
 			<from-outcome>searchForUser</from-outcome>
 			<to-view-id>pages/searchForUser.xhtml</to-view-id>
 		</navigation-case>
-
 	</navigation-rule>
 </faces-config>

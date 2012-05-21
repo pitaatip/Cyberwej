@@ -36,21 +36,23 @@ public class RegisterPaymentBean extends BaseBean {
 
     @ManagedProperty(value = "#{groupService}")
     private GroupService groupService;
-    
+
     public List<GroupMembership> getGroupMemberships() {
         return getUserService().getGroupMemberships(getUser());
     }
 
     public String next() {
         Integer groupId = Integer.parseInt(getSelectedGroup());
-        Group group = groupService.getGroupById(groupId);
+        Group group = this.groupService.getGroupById(groupId);
         getMap4Stuff().put("SelectedGroup", group);
         getMap4Stuff().put("PaymentName", getPaymentName());
+        getMap4Stuff().put("ActionType", ActionType.STEP);
         return "registerPayment_secondStep";
+
     }
 
     public SessionContextBean getSessionContextBean() {
-        return sessionContextBean;
+        return this.sessionContextBean;
     }
 
     public void setSessionContextBean(SessionContextBean sessionContextBean) {
@@ -62,7 +64,7 @@ public class RegisterPaymentBean extends BaseBean {
     }
 
     public String getSelectedGroup() {
-        return selectedGroup;
+        return this.selectedGroup;
     }
 
     public void setSelectedGroup(String selectedGroup) {
@@ -72,16 +74,16 @@ public class RegisterPaymentBean extends BaseBean {
     // List of user group must be kept in session map. Otherwise during submit
     // it changes and select doesnt work?!?
     public List<Group> getUserGroup() {
-            List<GroupMembership> groupMemberships = getGroupMemberships();
-            List<Group> groupList = new LinkedList<Group>();
-            for (GroupMembership groupMembership : groupMemberships) {
-                groupList.add(groupMembership.getGroup());
-            }
+        List<GroupMembership> groupMemberships = getGroupMemberships();
+        List<Group> groupList = new LinkedList<Group>();
+        for (GroupMembership groupMembership : groupMemberships) {
+            groupList.add(groupMembership.getGroup());
+        }
         return groupList;
     }
 
     public UserService getUserService() {
-        return userService;
+        return this.userService;
     }
 
     public void setUserService(UserService userService) {
@@ -89,7 +91,7 @@ public class RegisterPaymentBean extends BaseBean {
     }
 
     public String getPaymentName() {
-        return paymentName;
+        return this.paymentName;
     }
 
     public void setPaymentName(String paymentName) {
@@ -97,7 +99,7 @@ public class RegisterPaymentBean extends BaseBean {
     }
 
     public GroupService getGroupService() {
-        return groupService;
+        return this.groupService;
     }
 
     public void setGroupService(GroupService groupService) {

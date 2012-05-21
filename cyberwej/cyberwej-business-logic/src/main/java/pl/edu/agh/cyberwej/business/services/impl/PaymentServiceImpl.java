@@ -156,6 +156,40 @@ public class PaymentServiceImpl implements PaymentService {
         return true;
     }
 
+    @Override
+    @Transactional
+    public void addPaymentItems(Payment payment, List<PaymentItem> paymentItems) {
+        Group initializedGroup = this.groupService
+                .getGroupWithMembersAndPayments(payment.getGroup().getId());
+        payment = this.paymentDAO.getById(payment.getId());
+        for (PaymentItem item : paymentItems) {
+            Product findProductByName = this.productDAO.findProductByName(item
+                    .getProduct().getName());
+            if (findProductByName != null) {
+                item.setProduct(findProductByName);
+            } else {
+                this.productDAO.save(item.getProduct());
+            }
+        }
+        Set<PaymentParticipation> participations = new HashSet<PaymentParticipation>();
+        Set<PaymentItem> items = new HashSet<PaymentItem>(paymentItems);
+        addParticipatorsWichPayedNothing(items, participations);
+        Map<User, Float> overdrawMap = getOverdrawMap(items, participations);
+        for (PaymentParticipation paymentParticipation : participations) {
+            for (GroupMembership member : initializedGroup.getGroupMembers()) {
+                if (member.getUser().getId()
+                        .equals(paymentParticipation.getUser().getId())) {
+                    // count difference between eaten and payed
+                    member.setOverdraw(member.getOverdraw()
+                            - overdrawMap.get(paymentParticipation.getUser()));
+                }
+            }
+        }
+        this.groupDAO.save(initializedGroup);
+        payment.getPaymentItems().addAll(paymentItems);
+        this.paymentDAO.save(payment);
+    }
+
     private Map<User, Float> getOverdrawMap(Set<PaymentItem> items,
             Set<PaymentParticipation> participators) {
         Map<User, Float> overdrawMap = new HashMap<User, Float>();
