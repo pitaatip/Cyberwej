@@ -4,6 +4,7 @@
 package pl.edu.agh.cyberwej.web.beans.payment;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -54,7 +55,7 @@ public class RegisterPaymentSummaryBean extends BaseBean {
         getMap4Stuff().put("paymentParticipators", null);
         return "main";
     }
-
+    
     public PaymentService getPaymentService() {
         return paymentService;
     }
