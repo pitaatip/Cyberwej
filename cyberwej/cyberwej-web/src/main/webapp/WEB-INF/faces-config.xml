@@ -93,6 +93,14 @@
 			<property-name>sessionContextBean</property-name>
 			<value>#{sessionContextBean}</value>
 		</managed-property>
+		<managed-property>
+			<property-name>userService</property-name>
+			<value>#{userService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>groupService</property-name>
+			<value>#{groupService}</value>
+		</managed-property>
 	</managed-bean>
 
 	<navigation-rule>
