@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.event.ValueChangeEvent;
 
 import org.apache.log4j.Logger;
 
@@ -17,7 +18,7 @@ import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
 import pl.edu.agh.cyberwej.web.beans.common.SessionContextBean;
 
 public class PaybackRegistrationBean extends BaseBean {
-    private static final Logger LOGGER = Logger.getLogger(PaybackRegistrationBean.class); 
+    private static final Logger LOGGER = Logger.getLogger(PaybackRegistrationBean.class);
     private PaybackService paybackService;
     private SessionContextBean sessionContextBean;
     private UserService userService;
@@ -48,7 +49,7 @@ public class PaybackRegistrationBean extends BaseBean {
 
     public String registerPayback() {
         LOGGER.warn("registerPayback");
-        //paybackService.createPayback(loggedUser, userWhom, group, amount);
+        // paybackService.createPayback(loggedUser, userWhom, group, amount);
         return "main";
     }
 
@@ -98,6 +99,11 @@ public class PaybackRegistrationBean extends BaseBean {
 
     public void setGroup(Group group) {
         this.group = group;
+
+    }
+
+    private void refreshUsers(String groupId) {
+        Group group = groupService.getGroupWithMembersAndPayments(Integer.parseInt(groupId));
         List<User> members = new ArrayList<User>();
         for (GroupMembership groupMembership : group.getGroupMembers()) {
             User us = groupMembership.getUser();
@@ -110,9 +116,8 @@ public class PaybackRegistrationBean extends BaseBean {
     public String getGroupId() {
         if (group != null) {
             return group.getId().toString();
-        } else {
-            return "";
         }
+        return null;
     }
 
     public void setGroupId(String groupId) {
@@ -124,11 +129,14 @@ public class PaybackRegistrationBean extends BaseBean {
         LOGGER.warn("set userId" + userId);
         setUserWhom(userService.getUserById(Integer.parseInt(userId)));
     }
-    
+
     public String getUserId() {
-        return userWhom.getId().toString();
+        if (userWhom != null) {
+            return userWhom.getId().toString();
+        }
+        return null;
     }
-    
+
     public float getAmount() {
         return amount;
     }
@@ -149,4 +157,10 @@ public class PaybackRegistrationBean extends BaseBean {
 
     }
 
+    public void valueChanged(ValueChangeEvent event) {
+        if (null != event.getNewValue()) {
+            String groupId = (String) event.getNewValue();
+            refreshUsers(groupId);
+        }
+    }
 }

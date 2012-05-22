@@ -24,13 +24,15 @@
 			            <h:outputText value="Amount:" />
 			            <h:inputText value="#{paybackRegistrationBean.amount}" />
 			        </h:panelGrid>
-			        <rich:select defaultLabel="select group" value="#{paybackRegistrationBean.groupId}">
+			        <h:selectOneMenu defaultLabel="select group" value="#{paybackRegistrationBean.groupId}" valueChangeListener="#{paybackRegistrationBean.valueChanged}">
 		                <f:selectItems itemLabel="#{userGroup.name}" value="#{paybackRegistrationBean.userGroups}" var="userGroup" itemValue="#{userGroup.id}"/>
 		                <a4j:ajax event="valueChange" render="user_select" execute="@this" />
-		            </rich:select>
-		            <rich:select defaultLabel="select user" value="#{paybackRegistrationBean.userWhom}" id="user_select">
+		            </h:selectOneMenu>
+		            <a4j:outputPanel id="user_select" layout="block">
+		            <rich:select defaultLabel="select user" value="#{paybackRegistrationBean.userId}" rendered="#{not empty paybackRegistrationBean.groupId}">
 		                <f:selectItems value="#{paybackRegistrationBean.groupMembers}" var="member" itemLabel="#{member.login}" itemValue="#{member.id}}"/>
 		            </rich:select>
+		            </a4j:outputPanel>
 		            <a4j:commandButton value="Refresh" render="paybackForm" execute="@form" />
 		            <a4j:commandButton value="Add payback" action="#{paybackRegistrationBean.registerPayback}"/>
 			    </h:form>
