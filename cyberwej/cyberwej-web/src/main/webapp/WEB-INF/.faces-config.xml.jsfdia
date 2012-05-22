@@ -36,23 +36,22 @@
     NAME="output8" PATH="pages/paymentPage.xhtml"
     TARGET="rules:pages#paymentPage.xhtml" TITLE="payment_page" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="registerPaymentPageStep3::pages#registerPaymentStep3Page.xhtml"
-    NAME="output9" PATH="pages/registerPaymentStep3Page.xhtml"
-    TARGET="rules:pages#registerPaymentStep3Page.xhtml"
-    TITLE="registerPaymentPageStep3" model-entity="JSFProcessItemOutput"/>
+    ID="payment_page_redirect::pages#paymentPage.xhtml" NAME="output9"
+    PATH="pages/paymentPage.xhtml"
+    TARGET="rules:pages#paymentPage.xhtml" TITLE="payment_page_redirect" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="registerPaymentSummary::pages#registerPaymentSummaryPage.xhtml"
     NAME="output10" PATH="pages/registerPaymentSummaryPage.xhtml"
     TARGET="rules:pages#registerPaymentSummaryPage.xhtml"
     TITLE="registerPaymentSummary" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="createUser::pages#createUserPage.xhtml"
+    NAME="output11" PATH="pages/createUserPage.xhtml"
+    TARGET="rules:pages#createUserPage.xhtml" TITLE="createUser" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="addGroupSummary::pages#addGroupSummaryPage.xhtml"
-    NAME="output11" PATH="pages/addGroupSummaryPage.xhtml"
-    TARGET="rules:pages#addGroupSummaryPage.xhtml"
-    TITLE="addGroupSummary" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT ID="searchForUser::pages#searchForUser.xhtml"
-    NAME="output12" PATH="pages/searchForUser.xhtml"
-    TARGET="rules:pages#searchForUser.xhtml" TITLE="searchForUser" model-entity="JSFProcessItemOutput"/>
+    ID="add_payment_items::pages#addPaymentItemsPage.xhtml"
+    NAME="output12" PATH="pages/addPaymentItemsPage.xhtml"
+    TARGET="rules:pages#addPaymentItemsPage.xhtml"
+    TITLE="add_payment_items" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:pages#mainPage.xhtml"
@@ -83,4 +82,6 @@
   PATH="pages/registerPaymentStep2Page.xhtml" SHAPE="304,465,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:pages#registerPaymentSummaryPage.xhtml"
   PATH="pages/registerPaymentSummaryPage.xhtml" SHAPE="304,1585,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#addPaymentItemsPage.xhtml"
+  PATH="pages/addPaymentItemsPage.xhtml" SHAPE="304,529,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

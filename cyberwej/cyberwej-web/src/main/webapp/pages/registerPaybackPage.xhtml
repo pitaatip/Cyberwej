@@ -19,9 +19,19 @@
 			</ui:define>
 			<ui:define name="page">
 				<h1>Register Payback</h1>
-				 		
-				 		In this page , it will be possible to Register new payback.
- 		
+ 				<h:form>
+		        <h:panelGrid columns="2">
+		            <h:outputText value="Amount:" />
+		            <h:inputText value="#{paybackRegistrationBean.amount}" />
+		        </h:panelGrid>
+		        <rich:select enableManualInput="true" defaultLabel="start typing for select">
+	                <f:selectItems value="#{paybackRegistrationBean.userGroups}" />
+	            </rich:select>
+	            <rich:select enableManualInput="true" defaultLabel="start typing for select">
+	                <f:selectItems value="#{paybackRegistrationBean.groupMembers}" />
+	            </rich:select>
+	            <a4j:commandButton value="Add payback" action="#{paybackRegistrationBean.registerPayback}"/>
+		    </h:form>
     		</ui:define>
 
 		</ui:composition>
