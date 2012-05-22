@@ -11,7 +11,7 @@
 	<ui:composition>
 
 		<h:form>
-			<h3>Notifications</h3>
+			<h3>Invitations</h3>
 			<h:dataTable value="#{notificationBean.invitations}" var="invitation">
 				<h:column>
 					<h:outputText value="#{invitation.sentTime}" />
@@ -21,6 +21,19 @@
 				<h:column>
 					<h:commandButton image="/resources/images/accept_24.png" action="#{notificationBean.acceptInvitation}">
 						<f:param name="invitationId" value="#{invitation.id}"/>
+					</h:commandButton>
+				</h:column>
+			</h:dataTable>
+			<h3>Paybacks</h3>
+			<h:dataTable value="#{paybackNotificationBean.paybacks}" var="payback">
+				<h:column>
+					<h:outputText value="#{payback.sentTime}" />
+					<br/>
+					<h:outputText value="#{payback.sender.login} has reported to give you #{payback.amount} as a part of group '#{payback.group.name}'" />
+				</h:column>
+				<h:column>
+					<h:commandButton image="/resources/images/accept_24.png" action="#{paybackNotificationBean.acceptPayback}">
+						<f:param name="paybackId" value="#{payback.id}"/>
 					</h:commandButton>
 				</h:column>
 			</h:dataTable>

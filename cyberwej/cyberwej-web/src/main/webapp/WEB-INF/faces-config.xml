@@ -102,6 +102,19 @@
 			<value>#{groupService}</value>
 		</managed-property>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>paybackNotificationBean</managed-bean-name>
+		<managed-bean-class>pl.edu.agh.cyberwej.web.beans.payback.PaybackNotificationBean</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+		<managed-property>
+			<property-name>paybackService</property-name>
+			<value>#{paybackService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>sessionContextBean</property-name>
+			<value>#{sessionContextBean}</value>
+		</managed-property>
+	</managed-bean>
 
 	<navigation-rule>
 		<navigation-case>

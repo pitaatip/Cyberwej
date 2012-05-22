@@ -1,5 +1,7 @@
 package pl.edu.agh.cyberwej.business.services.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -75,6 +77,7 @@ public class PaybackServiceImpl implements PaybackService {
     }
 
     @Override
+    @Transactional
     public boolean acceptPayback(Payback payback, boolean isAccepted) {
         GroupMembership sender = getGroupMembershipFromObjects(payback.getGroup(),
                 payback.getSender());
@@ -85,6 +88,12 @@ public class PaybackServiceImpl implements PaybackService {
         payback.setAccepted(isAccepted);
         return this.paybackDAO.updatePayback(payback);
     }
+    
+    @Override
+    @Transactional
+    public boolean acceptPaybackById(int paybackId, boolean isAccepted) {
+        return acceptPayback(paybackDAO.getById(paybackId), isAccepted);
+    }
 
     /**
      * @param paybackDAO
@@ -92,6 +101,10 @@ public class PaybackServiceImpl implements PaybackService {
      */
     public void setPaybackDAO(PaybackDAO paybackDAO) {
         this.paybackDAO = paybackDAO;
+    }
+    
+    public List<Payback> getPaybacksForUser(User user, boolean onlyUnaccepted) {
+        return paybackDAO.getPaybacksForUser(user, onlyUnaccepted);
     }
 
 }
