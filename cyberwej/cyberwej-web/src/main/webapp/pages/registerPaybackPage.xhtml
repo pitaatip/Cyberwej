@@ -29,9 +29,9 @@
 		                <a4j:ajax event="valueChange" render="user_select" execute="@this" />
 		            </h:selectOneMenu>
 		            <a4j:outputPanel id="user_select" layout="block">
-		            <rich:select defaultLabel="select user" value="#{paybackRegistrationBean.userId}" rendered="#{not empty paybackRegistrationBean.groupId}">
-		                <f:selectItems value="#{paybackRegistrationBean.groupMembers}" var="member" itemLabel="#{member.login}" itemValue="#{member.id}}"/>
-		            </rich:select>
+		            <h:selectOneMenu defaultLabel="select user" value="#{paybackRegistrationBean.userId}" rendered="#{not empty paybackRegistrationBean.groupId}">
+		                <f:selectItems value="#{paybackRegistrationBean.groupMembers}" var="member" itemLabel="#{member.login}" itemValue="#{member.id}"/>
+		            </h:selectOneMenu>
 		            </a4j:outputPanel>
 		            <a4j:commandButton value="Refresh" render="paybackForm" execute="@form" />
 		            <a4j:commandButton value="Add payback" action="#{paybackRegistrationBean.registerPayback}"/>

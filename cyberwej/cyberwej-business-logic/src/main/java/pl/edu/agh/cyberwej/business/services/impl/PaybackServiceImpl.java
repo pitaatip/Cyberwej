@@ -3,9 +3,11 @@ package pl.edu.agh.cyberwej.business.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pl.edu.agh.cyberwej.business.services.api.GroupMembershipService;
 import pl.edu.agh.cyberwej.business.services.api.PaybackService;
 import pl.edu.agh.cyberwej.data.dao.interfaces.PaybackDAO;
 import pl.edu.agh.cyberwej.data.objects.Group;
+import pl.edu.agh.cyberwej.data.objects.GroupMembership;
 import pl.edu.agh.cyberwej.data.objects.Payback;
 import pl.edu.agh.cyberwej.data.objects.User;
 
@@ -19,6 +21,17 @@ public class PaybackServiceImpl implements PaybackService {
 
     @Autowired
     private PaybackDAO paybackDAO;
+    
+    @Autowired
+    private GroupMembershipService groupMembershipService;
+
+    public GroupMembershipService getGroupMembershipService() {
+        return groupMembershipService;
+    }
+
+    public void setGroupMembershipService(GroupMembershipService groupMembershipService) {
+        this.groupMembershipService = groupMembershipService;
+    }
 
     @Override
     public boolean createPayback(User debtor, User investor, Group group,
@@ -26,9 +39,21 @@ public class PaybackServiceImpl implements PaybackService {
         return this.paybackDAO.addPayback(debtor, investor, group, amount);
     }
 
+    private GroupMembership getGroupMembershipFromObjects(Group group, User user) {
+        for(GroupMembership gm : user.getGroupMemberships()) {
+            if(gm.getGroup().getId() == group.getId()) {
+                return gm;
+            }
+        }
+        return null;
+    }
+    
     @Override
     public boolean acceptPayback(Payback payback, boolean isAccepted) {
-        // TODO update groupMembership state
+        GroupMembership sender = getGroupMembershipFromObjects(payback.getGroup(), payback.getSender());
+        GroupMembership receiver = getGroupMembershipFromObjects(payback.getGroup(), payback.getReceiver());
+        groupMembershipService.updateGroupMembershipStatus(sender, payback.getAmount());
+        groupMembershipService.updateGroupMembershipStatus(receiver, payback.getAmount());
         payback.setAccepted(isAccepted);
         return this.paybackDAO.updatePayback(payback);
     }

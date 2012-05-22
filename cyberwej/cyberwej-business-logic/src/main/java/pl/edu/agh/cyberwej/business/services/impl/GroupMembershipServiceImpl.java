@@ -31,7 +31,7 @@ public class GroupMembershipServiceImpl implements GroupMembershipService {
         groupMembership.setOverdraw(groupMembership.getOverdraw() + amount);
         this.groupMembershipDAO.save(groupMembership);
     }
-
+    
     /**
      * @param groupMembershipDAO
      *            the groupMembershipDAO to set

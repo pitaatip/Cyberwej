@@ -48,8 +48,7 @@ public class PaybackRegistrationBean extends BaseBean {
     }
 
     public String registerPayback() {
-        LOGGER.warn("registerPayback");
-        // paybackService.createPayback(loggedUser, userWhom, group, amount);
+        paybackService.createPayback(loggedUser, userWhom, group, amount);
         return "main";
     }
 
@@ -108,7 +107,6 @@ public class PaybackRegistrationBean extends BaseBean {
         for (GroupMembership groupMembership : group.getGroupMembers()) {
             User us = groupMembership.getUser();
             members.add(us);
-            LOGGER.warn("adding group member " + us.getLogin());
         }
         setGroupMembers(members);
     }
@@ -121,12 +119,10 @@ public class PaybackRegistrationBean extends BaseBean {
     }
 
     public void setGroupId(String groupId) {
-        LOGGER.warn("set groupId" + groupId);
         setGroup(groupService.getGroupWithMembersAndPayments(Integer.parseInt(groupId)));
     }
 
     public void setUserId(String userId) {
-        LOGGER.warn("set userId" + userId);
         setUserWhom(userService.getUserById(Integer.parseInt(userId)));
     }
 
@@ -142,13 +138,11 @@ public class PaybackRegistrationBean extends BaseBean {
     }
 
     public void setAmount(float amount) {
-        LOGGER.warn("set amount" + amount);
         this.amount = amount;
     }
 
     @PostConstruct
     public void init() {
-        LOGGER.warn("init");
         this.loggedUser = sessionContextBean.getLoggedUser();
         List<GroupMembership> groupMemberships = userService.getGroupMemberships(loggedUser);
         for (GroupMembership membership : groupMemberships) {
