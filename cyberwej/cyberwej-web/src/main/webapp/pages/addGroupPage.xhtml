@@ -28,7 +28,7 @@
 			        <rich:panel style="width:500px;" header="Group members" id="groupMembers">
 						<rich:dataTable value="#{addGroupBean.users}" var="user">
 							<f:facet name="header">
-								<h:outputText value="Registered users Table" />
+								<h:outputText value="Users to add" />
 							</f:facet>
 							<rich:column>
 								<f:facet name="header">Login</f:facet>
@@ -95,7 +95,7 @@
 				id="userPanel">
 					<rich:dataTable value="#{searchForUserBean.usersList}" var="user">
 						<f:facet name="header">
-							<h:outputText value="Registered users Table" />
+							<h:outputText value="Search results" />
 						</f:facet>
 						<rich:column>
 							<f:facet name="header">Login</f:facet>

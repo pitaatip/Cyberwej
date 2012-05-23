@@ -24,14 +24,20 @@
 			            <h:outputText value="Amount:" />
 			            <h:inputText value="#{paybackRegistrationBean.amount}" />
 			        </h:panelGrid>
+			        <h:panelGrid columns="2">
+			        <h:outputText value="Group:" />
 			        <h:selectOneMenu defaultLabel="select group" value="#{paybackRegistrationBean.groupId}" valueChangeListener="#{paybackRegistrationBean.valueChanged}">
 		                <f:selectItems itemLabel="#{userGroup.name}" value="#{paybackRegistrationBean.userGroups}" var="userGroup" itemValue="#{userGroup.id}"/>
 		                <a4j:ajax event="valueChange" render="user_select" execute="@this" />
 		            </h:selectOneMenu>
+		            </h:panelGrid>
 		            <a4j:outputPanel id="user_select" layout="block">
+		            <h:panelGrid columns="2">
+		            <h:outputText value="User:" />
 		            <h:selectOneMenu defaultLabel="select user" value="#{paybackRegistrationBean.userId}" rendered="#{not empty paybackRegistrationBean.groupId}">
 		                <f:selectItems value="#{paybackRegistrationBean.groupMembers}" var="member" itemLabel="#{member.login}" itemValue="#{member.id}"/>
 		            </h:selectOneMenu>
+		            </h:panelGrid>
 		            </a4j:outputPanel>
 		            <a4j:commandButton value="Add payback" action="#{paybackRegistrationBean.registerPayback}"/>
 			    </h:form>
