@@ -21,7 +21,7 @@ import pl.edu.agh.cyberwej.data.objects.User;
  * @author Krzysztof
  * 
  */
-@Service(value = "paybackService")
+@Service("paybackService")
 public class PaybackServiceImpl implements PaybackService {
 
     @Autowired
