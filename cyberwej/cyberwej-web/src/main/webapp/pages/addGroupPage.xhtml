@@ -58,41 +58,35 @@
 				</rich:panel>
 			        
 					
-			<rich:panel style="width:320px;" header="Search for user">
-				<div id="cyber-table">
+			<rich:panel style="width:500px;" header="Search for a user" id="userPanel">
+				<!-- <div id="cyber-table"> -->
 					<table>
 						<tr>
 							<td><h:outputText value="Login" /></td>
 							<td><h:inputText value="#{searchForUserBean.login}">
 									<rich:validator />
 								</h:inputText></td>
+						
+							<td><h:outputText value="Location" /></td>
+							<td><h:inputText value="#{searchForUserBean.location}">
+									<rich:validator />
+								</h:inputText></td>
+							
 						</tr>
 						<tr>
 							<td><h:outputText value="Name" /></td>
 							<td><h:inputText value="#{searchForUserBean.name}">
 									<rich:validator />
 								</h:inputText></td>
-						</tr>
-						<tr>
 							<td><h:outputText value="Surname" /></td>
 							<td><h:inputText value="#{searchForUserBean.surname}">
 									<rich:validator />
 								</h:inputText></td>
 						</tr>
-						<tr>
-							<td><h:outputText value="Location" /></td>
-							<td><h:inputText value="#{searchForUserBean.location}">
-									<rich:validator />
-								</h:inputText></td>
-						</tr>
-
 					</table>
-				</div>
+				<!-- </div> -->
 				<a4j:commandButton value="Search" render="userPanel"
 					execute="@form" />
-			</rich:panel>
-			<rich:panel style="width:500px;" header="Existing Users"
-				id="userPanel">
 					<rich:dataTable value="#{searchForUserBean.usersList}" var="user">
 						<f:facet name="header">
 							<h:outputText value="Search results" />
