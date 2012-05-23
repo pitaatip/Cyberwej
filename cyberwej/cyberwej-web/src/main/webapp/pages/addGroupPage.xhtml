@@ -21,10 +21,12 @@
 			<ui:define name="page">
 				<h1>Add Group</h1>
 				<h:form>
+					<rich:panel style="width:500px;margin-top:20px;" header="General" id="general">
 			        <h:panelGrid columns="2">
 			            <h:outputText value="Group name:" />
 			            <h:inputText value="#{addGroupBean.groupName}" />
 			        </h:panelGrid>
+			        </rich:panel>
 			        <rich:panel style="width:500px;" header="Group members" id="groupMembers">
 						<rich:dataTable value="#{addGroupBean.users}" var="user">
 							<f:facet name="header">
