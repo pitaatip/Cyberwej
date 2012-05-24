@@ -6,7 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import pl.edu.agh.cyberwej.business.services.api.PaymentService;
 import pl.edu.agh.cyberwej.common.objects.service.ParticipantInformation;
@@ -20,7 +20,7 @@ import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
  * 
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class PaymentInformationBean extends BaseBean {
 
     private static String SELECTEDPAYMENT = "selectedPayment";
@@ -88,10 +88,16 @@ public class PaymentInformationBean extends BaseBean {
     }
 
     public String getAddPaymentItems() {
-        getMap4Stuff().put("SelectedGroup", this.payment.getGroup());
+        // getMap4Stuff().put("SelectedGroup", this.payment.getGroup());
         getMap4Stuff().put("Payment", this.payment);
         getMap4Stuff().put("ActionType", ActionType.ADDPAYMENTITEMS);
         return "add_payment_items";
     }
 
+    public String addPayers() {
+        getMap4Stuff().put("SelectedGroup", this.payment.getGroup());
+        getMap4Stuff().put("ActionType", ActionType.ADDPAYERS);
+        getMap4Stuff().put("Payment", this.payment);
+        return "add_payers_page";
+    }
 }
