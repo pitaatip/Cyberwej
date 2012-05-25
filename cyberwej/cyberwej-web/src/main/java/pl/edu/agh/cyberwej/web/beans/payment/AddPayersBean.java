@@ -62,7 +62,7 @@ public class AddPayersBean extends BaseBean {
             return "registerPaymentSummary";
         else {
             Payment payment = (Payment) getMap4Stuff().get("Payment");
-            // TODO
+            this.paymentService.addPayers(payment, getPaymentParticipators());
             try {
                 FacesContext
                         .getCurrentInstance()

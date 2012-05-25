@@ -52,4 +52,7 @@ public interface PaymentService {
     public List<ParticipantInformation> getParticipants(Payment payment);
 
     public void addPaymentItems(Payment payment, List<PaymentItem> paymentItems);
+
+    public void addPayers(Payment payment,
+            List<PaymentParticipation> paymentParticipations);
 }

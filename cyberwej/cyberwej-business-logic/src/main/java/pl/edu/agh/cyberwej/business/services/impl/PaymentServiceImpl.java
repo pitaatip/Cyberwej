@@ -3,6 +3,7 @@ package pl.edu.agh.cyberwej.business.services.impl;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -349,5 +350,33 @@ public class PaymentServiceImpl implements PaymentService {
             }
         return new LinkedList<ParticipantInformation>(
                 participationsMap.values());
+    }
+
+    @Override
+    @Transactional
+    public void addPayers(Payment payment,
+            List<PaymentParticipation> paymentParticipations) {
+        payment = this.paymentDAO.getById(payment.getId());
+        for (PaymentParticipation newParticipation : paymentParticipations) {
+            for (GroupMembership groupMembership : payment.getGroup()
+                    .getGroupMembers())
+                if (groupMembership.getUser().getId()
+                        .equals(newParticipation.getUser().getId()))
+                    groupMembership.setOverdraw(groupMembership.getOverdraw()
+                            + newParticipation.getAmount());
+            newParticipation.setPayment(payment);
+            for (Iterator<PaymentParticipation> iterator = payment
+                    .getParticipations().iterator(); iterator.hasNext();) {
+                PaymentParticipation paymentParticipation = iterator.next();
+                if (newParticipation.getUser().getId()
+                        .equals(paymentParticipation.getUser().getId())) {
+                    paymentParticipation.setAmount(paymentParticipation
+                            .getAmount() + newParticipation.getAmount());
+                    newParticipation = paymentParticipation;
+                }
+            }
+            payment.getParticipations().add(newParticipation);
+        }
+        this.paymentDAO.save(payment);
     }
 }
