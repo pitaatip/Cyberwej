@@ -13,8 +13,10 @@ public class SearchForUserBean {
     private String surname;
     private String location;
 
+    private int newUserId;
+
     public String getLogin() {
-        return login;
+        return this.login;
     }
 
     public void setLogin(String login) {
@@ -22,7 +24,7 @@ public class SearchForUserBean {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -30,7 +32,7 @@ public class SearchForUserBean {
     }
 
     public String getSurname() {
-        return surname;
+        return this.surname;
     }
 
     public void setSurname(String surname) {
@@ -38,7 +40,7 @@ public class SearchForUserBean {
     }
 
     public String getLocation() {
-        return location;
+        return this.location;
     }
 
     public void setLocation(String location) {
@@ -46,14 +48,34 @@ public class SearchForUserBean {
     }
 
     public List<User> getUsersList() {
-        return service.findUserByCriteria(login, name, surname, location);
+        return this.service.findUserByCriteria(this.login, this.name,
+                this.surname, this.location);
     }
 
     public UserService getService() {
-        return service;
+        return this.service;
     }
 
     public void setService(UserService service) {
         this.service = service;
+    }
+
+    /**
+     * @return the newUserId
+     */
+    public int getNewUserId() {
+        return this.newUserId;
+    }
+
+    /**
+     * @param newUserId
+     *            the newUserId to set
+     */
+    public void setNewUserId(int newUserId) {
+        this.newUserId = newUserId;
+    }
+
+    public void addInvitation() {
+
     }
 }
