@@ -21,7 +21,8 @@
 				<f:facet name="controls">
 					<h:outputLink value="#"
 						onclick="#{rich:component('invitationPopup')}.hide(); return false;">
-						<h:graphicImage value="../resources/images/delete_32.png" />
+						<h:graphicImage value="../resources/images/delete_32.png"
+							width="20" height="20" />
 					</h:outputLink>
 				</f:facet>
 				<table>
@@ -52,7 +53,8 @@
 				<a4j:commandButton execute="@form" value="Search"
 					render="foundUsersTable" />
 				<rich:dataTable id="foundUsersTable"
-					value="#{searchForUserBean.usersList}" var="user">
+					value="#{searchForUserBean.usersList}" var="user"
+					domElementAttachment="form">
 					<f:facet name="header">
 						<h:outputText value="Search results" />
 					</f:facet>
@@ -76,7 +78,7 @@
 					</rich:column>
 					<rich:column>
 						<f:facet name="header">Add to group</f:facet>
-						<a4j:commandButton value="Add"
+						<a4j:commandButton value="Add" execute="@form"
 							action="#{searchForUserBean.addInvitation}"
 							oncomplete="#{rich:component('invitationPopup')}.hide(); return false;"
 							render="@form">
