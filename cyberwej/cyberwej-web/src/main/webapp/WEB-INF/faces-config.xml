@@ -45,10 +45,18 @@
 	<managed-bean>
 		<managed-bean-name>searchForUserBean</managed-bean-name>
 		<managed-bean-class>pl.edu.agh.cyberwej.web.beans.group.SearchForUserBean</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
+		<managed-bean-scope>view</managed-bean-scope>
 		<managed-property>
 			<property-name>service</property-name>
 			<value>#{userService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>invitationService</property-name>
+			<value>#{invitationService}</value>
+		</managed-property>
+		<managed-property>
+			<property-name>sessionContextBean</property-name>
+			<value>#{sessionContextBean}</value>
 		</managed-property>
 	</managed-bean>
 	<managed-bean>

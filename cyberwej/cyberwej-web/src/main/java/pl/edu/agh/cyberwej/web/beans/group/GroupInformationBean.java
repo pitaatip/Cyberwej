@@ -6,7 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import pl.edu.agh.cyberwej.business.services.api.GroupService;
 import pl.edu.agh.cyberwej.business.services.api.PaymentService;
@@ -21,7 +21,7 @@ import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
  * 
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class GroupInformationBean extends BaseBean {
 
     private static final String SELECTEDGROUP = "selectedGroup";

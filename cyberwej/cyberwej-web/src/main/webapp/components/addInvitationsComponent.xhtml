@@ -10,10 +10,11 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 <body>
 	<ui:composition>
+		<h:commandButton image="../resources/images/plus.jpg">
+			<rich:componentControl target="invitationPopup" operation="show" />
+		</h:commandButton>
+
 		<h:form id="invitationForm">
-			<h:commandButton image="../resources/images/plus.jpg">
-				<rich:componentControl target="invitationPopup" operation="show" />
-			</h:commandButton>
 			<rich:popupPanel id="invitationPopup" modal="true" autosized="true"
 				resizable="true" header="Search for a user"
 				domElementAttachment="form">
@@ -49,47 +50,45 @@
 							</h:inputText></td>
 					</tr>
 				</table>
-				<!-- </div> -->
-				<a4j:commandButton execute="@form" value="Search"
-					render="foundUsersTable" />
-				<rich:dataTable id="foundUsersTable"
-					value="#{searchForUserBean.usersList}" var="user"
-					domElementAttachment="form">
-					<f:facet name="header">
-						<h:outputText value="Search results" />
-					</f:facet>
-					<rich:column>
-						<f:facet name="header">Login</f:facet>
-						<h:commandLink action="userPage" value="#{user.login}">
-							<f:param name="userToShow" value="#{user.id}" />
-						</h:commandLink>
-					</rich:column>
-					<rich:column>
-						<f:facet name="header">Name</f:facet>
-						<h:outputText value="#{user.name}" />
-					</rich:column>
-					<rich:column>
-						<f:facet name="header">Surname</f:facet>
-						<h:outputText value="#{user.surname}" />
-					</rich:column>
-					<rich:column>
-						<f:facet name="header">Location</f:facet>
-						<h:outputText value="#{user.location}" />
-					</rich:column>
-					<rich:column>
-						<f:facet name="header">Add to group</f:facet>
-						<a4j:commandButton value="Add" execute="@form"
-							action="#{searchForUserBean.addInvitation}"
-							oncomplete="#{rich:component('invitationPopup')}.hide(); return false;"
-							render="@form">
-							<a4j:param value="#{user.id}"
-								assignTo="#{searchForUserBean.newUserId}" />
-						</a4j:commandButton>
-					</rich:column>
-				</rich:dataTable>
+				<a4j:commandButton value="Search" render="searchPanel"
+					execute="@form" />
+				<a4j:outputPanel id="searchPanel">
+					<rich:dataTable id="foundUsersTable"
+						value="#{searchForUserBean.usersList}" var="user">
+						<rich:column>
+							<f:facet name="header">Login</f:facet>
+							<h:commandLink action="userPage" value="#{user.login}">
+								<f:param name="userToShow" value="#{user.id}" />
+							</h:commandLink>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Name</f:facet>
+							<h:outputText value="#{user.name}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Surname</f:facet>
+							<h:outputText value="#{user.surname}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Location</f:facet>
+							<h:outputText value="#{user.location}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Add to group</f:facet>
+							<a4j:commandButton value="Add" execute="@form"
+								action="#{searchForUserBean.addInvitation}"
+								oncomplete="#{rich:component('invitationPopup')}.hide(); return false;"
+								render="@form">
+								<a4j:param value="#{user.id}"
+									assignTo="#{searchForUserBean.newUserId}" />
+								<a4j:param value="#{groupInformationBean.group.id}"
+									assignTo="#{searchForUserBean.groupId}" />
+							</a4j:commandButton>
+						</rich:column>
+					</rich:dataTable>
+				</a4j:outputPanel>
 			</rich:popupPanel>
 		</h:form>
-
 	</ui:composition>
 </body>
 </html>
