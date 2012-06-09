@@ -103,6 +103,7 @@ public class AddPaymentItemsBean extends BaseBean {
 
     public String next() {
         if (getMap4Stuff().get("ActionType").equals(ActionType.STEP)) {
+            getMap4Stuff().put("ActionType", ActionType.STEP3);
             return "registerPaymentPageStep3";
         } else {
             Payment payment = (Payment) getMap4Stuff().get("Payment");

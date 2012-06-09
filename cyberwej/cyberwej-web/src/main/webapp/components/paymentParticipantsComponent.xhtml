@@ -17,8 +17,7 @@
 					var="participant">
 					<rich:column>
 						<f:facet name="header">Login</f:facet>
-						<h:link outcome="user_page"
-							value="#{participant.user.login}">
+						<h:link outcome="user_page" value="#{participant.user.login}">
 							<f:param name="userToShow" value="#{participant.user.id}"></f:param>
 						</h:link>
 					</rich:column>
@@ -38,6 +37,9 @@
 							value="#{participant.status}" />
 					</rich:column>
 				</rich:dataTable>
+				<h:commandLink action="#{paymentInformationBean.addPayers}">
+					<h:graphicImage value="../resources/images/plus.jpg" />
+				</h:commandLink>
 			</rich:panel>
 		</h:form>
 

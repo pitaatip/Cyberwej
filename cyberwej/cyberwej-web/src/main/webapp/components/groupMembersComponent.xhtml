@@ -11,27 +11,28 @@
 	<ui:composition>
 
 		<h:form>
-			<rich:panel  header="Group members">
-					<rich:dataTable value="#{groupInformationBean.groupMembers}"
-						var="groupMembership">
-						<rich:column>
-							<f:facet name="header">Login</f:facet>
-							<h:link outcome="user_page" value="#{groupMembership.user.login}">
-								<f:param name="userToShow" value="#{groupMembership.user.id}" />
-							</h:link>
-						</rich:column>
-						<rich:column>
-							<f:facet name="header">Joined on</f:facet>
-							<h:outputText value="#{groupMembership.joinDate}" />
+			<rich:panel header="Group members">
+				<rich:dataTable value="#{groupInformationBean.groupMembers}"
+					var="groupMembership">
+					<rich:column>
+						<f:facet name="header">Login</f:facet>
+						<h:link outcome="user_page" value="#{groupMembership.user.login}">
+							<f:param name="userToShow" value="#{groupMembership.user.id}" />
+						</h:link>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Joined on</f:facet>
+						<h:outputText value="#{groupMembership.joinDate}" />
 
-						</rich:column>
-						<rich:column>
-							<f:facet name="header">Payment status</f:facet>
-							<h:outputText
-								style="color:#{(groupMembership.overdraw > 0)  ? 'Green' : 'Red'}"
-								value="#{groupMembership.overdraw}" />
-						</rich:column>
-					</rich:dataTable>
+					</rich:column>
+					<rich:column>
+						<f:facet name="header">Payment status</f:facet>
+						<h:outputText
+							style="color:#{(groupMembership.overdraw > 0)  ? 'Green' : 'Red'}"
+							value="#{groupMembership.overdraw}" />
+					</rich:column>
+				</rich:dataTable>
+				<ui:include src="../components/addInvitationsComponent.xhtml" />
 			</rich:panel>
 		</h:form>
 

@@ -11,9 +11,10 @@ public interface InvitationDAO extends IDAO<Invitation> {
     public boolean addInvitation(User inviter, User invitee, Group group);
 
     public void removeInvitation(Invitation invitation);
-    
+
     public void acceptInvitation(Invitation invitation);
-    
-    public List<Invitation> getInviationsForUser(User invite, boolean onlyUnaccepted);
+
+    public List<Invitation> getInviationsForUser(User invite,
+            boolean onlyUnaccepted);
 
 }

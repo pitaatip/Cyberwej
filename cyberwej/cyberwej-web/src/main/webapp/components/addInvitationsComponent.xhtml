@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+<body>
+	<ui:composition>
+		<h:commandButton image="../resources/images/plus.jpg">
+			<rich:componentControl target="invitationPopup" operation="show" />
+		</h:commandButton>
+
+		<h:form id="invitationForm">
+			<rich:popupPanel id="invitationPopup" modal="true" autosized="true"
+				resizable="true" header="Search for a user"
+				domElementAttachment="form">
+				<!-- <div id="cyber-table"> -->
+				<f:facet name="controls">
+					<h:outputLink value="#"
+						onclick="#{rich:component('invitationPopup')}.hide(); return false;">
+						<h:graphicImage value="../resources/images/delete_32.png"
+							width="20" height="20" />
+					</h:outputLink>
+				</f:facet>
+				<table>
+					<tr>
+						<td><h:outputText value="Login" /></td>
+						<td><h:inputText value="#{searchForUserBean.login}">
+								<rich:validator />
+							</h:inputText></td>
+
+						<td><h:outputText value="Location" /></td>
+						<td><h:inputText value="#{searchForUserBean.location}">
+								<rich:validator />
+							</h:inputText></td>
+
+					</tr>
+					<tr>
+						<td><h:outputText value="Name" /></td>
+						<td><h:inputText value="#{searchForUserBean.name}">
+								<rich:validator />
+							</h:inputText></td>
+						<td><h:outputText value="Surname" /></td>
+						<td><h:inputText value="#{searchForUserBean.surname}">
+								<rich:validator />
+							</h:inputText></td>
+					</tr>
+				</table>
+				<a4j:commandButton value="Search" render="searchPanel"
+					execute="@form" />
+				<a4j:outputPanel id="searchPanel">
+					<rich:dataTable id="foundUsersTable"
+						value="#{searchForUserBean.usersList}" var="user">
+						<rich:column>
+							<f:facet name="header">Login</f:facet>
+							<h:commandLink action="userPage" value="#{user.login}">
+								<f:param name="userToShow" value="#{user.id}" />
+							</h:commandLink>
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Name</f:facet>
+							<h:outputText value="#{user.name}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Surname</f:facet>
+							<h:outputText value="#{user.surname}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Location</f:facet>
+							<h:outputText value="#{user.location}" />
+						</rich:column>
+						<rich:column>
+							<f:facet name="header">Add to group</f:facet>
+							<a4j:commandButton value="Add" execute="@form"
+								action="#{searchForUserBean.addInvitation}"
+								oncomplete="#{rich:component('invitationPopup')}.hide(); return false;"
+								render="@form">
+								<a4j:param value="#{user.id}"
+									assignTo="#{searchForUserBean.newUserId}" />
+								<a4j:param value="#{groupInformationBean.group.id}"
+									assignTo="#{searchForUserBean.groupId}" />
+							</a4j:commandButton>
+						</rich:column>
+					</rich:dataTable>
+				</a4j:outputPanel>
+			</rich:popupPanel>
+		</h:form>
+	</ui:composition>
+</body>
+</html>

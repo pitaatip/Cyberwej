@@ -12,7 +12,7 @@
 	<artifactId>cyberwej-web</artifactId>
 	<properties>
 		<spring.framework.version>3.0.6.RELEASE</spring.framework.version>
-		<org.richfaces.bom.version>4.0.0.20110209-M6</org.richfaces.bom.version>
+		<org.richfaces.bom.version>4.2.2.Final</org.richfaces.bom.version>
 	</properties>
 	<packaging>war</packaging>
 	<name>cyberwej-web</name>
@@ -136,11 +136,8 @@
 			<scope>runtime</scope>
 		</dependency>
 
-		<!-- <dependency>
-			<groupId>org.glassfish.web</groupId>
-			<artifactId>el-impl</artifactId>
-			<version>2.2</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.glassfish.web</groupId> <artifactId>el-impl</artifactId> 
+			<version>2.2</version> </dependency> -->
 	</dependencies>
 
 </project>
