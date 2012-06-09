@@ -84,7 +84,7 @@ public class PaybackServiceImpl implements PaybackService {
         GroupMembership receiver = getGroupMembershipFromObjects(payback.getGroup(),
                 payback.getReceiver());
         groupMembershipService.updateGroupMembershipStatus(sender, payback.getAmount());
-        groupMembershipService.updateGroupMembershipStatus(receiver, payback.getAmount());
+        groupMembershipService.updateGroupMembershipStatus(receiver, -1*payback.getAmount());
         payback.setAccepted(isAccepted);
         return this.paybackDAO.updatePayback(payback);
     }

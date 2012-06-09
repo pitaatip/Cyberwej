@@ -148,6 +148,10 @@ public class PaybackRegistrationBean extends BaseBean {
         for (GroupMembership membership : groupMemberships) {
             userGroups.add(membership.getGroup());
         }
+        if (getUserGroups().size() == 1) {
+            setGroupId(getUserGroups().get(0).getId().toString());
+            refreshUsers(getUserGroups().get(0).getId().toString());
+        }
 
     }
 

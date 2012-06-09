@@ -282,6 +282,8 @@ ul h4 {
 		no-repeat;
 	border-top: solid 1px #1F3C49;
 	color: #D3DDE2;
+	position: relative;
+	top: 35px;
 }
 
 #sidebar {
