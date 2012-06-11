@@ -8,6 +8,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import pl.edu.agh.cyberwej.business.services.api.GroupMembershipService;
 import pl.edu.agh.cyberwej.business.services.api.GroupService;
 import pl.edu.agh.cyberwej.business.services.api.PaymentService;
 import pl.edu.agh.cyberwej.common.objects.service.PaymentInformation;
@@ -32,6 +33,9 @@ public class GroupInformationBean extends BaseBean {
     @ManagedProperty(value = "#{paymentService}")
     private PaymentService paymentService;
 
+    @ManagedProperty(value = "#{groupMembershipService}")
+    private GroupMembershipService groupMembershipService;
+    
     private Group group = new Group();
 
     private List<PaymentInformation> groupPayments = new LinkedList<PaymentInformation>();
@@ -97,5 +101,17 @@ public class GroupInformationBean extends BaseBean {
      */
     public List<PaymentInformation> getGroupPayments() {
         return this.groupPayments;
+    }
+
+    public GroupMembershipService getGroupMembershipService() {
+        return groupMembershipService;
+    }
+
+    public void setGroupMembershipService(GroupMembershipService groupMembershipService) {
+        this.groupMembershipService = groupMembershipService;
+    }
+    
+    public void removeUserFromGroup() {
+        
     }
 }

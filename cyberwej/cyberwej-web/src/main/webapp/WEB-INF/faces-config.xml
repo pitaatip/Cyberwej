@@ -207,5 +207,9 @@
 			<to-view-id>pages/addPayersPage.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>leave_group</from-outcome>
+			<to-view-id>pages/leaveGroup.xhtml</to-view-id>
+		</navigation-case>
 	</navigation-rule>
 </faces-config>

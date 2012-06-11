@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PROCESS model-entity="JSFProcess">
- <PROCESS-ITEM NAME="rules:" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules::0" NAME="item" model-entity="JSFProcessItem">
+ <PROCESS-ITEM NAME="rules:pages#mainPage.xhtml"
+  PATH="pages/mainPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#registerPaybackPage.xhtml"
+  PATH="pages/registerPaybackPage.xhtml" SHAPE="304,625,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#loggingPage.xhtml"
+  PATH="pages/loggingPage.xhtml" SHAPE="304,737,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#createUserPage.xhtml"
+  PATH="pages/createUserPage.xhtml" SHAPE="304,1073,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#addGroupSummaryPage.xhtml"
+  PATH="pages/addGroupSummaryPage.xhtml" SHAPE="304,1185,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#groupPage.xhtml"
+  PATH="pages/groupPage.xhtml" SHAPE="304,961,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#registerPaymentPage.xhtml"
+  PATH="pages/registerPaymentPage.xhtml" SHAPE="304,513,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#userPage.xhtml"
+  PATH="pages/userPage.xhtml" SHAPE="304,849,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#addGroupPage.xhtml"
+  PATH="pages/addGroupPage.xhtml" SHAPE="304,401,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#searchForUser.xhtml"
+  PATH="pages/searchForUser.xhtml" SHAPE="304,433,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#paymentPage.xhtml"
+  PATH="pages/paymentPage.xhtml" SHAPE="304,433,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#registerPaymentStep3Page.xhtml"
+  PATH="pages/registerPaymentStep3Page.xhtml" SHAPE="304,577,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#registerPaymentStep2Page.xhtml"
+  PATH="pages/registerPaymentStep2Page.xhtml" SHAPE="304,465,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#registerPaymentSummaryPage.xhtml"
+  PATH="pages/registerPaymentSummaryPage.xhtml" SHAPE="304,1585,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#addPaymentItemsPage.xhtml"
+  PATH="pages/addPaymentItemsPage.xhtml" SHAPE="304,529,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT ID="main::pages#mainPage.xhtml" NAME="output"
     PATH="pages/mainPage.xhtml" TARGET="rules:pages#mainPage.xhtml"
     TITLE="main" model-entity="JSFProcessItemOutput"/>
@@ -40,48 +70,41 @@
     PATH="pages/paymentPage.xhtml"
     TARGET="rules:pages#paymentPage.xhtml" TITLE="payment_page_redirect" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
+    ID="registerPaymentPageStep3::pages#registerPaymentStep3Page.xhtml"
+    NAME="output10" PATH="pages/registerPaymentStep3Page.xhtml"
+    TARGET="rules:pages#registerPaymentStep3Page.xhtml"
+    TITLE="registerPaymentPageStep3" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
     ID="registerPaymentSummary::pages#registerPaymentSummaryPage.xhtml"
-    NAME="output10" PATH="pages/registerPaymentSummaryPage.xhtml"
+    NAME="output11" PATH="pages/registerPaymentSummaryPage.xhtml"
     TARGET="rules:pages#registerPaymentSummaryPage.xhtml"
     TITLE="registerPaymentSummary" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="createUser::pages#createUserPage.xhtml"
-    NAME="output11" PATH="pages/createUserPage.xhtml"
+    NAME="output12" PATH="pages/createUserPage.xhtml"
     TARGET="rules:pages#createUserPage.xhtml" TITLE="createUser" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
+    ID="addGroupSummary::pages#addGroupSummaryPage.xhtml"
+    NAME="output13" PATH="pages/addGroupSummaryPage.xhtml"
+    TARGET="rules:pages#addGroupSummaryPage.xhtml"
+    TITLE="addGroupSummary" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
     ID="add_payment_items::pages#addPaymentItemsPage.xhtml"
-    NAME="output12" PATH="pages/addPaymentItemsPage.xhtml"
+    NAME="output14" PATH="pages/addPaymentItemsPage.xhtml"
     TARGET="rules:pages#addPaymentItemsPage.xhtml"
     TITLE="add_payment_items" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="searchForUser::pages#searchForUser.xhtml"
+    NAME="output15" PATH="pages/searchForUser.xhtml"
+    TARGET="rules:pages#searchForUser.xhtml" TITLE="searchForUser" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="add_payers_page::pages#addPayersPage.xhtml"
+    NAME="output16" PATH="pages/addPayersPage.xhtml"
+    TARGET="rules:pages#addPayersPage.xhtml" TITLE="add_payers_page" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="leave_group::pages#leaveGroup.xhtml"
+    NAME="output17" PATH="pages/leaveGroup.xhtml"
+    TARGET="rules:pages#leaveGroup.xhtml" TITLE="leave_group" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:pages#mainPage.xhtml"
-  PATH="pages/mainPage.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:pages#registerPaybackPage.xhtml"
-  PATH="pages/registerPaybackPage.xhtml" SHAPE="304,625,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:pages#loggingPage.xhtml"
-  PATH="pages/loggingPage.xhtml" SHAPE="304,737,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:pages#createUserPage.xhtml"
-  PATH="pages/createUserPage.xhtml" SHAPE="304,1073,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:pages#addGroupSummaryPage.xhtml"
-  PATH="pages/addGroupSummaryPage.xhtml" SHAPE="304,1185,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:pages#groupPage.xhtml"
-  PATH="pages/groupPage.xhtml" SHAPE="304,961,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:pages#registerPaymentPage.xhtml"
-  PATH="pages/registerPaymentPage.xhtml" SHAPE="304,513,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:pages#userPage.xhtml"
-  PATH="pages/userPage.xhtml" SHAPE="304,849,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:pages#addGroupPage.xhtml"
-  PATH="pages/addGroupPage.xhtml" SHAPE="304,401,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:pages#searchForUser.xhtml"
-  PATH="pages/searchForUser.xhtml" SHAPE="304,433,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:pages#paymentPage.xhtml"
-  PATH="pages/paymentPage.xhtml" SHAPE="304,433,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:pages#registerPaymentStep3Page.xhtml"
-  PATH="pages/registerPaymentStep3Page.xhtml" SHAPE="304,577,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:pages#registerPaymentStep2Page.xhtml"
-  PATH="pages/registerPaymentStep2Page.xhtml" SHAPE="304,465,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:pages#registerPaymentSummaryPage.xhtml"
-  PATH="pages/registerPaymentSummaryPage.xhtml" SHAPE="304,1585,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:pages#addPaymentItemsPage.xhtml"
-  PATH="pages/addPaymentItemsPage.xhtml" SHAPE="304,529,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#addPayersPage.xhtml"
+  PATH="pages/addPayersPage.xhtml" SHAPE="304,657,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:pages#leaveGroup.xhtml"
+  PATH="pages/leaveGroup.xhtml" SHAPE="304,689,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
