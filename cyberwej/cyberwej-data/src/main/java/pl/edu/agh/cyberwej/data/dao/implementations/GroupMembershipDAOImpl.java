@@ -36,7 +36,7 @@ public class GroupMembershipDAOImpl extends DAOBase<GroupMembership> implements 
     @SuppressWarnings("unchecked")
     public void removeGroupMembership(Group group, User user) {
         List<GroupMembership> groupMemberships = super.hibernateTemplate.find(
-                "select gm from GroupMembership gm where gm.groupid = ? and gm.userid = ?",
+                "select gm from GroupMembership gm where gm.group.id = ? and gm.user.id = ?",
                 group.getId(), user.getId());
         if (groupMemberships != null && groupMemberships.size() == 1) {
             removeGroupMembership(groupMemberships.get(0));

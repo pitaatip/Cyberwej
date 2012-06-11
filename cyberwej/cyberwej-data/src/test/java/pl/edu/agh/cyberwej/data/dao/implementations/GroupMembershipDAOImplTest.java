@@ -71,8 +71,7 @@ public class GroupMembershipDAOImplTest {
 
         Group retrievedGroup = this.groupDAO.getGroupByName(this.groupName);
         assertFalse(retrievedGroup.getGroupMembers().isEmpty());
-        assertEquals(retrievedGroup.getGroupMembers(),
-                retrievedUser.getGroupMemberships());
+        assertEquals(retrievedGroup.getGroupMembers(), retrievedUser.getGroupMemberships());
         for (GroupMembership groupMembership : retrievedGroup.getGroupMembers()) {
             assertEquals(groupMembership.getOverdraw(), 0.0f, 0.0);
             assertTrue(groupMembership.getJoinDate().before(new Date()));
@@ -84,12 +83,23 @@ public class GroupMembershipDAOImplTest {
     @Test
     public void testRemoveGroupMembership() {
         User retrievedUser = this.userDAO.findUserByMail(this.mail);
-        for (GroupMembership groupMembership : retrievedUser
-                .getGroupMemberships())
-            if (groupMembership.getGroup().getName().equals(this.groupName))
+        for (GroupMembership groupMembership : retrievedUser.getGroupMemberships()) {
+            if (groupMembership.getGroup().getName().equals(this.groupName)) {
                 this.groupMembershipDAO.removeGroupMembership(groupMembership);
+            }
+        }
         Group retrievedGroup = this.groupDAO.getGroupByName(this.groupName);
         assertTrue(retrievedGroup.getGroupMembers().isEmpty());
+    }
+
+    @Transactional
+    @Rollback(true)
+    @Test
+    public void shouldRemoveGroupMembership() {
+        User retrievedUser = userDAO.findUserByMail(mail);
+        Group matchingGroup = groupDAO.getGroupByName(groupName);
+        groupMembershipDAO.removeGroupMembership(matchingGroup, retrievedUser);
+        assertTrue(matchingGroup.getGroupMembers().isEmpty());
     }
 
     @AfterTransaction
