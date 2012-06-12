@@ -147,8 +147,9 @@ public class PaymentServiceImpl implements PaymentService {
                 if (member.getUser().getId()
                         .equals(paymentParticipation.getUser().getId())) {
                     // count difference between eaten and payed
-                    member.setOverdraw(member.getOverdraw()
-                            - overdrawMap.get(paymentParticipation.getUser()));
+                    final float overdraw = member.getOverdraw()
+                            - overdrawMap.get(paymentParticipation.getUser());
+                    member.setOverdraw(overdraw);
                 }
             }
         }
