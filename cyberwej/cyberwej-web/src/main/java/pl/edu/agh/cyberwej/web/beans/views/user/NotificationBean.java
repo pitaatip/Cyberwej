@@ -1,10 +1,8 @@
 package pl.edu.agh.cyberwej.web.beans.views.user;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
-import javax.faces.context.FacesContext;
 
 import pl.edu.agh.cyberwej.business.services.api.InvitationService;
 import pl.edu.agh.cyberwej.data.objects.Invitation;
