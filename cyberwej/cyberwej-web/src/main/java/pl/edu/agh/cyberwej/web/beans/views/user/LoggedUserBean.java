@@ -30,6 +30,8 @@ public class LoggedUserBean {
     private static final String SELECTEDGROUP = "selectedGroup";
     
     private static final SortOrder ascendingOrder = SortOrder.ascending;
+    
+    private static final SortOrder descendingOrder = SortOrder.descending;
 
     @ManagedProperty(value = "#{userService}")
     private UserService userService;
@@ -115,5 +117,9 @@ public class LoggedUserBean {
     
     public SortOrder getAscendingOrder() {
         return ascendingOrder;
+    }
+
+    public static SortOrder getDescendingOrder() {
+        return descendingOrder;
     }
 }
