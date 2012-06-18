@@ -119,7 +119,7 @@ public class LoggedUserBean {
         return ascendingOrder;
     }
 
-    public static SortOrder getDescendingOrder() {
+    public SortOrder getDescendingOrder() {
         return descendingOrder;
     }
 }
