@@ -19,7 +19,7 @@
 							<f:param name="selectedPayment" value="#{payment.id}" />
 						</h:link>
 					</rich:column>
-					<rich:column>
+					<rich:column sortBy="#{payment.date}" sortOrder="#{loggedUserBean.ascendingOrder}">
 						<f:facet name="header">Registered on</f:facet>
 						<h:outputText value="#{payment.date}" />
 					</rich:column>
