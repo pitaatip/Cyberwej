@@ -21,14 +21,14 @@
 				<div id="col1" style="position: relative; top: -60px;">
 					<ui:include src="../components/groupInfoComponent.xhtml" />
 					<h:link outcome="leave_group" value="Leave group">
-						<f:param name="groupToRemove" value="#{groupMembership.group.id}" />
+						<f:param name="selectedGroup" value="#{groupInformationBean.group.id}" />
 					</h:link>
 				</div>
 				<div id="col2">
 					<ui:include src="../components/groupMembersComponent.xhtml" />
 				</div>
 				<div id="group-payments">
-				<ui:include src="../components/groupPaymentsComponent.xhtml" />
+					<ui:include src="../components/groupPaymentsComponent.xhtml" />
 				</div>
 			</ui:define>
 

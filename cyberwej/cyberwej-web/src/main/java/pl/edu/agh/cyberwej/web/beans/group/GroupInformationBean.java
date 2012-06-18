@@ -103,6 +103,14 @@ public class GroupInformationBean extends BaseBean {
         }
         return 0.0f;
     }
+    
+    public String leaveGroup() {
+        User loggedUser = sessionContextBean.getLoggedUser();
+        if(getOverdrawForLoggedUser() > -0.001) {
+            groupMembershipService.removeGroupMember(group, loggedUser);
+        }
+        return "main";
+    }
 
     /**
      * @return the paymentService

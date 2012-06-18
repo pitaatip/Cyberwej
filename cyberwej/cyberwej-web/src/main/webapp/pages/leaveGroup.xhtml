@@ -19,17 +19,15 @@
 				<title>Cyberwej - Leave group</title>
 			</ui:define>
 			<ui:define name="page">
-				<c:if test="${! groupInformationBean.groupContainsLoggedUser}">
-					<h1>You're not a member of the group #{groupInformationBean.group.name}</h1>
-				</c:if>
-				<c:if test="${groupInformationBean.groupContainsLoggedUser}">
-					<c:if test="${groupInformationBean.overdrawForLoggedUser lt (-0.001)}">
-						<h1>You cannot leave the group #{(groupInformationBean.group.name)} as you still owe them #{-(groupInformationBean.overdrawForLoggedUser)}</h1>
-					</c:if>
-					<c:if test="${groupInformationBean.overdrawForLoggedUser ge (-0.001)}">
-						<h1>You can leave this group.</h1>
-					</c:if>
-				</c:if>
+				<h:outputText value="You're not a member of the group #{groupInformationBean.group.name}" rendered="#{not groupInformationBean.groupContainsLoggedUser}"/>
+				<h:outputText value="You cannot leave the group #{(groupInformationBean.group.name)} as you still owe them #{-(groupInformationBean.overdrawForLoggedUser)}" rendered="#{groupInformationBean.groupContainsLoggedUser and groupInformationBean.overdrawForLoggedUser lt (-0.001)}"/>
+				<h:form rendered="#{groupInformationBean.groupContainsLoggedUser and groupInformationBean.overdrawForLoggedUser ge (-0.001)}">
+					<h:outputText value="Do you really want to leave the group #{groupInformationBean.group.name}?"/>
+					<br />
+					<h:commandLink action="#{groupInformationBean.leaveGroup}" value="Yes" />
+					<br />
+					<h:commandLink action="main" value="No" />
+				</h:form>
 			</ui:define>
 
 		</ui:composition>

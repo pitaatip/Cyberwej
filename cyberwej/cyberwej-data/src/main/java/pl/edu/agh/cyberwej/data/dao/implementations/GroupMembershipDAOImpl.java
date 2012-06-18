@@ -3,6 +3,7 @@ package pl.edu.agh.cyberwej.data.dao.implementations;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Repository;
 
 import pl.edu.agh.cyberwej.data.dao.interfaces.GroupMembershipDAO;
@@ -27,8 +28,12 @@ public class GroupMembershipDAOImpl extends DAOBase<GroupMembership> implements 
 
     @Override
     public void removeGroupMembership(GroupMembership groupMembership) {
-        groupMembership.getUser().removeGroupMembership(groupMembership);
-        groupMembership.getGroup().getGroupMembers().remove(groupMembership);
+        if(Hibernate.isInitialized(groupMembership.getUser().getGroupMemberships())) {
+            groupMembership.getUser().removeGroupMembership(groupMembership);
+        }
+        if(Hibernate.isInitialized(groupMembership.getGroup().getGroupMembers())) {
+            groupMembership.getGroup().getGroupMembers().remove(groupMembership);
+        }
         super.hibernateTemplate.delete(groupMembership);
     }
 
