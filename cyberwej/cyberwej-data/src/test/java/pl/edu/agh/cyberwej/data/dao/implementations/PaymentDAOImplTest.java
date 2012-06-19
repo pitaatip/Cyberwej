@@ -111,8 +111,8 @@ public class PaymentDAOImplTest {
                 assertEquals(paymentItem.getCount(), this.count);
                 assertEquals(paymentItem.getPrice(), this.price, 0.0);
                 assertFalse(paymentItem.getConsumers().isEmpty());
-                assertTrue(paymentItem.getConsumers().iterator().next()
-                        .getMail().equals(this.userMail));
+                assertTrue(paymentItem.getConsumers().iterator().next().getMail()
+                        .equals(this.userMail));
             }
         }
     }
@@ -133,18 +133,15 @@ public class PaymentDAOImplTest {
     @Rollback(true)
     @Test
     public void testAddPaymentParticipation() {
-        this.paymentDAO.addPaymentParticipation(this.payment, this.user,
-                this.amount);
+        this.paymentDAO.addPaymentParticipation(this.payment, this.user, this.amount);
         Group retrievedGroup = this.groupDAO.getGroupByName(this.groupName);
         assertNotNull(retrievedGroup);
         assertFalse(retrievedGroup.getPayments().isEmpty());
         for (Payment payment : retrievedGroup.getPayments()) {
             assertFalse(payment.getParticipations().isEmpty());
-            for (PaymentParticipation participation : payment
-                    .getParticipations()) {
+            for (PaymentParticipation participation : payment.getParticipations()) {
                 assertEquals(participation.getAmount(), this.amount, 0.0);
-                assertEquals(participation.getUser().getName(),
-                        this.user.getName());
+                assertEquals(participation.getUser().getName(), this.user.getName());
             }
         }
     }
@@ -153,11 +150,10 @@ public class PaymentDAOImplTest {
     @Rollback(true)
     @Test
     public void testRemovePaymentParticipation() {
-        this.paymentDAO.addPaymentParticipation(this.payment, this.user,
-                this.amount);
+        this.paymentDAO.addPaymentParticipation(this.payment, this.user, this.amount);
         for (Payment payment : this.group.getPayments()) {
-            for (Iterator<PaymentParticipation> iterator = payment
-                    .getParticipations().iterator(); iterator.hasNext();) {
+            for (Iterator<PaymentParticipation> iterator = payment.getParticipations().iterator(); iterator
+                    .hasNext();) {
                 this.paymentDAO.removePaymentParticipation(iterator.next());
             }
         }
@@ -179,12 +175,9 @@ public class PaymentDAOImplTest {
         this.payment2.setDescription(this.description2);
         this.groupDAO.addGroupPayment(this.group, this.payment2);
 
-        this.paymentDAO.addPaymentParticipation(this.payment, this.user,
-                this.amount);
-        this.paymentDAO.addPaymentParticipation(this.payment2, this.user,
-                this.amount2);
-        List<Payment> payments = this.paymentDAO.getLastParticipatedPayments(1,
-                this.user);
+        this.paymentDAO.addPaymentParticipation(this.payment, this.user, this.amount);
+        this.paymentDAO.addPaymentParticipation(this.payment2, this.user, this.amount2);
+        List<Payment> payments = this.paymentDAO.getLastParticipatedPayments(1, this.user);
         assertNotNull(payments);
         assertEquals(payments.size(), 1);
         assertEquals(payments.get(0).getDate(), this.date2);
@@ -194,8 +187,7 @@ public class PaymentDAOImplTest {
         assertEquals(payments.get(0).getDate(), this.date2);
         assertEquals(payments.get(1).getDate(), this.date);
         assertNull(this.paymentDAO.getLastParticipatedPayments(500, null));
-        assertTrue(this.paymentDAO.getLastParticipatedPayments(0, this.user)
-                .isEmpty());
+        assertTrue(this.paymentDAO.getLastParticipatedPayments(0, this.user).isEmpty());
     }
 
     @Transactional
@@ -203,8 +195,7 @@ public class PaymentDAOImplTest {
     @Test
     public void testGetLastConsumedPayments() {
         assertNull(this.paymentDAO.getLastParticipatedPayments(500, null));
-        assertTrue(this.paymentDAO.getLastParticipatedPayments(0, this.user)
-                .isEmpty());
+        assertTrue(this.paymentDAO.getLastParticipatedPayments(0, this.user).isEmpty());
 
         this.payment2 = new Payment();
         this.date2 = new Date();
@@ -218,8 +209,7 @@ public class PaymentDAOImplTest {
         this.paymentItem2.getConsumers().add(this.user);
         this.paymentDAO.savePaymentItem(this.payment2, this.paymentItem2);
 
-        List<Payment> payments = this.paymentDAO.getLastConsumedPayments(1,
-                this.user);
+        List<Payment> payments = this.paymentDAO.getLastConsumedPayments(1, this.user);
         assertNotNull(payments);
         assertEquals(payments.size(), 1);
         assertEquals(payments.get(0).getDate(), this.date2);

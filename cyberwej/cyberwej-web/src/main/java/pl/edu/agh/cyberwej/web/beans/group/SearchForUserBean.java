@@ -64,8 +64,7 @@ public class SearchForUserBean extends BaseBean {
         if (this.login == null && this.name == null && this.surname == null
                 && this.location == null)
             return new LinkedList<User>();
-        return this.service.findUserByCriteria(this.login, this.name,
-                this.surname, this.location);
+        return this.service.findUserByCriteria(this.login, this.name, this.surname, this.location);
     }
 
     public UserService getService() {
@@ -93,8 +92,7 @@ public class SearchForUserBean extends BaseBean {
 
     public void addInvitation() {
         int inviterId = this.sessionContextBean.getLoggedUser().getId();
-        this.invitationService.inviteUser(inviterId, this.newUserId,
-                this.groupId);
+        this.invitationService.inviteUser(inviterId, this.newUserId, this.groupId);
     }
 
     /**

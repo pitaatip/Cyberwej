@@ -5,17 +5,17 @@ import java.util.List;
 import pl.edu.agh.cyberwej.data.objects.User;
 
 public interface UserDAO extends IDAO<User> {
-    public boolean saveUser(User user);
+    boolean saveUser(User user);
 
-    public User findUserByMail(String mail);
+    User findUserByMail(String mail);
 
-    public User findUserById(int id);
+    User findUserById(int id);
 
-    public User findUserByLogin(String login);
+    User findUserByLogin(String login);
 
-    public void removeUser(User user);
+    void removeUser(User user);
 
-    public List<User> getAllUsers();
-    
-    public List<User> findUserByCriteria(String login, String name, String surname, String location);
+    List<User> getAllUsers();
+
+    List<User> findUserByCriteria(String login, String name, String surname, String location);
 }

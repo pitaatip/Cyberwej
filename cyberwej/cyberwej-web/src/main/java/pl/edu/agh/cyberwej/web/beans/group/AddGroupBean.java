@@ -36,7 +36,7 @@ public class AddGroupBean extends BaseBean {
     private UserService userService;
     private GroupService groupService;
     private SessionContextBean sessionContextBean;
-    
+
     public SessionContextBean getSessionContextBean() {
         return sessionContextBean;
     }
@@ -65,22 +65,22 @@ public class AddGroupBean extends BaseBean {
         group = new Group();
         group.setName(groupName);
         groupService.saveGroupWithItsMembersIds(group, usersIdsSet, loggedUserId);
-        //sessionContextBean.getMap4Stuff().put(GROUP2ADD, getGroup());
-        //return "addGroupSummary";
+        // sessionContextBean.getMap4Stuff().put(GROUP2ADD, getGroup());
+        // return "addGroupSummary";
         return "main";
     }
-    
+
     public Group getGroup() {
-        if(group == null) {
+        if (group == null) {
             group = (Group) sessionContextBean.getMap4Stuff().get(GROUP2ADD);
         }
         return group;
     }
-    
+
     public void setGroup(Group group) {
         this.group = group;
     }
-    
+
     public String getGroupName() {
         return groupName;
     }
@@ -88,16 +88,16 @@ public class AddGroupBean extends BaseBean {
     public void setGroupName(String groupName) {
         this.groupName = groupName;
     }
-    
+
     public void setNewUserId(int userId) {
         this.newUserId = userId;
         addUserById(userId);
     }
-    
+
     public int getNewUser() {
         return newUserId;
     }
-    
+
     public int getUserToBeRemovedId() {
         return userToBeRemovedId;
     }
@@ -114,25 +114,24 @@ public class AddGroupBean extends BaseBean {
         usersIdsSet.add(loggedUserId);
     }
 
-
     public List<User> getUsers() {
         return users;
     }
-    
+
     private void addUserById(int userId) {
-        if(usersIdsSet.add(userId)) {
+        if (usersIdsSet.add(userId)) {
             users.add(userService.getUserById(userId));
         }
     }
-    
+
     private void removeUserById(int userId) {
-        if(loggedUserId == userId) {
+        if (loggedUserId == userId) {
             return;
         }
         usersIdsSet.remove(userId);
-        for(Iterator<User> it = users.iterator(); it.hasNext(); ) {
+        for (Iterator<User> it = users.iterator(); it.hasNext();) {
             User user = it.next();
-            if(user.getId() == userId) {
+            if (user.getId() == userId) {
                 it.remove();
                 break;
             }

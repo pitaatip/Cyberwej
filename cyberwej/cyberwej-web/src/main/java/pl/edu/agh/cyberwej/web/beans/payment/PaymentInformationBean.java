@@ -38,8 +38,7 @@ public class PaymentInformationBean extends BaseBean {
         if (idString != null) {
             int id = Integer.parseInt(idString);
             this.payment = this.paymentService.getPaymentWithDependencies(id);
-            this.participantInformations = this.paymentService
-                    .getParticipants(this.payment);
+            this.participantInformations = this.paymentService.getParticipants(this.payment);
         }
     }
 

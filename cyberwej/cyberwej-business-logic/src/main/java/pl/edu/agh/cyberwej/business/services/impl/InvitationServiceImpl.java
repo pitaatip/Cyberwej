@@ -17,9 +17,7 @@ import pl.edu.agh.cyberwej.data.objects.Invitation;
 import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
- * 
  * @author Krzysztof
- * 
  */
 @Service(value = "invitationService")
 public class InvitationServiceImpl implements InvitationService {
@@ -52,8 +50,7 @@ public class InvitationServiceImpl implements InvitationService {
     }
 
     @Override
-    public List<Invitation> getInviationsForUser(User invite,
-            boolean onlyUnaccepted) {
+    public List<Invitation> getInviationsForUser(User invite, boolean onlyUnaccepted) {
         return this.invitationDAO.getInviationsForUser(invite, onlyUnaccepted);
     }
 
@@ -65,8 +62,7 @@ public class InvitationServiceImpl implements InvitationService {
 
     @Transactional
     @Override
-    public boolean inviteUser(Integer inviterId, Integer inviteeId,
-            Integer groupId) {
+    public boolean inviteUser(Integer inviterId, Integer inviteeId, Integer groupId) {
         User inviter = this.userDAO.getById(inviterId);
         User invitee = this.userDAO.getById(inviteeId);
         Group group = this.groupDAO.getById(groupId);

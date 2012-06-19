@@ -14,8 +14,7 @@ import pl.edu.agh.cyberwej.data.objects.User;
 public class PaybackDAOImpl extends DAOBase<Payback> implements PaybackDAO {
 
     @Override
-    public boolean addPayback(User debtor, User investor, Group group,
-            float amount) {
+    public boolean addPayback(User debtor, User investor, Group group, float amount) {
         Payback payback = new Payback();
         payback.setAccepted(false);
         payback.setAmount(amount);
@@ -41,16 +40,15 @@ public class PaybackDAOImpl extends DAOBase<Payback> implements PaybackDAO {
     public boolean updatePayback(Payback payback) {
         return super.save(payback);
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public List<Payback> getPaybacksForUser(User user, boolean onlyUnaccepted) {
         String query = "from Payback payback where payback.receiver=?";
-        if(onlyUnaccepted) {
+        if (onlyUnaccepted) {
             query = query + " and payback.accepted = false";
         }
-        List<Payback> paybacks = (List<Payback>) this.hibernateTemplate.find(query
-                , user);
+        List<Payback> paybacks = (List<Payback>) this.hibernateTemplate.find(query, user);
         return paybacks;
     }
 

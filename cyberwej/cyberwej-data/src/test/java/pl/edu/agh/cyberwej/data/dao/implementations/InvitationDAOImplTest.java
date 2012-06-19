@@ -68,8 +68,7 @@ public class InvitationDAOImplTest {
         this.groupDAO.saveGroup(this.group);
         this.userDAO.saveUser(this.invitee);
         this.userDAO.saveUser(this.inviter);
-        this.invitationDAO
-                .addInvitation(this.inviter, this.invitee, this.group);
+        this.invitationDAO.addInvitation(this.inviter, this.invitee, this.group);
     }
 
     @Transactional
@@ -85,8 +84,7 @@ public class InvitationDAOImplTest {
         assertFalse(retrievedGroup.getInvitations().isEmpty());
         assertFalse(retrievedInvitee.getUserInvitations().isEmpty());
         for (Invitation invitation : retrievedInvitee.getUserInvitations())
-            assertTrue(invitation.getSender().getMail()
-                    .equals(this.inviterMail));
+            assertTrue(invitation.getSender().getMail().equals(this.inviterMail));
     }
 
     @Transactional

@@ -14,13 +14,11 @@ import pl.edu.agh.cyberwej.data.objects.PaymentParticipation;
 import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
- * 
  * @author Krzysztof
- * 
  */
 public interface PaymentService {
 
-    public float getPaymentCost(Payment payment);
+    float getPaymentCost(Payment payment);
 
     /**
      * Returns last payments of the user(payments which user has participated
@@ -32,27 +30,26 @@ public interface PaymentService {
      * 
      * @return map representing payment and user status in this payment
      */
-    public Map<Payment, Float> getLastPayments(int count, User user);
+    Map<Payment, Float> getLastPayments(int count, User user);
 
-    public float getUserStatusInPayment(Payment payment, User user);
+    float getUserStatusInPayment(Payment payment, User user);
 
-    public boolean registerPayment(Group group, Set<PaymentItem> items,
+    boolean registerPayment(Group group, Set<PaymentItem> items,
             Set<PaymentParticipation> participators, String description);
 
-    public void setPaymentDAO(PaymentDAO paymentDAO);
+    void setPaymentDAO(PaymentDAO paymentDAO);
 
-    public List<PaymentInformation> getGroupPayments(Group group);
+    List<PaymentInformation> getGroupPayments(Group group);
 
-    public Payment getPaymentWithDependencies(int id);
+    Payment getPaymentWithDependencies(int id);
 
-    public int getInvolvedUsersCount(Payment payment);
+    int getInvolvedUsersCount(Payment payment);
 
-    public Set<User> getInvolvedUsers(Payment payment);
+    Set<User> getInvolvedUsers(Payment payment);
 
-    public List<ParticipantInformation> getParticipants(Payment payment);
+    List<ParticipantInformation> getParticipants(Payment payment);
 
-    public void addPaymentItems(Payment payment, List<PaymentItem> paymentItems);
+    void addPaymentItems(Payment payment, List<PaymentItem> paymentItems);
 
-    public void addPayers(Payment payment,
-            List<PaymentParticipation> paymentParticipations);
+    void addPayers(Payment payment, List<PaymentParticipation> paymentParticipations);
 }

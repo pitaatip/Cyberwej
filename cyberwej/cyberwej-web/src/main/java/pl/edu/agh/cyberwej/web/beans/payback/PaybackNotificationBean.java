@@ -47,13 +47,13 @@ public class PaybackNotificationBean extends BaseBean {
     public void setPaybacks(List<Payback> paybacks) {
         this.paybacks = paybacks;
     }
-    
+
     @PostConstruct
     public void init() {
         this.loggedUser = sessionContextBean.getLoggedUser();
         this.paybacks = paybackService.getPaybacksForUser(loggedUser, true);
     }
-    
+
     public String acceptPayback() {
         String parameter = getParameter("paybackId");
         this.paybackService.acceptPaybackById(Integer.parseInt(parameter), true);

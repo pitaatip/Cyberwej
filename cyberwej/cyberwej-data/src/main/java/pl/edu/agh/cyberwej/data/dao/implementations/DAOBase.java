@@ -19,8 +19,8 @@ public abstract class DAOBase<ENTITY> implements IDAO<ENTITY> {
 
     @SuppressWarnings("unchecked")
     public DAOBase() {
-        this.entityType = ((Class<ENTITY>) ((ParameterizedType) getClass()
-                .getGenericSuperclass()).getActualTypeArguments()[0]);
+        this.entityType = ((Class<ENTITY>) ((ParameterizedType) getClass().getGenericSuperclass())
+                .getActualTypeArguments()[0]);
 
     }
 

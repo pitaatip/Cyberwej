@@ -20,20 +20,18 @@ import pl.edu.agh.cyberwej.data.objects.Payment;
 import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
- * 
  * @author Krzysztof
- * 
  */
 public class GroupServiceImpl implements GroupService {
 
     @Autowired
     private GroupDAO groupDAO;
-    
+
     @Autowired
     private InvitationService invitationService;
-    
+
     private GroupMembershipService groupMembershipService;
-    
+
     private UserService userService;
 
     @Override
@@ -44,42 +42,43 @@ public class GroupServiceImpl implements GroupService {
     @Override
     @Transactional
     public boolean saveGroupWithItsMembers(Group group, Collection<User> members, User owner) {
-        if(groupDAO.getGroupByName(group.getName()) != null) {
+        if (groupDAO.getGroupByName(group.getName()) != null) {
             return false;
         }
-        if(!groupDAO.saveGroup(group)) {
+        if (!groupDAO.saveGroup(group)) {
             return false;
         }
         groupMembershipService.addGroupMember(group, owner);
-        for(User user : members) {
-            if(user.getId() != owner.getId()) {
+        for (User user : members) {
+            if (user.getId() != owner.getId()) {
                 invitationService.inviteUser(owner, user, group);
             }
         }
         return true;
     }
-    
+
     @Override
     @Transactional
-    public boolean saveGroupWithItsMembersIds(Group group, Collection<Integer> membersIds, int ownerId) {
+    public boolean saveGroupWithItsMembersIds(Group group, Collection<Integer> membersIds,
+            int ownerId) {
         List<User> members = new ArrayList<User>();
-        for(int memberId : membersIds) {
+        for (int memberId : membersIds) {
             members.add(userService.getUserById(memberId));
-            //What if null?
+            // What if null?
         }
         return saveGroupWithItsMembers(group, members, userService.getUserById(ownerId));
     }
-    
+
     @Override
     public void setGroupMembershipService(GroupMembershipService service) {
         this.groupMembershipService = service;
     }
-    
+
     @Override
     public void setUserService(UserService service) {
         this.userService = service;
     }
-    
+
     /**
      * @param groupDAO
      *            the groupDAO to set
@@ -99,10 +98,9 @@ public class GroupServiceImpl implements GroupService {
     @Transactional(readOnly = true)
     public Group getGroupWithMembersAndPayments(int id) {
         Group group = getGroupById(id);
-        group.setGroupMembers(new HashSet<GroupMembership>(group
-                .getGroupMembers()));
+        group.setGroupMembers(new HashSet<GroupMembership>(group.getGroupMembers()));
         group.setPayments(new HashSet<Payment>(group.getPayments()));
         return group;
     }
-    
+
 }

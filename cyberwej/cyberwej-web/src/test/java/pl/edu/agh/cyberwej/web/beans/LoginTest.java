@@ -14,12 +14,12 @@ import pl.edu.agh.cyberwej.business.services.api.UserService;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class LoginTest {
 
-	@Autowired
-	private UserService service;
+    @Autowired
+    private UserService service;
 
-	@Test
-	public void test() {
-		assertNotNull(service);
-	}
+    @Test
+    public void test() {
+        assertNotNull(service);
+    }
 
 }

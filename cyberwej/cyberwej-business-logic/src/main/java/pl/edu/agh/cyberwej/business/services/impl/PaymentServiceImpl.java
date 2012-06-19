@@ -30,9 +30,7 @@ import pl.edu.agh.cyberwej.data.objects.Product;
 import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
- * 
  * @author Krzysztof
- * 
  */
 @Service(value = "paymentService")
 public class PaymentServiceImpl implements PaymentService {
@@ -61,10 +59,9 @@ public class PaymentServiceImpl implements PaymentService {
     @Transactional(readOnly = true)
     @Override
     public Map<Payment, Float> getLastPayments(int count, User user) {
-        List<Payment> consumedPayments = this.paymentDAO
-                .getLastConsumedPayments(count, user);
-        List<Payment> participatedPayments = this.paymentDAO
-                .getLastParticipatedPayments(count, user);
+        List<Payment> consumedPayments = this.paymentDAO.getLastConsumedPayments(count, user);
+        List<Payment> participatedPayments = this.paymentDAO.getLastParticipatedPayments(count,
+                user);
         // consumedPayments and participatedPayments are sorted by payment.date
         // descending
         int index = 0; // index in consumedPayments list
@@ -72,8 +69,7 @@ public class PaymentServiceImpl implements PaymentService {
             if (!consumedPayments.contains(participatedPayment)) {
                 int i = index;
                 while (i < consumedPayments.size()
-                        && participatedPayment.getDate().before(
-                                consumedPayments.get(i).getDate()))
+                        && participatedPayment.getDate().before(consumedPayments.get(i).getDate()))
                     i++;
                 index = i;
                 consumedPayments.add(i, participatedPayment);
@@ -117,8 +113,7 @@ public class PaymentServiceImpl implements PaymentService {
         Payment payment = new Payment();
         payment.setDescription(description);
         payment.setDate(new Date());
-        Group initializedGroup = this.groupService
-                .getGroupWithMembersAndPayments(group.getId());
+        Group initializedGroup = this.groupService.getGroupWithMembersAndPayments(group.getId());
         this.groupDAO.addGroupPayment(initializedGroup, payment);
 
         addParticipatorsWichPayedNothing(items, participators);
@@ -128,8 +123,8 @@ public class PaymentServiceImpl implements PaymentService {
 
         // save products first
         for (PaymentItem item : items) {
-            Product findProductByName = this.productDAO.findProductByName(item
-                    .getProduct().getName());
+            Product findProductByName = this.productDAO.findProductByName(item.getProduct()
+                    .getName());
             if (findProductByName != null) {
                 item.setProduct(findProductByName);
             } else {
@@ -144,8 +139,7 @@ public class PaymentServiceImpl implements PaymentService {
         Map<User, Float> overdrawMap = getOverdrawMap(items, participators);
         for (PaymentParticipation paymentParticipation : participators) {
             for (GroupMembership member : initializedGroup.getGroupMembers()) {
-                if (member.getUser().getId()
-                        .equals(paymentParticipation.getUser().getId())) {
+                if (member.getUser().getId().equals(paymentParticipation.getUser().getId())) {
                     // count difference between eaten and payed
                     final float overdraw = member.getOverdraw()
                             - overdrawMap.get(paymentParticipation.getUser());
@@ -161,12 +155,12 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     @Transactional
     public void addPaymentItems(Payment payment, List<PaymentItem> paymentItems) {
-        Group initializedGroup = this.groupService
-                .getGroupWithMembersAndPayments(payment.getGroup().getId());
+        Group initializedGroup = this.groupService.getGroupWithMembersAndPayments(payment
+                .getGroup().getId());
         payment = this.paymentDAO.getById(payment.getId());
         for (PaymentItem item : paymentItems) {
-            Product findProductByName = this.productDAO.findProductByName(item
-                    .getProduct().getName());
+            Product findProductByName = this.productDAO.findProductByName(item.getProduct()
+                    .getName());
             if (findProductByName != null) {
                 item.setProduct(findProductByName);
             } else {
@@ -179,8 +173,7 @@ public class PaymentServiceImpl implements PaymentService {
         Map<User, Float> overdrawMap = getOverdrawMap(items, participations);
         for (PaymentParticipation paymentParticipation : participations) {
             for (GroupMembership member : initializedGroup.getGroupMembers()) {
-                if (member.getUser().getId()
-                        .equals(paymentParticipation.getUser().getId())) {
+                if (member.getUser().getId().equals(paymentParticipation.getUser().getId())) {
                     // count difference between eaten and payed
                     member.setOverdraw(member.getOverdraw()
                             - overdrawMap.get(paymentParticipation.getUser()));
@@ -196,20 +189,16 @@ public class PaymentServiceImpl implements PaymentService {
             Set<PaymentParticipation> participators) {
         Map<User, Float> overdrawMap = new HashMap<User, Float>();
         for (PaymentParticipation paymentParticipation : participators) {
-            overdrawMap.put(paymentParticipation.getUser(), -1
-                    * paymentParticipation.getAmount());
+            overdrawMap.put(paymentParticipation.getUser(), -1 * paymentParticipation.getAmount());
             for (PaymentItem item : items) {
                 final Set<User> consumers = item.getConsumers();
 
-                boolean contains = UserIsConsumer(paymentParticipation,
-                        consumers);
+                boolean contains = UserIsConsumer(paymentParticipation, consumers);
 
                 if (contains) {
-                    final float itemCost = (item.getCount() * item.getPrice())
-                            / consumers.size();
+                    final float itemCost = (item.getCount() * item.getPrice()) / consumers.size();
                     overdrawMap.put(paymentParticipation.getUser(),
-                            overdrawMap.get(paymentParticipation.getUser())
-                                    + itemCost);
+                            overdrawMap.get(paymentParticipation.getUser()) + itemCost);
                 }
             }
         }
@@ -277,8 +266,7 @@ public class PaymentServiceImpl implements PaymentService {
             PaymentInformation paymentInformation = new PaymentInformation();
             paymentInformation.setPayment(payment);
             paymentInformation.setAmount(getPaymentCost(payment));
-            paymentInformation
-                    .setParticipantsCount(getInvolvedUsersCount(payment));
+            paymentInformation.setParticipantsCount(getInvolvedUsersCount(payment));
             result.add(paymentInformation);
         }
         return result;
@@ -289,13 +277,10 @@ public class PaymentServiceImpl implements PaymentService {
     public Payment getPaymentWithDependencies(int id) {
         Payment payment = this.paymentDAO.getById(id);
         if (payment != null) {
-            payment.setPaymentItems(new HashSet<PaymentItem>(payment
-                    .getPaymentItems()));
-            payment.setParticipations(new HashSet<PaymentParticipation>(payment
-                    .getParticipations()));
+            payment.setPaymentItems(new HashSet<PaymentItem>(payment.getPaymentItems()));
+            payment.setParticipations(new HashSet<PaymentParticipation>(payment.getParticipations()));
             for (PaymentItem paymentItem : payment.getPaymentItems())
-                paymentItem.setConsumers(new HashSet<User>(paymentItem
-                        .getConsumers()));
+                paymentItem.setConsumers(new HashSet<User>(paymentItem.getConsumers()));
         }
         return payment;
     }
@@ -313,8 +298,7 @@ public class PaymentServiceImpl implements PaymentService {
         for (PaymentItem paymentItem : payment.getPaymentItems())
             for (User user : paymentItem.getConsumers())
                 involvedUsers.add(user);
-        for (PaymentParticipation paymentParticipation : payment
-                .getParticipations())
+        for (PaymentParticipation paymentParticipation : payment.getParticipations())
             involvedUsers.add(paymentParticipation.getUser());
         return involvedUsers;
     }
@@ -323,14 +307,12 @@ public class PaymentServiceImpl implements PaymentService {
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public List<ParticipantInformation> getParticipants(Payment payment) {
         Map<User, ParticipantInformation> participationsMap = new HashMap<User, ParticipantInformation>();
-        for (PaymentParticipation paymentParticipation : payment
-                .getParticipations()) {
+        for (PaymentParticipation paymentParticipation : payment.getParticipations()) {
             ParticipantInformation participantInformation = new ParticipantInformation();
             participantInformation.setUser(paymentParticipation.getUser());
             participantInformation.setAmount(paymentParticipation.getAmount());
             participantInformation.setStatus(paymentParticipation.getAmount());
-            participationsMap.put(paymentParticipation.getUser(),
-                    participantInformation);
+            participationsMap.put(paymentParticipation.getUser(), participantInformation);
         }
         ParticipantInformation participantInformation;
         for (PaymentItem paymentItem : payment.getPaymentItems())
@@ -343,36 +325,30 @@ public class PaymentServiceImpl implements PaymentService {
                     participantInformation.setUser(consumer);
                 }
                 participantInformation.incrementConsumedItemsCount();
-                participantInformation.setStatus(participantInformation
-                        .getStatus()
-                        - paymentItem.getCount()
-                        * paymentItem.getPrice()
+                participantInformation.setStatus(participantInformation.getStatus()
+                        - paymentItem.getCount() * paymentItem.getPrice()
                         / paymentItem.getConsumers().size());
             }
-        return new LinkedList<ParticipantInformation>(
-                participationsMap.values());
+        return new LinkedList<ParticipantInformation>(participationsMap.values());
     }
 
     @Override
     @Transactional
-    public void addPayers(Payment payment,
-            List<PaymentParticipation> paymentParticipations) {
+    public void addPayers(Payment payment, List<PaymentParticipation> paymentParticipations) {
         payment = this.paymentDAO.getById(payment.getId());
         for (PaymentParticipation newParticipation : paymentParticipations) {
-            for (GroupMembership groupMembership : payment.getGroup()
-                    .getGroupMembers())
-                if (groupMembership.getUser().getId()
-                        .equals(newParticipation.getUser().getId()))
+            for (GroupMembership groupMembership : payment.getGroup().getGroupMembers())
+                if (groupMembership.getUser().getId().equals(newParticipation.getUser().getId()))
                     groupMembership.setOverdraw(groupMembership.getOverdraw()
                             + newParticipation.getAmount());
             newParticipation.setPayment(payment);
-            for (Iterator<PaymentParticipation> iterator = payment
-                    .getParticipations().iterator(); iterator.hasNext();) {
+            for (Iterator<PaymentParticipation> iterator = payment.getParticipations().iterator(); iterator
+                    .hasNext();) {
                 PaymentParticipation paymentParticipation = iterator.next();
                 if (newParticipation.getUser().getId()
                         .equals(paymentParticipation.getUser().getId())) {
-                    paymentParticipation.setAmount(paymentParticipation
-                            .getAmount() + newParticipation.getAmount());
+                    paymentParticipation.setAmount(paymentParticipation.getAmount()
+                            + newParticipation.getAmount());
                     newParticipation = paymentParticipation;
                 }
             }

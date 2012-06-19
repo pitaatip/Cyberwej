@@ -37,8 +37,7 @@ public class GroupServiceTest {
 
     @Test(expected = RuntimeException.class)
     public void testSaveGroup() {
-        when(this.groupDAOMock.saveGroup(this.groupMock)).thenThrow(
-                new RuntimeException());
+        when(this.groupDAOMock.saveGroup(this.groupMock)).thenThrow(new RuntimeException());
         this.groupService.setGroupDAO(this.groupDAOMock);
         this.groupService.saveGroup(this.groupMock);
     }

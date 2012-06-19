@@ -19,8 +19,8 @@ public class UserDAOImpl extends DAOBase<User> implements UserDAO {
     @Override
     @SuppressWarnings("unchecked")
     public User findUserByMail(String mail) {
-        List<User> queryResult = this.hibernateTemplate.find(
-                "from User user where user.mail=?", mail);
+        List<User> queryResult = this.hibernateTemplate.find("from User user where user.mail=?",
+                mail);
         if (queryResult.size() > 0) {
             return queryResult.get(0);
         }
@@ -42,27 +42,26 @@ public class UserDAOImpl extends DAOBase<User> implements UserDAO {
     @Override
     @SuppressWarnings("unchecked")
     public User findUserById(int id) {
-        List<User> queryResult = this.hibernateTemplate.find(
-                "from User user where user.id=?", id);
+        List<User> queryResult = this.hibernateTemplate.find("from User user where user.id=?", id);
         if (queryResult.size() > 0) {
             return queryResult.get(0);
         }
         return null;
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public User findUserByLogin(String login) {
-        List<User> queryResult = this.hibernateTemplate.find(
-                "from User user where user.login=?", login);
+        List<User> queryResult = this.hibernateTemplate.find("from User user where user.login=?",
+                login);
         if (queryResult.size() > 0) {
             return queryResult.get(0);
         }
         return null;
     }
-    
+
     private String toLikeParameter(String parameter) {
-        if(hasText(parameter)) {
+        if (hasText(parameter)) {
             StringBuilder sb = new StringBuilder("%");
             sb.append(parameter);
             sb.append("%");
@@ -70,7 +69,7 @@ public class UserDAOImpl extends DAOBase<User> implements UserDAO {
         }
         return "%";
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public List<User> findUserByCriteria(String login, String name, String surname, String location) {
@@ -78,10 +77,10 @@ public class UserDAOImpl extends DAOBase<User> implements UserDAO {
         String nameLike = toLikeParameter(name);
         String surnameLike = toLikeParameter(surname);
         String locationLike = toLikeParameter(location);
-        
-        List<User> queryResult = this.hibernateTemplate.find(
-        "from User user where user.login like ? and user.name like ? and user.surname like ? and user.location like ?",
-        loginLike, nameLike, surnameLike, locationLike);
+
+        List<User> queryResult = this.hibernateTemplate
+                .find("from User user where user.login like ? and user.name like ? and user.surname like ? and user.location like ?",
+                        loginLike, nameLike, surnameLike, locationLike);
         return queryResult;
     }
 }

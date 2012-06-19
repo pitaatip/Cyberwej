@@ -25,9 +25,9 @@ public class Message {
     protected User sender;
 
     protected User receiver;
-    
+
     private Date sentTime;
-    
+
     private Boolean isAccepted;
 
     @Id
@@ -79,7 +79,7 @@ public class Message {
     public void setSentTime(Date sentTime) {
         this.sentTime = sentTime;
     }
-    
+
     @Column(name = "ISACCEPTED", nullable = false)
     public Boolean isAccepted() {
         return this.isAccepted;
@@ -88,7 +88,7 @@ public class Message {
     public void setAccepted(Boolean isAccepted) {
         this.isAccepted = isAccepted;
     }
-    
+
     @PreUpdate
     @PrePersist
     public void beforePersist() {

@@ -65,10 +65,9 @@ public class PaybackServiceTest {
     @Ignore
     @Test
     public void testAcceptPayback() {
-        //given
+        // given
         paybackMock = mock(Payback.class);
-        when(paybackDAOMock.updatePayback(paybackMock)).thenReturn(
-                true);
+        when(paybackDAOMock.updatePayback(paybackMock)).thenReturn(true);
         when(paybackMock.getReceiver()).thenReturn(investorMock);
         when(paybackMock.getSender()).thenReturn(debtorMock);
         when(paybackMock.getGroup()).thenReturn(groupMock);
@@ -78,11 +77,11 @@ public class PaybackServiceTest {
         when(debtorMock.getGroupMemberships()).thenReturn(groupMemberships);
         when(groupMembershipMock.getGroup()).thenReturn(groupMock);
         when(groupMock.getId()).thenReturn(1);
-        
-        //when
+
+        // when
         this.paybackService.acceptPayback(this.paybackMock, this.isAccepted);
-        
-        //then
+
+        // then
         verify(this.paybackMock, atLeastOnce()).setAccepted(this.isAccepted);
         verify(this.paybackMock, never()).setAccepted(!this.isAccepted);
     }

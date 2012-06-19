@@ -25,6 +25,7 @@ public class AddUserBean extends BaseBean {
 
     /**
      * Remove user from database.
+     * 
      * @return
      */
     public String remove() {
@@ -36,6 +37,7 @@ public class AddUserBean extends BaseBean {
 
     /**
      * Get all users from databse.
+     * 
      * @return
      */
     public List<User> getUsersList() {
@@ -44,6 +46,7 @@ public class AddUserBean extends BaseBean {
 
     /**
      * Save user in database.
+     * 
      * @return
      */
     public String saveNewUser() {

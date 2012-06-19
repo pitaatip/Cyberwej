@@ -27,8 +27,7 @@ public class PaymentDAOImpl extends DAOBase<Payment> implements PaymentDAO {
     }
 
     @Override
-    public boolean addPaymentParticipation(Payment payment, User user,
-            float amount) {
+    public boolean addPaymentParticipation(Payment payment, User user, float amount) {
         PaymentParticipation paymentParticipation = new PaymentParticipation();
         paymentParticipation.setAmount(amount);
         paymentParticipation.setUser(user);
@@ -38,10 +37,8 @@ public class PaymentDAOImpl extends DAOBase<Payment> implements PaymentDAO {
     }
 
     @Override
-    public void removePaymentParticipation(
-            PaymentParticipation paymentParticipation) {
-        paymentParticipation.getPayment().getParticipations()
-                .remove(paymentParticipation);
+    public void removePaymentParticipation(PaymentParticipation paymentParticipation) {
+        paymentParticipation.getPayment().getParticipations().remove(paymentParticipation);
         super.save(paymentParticipation.getPayment());
     }
 

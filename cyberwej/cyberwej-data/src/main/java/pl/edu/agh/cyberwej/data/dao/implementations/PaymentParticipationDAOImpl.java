@@ -6,7 +6,7 @@ import pl.edu.agh.cyberwej.data.dao.interfaces.PaymentParticipationDAO;
 import pl.edu.agh.cyberwej.data.objects.PaymentParticipation;
 
 @Repository
-public class PaymentParticipationDAOImpl extends DAOBase<PaymentParticipation>
-        implements PaymentParticipationDAO {
+public class PaymentParticipationDAOImpl extends DAOBase<PaymentParticipation> implements
+        PaymentParticipationDAO {
 
 }

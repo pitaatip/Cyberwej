@@ -21,8 +21,8 @@ public class GroupDAOImpl extends DAOBase<Group> implements GroupDAO {
     @Override
     @SuppressWarnings("unchecked")
     public Group getGroupByName(String name) {
-        List<Group> groups = this.hibernateTemplate.find(
-                "from Group group where group.name=?", name);
+        List<Group> groups = this.hibernateTemplate.find("from Group group where group.name=?",
+                name);
         if (groups.size() > 0)
             return groups.get(0);
         return null;

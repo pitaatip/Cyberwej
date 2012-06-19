@@ -23,7 +23,7 @@ import pl.edu.agh.cyberwej.data.objects.User;
  * 
  */
 public abstract class BaseIntegrationTest {
-    
+
     @Autowired
     private GroupService groupService;
     @Autowired
@@ -67,7 +67,7 @@ public abstract class BaseIntegrationTest {
         }
         return users;
     }
-    
+
     protected void acceptAllInvitations() {
         LinkedList<User> users = retrieveUsers();
 

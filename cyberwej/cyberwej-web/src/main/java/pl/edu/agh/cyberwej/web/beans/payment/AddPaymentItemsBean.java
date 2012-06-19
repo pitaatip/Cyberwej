@@ -64,13 +64,12 @@ public class AddPaymentItemsBean extends BaseBean {
     }
 
     public Map<String, Integer> getGroupMemberships() {
-        Group groupWithMembers = getGroupService()
-                .getGroupWithMembersAndPayments(getGroup().getId());
+        Group groupWithMembers = getGroupService().getGroupWithMembersAndPayments(
+                getGroup().getId());
         Map<String, Integer> map = new HashMap<String, Integer>();
         Set<GroupMembership> groupMembers = groupWithMembers.getGroupMembers();
         for (GroupMembership groupMembership : groupMembers) {
-            map.put(groupMembership.getUser().getLogin(), groupMembership
-                    .getUser().getId());
+            map.put(groupMembership.getUser().getLogin(), groupMembership.getUser().getId());
         }
         return map;
     }
@@ -92,8 +91,7 @@ public class AddPaymentItemsBean extends BaseBean {
         item.setProduct(product2);
         Set<User> consumers = new HashSet<User>();
         for (String userId : this.selectedGroupMemberships) {
-            User userById = this.userService.getUserById(Integer
-                    .parseInt(userId));
+            User userById = this.userService.getUserById(Integer.parseInt(userId));
             consumers.add(userById);
         }
         item.setConsumers(consumers);
@@ -109,12 +107,8 @@ public class AddPaymentItemsBean extends BaseBean {
             Payment payment = (Payment) getMap4Stuff().get("Payment");
             this.paymentService.addPaymentItems(payment, getItemsList());
             try {
-                FacesContext
-                        .getCurrentInstance()
-                        .getExternalContext()
-                        .redirect(
-                                "paymentPage.jsf?selectedPayment="
-                                        + payment.getId());
+                FacesContext.getCurrentInstance().getExternalContext()
+                        .redirect("paymentPage.jsf?selectedPayment=" + payment.getId());
                 return null;
             } catch (IOException e) {
                 // TODO Auto-generated catch block

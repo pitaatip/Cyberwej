@@ -17,9 +17,7 @@ import pl.edu.agh.cyberwej.data.objects.Payback;
 import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
- * 
  * @author Krzysztof
- * 
  */
 @Service("paybackService")
 public class PaybackServiceImpl implements PaybackService {
@@ -32,7 +30,7 @@ public class PaybackServiceImpl implements PaybackService {
 
     @Autowired
     private UserService userService;
-    
+
     @Autowired
     private GroupService groupService;
 
@@ -64,7 +62,8 @@ public class PaybackServiceImpl implements PaybackService {
     @Transactional
     public boolean createPayback(User debtor, User investor, Group group, float amount) {
         return this.paybackDAO.addPayback(userService.getUserById(debtor.getId()),
-                userService.getUserById(investor.getId()), groupService.getGroupById(group.getId()), amount);
+                userService.getUserById(investor.getId()),
+                groupService.getGroupById(group.getId()), amount);
     }
 
     private GroupMembership getGroupMembershipFromObjects(Group group, User user) {
@@ -84,11 +83,11 @@ public class PaybackServiceImpl implements PaybackService {
         GroupMembership receiver = getGroupMembershipFromObjects(payback.getGroup(),
                 payback.getReceiver());
         groupMembershipService.updateGroupMembershipStatus(sender, payback.getAmount());
-        groupMembershipService.updateGroupMembershipStatus(receiver, -1*payback.getAmount());
+        groupMembershipService.updateGroupMembershipStatus(receiver, -1 * payback.getAmount());
         payback.setAccepted(isAccepted);
         return this.paybackDAO.updatePayback(payback);
     }
-    
+
     @Override
     @Transactional
     public boolean acceptPaybackById(int paybackId, boolean isAccepted) {
@@ -102,7 +101,7 @@ public class PaybackServiceImpl implements PaybackService {
     public void setPaybackDAO(PaybackDAO paybackDAO) {
         this.paybackDAO = paybackDAO;
     }
-    
+
     public List<Payback> getPaybacksForUser(User user, boolean onlyUnaccepted) {
         return paybackDAO.getPaybacksForUser(user, onlyUnaccepted);
     }

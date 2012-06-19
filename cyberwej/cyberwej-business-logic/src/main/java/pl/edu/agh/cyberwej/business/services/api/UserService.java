@@ -12,7 +12,6 @@ import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
  * @author pita
- * 
  */
 public interface UserService {
 
@@ -21,32 +20,31 @@ public interface UserService {
      * 
      * @return list of users
      */
-    public List<User> getAllUsers();
+    List<User> getAllUsers();
 
     /**
      * Saves user to database
      * 
      * @param user
      */
-    public void saveUser(User user);
+    void saveUser(User user);
 
     /**
      * Remove user from database
      * 
      * @param id
      */
-    public void removeUser(String id);
+    void removeUser(String id);
 
-    public User getUserById(int id);
+    User getUserById(int id);
 
-    public List<GroupInformation> getUserGroupsInformation(User user);
+    List<GroupInformation> getUserGroupsInformation(User user);
 
-    public List<GroupMembership> getGroupMemberships(User user);
+    List<GroupMembership> getGroupMemberships(User user);
 
-    public void setDao(UserDAO dao);
+    void setDao(UserDAO dao);
 
-    public User getUserByLogin(String login);
+    User getUserByLogin(String login);
 
-    public List<User> findUserByCriteria(String login, String name,
-            String surname, String location);
+    List<User> findUserByCriteria(String login, String name, String surname, String location);
 }

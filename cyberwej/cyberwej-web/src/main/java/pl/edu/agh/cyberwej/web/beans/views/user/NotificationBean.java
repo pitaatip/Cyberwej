@@ -11,7 +11,7 @@ import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
 import pl.edu.agh.cyberwej.web.beans.common.SessionContextBean;
 
 public class NotificationBean extends BaseBean {
-    
+
     private SessionContextBean sessionContextBean;
     private User loggedUser;
     private List<Invitation> invitations;
@@ -40,7 +40,7 @@ public class NotificationBean extends BaseBean {
     public void setInvitations(List<Invitation> invitations) {
         this.invitations = invitations;
     }
-    
+
     public InvitationService getInvitationService() {
         return invitationService;
     }
@@ -54,7 +54,7 @@ public class NotificationBean extends BaseBean {
         this.loggedUser = sessionContextBean.getLoggedUser();
         this.invitations = invitationService.getInviationsForUser(loggedUser, true);
     }
-    
+
     public String acceptInvitation() {
         String parameter = getParameter("invitationId");
         this.invitationService.acceptInvitationById(Integer.parseInt(parameter), true);

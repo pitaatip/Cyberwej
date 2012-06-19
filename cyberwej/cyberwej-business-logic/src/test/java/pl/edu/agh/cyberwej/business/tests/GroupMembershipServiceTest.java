@@ -42,36 +42,29 @@ public class GroupMembershipServiceTest {
     @Before
     public void init() {
         this.groupMembershipDAOMock = mock(GroupMembershipDAO.class);
-        this.groupMembershipService
-                .setGroupMembershipDAO(this.groupMembershipDAOMock);
+        this.groupMembershipService.setGroupMembershipDAO(this.groupMembershipDAOMock);
     }
 
     @Test
     public void testAddGroupMember() {
         this.groupMock = mock(Group.class);
         this.userMock = mock(User.class);
-        when(
-                this.groupMembershipDAOMock.addGroupMembership(this.groupMock,
-                        this.userMock)).thenReturn(true);
-        this.groupMembershipService.addGroupMember(this.groupMock,
+        when(this.groupMembershipDAOMock.addGroupMembership(this.groupMock, this.userMock))
+                .thenReturn(true);
+        this.groupMembershipService.addGroupMember(this.groupMock, this.userMock);
+        verify(this.groupMembershipDAOMock, only()).addGroupMembership(this.groupMock,
                 this.userMock);
-        verify(this.groupMembershipDAOMock, only()).addGroupMembership(
-                this.groupMock, this.userMock);
     }
 
     @Test
     public void testUpdateGroupMembershipStatus() {
         this.groupMembershipMock = mock(GroupMembership.class);
         when(this.groupMembershipMock.getOverdraw()).thenReturn(this.overdraw);
-        doNothing().when(this.groupMembershipMock).setOverdraw(
-                this.overdraw + this.amount);
-        when(this.groupMembershipDAOMock.save(this.groupMembershipMock))
-                .thenReturn(false);
-        this.groupMembershipService.updateGroupMembershipStatus(
-                this.groupMembershipMock, this.amount);
-        verify(this.groupMembershipMock, atLeastOnce()).setOverdraw(
-                this.overdraw + this.amount);
-        verify(this.groupMembershipDAOMock, only()).save(
-                this.groupMembershipMock);
+        doNothing().when(this.groupMembershipMock).setOverdraw(this.overdraw + this.amount);
+        when(this.groupMembershipDAOMock.save(this.groupMembershipMock)).thenReturn(false);
+        this.groupMembershipService.updateGroupMembershipStatus(this.groupMembershipMock,
+                this.amount);
+        verify(this.groupMembershipMock, atLeastOnce()).setOverdraw(this.overdraw + this.amount);
+        verify(this.groupMembershipDAOMock, only()).save(this.groupMembershipMock);
     }
 }

@@ -87,8 +87,7 @@ public class GroupDAOImplTest {
     public void testGetGroupByName() {
         Group retrievedGroup = this.groupDAO.getGroupByName(this.groupName);
         assertNotNull(retrievedGroup);
-        retrievedGroup = this.groupDAO
-                .getGroupByName(this.nonExistingGroupName);
+        retrievedGroup = this.groupDAO.getGroupByName(this.nonExistingGroupName);
         assertNull(retrievedGroup);
     }
 
@@ -97,18 +96,16 @@ public class GroupDAOImplTest {
     @Test
     public void testAddGroupPayment() {
         this.groupDAO.addGroupPayment(this.group, this.payment);
-        Set<Payment> groupPayments = this.groupDAO.getGroupByName(
-                this.groupName).getPayments();
+        Set<Payment> groupPayments = this.groupDAO.getGroupByName(this.groupName).getPayments();
         assertFalse(groupPayments.isEmpty());
         Payment retrievedPayment = groupPayments.iterator().next();
         assertEquals(retrievedPayment.getId(), this.payment.getId());
         /*
          * assertEquals(retrievedPayment.getPaymentItems().iterator().next()
          * .getId(), this.paymentItem.getId());
-         */assertEquals(retrievedPayment.getDate().getTime() / 1000,
-                this.payment.getDate().getTime() / 1000);
-        assertEquals(retrievedPayment.getDescription(),
-                this.payment.getDescription());
+         */assertEquals(retrievedPayment.getDate().getTime() / 1000, this.payment.getDate()
+                .getTime() / 1000);
+        assertEquals(retrievedPayment.getDescription(), this.payment.getDescription());
         assertEquals(retrievedPayment.getGroup().getName(), this.groupName);
     }
 
@@ -117,8 +114,7 @@ public class GroupDAOImplTest {
     @Test
     public void testRemoveGroupPayment() {
         this.groupDAO.addGroupPayment(this.group, this.payment);
-        Set<Payment> groupPayments = this.groupDAO.getGroupByName(
-                this.groupName).getPayments();
+        Set<Payment> groupPayments = this.groupDAO.getGroupByName(this.groupName).getPayments();
         assertFalse(groupPayments.isEmpty());
 
         this.groupDAO.removeGroupPayment(this.group, this.payment);

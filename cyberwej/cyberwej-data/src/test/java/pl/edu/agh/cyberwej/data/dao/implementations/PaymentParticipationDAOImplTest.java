@@ -76,8 +76,7 @@ public class PaymentParticipationDAOImplTest {
         this.userDAO.saveUser(this.user);
         this.groupDAO.saveGroup(this.group);
         this.groupDAO.addGroupPayment(this.group, this.payment);
-        this.paymentDAO.addPaymentParticipation(this.payment, this.user,
-                this.amount);
+        this.paymentDAO.addPaymentParticipation(this.payment, this.user, this.amount);
     }
 
     @Test
@@ -90,10 +89,8 @@ public class PaymentParticipationDAOImplTest {
         assertFalse(retrievedGroup.getPayments().isEmpty());
         for (Payment payment : retrievedGroup.getPayments()) {
             assertFalse(payment.getParticipations().isEmpty());
-            for (PaymentParticipation paymentParticipation : payment
-                    .getParticipations()) {
-                assertEquals(paymentParticipation.getAmount(), this.amount,
-                        0.0f);
+            for (PaymentParticipation paymentParticipation : payment.getParticipations()) {
+                assertEquals(paymentParticipation.getAmount(), this.amount, 0.0f);
                 paymentParticipation.setAmount(this.newAmount);
                 this.paymentParticipationDAO.save(paymentParticipation);
             }
@@ -104,10 +101,8 @@ public class PaymentParticipationDAOImplTest {
         assertFalse(retrievedGroup.getPayments().isEmpty());
         for (Payment payment : retrievedGroup.getPayments()) {
             assertFalse(payment.getParticipations().isEmpty());
-            for (PaymentParticipation paymentParticipation : payment
-                    .getParticipations())
-                assertEquals(paymentParticipation.getAmount(), this.newAmount,
-                        0.0f);
+            for (PaymentParticipation paymentParticipation : payment.getParticipations())
+                assertEquals(paymentParticipation.getAmount(), this.newAmount, 0.0f);
         }
 
     }

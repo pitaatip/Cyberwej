@@ -18,7 +18,6 @@ import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
  * @author pita
- * 
  */
 public class UserServiceImpl implements UserService {
 
@@ -63,8 +62,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findUserByCriteria(String login, String name,
-            String surname, String location) {
+    public List<User> findUserByCriteria(String login, String name, String surname, String location) {
         return this.dao.findUserByCriteria(login, name, surname, location);
     }
 
@@ -89,7 +87,6 @@ public class UserServiceImpl implements UserService {
     @Transactional(readOnly = true)
     public List<GroupMembership> getGroupMemberships(User user) {
         User retrievedUser = this.dao.getById(user.getId());
-        return new LinkedList<GroupMembership>(
-                retrievedUser.getGroupMemberships());
+        return new LinkedList<GroupMembership>(retrievedUser.getGroupMemberships());
     }
 }

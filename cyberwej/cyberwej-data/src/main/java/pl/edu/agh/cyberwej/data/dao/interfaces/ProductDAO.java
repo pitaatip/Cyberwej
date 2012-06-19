@@ -6,12 +6,11 @@ import pl.edu.agh.cyberwej.data.objects.Product;
 
 public interface ProductDAO extends IDAO<Product> {
 
-    public boolean saveProduct(Product product);
-    
-    
-    public Product findProductByName(String name);
+    boolean saveProduct(Product product);
 
-    public List<Product> findProductsByName(String name);
+    Product findProductByName(String name);
 
-    public boolean removeProduct(Product product);
+    List<Product> findProductsByName(String name);
+
+    boolean removeProduct(Product product);
 }

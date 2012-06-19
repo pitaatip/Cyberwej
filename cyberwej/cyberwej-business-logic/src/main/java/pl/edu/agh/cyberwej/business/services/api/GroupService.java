@@ -7,25 +7,24 @@ import pl.edu.agh.cyberwej.data.objects.Group;
 import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
- * 
  * @author Krzysztof
- * 
  */
 public interface GroupService {
 
-    public boolean saveGroup(Group group);
-    
-    public boolean saveGroupWithItsMembers(Group group, Collection<User> members, User owner);
-    
-    public boolean saveGroupWithItsMembersIds(Group group, Collection<Integer> membersIds, int ownerId);
+    boolean saveGroup(Group group);
 
-    public Group getGroupById(int id);
+    boolean saveGroupWithItsMembers(Group group, Collection<User> members, User owner);
 
-    public Group getGroupWithMembersAndPayments(int id);
-    
-    public void setUserService(UserService service);
+    boolean saveGroupWithItsMembersIds(Group group, Collection<Integer> membersIds,
+            int ownerId);
 
-    public void setGroupDAO(GroupDAO groupDAO);
-    
-    public void setGroupMembershipService(GroupMembershipService service);
+    Group getGroupById(int id);
+
+    Group getGroupWithMembersAndPayments(int id);
+
+    void setUserService(UserService service);
+
+    void setGroupDAO(GroupDAO groupDAO);
+
+    void setGroupMembershipService(GroupMembershipService service);
 }

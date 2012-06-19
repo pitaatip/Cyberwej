@@ -72,8 +72,7 @@ public class PaybackDAOImplTest {
         this.groupDAO.saveGroup(this.group);
         this.userDAO.saveUser(this.debtor);
         this.userDAO.saveUser(this.investor);
-        this.paybackDAO.addPayback(this.debtor, this.investor, this.group,
-                this.amount);
+        this.paybackDAO.addPayback(this.debtor, this.investor, this.group, this.amount);
     }
 
     @Transactional

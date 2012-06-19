@@ -10,9 +10,7 @@ import pl.edu.agh.cyberwej.data.objects.GroupMembership;
 import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
- * 
  * @author Krzysztof
- * 
  */
 @Service
 public class GroupMembershipServiceImpl implements GroupMembershipService {
@@ -26,17 +24,16 @@ public class GroupMembershipServiceImpl implements GroupMembershipService {
     }
 
     @Override
-    public void updateGroupMembershipStatus(GroupMembership groupMembership,
-            float amount) {
+    public void updateGroupMembershipStatus(GroupMembership groupMembership, float amount) {
         groupMembership.setOverdraw(groupMembership.getOverdraw() + amount);
         this.groupMembershipDAO.save(groupMembership);
     }
-    
+
     @Override
     public void removeGroupMember(Group group, User user) {
         groupMembershipDAO.removeGroupMembership(group, user);
     }
-    
+
     /**
      * @param groupMembershipDAO
      *            the groupMembershipDAO to set

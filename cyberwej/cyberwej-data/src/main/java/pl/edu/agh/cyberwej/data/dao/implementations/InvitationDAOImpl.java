@@ -11,8 +11,7 @@ import pl.edu.agh.cyberwej.data.objects.Invitation;
 import pl.edu.agh.cyberwej.data.objects.User;
 
 @Repository
-public class InvitationDAOImpl extends DAOBase<Invitation> implements
-        InvitationDAO {
+public class InvitationDAOImpl extends DAOBase<Invitation> implements InvitationDAO {
 
     @Override
     public boolean addInvitation(User inviter, User invitee, Group group) {
@@ -26,7 +25,7 @@ public class InvitationDAOImpl extends DAOBase<Invitation> implements
         group.getInvitations().add(invitation);
         return super.save(invitation);
     }
-    
+
     @Override
     public void acceptInvitation(Invitation invitation) {
         invitation.setAccepted(true);
@@ -39,16 +38,16 @@ public class InvitationDAOImpl extends DAOBase<Invitation> implements
         invitation.getGroup().getInvitations().remove(invitation);
         super.hibernateTemplate.delete(invitation);
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public List<Invitation> getInviationsForUser(User invite, boolean onlyUnaccepted) {
         String query = "from Invitation invitation where invitation.receiver=?";
-        if(onlyUnaccepted) {
+        if (onlyUnaccepted) {
             query = query + " and invitation.accepted = false";
         }
-        List<Invitation> invitations = (List<Invitation>) this.hibernateTemplate.find(query
-                , invite);
+        List<Invitation> invitations = (List<Invitation>) this.hibernateTemplate
+                .find(query, invite);
         return invitations;
     }
 

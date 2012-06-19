@@ -3,9 +3,7 @@ package pl.edu.agh.cyberwej.common.objects.service;
 import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
- * 
  * @author Krzysztof
- * 
  */
 public class ParticipantInformation {
     private User user;

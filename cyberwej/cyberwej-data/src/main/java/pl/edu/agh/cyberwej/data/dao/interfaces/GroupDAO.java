@@ -5,15 +5,14 @@ import pl.edu.agh.cyberwej.data.objects.Payment;
 
 public interface GroupDAO extends IDAO<Group> {
 
-    public boolean saveGroup(Group group);
+    boolean saveGroup(Group group);
 
-    public Group getGroupByName(String name);
+    Group getGroupByName(String name);
 
-    public void removeGroup(Group group);
+    void removeGroup(Group group);
 
-    public boolean addGroupPayment(Group group, Payment payment);
+    boolean addGroupPayment(Group group, Payment payment);
 
-    public void removeGroupPayment(Group group, Payment payment);
-    
-    
+    void removeGroupPayment(Group group, Payment payment);
+
 }

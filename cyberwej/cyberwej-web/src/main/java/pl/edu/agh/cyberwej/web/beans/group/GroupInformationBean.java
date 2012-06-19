@@ -37,10 +37,10 @@ public class GroupInformationBean extends BaseBean {
 
     @ManagedProperty(value = "#{groupMembershipService}")
     private GroupMembershipService groupMembershipService;
-    
+
     @ManagedProperty(value = "#{sessionContextBean}")
     private SessionContextBean sessionContextBean;
-    
+
     private Group group = new Group();
 
     private List<PaymentInformation> groupPayments = new LinkedList<PaymentInformation>();
@@ -51,8 +51,7 @@ public class GroupInformationBean extends BaseBean {
         if (idString != null) {
             int id = Integer.parseInt(idString);
             this.group = this.groupService.getGroupWithMembersAndPayments(id);
-            this.groupPayments = this.paymentService
-                    .getGroupPayments(this.group);
+            this.groupPayments = this.paymentService.getGroupPayments(this.group);
         }
     }
 
@@ -81,32 +80,32 @@ public class GroupInformationBean extends BaseBean {
     public List<GroupMembership> getGroupMembers() {
         return new LinkedList<GroupMembership>(this.group.getGroupMembers());
     }
-    
+
     public boolean getGroupContainsLoggedUser() {
         User loggedUser = sessionContextBean.getLoggedUser();
         List<GroupMembership> groupMembers = getGroupMembers();
-        for(GroupMembership groupMembership : groupMembers) {
-            if(groupMembership.getUser().getId() == loggedUser.getId()) {
+        for (GroupMembership groupMembership : groupMembers) {
+            if (groupMembership.getUser().getId() == loggedUser.getId()) {
                 return true;
             }
         }
         return false;
     }
-    
+
     public float getOverdrawForLoggedUser() {
         User loggedUser = sessionContextBean.getLoggedUser();
         List<GroupMembership> groupMembers = getGroupMembers();
-        for(GroupMembership groupMembership : groupMembers) {
-            if(groupMembership.getUser().getId() == loggedUser.getId()) {
+        for (GroupMembership groupMembership : groupMembers) {
+            if (groupMembership.getUser().getId() == loggedUser.getId()) {
                 return groupMembership.getOverdraw();
             }
         }
         return 0.0f;
     }
-    
+
     public String leaveGroup() {
         User loggedUser = sessionContextBean.getLoggedUser();
-        if(getOverdrawForLoggedUser() > -0.001) {
+        if (getOverdrawForLoggedUser() > -0.001) {
             groupMembershipService.removeGroupMember(group, loggedUser);
         }
         return "main";
@@ -145,9 +144,9 @@ public class GroupInformationBean extends BaseBean {
     public void setGroupMembershipService(GroupMembershipService groupMembershipService) {
         this.groupMembershipService = groupMembershipService;
     }
-    
+
     public void removeUserFromGroup() {
-        
+
     }
 
     public SessionContextBean getSessionContextBean() {

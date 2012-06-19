@@ -8,13 +8,12 @@ import pl.edu.agh.cyberwej.data.objects.User;
 
 public interface InvitationDAO extends IDAO<Invitation> {
 
-    public boolean addInvitation(User inviter, User invitee, Group group);
+    boolean addInvitation(User inviter, User invitee, Group group);
 
-    public void removeInvitation(Invitation invitation);
+    void removeInvitation(Invitation invitation);
 
-    public void acceptInvitation(Invitation invitation);
+    void acceptInvitation(Invitation invitation);
 
-    public List<Invitation> getInviationsForUser(User invite,
-            boolean onlyUnaccepted);
+    List<Invitation> getInviationsForUser(User invite, boolean onlyUnaccepted);
 
 }

@@ -73,12 +73,11 @@ public class PaymentServiceTest {
     @Test
     @Transactional
     public void testGetPaymentCost() {
-        assertEquals(this.paymentService.getPaymentCost(this.paymentMock),
-                this.count * this.price + this.count2 * this.price2, 0.0f);
+        assertEquals(this.paymentService.getPaymentCost(this.paymentMock), this.count * this.price
+                + this.count2 * this.price2, 0.0f);
         this.paymentItems.remove(this.paymentItemMock);
         this.paymentItems.remove(this.paymentItemMock2);
-        assertEquals(this.paymentService.getPaymentCost(this.paymentMock),
-                0.0f, 0.0f);
+        assertEquals(this.paymentService.getPaymentCost(this.paymentMock), 0.0f, 0.0f);
     }
 
     @Test
@@ -113,13 +112,11 @@ public class PaymentServiceTest {
 
         when(this.paymentMock.getParticipations()).thenReturn(participations1);
 
-        assertEquals(this.paymentService.getUserStatusInPayment(
-                this.paymentMock, user1Mock), amount1 - this.price * this.count
-                / 2.0f - this.price2 * this.count2, 0.0f);
+        assertEquals(this.paymentService.getUserStatusInPayment(this.paymentMock, user1Mock),
+                amount1 - this.price * this.count / 2.0f - this.price2 * this.count2, 0.0f);
 
-        assertEquals(this.paymentService.getUserStatusInPayment(
-                this.paymentMock, user2Mock), -this.price * this.count / 2.0f,
-                0.0f);
+        assertEquals(this.paymentService.getUserStatusInPayment(this.paymentMock, user2Mock),
+                -this.price * this.count / 2.0f, 0.0f);
 
     }
 
@@ -148,8 +145,7 @@ public class PaymentServiceTest {
         when(participation1Mock.getAmount()).thenReturn(amount1);
         when(participation1Mock.getUser()).thenReturn(user1Mock);
 
-        when(this.paymentMock.getParticipations()).thenReturn(
-                participationsEmpty);
+        when(this.paymentMock.getParticipations()).thenReturn(participationsEmpty);
         when(payment2Mock.getParticipations()).thenReturn(participationsEmpty);
         when(payment3Mock.getParticipations()).thenReturn(participationsEmpty);
 
@@ -157,8 +153,7 @@ public class PaymentServiceTest {
         when(payment2Mock.getPaymentItems()).thenReturn(this.paymentItems);
         when(payment3Mock.getPaymentItems()).thenReturn(this.paymentItems);
 
-        Map<Payment, Float> lastPayments = this.paymentService.getLastPayments(
-                0, user1Mock);
+        Map<Payment, Float> lastPayments = this.paymentService.getLastPayments(0, user1Mock);
         assertTrue(lastPayments.isEmpty());
 
         List<Payment> consumedPayments = new LinkedList<Payment>();
@@ -175,8 +170,8 @@ public class PaymentServiceTest {
 
         when(this.paymentDAO.getLastConsumedPayments(count, user1Mock))
                 .thenReturn(consumedPayments);
-        when(this.paymentDAO.getLastParticipatedPayments(count, user1Mock))
-                .thenReturn(participatedPayments);
+        when(this.paymentDAO.getLastParticipatedPayments(count, user1Mock)).thenReturn(
+                participatedPayments);
 
         lastPayments = this.paymentService.getLastPayments(count, user1Mock);
         assertFalse(lastPayments.isEmpty());
@@ -189,30 +184,27 @@ public class PaymentServiceTest {
         participatedPayments.add(this.paymentMock);
         when(this.paymentDAO.getLastConsumedPayments(count, user1Mock))
                 .thenReturn(consumedPayments);
-        when(this.paymentDAO.getLastParticipatedPayments(count, user1Mock))
-                .thenReturn(participatedPayments);
+        when(this.paymentDAO.getLastParticipatedPayments(count, user1Mock)).thenReturn(
+                participatedPayments);
 
         lastPayments = this.paymentService.getLastPayments(count, user1Mock);
         assertFalse(lastPayments.isEmpty());
         assertEquals(lastPayments.size(), count);
 
         for (Payment payment : lastPayments.keySet())
-            assertTrue(payment.getDate().equals(dates[0])
-                    || payment.getDate().equals(dates[1]));
+            assertTrue(payment.getDate().equals(dates[0]) || payment.getDate().equals(dates[1]));
         count = 4;
         consumedPayments.clear();
         consumedPayments.addAll(participatedPayments);
         participatedPayments.clear();
         when(this.paymentDAO.getLastConsumedPayments(count, user1Mock))
                 .thenReturn(consumedPayments);
-        when(this.paymentDAO.getLastParticipatedPayments(count, user1Mock))
-                .thenReturn(participatedPayments);
+        when(this.paymentDAO.getLastParticipatedPayments(count, user1Mock)).thenReturn(
+                participatedPayments);
 
         lastPayments = this.paymentService.getLastPayments(count, user1Mock);
         assertFalse(lastPayments.isEmpty());
         assertEquals(lastPayments.size(), consumedPayments.size());
     }
-    
-    
-    
+
 }

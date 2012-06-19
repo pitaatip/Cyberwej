@@ -6,10 +6,10 @@ import pl.edu.agh.cyberwej.data.objects.User;
 
 public interface GroupMembershipDAO extends IDAO<GroupMembership> {
 
-    public boolean addGroupMembership(Group group, User user);
+    boolean addGroupMembership(Group group, User user);
 
-    public void removeGroupMembership(GroupMembership groupMembership);
-    
-    public void removeGroupMembership(Group group, User user);
+    void removeGroupMembership(GroupMembership groupMembership);
+
+    void removeGroupMembership(Group group, User user);
 
 }

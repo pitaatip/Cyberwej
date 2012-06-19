@@ -43,7 +43,7 @@ public class User {
 
     @Column(name = "BIRTHDAY")
     private Date birthday;
-    
+
     @Column(name = "PASSWORD")
     private String password;
 

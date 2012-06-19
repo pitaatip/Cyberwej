@@ -17,7 +17,7 @@ public class TemplateBean {
 
     @ManagedProperty("#{sessionContextBean}")
     private SessionContextBean sessionContextBean;
-    
+
     public SessionContextBean getSessionContextBean() {
         return sessionContextBean;
     }

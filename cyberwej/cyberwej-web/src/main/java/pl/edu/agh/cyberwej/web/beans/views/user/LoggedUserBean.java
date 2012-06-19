@@ -28,9 +28,9 @@ import pl.edu.agh.cyberwej.web.beans.common.SessionContextBean;
 public class LoggedUserBean {
 
     private static final String SELECTEDGROUP = "selectedGroup";
-    
+
     private static final SortOrder ascendingOrder = SortOrder.ascending;
-    
+
     private static final SortOrder descendingOrder = SortOrder.descending;
 
     @ManagedProperty(value = "#{userService}")
@@ -59,8 +59,7 @@ public class LoggedUserBean {
     @PostConstruct
     public void init() {
         this.user = this.sessionContextBean.getLoggedUser();
-        this.latestPaymentsMap = this.paymentService.getLastPayments(
-                this.count, this.user);
+        this.latestPaymentsMap = this.paymentService.getLastPayments(this.count, this.user);
     }
 
     /**
@@ -114,7 +113,7 @@ public class LoggedUserBean {
     public Map<Payment, Float> getLatestPaymentsMap() {
         return this.latestPaymentsMap;
     }
-    
+
     public SortOrder getAscendingOrder() {
         return ascendingOrder;
     }

@@ -16,16 +16,16 @@ public class CreateUserBean extends BaseBean {
     private UserService service;
     private User user;
     private String password;
-    
+
     public CreateUserBean() {
         // Initialize user
         setUser(new User());
         log.info("Initialized");
     }
 
-
     /**
      * Save user in database.
+     * 
      * @return
      */
     public String saveNewUser() {
@@ -54,11 +54,9 @@ public class CreateUserBean extends BaseBean {
         this.service = service;
     }
 
-
     public String getPassword() {
         return password;
     }
-
 
     public void setPassword(String password) {
         this.password = password;

@@ -42,15 +42,12 @@ public class RegisterPaymentSummaryBean extends BaseBean {
 
     @SuppressWarnings("unchecked")
     public List<PaymentParticipation> getPaymentParticipators() {
-        return (List<PaymentParticipation>) getMap4Stuff().get(
-                "paymentParticipators");
+        return (List<PaymentParticipation>) getMap4Stuff().get("paymentParticipators");
     }
 
     public String registerPayment() {
-        getPaymentService().registerPayment(getGroup(),
-                new HashSet<PaymentItem>(getItems()),
-                new HashSet<PaymentParticipation>(getPaymentParticipators()),
-                getPaymentName());
+        getPaymentService().registerPayment(getGroup(), new HashSet<PaymentItem>(getItems()),
+                new HashSet<PaymentParticipation>(getPaymentParticipators()), getPaymentName());
         getMap4Stuff().put("PaymentName", null);
         getMap4Stuff().put("SelectedGroup", null);
         getMap4Stuff().put("ItemsList", null);

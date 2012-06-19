@@ -4,7 +4,7 @@ import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
 
 public class AddGroupSummaryBean extends BaseBean {
     public String getGroupName() {
-        //TODO
+        // TODO
         return null;
     }
 }

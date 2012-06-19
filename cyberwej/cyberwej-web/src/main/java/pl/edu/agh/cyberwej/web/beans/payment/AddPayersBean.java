@@ -51,10 +51,9 @@ public class AddPayersBean extends BaseBean {
     private PaymentService paymentService;
 
     public List<GroupMembership> getGroupMemberships() {
-        Group groupWithMembers = getGroupService()
-                .getGroupWithMembersAndPayments(getGroup().getId());
-        return new LinkedList<GroupMembership>(
-                groupWithMembers.getGroupMembers());
+        Group groupWithMembers = getGroupService().getGroupWithMembersAndPayments(
+                getGroup().getId());
+        return new LinkedList<GroupMembership>(groupWithMembers.getGroupMembers());
     }
 
     public String next() {
@@ -64,12 +63,8 @@ public class AddPayersBean extends BaseBean {
             Payment payment = (Payment) getMap4Stuff().get("Payment");
             this.paymentService.addPayers(payment, getPaymentParticipators());
             try {
-                FacesContext
-                        .getCurrentInstance()
-                        .getExternalContext()
-                        .redirect(
-                                "paymentPage.jsf?selectedPayment="
-                                        + payment.getId());
+                FacesContext.getCurrentInstance().getExternalContext()
+                        .redirect("paymentPage.jsf?selectedPayment=" + payment.getId());
                 return null;
             } catch (IOException e) {
                 logger.warn("Add payers oepration error", e);
@@ -90,8 +85,7 @@ public class AddPayersBean extends BaseBean {
     public String addPayer() {
         PaymentParticipation paymentParticipation = new PaymentParticipation();
         paymentParticipation.setAmount(Float.parseFloat(this.amount));
-        User userById = this.userService.getUserById(Integer
-                .parseInt(this.selectedPayer));
+        User userById = this.userService.getUserById(Integer.parseInt(this.selectedPayer));
         paymentParticipation.setUser(userById);
         getPaymentParticipators().add(paymentParticipation);
         return null;
@@ -106,11 +100,9 @@ public class AddPayersBean extends BaseBean {
     @SuppressWarnings("unchecked")
     public List<PaymentParticipation> getPaymentParticipators() {
         if (getMap4Stuff().get("paymentParticipators") == null) {
-            getMap4Stuff().put("paymentParticipators",
-                    new LinkedList<PaymentParticipation>());
+            getMap4Stuff().put("paymentParticipators", new LinkedList<PaymentParticipation>());
         }
-        return (List<PaymentParticipation>) getMap4Stuff().get(
-                "paymentParticipators");
+        return (List<PaymentParticipation>) getMap4Stuff().get("paymentParticipators");
     }
 
     // GET AND SETS
