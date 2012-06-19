@@ -4,9 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import pl.edu.agh.cyberwej.business.services.api.InvitationService;
 import pl.edu.agh.cyberwej.business.services.api.PaybackService;
-import pl.edu.agh.cyberwej.data.objects.Invitation;
 import pl.edu.agh.cyberwej.data.objects.Payback;
 import pl.edu.agh.cyberwej.data.objects.User;
 import pl.edu.agh.cyberwej.web.beans.common.BaseBean;

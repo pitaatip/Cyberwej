@@ -6,8 +6,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.event.ValueChangeEvent;
 
-import org.apache.log4j.Logger;
-
 import pl.edu.agh.cyberwej.business.services.api.GroupService;
 import pl.edu.agh.cyberwej.business.services.api.PaybackService;
 import pl.edu.agh.cyberwej.business.services.api.UserService;
@@ -18,7 +16,6 @@ import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
 import pl.edu.agh.cyberwej.web.beans.common.SessionContextBean;
 
 public class PaybackRegistrationBean extends BaseBean {
-    private static final Logger LOGGER = Logger.getLogger(PaybackRegistrationBean.class);
     private PaybackService paybackService;
     private SessionContextBean sessionContextBean;
     private UserService userService;
