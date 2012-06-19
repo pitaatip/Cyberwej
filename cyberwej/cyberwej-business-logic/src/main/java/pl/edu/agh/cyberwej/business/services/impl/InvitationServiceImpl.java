@@ -66,9 +66,11 @@ public class InvitationServiceImpl implements InvitationService {
         User inviter = this.userDAO.getById(inviterId);
         User invitee = this.userDAO.getById(inviteeId);
         Group group = this.groupDAO.getById(groupId);
-        for (GroupMembership groupMembership : group.getGroupMembers())
-            if (groupMembership.getUser().getId().equals(inviteeId))
+        for (GroupMembership groupMembership : group.getGroupMembers()) {
+            if (groupMembership.getUser().getId().equals(inviteeId)) {
                 return false;
+            }
+        }
         return this.invitationDAO.addInvitation(inviter, invitee, group);
     }
 }

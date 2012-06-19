@@ -1,6 +1,3 @@
-/**
- * 
- */
 package pl.edu.agh.cyberwej.business.services.api;
 
 import java.util.List;
@@ -16,22 +13,19 @@ import pl.edu.agh.cyberwej.data.objects.User;
 public interface UserService {
 
     /**
-     * Get all users from database
-     * 
+     * Get all users from database.
      * @return list of users
      */
     List<User> getAllUsers();
 
     /**
-     * Saves user to database
-     * 
+     * Saves user to database.
      * @param user
      */
     void saveUser(User user);
 
     /**
-     * Remove user from database
-     * 
+     * Remove user from database.
      * @param id
      */
     void removeUser(String id);

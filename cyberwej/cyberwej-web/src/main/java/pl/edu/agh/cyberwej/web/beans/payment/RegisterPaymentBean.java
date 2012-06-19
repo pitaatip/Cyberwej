@@ -21,7 +21,6 @@ import pl.edu.agh.cyberwej.web.beans.common.SessionContextBean;
 
 /**
  * @author Pita
- * 
  */
 @ManagedBean
 @RequestScoped

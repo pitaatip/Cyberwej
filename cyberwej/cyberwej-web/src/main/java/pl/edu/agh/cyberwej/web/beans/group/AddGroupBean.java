@@ -20,7 +20,6 @@ import pl.edu.agh.cyberwej.web.beans.common.SessionContextBean;
 
 /**
  * @author Pita
- * 
  */
 
 public class AddGroupBean extends BaseBean {

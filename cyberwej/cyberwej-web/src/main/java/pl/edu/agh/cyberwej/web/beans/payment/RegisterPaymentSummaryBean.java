@@ -18,7 +18,6 @@ import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
 
 /**
  * @author Pita
- * 
  */
 @ManagedBean
 @RequestScoped

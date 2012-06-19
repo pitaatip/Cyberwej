@@ -7,9 +7,7 @@ import pl.edu.agh.cyberwej.data.objects.PaymentItem;
 import pl.edu.agh.cyberwej.data.objects.User;
 
 /**
- * 
  * @author Krzysztof
- * 
  */
 public class PaymentItemWrapper extends PaymentItem {
 

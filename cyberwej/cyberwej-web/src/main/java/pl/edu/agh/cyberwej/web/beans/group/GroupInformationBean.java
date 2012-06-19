@@ -19,9 +19,7 @@ import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
 import pl.edu.agh.cyberwej.web.beans.common.SessionContextBean;
 
 /**
- * 
  * @author Krzysztof
- * 
  */
 @ManagedBean
 @ViewScoped

@@ -13,9 +13,7 @@ import pl.edu.agh.cyberwej.data.objects.User;
 import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
 
 /**
- * 
  * @author Krzysztof
- * 
  */
 @ManagedBean
 @RequestScoped

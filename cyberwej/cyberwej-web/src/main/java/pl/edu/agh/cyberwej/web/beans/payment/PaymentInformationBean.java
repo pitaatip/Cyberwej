@@ -15,9 +15,7 @@ import pl.edu.agh.cyberwej.data.objects.PaymentItem;
 import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
 
 /**
- * 
  * @author Krzysztof
- * 
  */
 @ManagedBean
 @ViewScoped
@@ -74,8 +72,9 @@ public class PaymentInformationBean extends BaseBean {
 
     public List<PaymentItemWrapper> getPaymentItems() {
         List<PaymentItemWrapper> paymentItems = new LinkedList<PaymentItemWrapper>();
-        for (PaymentItem paymentItem : this.payment.getPaymentItems())
+        for (PaymentItem paymentItem : this.payment.getPaymentItems()) {
             paymentItems.add(new PaymentItemWrapper(paymentItem));
+        }
         return paymentItems;
     }
 

@@ -51,8 +51,9 @@ public class PaymentServiceImpl implements PaymentService {
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public float getPaymentCost(Payment payment) {
         float result = 0.0f;
-        for (PaymentItem paymentItem : payment.getPaymentItems())
+        for (PaymentItem paymentItem : payment.getPaymentItems()) {
             result += paymentItem.getPrice() * paymentItem.getCount();
+        }
         return result;
     }
 
@@ -65,7 +66,7 @@ public class PaymentServiceImpl implements PaymentService {
         // consumedPayments and participatedPayments are sorted by payment.date
         // descending
         int index = 0; // index in consumedPayments list
-        for (Payment participatedPayment : participatedPayments)
+        for (Payment participatedPayment : participatedPayments) {
             if (!consumedPayments.contains(participatedPayment)) {
                 int i = index;
                 while (i < consumedPayments.size()
@@ -74,11 +75,14 @@ public class PaymentServiceImpl implements PaymentService {
                 index = i;
                 consumedPayments.add(i, participatedPayment);
             }
-        if (consumedPayments.size() > count)
+        }
+        if (consumedPayments.size() > count) {
             consumedPayments = consumedPayments.subList(0, count);
+        }
         Map<Payment, Float> result = new HashMap<Payment, Float>();
-        for (Payment payment : consumedPayments)
+        for (Payment payment : consumedPayments) {
             result.put(payment, this.getUserStatusInPayment(payment, user));
+        }
         return result;
     }
 
@@ -88,15 +92,19 @@ public class PaymentServiceImpl implements PaymentService {
         float result = 0.0f;
         Integer userId = user.getId();
 
-        for (PaymentItem paymentItem : payment.getPaymentItems())
+        for (PaymentItem paymentItem : payment.getPaymentItems()) {
             for (User consumer : paymentItem.getConsumers())
-                if (consumer.getId().equals(userId))
+                if (consumer.getId().equals(userId)) {
                     result -= paymentItem.getCount() * paymentItem.getPrice()
                             / paymentItem.getConsumers().size();
+                }
+        }
 
-        for (PaymentParticipation participation : payment.getParticipations())
-            if (participation.getUser().getId().equals(userId))
+        for (PaymentParticipation participation : payment.getParticipations()) {
+            if (participation.getUser().getId().equals(userId)) {
                 result += participation.getAmount();
+            }
+        }
 
         return result;
     }
@@ -278,7 +286,8 @@ public class PaymentServiceImpl implements PaymentService {
         Payment payment = this.paymentDAO.getById(id);
         if (payment != null) {
             payment.setPaymentItems(new HashSet<PaymentItem>(payment.getPaymentItems()));
-            payment.setParticipations(new HashSet<PaymentParticipation>(payment.getParticipations()));
+            payment.setParticipations(new HashSet<PaymentParticipation>(
+                    payment.getParticipations()));
             for (PaymentItem paymentItem : payment.getPaymentItems())
                 paymentItem.setConsumers(new HashSet<User>(paymentItem.getConsumers()));
         }
@@ -306,7 +315,8 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public List<ParticipantInformation> getParticipants(Payment payment) {
-        Map<User, ParticipantInformation> participationsMap = new HashMap<User, ParticipantInformation>();
+        Map<User, ParticipantInformation> participationsMap = new HashMap<User, 
+                ParticipantInformation>();
         for (PaymentParticipation paymentParticipation : payment.getParticipations()) {
             ParticipantInformation participantInformation = new ParticipantInformation();
             participantInformation.setUser(paymentParticipation.getUser());

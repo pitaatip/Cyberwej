@@ -10,7 +10,6 @@ import javax.faces.context.FacesContext;
  * inherit from this bean.
  * 
  * @author pita
- * 
  */
 public abstract class BaseBean {
 
