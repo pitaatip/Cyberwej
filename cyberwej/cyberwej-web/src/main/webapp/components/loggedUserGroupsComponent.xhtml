@@ -15,7 +15,7 @@
 				<rich:dataTable value="#{loggedUserBean.groupMemberships}"
 					var="groupMembership">
 
-					<rich:column>
+					<rich:column sortBy="#{groupMembership.group.name}" sortOrder="#{loggedUserBean.ascendingOrder}">
 						<f:facet name="header">Group name</f:facet>
 						<h:link value="#{groupMembership.group.name}" outcome="groupPage">
 							<f:param name="selectedGroup" value="#{groupMembership.group.id}" />

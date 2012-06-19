@@ -8,12 +8,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
+import pl.edu.agh.cyberwej.business.services.api.GroupMembershipService;
 import pl.edu.agh.cyberwej.business.services.api.GroupService;
 import pl.edu.agh.cyberwej.business.services.api.PaymentService;
 import pl.edu.agh.cyberwej.common.objects.service.PaymentInformation;
 import pl.edu.agh.cyberwej.data.objects.Group;
 import pl.edu.agh.cyberwej.data.objects.GroupMembership;
+import pl.edu.agh.cyberwej.data.objects.User;
 import pl.edu.agh.cyberwej.web.beans.common.BaseBean;
+import pl.edu.agh.cyberwej.web.beans.common.SessionContextBean;
 
 /**
  * 
@@ -32,6 +35,12 @@ public class GroupInformationBean extends BaseBean {
     @ManagedProperty(value = "#{paymentService}")
     private PaymentService paymentService;
 
+    @ManagedProperty(value = "#{groupMembershipService}")
+    private GroupMembershipService groupMembershipService;
+    
+    @ManagedProperty(value = "#{sessionContextBean}")
+    private SessionContextBean sessionContextBean;
+    
     private Group group = new Group();
 
     private List<PaymentInformation> groupPayments = new LinkedList<PaymentInformation>();
@@ -72,6 +81,36 @@ public class GroupInformationBean extends BaseBean {
     public List<GroupMembership> getGroupMembers() {
         return new LinkedList<GroupMembership>(this.group.getGroupMembers());
     }
+    
+    public boolean getGroupContainsLoggedUser() {
+        User loggedUser = sessionContextBean.getLoggedUser();
+        List<GroupMembership> groupMembers = getGroupMembers();
+        for(GroupMembership groupMembership : groupMembers) {
+            if(groupMembership.getUser().getId() == loggedUser.getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public float getOverdrawForLoggedUser() {
+        User loggedUser = sessionContextBean.getLoggedUser();
+        List<GroupMembership> groupMembers = getGroupMembers();
+        for(GroupMembership groupMembership : groupMembers) {
+            if(groupMembership.getUser().getId() == loggedUser.getId()) {
+                return groupMembership.getOverdraw();
+            }
+        }
+        return 0.0f;
+    }
+    
+    public String leaveGroup() {
+        User loggedUser = sessionContextBean.getLoggedUser();
+        if(getOverdrawForLoggedUser() > -0.001) {
+            groupMembershipService.removeGroupMember(group, loggedUser);
+        }
+        return "main";
+    }
 
     /**
      * @return the paymentService
@@ -97,5 +136,25 @@ public class GroupInformationBean extends BaseBean {
      */
     public List<PaymentInformation> getGroupPayments() {
         return this.groupPayments;
+    }
+
+    public GroupMembershipService getGroupMembershipService() {
+        return groupMembershipService;
+    }
+
+    public void setGroupMembershipService(GroupMembershipService groupMembershipService) {
+        this.groupMembershipService = groupMembershipService;
+    }
+    
+    public void removeUserFromGroup() {
+        
+    }
+
+    public SessionContextBean getSessionContextBean() {
+        return sessionContextBean;
+    }
+
+    public void setSessionContextBean(SessionContextBean sessionContextBean) {
+        this.sessionContextBean = sessionContextBean;
     }
 }

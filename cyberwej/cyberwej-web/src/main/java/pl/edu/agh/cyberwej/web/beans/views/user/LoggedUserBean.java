@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
+import org.richfaces.component.SortOrder;
+
 import pl.edu.agh.cyberwej.business.services.api.PaymentService;
 import pl.edu.agh.cyberwej.business.services.api.UserService;
 import pl.edu.agh.cyberwej.data.objects.GroupMembership;
@@ -26,6 +28,10 @@ import pl.edu.agh.cyberwej.web.beans.common.SessionContextBean;
 public class LoggedUserBean {
 
     private static final String SELECTEDGROUP = "selectedGroup";
+    
+    private static final SortOrder ascendingOrder = SortOrder.ascending;
+    
+    private static final SortOrder descendingOrder = SortOrder.descending;
 
     @ManagedProperty(value = "#{userService}")
     private UserService userService;
@@ -107,5 +113,13 @@ public class LoggedUserBean {
      */
     public Map<Payment, Float> getLatestPaymentsMap() {
         return this.latestPaymentsMap;
+    }
+    
+    public SortOrder getAscendingOrder() {
+        return ascendingOrder;
+    }
+
+    public SortOrder getDescendingOrder() {
+        return descendingOrder;
     }
 }

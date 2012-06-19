@@ -16,6 +16,7 @@ public interface GroupMembershipService {
     public void updateGroupMembershipStatus(GroupMembership groupMembership,
             float amount);
     
+    public void removeGroupMember(Group group, User user);
     //public void updateGroupMembershipStatus(Group group, User member, float amout);
 
 }

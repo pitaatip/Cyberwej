@@ -32,6 +32,11 @@ public class GroupMembershipServiceImpl implements GroupMembershipService {
         this.groupMembershipDAO.save(groupMembership);
     }
     
+    @Override
+    public void removeGroupMember(Group group, User user) {
+        groupMembershipDAO.removeGroupMembership(group, user);
+    }
+    
     /**
      * @param groupMembershipDAO
      *            the groupMembershipDAO to set
