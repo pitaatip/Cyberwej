@@ -85,6 +85,8 @@ public class GroupMembershipDAOImplTest {
         User retrievedUser = this.userDAO.findUserByMail(this.mail);
         for (GroupMembership groupMembership : retrievedUser.getGroupMemberships()) {
             if (groupMembership.getGroup().getName().equals(this.groupName)) {
+            	groupMembership.getGroup().getGroupMembers().size();
+            	groupMembership.getUser().getGroupMemberships().size();
                 this.groupMembershipDAO.removeGroupMembership(groupMembership);
             }
         }
@@ -98,6 +100,7 @@ public class GroupMembershipDAOImplTest {
     public void shouldRemoveGroupMembership() {
         User retrievedUser = userDAO.findUserByMail(mail);
         Group matchingGroup = groupDAO.getGroupByName(groupName);
+        matchingGroup.getGroupMembers().isEmpty();
         groupMembershipDAO.removeGroupMembership(matchingGroup, retrievedUser);
         assertTrue(matchingGroup.getGroupMembers().isEmpty());
     }

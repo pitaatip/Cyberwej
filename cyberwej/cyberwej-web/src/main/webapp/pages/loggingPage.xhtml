@@ -25,16 +25,16 @@
 					<h:outputText value="Password is incorrect!"
 						rendered="#{loggingBean.wrongPasswordError}" style="color: red;" />
 				</a4j:outputPanel>
-				<h:form>
+				<h:form id="main">
 					<table id="cyber-table">
 						<tr>
 							<td><h:outputText value="Login: " /></td>
-							<td><h:inputText defaultLabel="click to enter your login"
+							<td><h:inputText defaultLabel="click to enter your login" id="login"
 									value="#{loggingBean.userLogin}" /></td>
 						</tr>
 						<tr>
 							<td><h:outputText value="Password:" /></td>
-							<td><h:inputSecret defaultLabel="click to enter your password" value="#{loggingBean.password}"/></td>
+							<td><h:inputSecret defaultLabel="click to enter your password" id="password" value="#{loggingBean.password}"/></td>
 						</tr>
 						<tr>
 							<td><h:commandButton value="next"
